@@ -3258,6 +3258,10 @@
 				ONLY_ACTIVE_ARCH = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
+				WARNING_CFLAGS = (
+					"-Wno-deprecated-declarations",
+					"-Wno-shorten-64-to-32",
+				);
 			};
 			name = Debug;
 		};
@@ -3363,6 +3367,10 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 				VALIDATE_PRODUCT = YES;
+				WARNING_CFLAGS = (
+					"-Wno-deprecated-declarations",
+					"-Wno-shorten-64-to-32",
+				);
 			};
 			name = Release;
 		};

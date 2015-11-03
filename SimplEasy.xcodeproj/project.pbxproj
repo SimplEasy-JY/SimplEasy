@@ -24,6 +24,7 @@
 		8328A4AF1BE84E050021767D /* JYBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4AE1BE84E050021767D /* JYBaseModel.m */; };
 		8328A4B21BE84E1F0021767D /* JYBaseNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4B11BE84E1F0021767D /* JYBaseNetManager.m */; };
 		8328A4B51BE84E6E0021767D /* JYBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4B41BE84E6E0021767D /* JYBaseViewModel.m */; };
+		8344A9931BE89D6200AD007B /* ScrollDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8344A9921BE89D6200AD007B /* ScrollDisplayViewController.m */; };
 		B02A70051BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A70001BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift */; };
 		B02A70061BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A70011BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift */; };
 		B02A70071BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A70021BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift */; };
@@ -35,7 +36,6 @@
 		B02A70171BE8638A00B8B05F /* JYPlusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70161BE8638A00B8B05F /* JYPlusButton.m */; };
 		B02A701A1BE863AE00B8B05F /* JYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70191BE863AE00B8B05F /* JYTabBar.m */; };
 		B02A701C1BE86AA000B8B05F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B02A701B1BE86AA000B8B05F /* Assets.xcassets */; };
-		B05CCAFA1BE894FE008933BD /* ScrollDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B05CCAF91BE894FE008933BD /* ScrollDisplayViewController.m */; };
 		E1F9A3C4126135B024FA3120 /* libPods-SimplEasy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F40C00061819C81121C437 /* libPods-SimplEasy.a */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +95,8 @@
 		8328A4B11BE84E1F0021767D /* JYBaseNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBaseNetManager.m; sourceTree = "<group>"; };
 		8328A4B31BE84E6E0021767D /* JYBaseViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBaseViewModel.h; sourceTree = "<group>"; };
 		8328A4B41BE84E6E0021767D /* JYBaseViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBaseViewModel.m; sourceTree = "<group>"; };
+		8344A9911BE89D6200AD007B /* ScrollDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollDisplayViewController.h; sourceTree = "<group>"; };
+		8344A9921BE89D6200AD007B /* ScrollDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollDisplayViewController.m; sourceTree = "<group>"; };
 		B02A70001BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshConstants.swift; sourceTree = "<group>"; };
 		B02A70011BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshExtensions.swift; sourceTree = "<group>"; };
 		B02A70021BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshLoadingView.swift; sourceTree = "<group>"; };
@@ -112,8 +114,6 @@
 		B02A70181BE863AE00B8B05F /* JYTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYTabBar.h; sourceTree = "<group>"; };
 		B02A70191BE863AE00B8B05F /* JYTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYTabBar.m; sourceTree = "<group>"; };
 		B02A701B1BE86AA000B8B05F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B05CCAF81BE894FE008933BD /* ScrollDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollDisplayViewController.h; sourceTree = "<group>"; };
-		B05CCAF91BE894FE008933BD /* ScrollDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollDisplayViewController.m; sourceTree = "<group>"; };
 		F3F5ACA8FBE2F68B4729D69C /* Pods-SimplEasy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimplEasy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimplEasy/Pods-SimplEasy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -471,10 +471,19 @@
 		8328A4A21BE849800021767D /* Vendor(第三方框架) */ = {
 			isa = PBXGroup;
 			children = (
-				B05CCAF71BE894FE008933BD /* ScrollDisplay */,
+				8344A9901BE89D6200AD007B /* ScrollDisplay */,
 				B02A6FFF1BE85E4F00B8B05F /* DGElasticPullToRefresh */,
 			);
 			path = "Vendor(第三方框架)";
+			sourceTree = "<group>";
+		};
+		8344A9901BE89D6200AD007B /* ScrollDisplay */ = {
+			isa = PBXGroup;
+			children = (
+				8344A9911BE89D6200AD007B /* ScrollDisplayViewController.h */,
+				8344A9921BE89D6200AD007B /* ScrollDisplayViewController.m */,
+			);
+			path = ScrollDisplay;
 			sourceTree = "<group>";
 		};
 		AF77D64987B760B66986F80A /* Pods */ = {
@@ -508,15 +517,6 @@
 				B02A70191BE863AE00B8B05F /* JYTabBar.m */,
 			);
 			path = tabbarPlus;
-			sourceTree = "<group>";
-		};
-		B05CCAF71BE894FE008933BD /* ScrollDisplay */ = {
-			isa = PBXGroup;
-			children = (
-				B05CCAF81BE894FE008933BD /* ScrollDisplayViewController.h */,
-				B05CCAF91BE894FE008933BD /* ScrollDisplayViewController.m */,
-			);
-			path = ScrollDisplay;
 			sourceTree = "<group>";
 		};
 		B258EF6385E64B4F301FFE06 /* Frameworks */ = {
@@ -716,7 +716,7 @@
 				8328A4A31BE849800021767D /* JYHomeController.m in Sources */,
 				8328A4A51BE849800021767D /* Foundation+Log.m in Sources */,
 				8328A4AF1BE84E050021767D /* JYBaseModel.m in Sources */,
-				B05CCAFA1BE894FE008933BD /* ScrollDisplayViewController.m in Sources */,
+				8344A9931BE89D6200AD007B /* ScrollDisplayViewController.m in Sources */,
 				B02A70101BE8609600B8B05F /* JYMessageController.m in Sources */,
 				B02A70061BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift in Sources */,
 				B02A70171BE8638A00B8B05F /* JYPlusButton.m in Sources */,
