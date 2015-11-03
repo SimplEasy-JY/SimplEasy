@@ -8,7 +8,7 @@
 
 #import "JYProductDetailVC.h"
 
-@interface JYProductDetailVC ()
+@interface JYProductDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
 
@@ -19,11 +19,29 @@
     // Do any additional setup after loading the view.
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark *** <UITableViewDataSource> ***
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 2;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellIdentifier = @"DescCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    return cell;
+    
+}
 /*
 #pragma mark - Navigation
 
