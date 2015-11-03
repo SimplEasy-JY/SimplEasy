@@ -8,7 +8,7 @@
 
 #import "JYHomeController.h"
 #import "UIBarButtonItem+Extension.h"
-
+#import "JYProductDetailVC.h"
 @interface JYHomeController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -54,7 +54,7 @@
     
 }
 
-#pragma mark - UITableViewDateSource
+#pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;
 }
@@ -74,5 +74,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"%ld",(long)indexPath.row);
+    JYProductDetailVC *productDetailVC = [kStoryboard(@"Main") instantiateViewControllerWithIdentifier:@"JYProductDetailVC"];
+    productDetailVC.title = @"商品详情";
+    [self.navigationController pushViewController:productDetailVC animated:YES];
 }
 @end
