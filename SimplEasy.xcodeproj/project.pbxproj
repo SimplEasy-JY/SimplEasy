@@ -1,0 +1,915 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8328A43C1BE8478B0021767D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A43B1BE8478B0021767D /* main.m */; };
+		8328A43F1BE8478B0021767D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A43E1BE8478B0021767D /* AppDelegate.m */; };
+		8328A4451BE8478B0021767D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8328A4431BE8478B0021767D /* Main.storyboard */; };
+		8328A4471BE8478C0021767D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8328A4461BE8478C0021767D /* Assets.xcassets */; };
+		8328A44A1BE8478C0021767D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8328A4481BE8478C0021767D /* LaunchScreen.storyboard */; };
+		8328A4551BE8478C0021767D /* SimplEasyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4541BE8478C0021767D /* SimplEasyTests.m */; };
+		8328A4601BE8478C0021767D /* SimplEasyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A45F1BE8478C0021767D /* SimplEasyUITests.m */; };
+		8328A4A31BE849800021767D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4841BE849800021767D /* ViewController.m */; };
+		8328A4A41BE849800021767D /* AppDelegate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4961BE849800021767D /* AppDelegate+Category.m */; };
+		8328A4A51BE849800021767D /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4971BE849800021767D /* Foundation+Log.m */; };
+		8328A4A61BE849800021767D /* NSObject+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4991BE849800021767D /* NSObject+Common.m */; };
+		8328A4A71BE849800021767D /* NSString+PJR.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A49B1BE849800021767D /* NSString+PJR.m */; };
+		8328A4A81BE849800021767D /* NSString+QRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A49D1BE849800021767D /* NSString+QRCode.m */; };
+		8328A4A91BE849800021767D /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A49F1BE849800021767D /* UIBarButtonItem+Extension.m */; };
+		8328A4AA1BE849800021767D /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4A11BE849800021767D /* UIView+Extension.m */; };
+		8328A4AF1BE84E050021767D /* JYBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4AE1BE84E050021767D /* JYBaseModel.m */; };
+		8328A4B21BE84E1F0021767D /* JYBaseNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4B11BE84E1F0021767D /* JYBaseNetManager.m */; };
+		8328A4B51BE84E6E0021767D /* JYBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4B41BE84E6E0021767D /* JYBaseViewModel.m */; };
+		E1F9A3C4126135B024FA3120 /* libPods-SimplEasy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F40C00061819C81121C437 /* libPods-SimplEasy.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8328A4511BE8478C0021767D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8328A42F1BE8478B0021767D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8328A4361BE8478B0021767D;
+			remoteInfo = SimplEasy;
+		};
+		8328A45C1BE8478C0021767D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8328A42F1BE8478B0021767D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8328A4361BE8478B0021767D;
+			remoteInfo = SimplEasy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		68F40C00061819C81121C437 /* libPods-SimplEasy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimplEasy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		76780E000871521B2D5F3B15 /* Pods-SimplEasy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimplEasy.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimplEasy/Pods-SimplEasy.release.xcconfig"; sourceTree = "<group>"; };
+		8328A4371BE8478B0021767D /* SimplEasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimplEasy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8328A43B1BE8478B0021767D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8328A43D1BE8478B0021767D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8328A43E1BE8478B0021767D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8328A4441BE8478B0021767D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8328A4461BE8478C0021767D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
+		8328A4491BE8478C0021767D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8328A44B1BE8478C0021767D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8328A4501BE8478C0021767D /* SimplEasyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimplEasyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8328A4541BE8478C0021767D /* SimplEasyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimplEasyTests.m; sourceTree = "<group>"; };
+		8328A4561BE8478C0021767D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8328A45B1BE8478C0021767D /* SimplEasyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimplEasyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8328A45F1BE8478C0021767D /* SimplEasyUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimplEasyUITests.m; sourceTree = "<group>"; };
+		8328A4611BE8478C0021767D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8328A4831BE849800021767D /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		8328A4841BE849800021767D /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8328A4951BE849800021767D /* AppDelegate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Category.h"; sourceTree = "<group>"; };
+		8328A4961BE849800021767D /* AppDelegate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Category.m"; sourceTree = "<group>"; };
+		8328A4971BE849800021767D /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
+		8328A4981BE849800021767D /* NSObject+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Common.h"; sourceTree = "<group>"; };
+		8328A4991BE849800021767D /* NSObject+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Common.m"; sourceTree = "<group>"; };
+		8328A49A1BE849800021767D /* NSString+PJR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PJR.h"; sourceTree = "<group>"; };
+		8328A49B1BE849800021767D /* NSString+PJR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PJR.m"; sourceTree = "<group>"; };
+		8328A49C1BE849800021767D /* NSString+QRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+QRCode.h"; sourceTree = "<group>"; };
+		8328A49D1BE849800021767D /* NSString+QRCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+QRCode.m"; sourceTree = "<group>"; };
+		8328A49E1BE849800021767D /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
+		8328A49F1BE849800021767D /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
+		8328A4A01BE849800021767D /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		8328A4A11BE849800021767D /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		8328A4AB1BE84C060021767D /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = ../../PrefixHeader.pch; sourceTree = "<group>"; };
+		8328A4AC1BE84CCC0021767D /* JYConsts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYConsts.h; sourceTree = "<group>"; };
+		8328A4AD1BE84E050021767D /* JYBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBaseModel.h; sourceTree = "<group>"; };
+		8328A4AE1BE84E050021767D /* JYBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBaseModel.m; sourceTree = "<group>"; };
+		8328A4B01BE84E1F0021767D /* JYBaseNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBaseNetManager.h; sourceTree = "<group>"; };
+		8328A4B11BE84E1F0021767D /* JYBaseNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBaseNetManager.m; sourceTree = "<group>"; };
+		8328A4B31BE84E6E0021767D /* JYBaseViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBaseViewModel.h; sourceTree = "<group>"; };
+		8328A4B41BE84E6E0021767D /* JYBaseViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBaseViewModel.m; sourceTree = "<group>"; };
+		F3F5ACA8FBE2F68B4729D69C /* Pods-SimplEasy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimplEasy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimplEasy/Pods-SimplEasy.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8328A4341BE8478B0021767D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1F9A3C4126135B024FA3120 /* libPods-SimplEasy.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8328A44D1BE8478C0021767D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8328A4581BE8478C0021767D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8328A42E1BE8478B0021767D = {
+			isa = PBXGroup;
+			children = (
+				8328A4391BE8478B0021767D /* SimplEasy */,
+				8328A4531BE8478C0021767D /* SimplEasyTests */,
+				8328A45E1BE8478C0021767D /* SimplEasyUITests */,
+				8328A4381BE8478B0021767D /* Products */,
+				AF77D64987B760B66986F80A /* Pods */,
+				B258EF6385E64B4F301FFE06 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8328A4381BE8478B0021767D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8328A4371BE8478B0021767D /* SimplEasy.app */,
+				8328A4501BE8478C0021767D /* SimplEasyTests.xctest */,
+				8328A45B1BE8478C0021767D /* SimplEasyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8328A4391BE8478B0021767D /* SimplEasy */ = {
+			isa = PBXGroup;
+			children = (
+				8328A4761BE849800021767D /* Base(基类) */,
+				8328A4771BE849800021767D /* Define(宏) */,
+				8328A4781BE849800021767D /* Find(发现) */,
+				8328A47E1BE849800021767D /* Home(首页) */,
+				8328A4861BE849800021767D /* Message(消息) */,
+				8328A48C1BE849800021767D /* Mine(我的) */,
+				8328A4921BE849800021767D /* Resource(资源) */,
+				8328A4931BE849800021767D /* Util(公用) */,
+				8328A4A21BE849800021767D /* Vendor(第三方框架) */,
+				8328A43A1BE8478B0021767D /* Supporting Files */,
+			);
+			path = SimplEasy;
+			sourceTree = "<group>";
+		};
+		8328A43A1BE8478B0021767D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8328A44B1BE8478C0021767D /* Info.plist */,
+				8328A43D1BE8478B0021767D /* AppDelegate.h */,
+				8328A43E1BE8478B0021767D /* AppDelegate.m */,
+				8328A43B1BE8478B0021767D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8328A4531BE8478C0021767D /* SimplEasyTests */ = {
+			isa = PBXGroup;
+			children = (
+				8328A4541BE8478C0021767D /* SimplEasyTests.m */,
+				8328A4561BE8478C0021767D /* Info.plist */,
+			);
+			path = SimplEasyTests;
+			sourceTree = "<group>";
+		};
+		8328A45E1BE8478C0021767D /* SimplEasyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8328A45F1BE8478C0021767D /* SimplEasyUITests.m */,
+				8328A4611BE8478C0021767D /* Info.plist */,
+			);
+			path = SimplEasyUITests;
+			sourceTree = "<group>";
+		};
+		8328A4761BE849800021767D /* Base(基类) */ = {
+			isa = PBXGroup;
+			children = (
+				8328A4AD1BE84E050021767D /* JYBaseModel.h */,
+				8328A4AE1BE84E050021767D /* JYBaseModel.m */,
+				8328A4B01BE84E1F0021767D /* JYBaseNetManager.h */,
+				8328A4B11BE84E1F0021767D /* JYBaseNetManager.m */,
+				8328A4B31BE84E6E0021767D /* JYBaseViewModel.h */,
+				8328A4B41BE84E6E0021767D /* JYBaseViewModel.m */,
+			);
+			path = "Base(基类)";
+			sourceTree = "<group>";
+		};
+		8328A4771BE849800021767D /* Define(宏) */ = {
+			isa = PBXGroup;
+			children = (
+				8328A4AC1BE84CCC0021767D /* JYConsts.h */,
+			);
+			path = "Define(宏)";
+			sourceTree = "<group>";
+		};
+		8328A4781BE849800021767D /* Find(发现) */ = {
+			isa = PBXGroup;
+			children = (
+				8328A4791BE849800021767D /* Model */,
+				8328A47A1BE849800021767D /* NetManager */,
+				8328A47B1BE849800021767D /* View */,
+				8328A47C1BE849800021767D /* ViewController */,
+				8328A47D1BE849800021767D /* ViewModel */,
+			);
+			path = "Find(发现)";
+			sourceTree = "<group>";
+		};
+		8328A4791BE849800021767D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8328A47A1BE849800021767D /* NetManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetManager;
+			sourceTree = "<group>";
+		};
+		8328A47B1BE849800021767D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8328A47C1BE849800021767D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8328A47D1BE849800021767D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8328A47E1BE849800021767D /* Home(首页) */ = {
+			isa = PBXGroup;
+			children = (
+				8328A47F1BE849800021767D /* Model */,
+				8328A4801BE849800021767D /* NetManager */,
+				8328A4811BE849800021767D /* View */,
+				8328A4821BE849800021767D /* ViewController */,
+				8328A4851BE849800021767D /* ViewModel */,
+			);
+			path = "Home(首页)";
+			sourceTree = "<group>";
+		};
+		8328A47F1BE849800021767D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8328A4801BE849800021767D /* NetManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetManager;
+			sourceTree = "<group>";
+		};
+		8328A4811BE849800021767D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8328A4821BE849800021767D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8328A4831BE849800021767D /* ViewController.h */,
+				8328A4841BE849800021767D /* ViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8328A4851BE849800021767D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8328A4861BE849800021767D /* Message(消息) */ = {
+			isa = PBXGroup;
+			children = (
+				8328A4871BE849800021767D /* Model */,
+				8328A4881BE849800021767D /* NetManager */,
+				8328A4891BE849800021767D /* View */,
+				8328A48A1BE849800021767D /* ViewController */,
+				8328A48B1BE849800021767D /* ViewModel */,
+			);
+			path = "Message(消息)";
+			sourceTree = "<group>";
+		};
+		8328A4871BE849800021767D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8328A4881BE849800021767D /* NetManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetManager;
+			sourceTree = "<group>";
+		};
+		8328A4891BE849800021767D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8328A48A1BE849800021767D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8328A48B1BE849800021767D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8328A48C1BE849800021767D /* Mine(我的) */ = {
+			isa = PBXGroup;
+			children = (
+				8328A48D1BE849800021767D /* Model */,
+				8328A48E1BE849800021767D /* NetManager */,
+				8328A48F1BE849800021767D /* View */,
+				8328A4901BE849800021767D /* ViewController */,
+				8328A4911BE849800021767D /* ViewModel */,
+			);
+			path = "Mine(我的)";
+			sourceTree = "<group>";
+		};
+		8328A48D1BE849800021767D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8328A48E1BE849800021767D /* NetManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetManager;
+			sourceTree = "<group>";
+		};
+		8328A48F1BE849800021767D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8328A4901BE849800021767D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8328A4911BE849800021767D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8328A4921BE849800021767D /* Resource(资源) */ = {
+			isa = PBXGroup;
+			children = (
+				8328A4AB1BE84C060021767D /* PrefixHeader.pch */,
+				8328A4431BE8478B0021767D /* Main.storyboard */,
+				8328A4461BE8478C0021767D /* Assets.xcassets */,
+				8328A4481BE8478C0021767D /* LaunchScreen.storyboard */,
+			);
+			path = "Resource(资源)";
+			sourceTree = "<group>";
+		};
+		8328A4931BE849800021767D /* Util(公用) */ = {
+			isa = PBXGroup;
+			children = (
+				8328A4941BE849800021767D /* Category */,
+			);
+			path = "Util(公用)";
+			sourceTree = "<group>";
+		};
+		8328A4941BE849800021767D /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				8328A4951BE849800021767D /* AppDelegate+Category.h */,
+				8328A4961BE849800021767D /* AppDelegate+Category.m */,
+				8328A4971BE849800021767D /* Foundation+Log.m */,
+				8328A4981BE849800021767D /* NSObject+Common.h */,
+				8328A4991BE849800021767D /* NSObject+Common.m */,
+				8328A49A1BE849800021767D /* NSString+PJR.h */,
+				8328A49B1BE849800021767D /* NSString+PJR.m */,
+				8328A49C1BE849800021767D /* NSString+QRCode.h */,
+				8328A49D1BE849800021767D /* NSString+QRCode.m */,
+				8328A49E1BE849800021767D /* UIBarButtonItem+Extension.h */,
+				8328A49F1BE849800021767D /* UIBarButtonItem+Extension.m */,
+				8328A4A01BE849800021767D /* UIView+Extension.h */,
+				8328A4A11BE849800021767D /* UIView+Extension.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		8328A4A21BE849800021767D /* Vendor(第三方框架) */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Vendor(第三方框架)";
+			sourceTree = "<group>";
+		};
+		AF77D64987B760B66986F80A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F3F5ACA8FBE2F68B4729D69C /* Pods-SimplEasy.debug.xcconfig */,
+				76780E000871521B2D5F3B15 /* Pods-SimplEasy.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B258EF6385E64B4F301FFE06 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				68F40C00061819C81121C437 /* libPods-SimplEasy.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8328A4361BE8478B0021767D /* SimplEasy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8328A4641BE8478C0021767D /* Build configuration list for PBXNativeTarget "SimplEasy" */;
+			buildPhases = (
+				A0EA99A6F445C86B1C880BB3 /* Check Pods Manifest.lock */,
+				8328A4331BE8478B0021767D /* Sources */,
+				8328A4341BE8478B0021767D /* Frameworks */,
+				8328A4351BE8478B0021767D /* Resources */,
+				3076A079B6FE0C1659DC468D /* Embed Pods Frameworks */,
+				9B21EDC822E3B5D96D2F2018 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimplEasy;
+			productName = SimplEasy;
+			productReference = 8328A4371BE8478B0021767D /* SimplEasy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8328A44F1BE8478C0021767D /* SimplEasyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8328A4671BE8478C0021767D /* Build configuration list for PBXNativeTarget "SimplEasyTests" */;
+			buildPhases = (
+				8328A44C1BE8478C0021767D /* Sources */,
+				8328A44D1BE8478C0021767D /* Frameworks */,
+				8328A44E1BE8478C0021767D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8328A4521BE8478C0021767D /* PBXTargetDependency */,
+			);
+			name = SimplEasyTests;
+			productName = SimplEasyTests;
+			productReference = 8328A4501BE8478C0021767D /* SimplEasyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8328A45A1BE8478C0021767D /* SimplEasyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8328A46A1BE8478C0021767D /* Build configuration list for PBXNativeTarget "SimplEasyUITests" */;
+			buildPhases = (
+				8328A4571BE8478C0021767D /* Sources */,
+				8328A4581BE8478C0021767D /* Frameworks */,
+				8328A4591BE8478C0021767D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8328A45D1BE8478C0021767D /* PBXTargetDependency */,
+			);
+			name = SimplEasyUITests;
+			productName = SimplEasyUITests;
+			productReference = 8328A45B1BE8478C0021767D /* SimplEasyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8328A42F1BE8478B0021767D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = JY;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = SimplEasy;
+				TargetAttributes = {
+					8328A4361BE8478B0021767D = {
+						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = N27SETL2A3;
+					};
+					8328A44F1BE8478C0021767D = {
+						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = N27SETL2A3;
+						TestTargetID = 8328A4361BE8478B0021767D;
+					};
+					8328A45A1BE8478C0021767D = {
+						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = N27SETL2A3;
+						TestTargetID = 8328A4361BE8478B0021767D;
+					};
+				};
+			};
+			buildConfigurationList = 8328A4321BE8478B0021767D /* Build configuration list for PBXProject "SimplEasy" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8328A42E1BE8478B0021767D;
+			productRefGroup = 8328A4381BE8478B0021767D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8328A4361BE8478B0021767D /* SimplEasy */,
+				8328A44F1BE8478C0021767D /* SimplEasyTests */,
+				8328A45A1BE8478C0021767D /* SimplEasyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8328A4351BE8478B0021767D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8328A44A1BE8478C0021767D /* LaunchScreen.storyboard in Resources */,
+				8328A4471BE8478C0021767D /* Assets.xcassets in Resources */,
+				8328A4451BE8478B0021767D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8328A44E1BE8478C0021767D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8328A4591BE8478C0021767D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3076A079B6FE0C1659DC468D /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimplEasy/Pods-SimplEasy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B21EDC822E3B5D96D2F2018 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimplEasy/Pods-SimplEasy-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A0EA99A6F445C86B1C880BB3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8328A4331BE8478B0021767D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8328A4AA1BE849800021767D /* UIView+Extension.m in Sources */,
+				8328A4A31BE849800021767D /* ViewController.m in Sources */,
+				8328A4A51BE849800021767D /* Foundation+Log.m in Sources */,
+				8328A4AF1BE84E050021767D /* JYBaseModel.m in Sources */,
+				8328A43F1BE8478B0021767D /* AppDelegate.m in Sources */,
+				8328A4A41BE849800021767D /* AppDelegate+Category.m in Sources */,
+				8328A4A61BE849800021767D /* NSObject+Common.m in Sources */,
+				8328A4A81BE849800021767D /* NSString+QRCode.m in Sources */,
+				8328A4A91BE849800021767D /* UIBarButtonItem+Extension.m in Sources */,
+				8328A4B21BE84E1F0021767D /* JYBaseNetManager.m in Sources */,
+				8328A4A71BE849800021767D /* NSString+PJR.m in Sources */,
+				8328A43C1BE8478B0021767D /* main.m in Sources */,
+				8328A4B51BE84E6E0021767D /* JYBaseViewModel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8328A44C1BE8478C0021767D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8328A4551BE8478C0021767D /* SimplEasyTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8328A4571BE8478C0021767D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8328A4601BE8478C0021767D /* SimplEasyUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8328A4521BE8478C0021767D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8328A4361BE8478B0021767D /* SimplEasy */;
+			targetProxy = 8328A4511BE8478C0021767D /* PBXContainerItemProxy */;
+		};
+		8328A45D1BE8478C0021767D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8328A4361BE8478B0021767D /* SimplEasy */;
+			targetProxy = 8328A45C1BE8478C0021767D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8328A4431BE8478B0021767D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8328A4441BE8478B0021767D /* Base */,
+			);
+			name = Main.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		8328A4481BE8478C0021767D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8328A4491BE8478C0021767D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8328A4621BE8478C0021767D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WARNING_CFLAGS = "-Wno-deprecated-declarations";
+			};
+			name = Debug;
+		};
+		8328A4631BE8478C0021767D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				WARNING_CFLAGS = "-Wno-deprecated-declarations";
+			};
+			name = Release;
+		};
+		8328A4651BE8478C0021767D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3F5ACA8FBE2F68B4729D69C /* Pods-SimplEasy.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PrefixHeader.pch;
+				INFOPLIST_FILE = SimplEasy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy.SimplEasy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8328A4661BE8478C0021767D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76780E000871521B2D5F3B15 /* Pods-SimplEasy.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PrefixHeader.pch;
+				INFOPLIST_FILE = SimplEasy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy.SimplEasy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		8328A4681BE8478C0021767D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SimplEasyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy.SimplEasyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SimplEasy.app/SimplEasy";
+			};
+			name = Debug;
+		};
+		8328A4691BE8478C0021767D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SimplEasyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy.SimplEasyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SimplEasy.app/SimplEasy";
+			};
+			name = Release;
+		};
+		8328A46B1BE8478C0021767D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SimplEasyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy.SimplEasyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SimplEasy;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		8328A46C1BE8478C0021767D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SimplEasyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy.SimplEasyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SimplEasy;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8328A4321BE8478B0021767D /* Build configuration list for PBXProject "SimplEasy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8328A4621BE8478C0021767D /* Debug */,
+				8328A4631BE8478C0021767D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8328A4641BE8478C0021767D /* Build configuration list for PBXNativeTarget "SimplEasy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8328A4651BE8478C0021767D /* Debug */,
+				8328A4661BE8478C0021767D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8328A4671BE8478C0021767D /* Build configuration list for PBXNativeTarget "SimplEasyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8328A4681BE8478C0021767D /* Debug */,
+				8328A4691BE8478C0021767D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8328A46A1BE8478C0021767D /* Build configuration list for PBXNativeTarget "SimplEasyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8328A46B1BE8478C0021767D /* Debug */,
+				8328A46C1BE8478C0021767D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8328A42F1BE8478B0021767D /* Project object */;
+}
