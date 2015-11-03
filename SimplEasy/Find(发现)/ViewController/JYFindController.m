@@ -1,27 +1,29 @@
 //
-//  ViewController.m
+//  JYFindController.m
 //  SimplEasy
 //
-//  Created by EvenLam on 15/11/3.
+//  Created by 杨胜浩 on 15/11/3.
 //  Copyright © 2015年 SimplEasy. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "JYFindController.h"
 
-@interface ViewController ()
+@interface JYFindController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
 
-@implementation ViewController
+@implementation JYFindController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 @end

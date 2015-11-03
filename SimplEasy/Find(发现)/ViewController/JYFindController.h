@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  JYFindController.h
 //  SimplEasy
 //
-//  Created by EvenLam on 15/11/3.
+//  Created by 杨胜浩 on 15/11/3.
 //  Copyright © 2015年 SimplEasy. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface JYFindController : UIViewController
 
 @end
-

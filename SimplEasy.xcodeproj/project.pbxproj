@@ -10,11 +10,10 @@
 		8328A43C1BE8478B0021767D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A43B1BE8478B0021767D /* main.m */; };
 		8328A43F1BE8478B0021767D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A43E1BE8478B0021767D /* AppDelegate.m */; };
 		8328A4451BE8478B0021767D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8328A4431BE8478B0021767D /* Main.storyboard */; };
-		8328A4471BE8478C0021767D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8328A4461BE8478C0021767D /* Assets.xcassets */; };
 		8328A44A1BE8478C0021767D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8328A4481BE8478C0021767D /* LaunchScreen.storyboard */; };
 		8328A4551BE8478C0021767D /* SimplEasyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4541BE8478C0021767D /* SimplEasyTests.m */; };
 		8328A4601BE8478C0021767D /* SimplEasyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A45F1BE8478C0021767D /* SimplEasyUITests.m */; };
-		8328A4A31BE849800021767D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4841BE849800021767D /* ViewController.m */; };
+		8328A4A31BE849800021767D /* JYHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4841BE849800021767D /* JYHomeController.m */; };
 		8328A4A41BE849800021767D /* AppDelegate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4961BE849800021767D /* AppDelegate+Category.m */; };
 		8328A4A51BE849800021767D /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4971BE849800021767D /* Foundation+Log.m */; };
 		8328A4A61BE849800021767D /* NSObject+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4991BE849800021767D /* NSObject+Common.m */; };
@@ -30,6 +29,12 @@
 		B02A70071BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A70021BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift */; };
 		B02A70081BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A70031BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingViewCircle.swift */; };
 		B02A70091BE85E4F00B8B05F /* DGElasticPullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A70041BE85E4F00B8B05F /* DGElasticPullToRefreshView.swift */; };
+		B02A700D1BE8604100B8B05F /* JYFindController.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A700C1BE8604100B8B05F /* JYFindController.m */; };
+		B02A70101BE8609600B8B05F /* JYMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A700F1BE8609600B8B05F /* JYMessageController.m */; };
+		B02A70131BE860C600B8B05F /* JYMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70121BE860C600B8B05F /* JYMineController.m */; };
+		B02A70171BE8638A00B8B05F /* JYPlusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70161BE8638A00B8B05F /* JYPlusButton.m */; };
+		B02A701A1BE863AE00B8B05F /* JYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70191BE863AE00B8B05F /* JYTabBar.m */; };
+		B02A701C1BE86AA000B8B05F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B02A701B1BE86AA000B8B05F /* Assets.xcassets */; };
 		E1F9A3C4126135B024FA3120 /* libPods-SimplEasy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F40C00061819C81121C437 /* libPods-SimplEasy.a */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +63,6 @@
 		8328A43D1BE8478B0021767D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8328A43E1BE8478B0021767D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8328A4441BE8478B0021767D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8328A4461BE8478C0021767D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		8328A4491BE8478C0021767D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8328A44B1BE8478C0021767D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8328A4501BE8478C0021767D /* SimplEasyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimplEasyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,8 +71,8 @@
 		8328A45B1BE8478C0021767D /* SimplEasyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimplEasyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8328A45F1BE8478C0021767D /* SimplEasyUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimplEasyUITests.m; sourceTree = "<group>"; };
 		8328A4611BE8478C0021767D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8328A4831BE849800021767D /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8328A4841BE849800021767D /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8328A4831BE849800021767D /* JYHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYHomeController.h; sourceTree = "<group>"; };
+		8328A4841BE849800021767D /* JYHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYHomeController.m; sourceTree = "<group>"; };
 		8328A4951BE849800021767D /* AppDelegate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Category.h"; sourceTree = "<group>"; };
 		8328A4961BE849800021767D /* AppDelegate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Category.m"; sourceTree = "<group>"; };
 		8328A4971BE849800021767D /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
@@ -96,6 +100,17 @@
 		B02A70031BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingViewCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshLoadingViewCircle.swift; sourceTree = "<group>"; };
 		B02A70041BE85E4F00B8B05F /* DGElasticPullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshView.swift; sourceTree = "<group>"; };
 		B02A700A1BE85E6D00B8B05F /* SimplEasy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimplEasy-Bridging-Header.h"; sourceTree = "<group>"; };
+		B02A700B1BE8604100B8B05F /* JYFindController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYFindController.h; sourceTree = "<group>"; };
+		B02A700C1BE8604100B8B05F /* JYFindController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYFindController.m; sourceTree = "<group>"; };
+		B02A700E1BE8609600B8B05F /* JYMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYMessageController.h; sourceTree = "<group>"; };
+		B02A700F1BE8609600B8B05F /* JYMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYMessageController.m; sourceTree = "<group>"; };
+		B02A70111BE860C600B8B05F /* JYMineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYMineController.h; sourceTree = "<group>"; };
+		B02A70121BE860C600B8B05F /* JYMineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYMineController.m; sourceTree = "<group>"; };
+		B02A70151BE8638A00B8B05F /* JYPlusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYPlusButton.h; sourceTree = "<group>"; };
+		B02A70161BE8638A00B8B05F /* JYPlusButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYPlusButton.m; sourceTree = "<group>"; };
+		B02A70181BE863AE00B8B05F /* JYTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYTabBar.h; sourceTree = "<group>"; };
+		B02A70191BE863AE00B8B05F /* JYTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYTabBar.m; sourceTree = "<group>"; };
+		B02A701B1BE86AA000B8B05F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3F5ACA8FBE2F68B4729D69C /* Pods-SimplEasy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimplEasy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimplEasy/Pods-SimplEasy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -250,6 +265,8 @@
 		8328A47C1BE849800021767D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B02A700B1BE8604100B8B05F /* JYFindController.h */,
+				B02A700C1BE8604100B8B05F /* JYFindController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -297,8 +314,8 @@
 		8328A4821BE849800021767D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				8328A4831BE849800021767D /* ViewController.h */,
-				8328A4841BE849800021767D /* ViewController.m */,
+				8328A4831BE849800021767D /* JYHomeController.h */,
+				8328A4841BE849800021767D /* JYHomeController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -346,6 +363,8 @@
 		8328A48A1BE849800021767D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B02A700E1BE8609600B8B05F /* JYMessageController.h */,
+				B02A700F1BE8609600B8B05F /* JYMessageController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -393,6 +412,8 @@
 		8328A4901BE849800021767D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B02A70111BE860C600B8B05F /* JYMineController.h */,
+				B02A70121BE860C600B8B05F /* JYMineController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -407,9 +428,9 @@
 		8328A4921BE849800021767D /* Resource(资源) */ = {
 			isa = PBXGroup;
 			children = (
+				B02A701B1BE86AA000B8B05F /* Assets.xcassets */,
 				8328A4AB1BE84C060021767D /* PrefixHeader.pch */,
 				8328A4431BE8478B0021767D /* Main.storyboard */,
-				8328A4461BE8478C0021767D /* Assets.xcassets */,
 				8328A4481BE8478C0021767D /* LaunchScreen.storyboard */,
 			);
 			path = "Resource(资源)";
@@ -418,6 +439,7 @@
 		8328A4931BE849800021767D /* Util(公用) */ = {
 			isa = PBXGroup;
 			children = (
+				B02A70141BE8637000B8B05F /* tabbarPlus */,
 				8328A4941BE849800021767D /* Category */,
 			);
 			path = "Util(公用)";
@@ -471,6 +493,17 @@
 				B02A700A1BE85E6D00B8B05F /* SimplEasy-Bridging-Header.h */,
 			);
 			path = DGElasticPullToRefresh;
+			sourceTree = "<group>";
+		};
+		B02A70141BE8637000B8B05F /* tabbarPlus */ = {
+			isa = PBXGroup;
+			children = (
+				B02A70151BE8638A00B8B05F /* JYPlusButton.h */,
+				B02A70161BE8638A00B8B05F /* JYPlusButton.m */,
+				B02A70181BE863AE00B8B05F /* JYTabBar.h */,
+				B02A70191BE863AE00B8B05F /* JYTabBar.m */,
+			);
+			path = tabbarPlus;
 			sourceTree = "<group>";
 		};
 		B258EF6385E64B4F301FFE06 /* Frameworks */ = {
@@ -592,7 +625,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8328A44A1BE8478C0021767D /* LaunchScreen.storyboard in Resources */,
-				8328A4471BE8478C0021767D /* Assets.xcassets in Resources */,
+				B02A701C1BE86AA000B8B05F /* Assets.xcassets in Resources */,
 				8328A4451BE8478B0021767D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -667,13 +700,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				8328A4AA1BE849800021767D /* UIView+Extension.m in Sources */,
-				8328A4A31BE849800021767D /* ViewController.m in Sources */,
+				8328A4A31BE849800021767D /* JYHomeController.m in Sources */,
 				8328A4A51BE849800021767D /* Foundation+Log.m in Sources */,
 				8328A4AF1BE84E050021767D /* JYBaseModel.m in Sources */,
+				B02A70101BE8609600B8B05F /* JYMessageController.m in Sources */,
 				B02A70061BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift in Sources */,
+				B02A70171BE8638A00B8B05F /* JYPlusButton.m in Sources */,
 				8328A43F1BE8478B0021767D /* AppDelegate.m in Sources */,
 				8328A4A41BE849800021767D /* AppDelegate+Category.m in Sources */,
 				B02A70051BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift in Sources */,
+				B02A700D1BE8604100B8B05F /* JYFindController.m in Sources */,
 				8328A4A61BE849800021767D /* NSObject+Common.m in Sources */,
 				8328A4A81BE849800021767D /* NSString+QRCode.m in Sources */,
 				B02A70071BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift in Sources */,
@@ -681,9 +717,11 @@
 				8328A4B21BE84E1F0021767D /* JYBaseNetManager.m in Sources */,
 				B02A70081BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */,
 				B02A70091BE85E4F00B8B05F /* DGElasticPullToRefreshView.swift in Sources */,
+				B02A701A1BE863AE00B8B05F /* JYTabBar.m in Sources */,
 				8328A4A71BE849800021767D /* NSString+PJR.m in Sources */,
 				8328A43C1BE8478B0021767D /* main.m in Sources */,
 				8328A4B51BE84E6E0021767D /* JYBaseViewModel.m in Sources */,
+				B02A70131BE860C600B8B05F /* JYMineController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

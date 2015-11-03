@@ -17,6 +17,10 @@
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
     
+    
+    //去除 TabBar 自带的顶部阴影
+    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
+    
     //    电池条显示网络活动
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     //    检测网络状态
