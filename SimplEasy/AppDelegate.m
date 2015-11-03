@@ -20,7 +20,7 @@
 
 @implementation AppDelegate
 - (void)setupViewControllers {
-    JYHomeController *homeVc = [[JYHomeController alloc] init];
+    JYHomeController *homeVc = [kStoryboard(@"Main") instantiateViewControllerWithIdentifier:@"JYHomeController"];
     UINavigationController *homeNavc = [[UINavigationController alloc]
                                         initWithRootViewController:homeVc];
     
@@ -81,9 +81,6 @@
     // 1.创建窗口
     self.window = [[UIWindow alloc] init];
     self.window.frame = [UIScreen mainScreen].bounds;
-    NSLog(@"%@",NSStringFromCGSize([UIScreen mainScreen].bounds.size));
-    
-    NSLog(@"%f",self.tabBarController.tabBar.frame.size.height);
     
     // 2.设置根控制器
 //    NSString *key = @"CFBundleVersion";

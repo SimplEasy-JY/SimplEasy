@@ -10,6 +10,7 @@
 #import "UIBarButtonItem+Extension.h"
 
 @interface JYHomeController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -19,7 +20,8 @@
     [super viewDidLoad];
     [self initData];
     [self setNav];
-    [self initTableView];
+    [self setupTableView];
+
 }
 
 
@@ -27,46 +29,49 @@
 
 }
 -(void)setNav{
-    //左边的分类选择
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(changeCategory:) image:@"topicon_1" highImage:@"topicon_1"];
-    
-    
-    
     //中间的搜索条
-    
     UISearchBar *searchBar = [[UISearchBar alloc] init];
-    UITextField *searchField;
-    NSUInteger numViews = [searchBar.subviews count];
-    for(int i = 0; i < numViews; i++) {
-        if([[searchBar.subviews objectAtIndex:i] isKindOfClass:[UITextField class]]) { //conform?
-            searchField = [searchBar.subviews objectAtIndex:i];
-        }
-    }
-    if((searchField.text == nil)) {
-        searchField.placeholder = @"输入要查找的艺人的名字";
-        
-        [searchField setBorderStyle:UITextBorderStyleRoundedRect];
-        [searchField setBackgroundColor:[UIColor whiteColor]];
-        
-        //自己的搜索图标
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"topicon_2" ofType:@"png"];
-        UIImage *image = [UIImage imageWithContentsOfFile:path];
-        UIImageView *iView = [[UIImageView alloc] initWithImage:image];
-        [iView setFrame:CGRectMake(0.0, 0.0, 30.0, 30.0)];
-        searchField.leftView = iView;
-        
-        
-    }
-//    searchBar.placeholder = @"简易破蛋日全场大甩卖";
+    /**  设置自定义搜索图片 */
+    [searchBar setImage:[UIImage imageNamed:@"topicon_3"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+    searchBar.placeholder = @"简易破蛋日全场大甩卖";
     searchBar.delegate = self;
     self.navigationItem.titleView = searchBar;
+}
+
+-(void)setupTableView{
+    //下拉刷新
+    DGElasticPullToRefreshLoadingViewCircle *loadingView = [DGElasticPullToRefreshLoadingViewCircle new];
+    loadingView.tintColor = [UIColor redColor];
+    [self.tableView dg_addPullToRefreshWithActionHandler:^{
+        YSHLog(@"下拉刷新");
+        [self.tableView dg_stopLoading];
+    } loadingView:loadingView];
+    [self.tableView dg_setPullToRefreshBackgroundColor:[UIColor blueColor]];
+    [self.tableView dg_setPullToRefreshFillColor:[UIColor yellowColor]];
     
-    //右边的item
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(changeCategory:) image:@"topicon_2" highImage:@"topicon_2"];
     
+    
+}
+
+#pragma mark - UITableViewDateSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 3;
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 5;
+}
+
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    return cell;
 
 }
--(void)initTableView{
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"%ld",(long)indexPath.row);
 }
 @end

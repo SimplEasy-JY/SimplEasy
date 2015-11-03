@@ -9,7 +9,8 @@
 
 #ifndef JYConsts_h
 #define JYConsts_h
-
+/**  nslog */
+#define YSHLog(...) NSLog(__VA_ARGS__)
 /** 通过RGB设置颜色 */
 #define kRGBColor(R,G,B)        [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1.0]
 
