@@ -33,6 +33,7 @@
     UISearchBar *searchBar = [[UISearchBar alloc] init];
     /**  设置自定义搜索图片 */
     [searchBar setImage:[UIImage imageNamed:@"topicon_3"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+#warning 后台数据替换
     searchBar.placeholder = @"简易破蛋日全场大甩卖";
     searchBar.delegate = self;
     self.navigationItem.titleView = searchBar;
