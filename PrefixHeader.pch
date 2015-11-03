@@ -41,6 +41,9 @@
 #import <MJRefresh.h>
 #import <MJExtension.h>
 
+/**  swift下拉刷新头文件 混编 */
+#import <SimplEasy-Swift.h>
+
 #import <FMDB/FMDB.h>
 #import <CocoaLumberjack.h>
 

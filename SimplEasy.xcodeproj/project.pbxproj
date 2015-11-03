@@ -25,6 +25,11 @@
 		8328A4AF1BE84E050021767D /* JYBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4AE1BE84E050021767D /* JYBaseModel.m */; };
 		8328A4B21BE84E1F0021767D /* JYBaseNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4B11BE84E1F0021767D /* JYBaseNetManager.m */; };
 		8328A4B51BE84E6E0021767D /* JYBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4B41BE84E6E0021767D /* JYBaseViewModel.m */; };
+		B02A70051BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A70001BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift */; };
+		B02A70061BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A70011BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift */; };
+		B02A70071BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A70021BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift */; };
+		B02A70081BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A70031BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingViewCircle.swift */; };
+		B02A70091BE85E4F00B8B05F /* DGElasticPullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A70041BE85E4F00B8B05F /* DGElasticPullToRefreshView.swift */; };
 		E1F9A3C4126135B024FA3120 /* libPods-SimplEasy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F40C00061819C81121C437 /* libPods-SimplEasy.a */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +90,12 @@
 		8328A4B11BE84E1F0021767D /* JYBaseNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBaseNetManager.m; sourceTree = "<group>"; };
 		8328A4B31BE84E6E0021767D /* JYBaseViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBaseViewModel.h; sourceTree = "<group>"; };
 		8328A4B41BE84E6E0021767D /* JYBaseViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBaseViewModel.m; sourceTree = "<group>"; };
+		B02A70001BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshConstants.swift; sourceTree = "<group>"; };
+		B02A70011BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshExtensions.swift; sourceTree = "<group>"; };
+		B02A70021BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshLoadingView.swift; sourceTree = "<group>"; };
+		B02A70031BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingViewCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshLoadingViewCircle.swift; sourceTree = "<group>"; };
+		B02A70041BE85E4F00B8B05F /* DGElasticPullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshView.swift; sourceTree = "<group>"; };
+		B02A700A1BE85E6D00B8B05F /* SimplEasy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimplEasy-Bridging-Header.h"; sourceTree = "<group>"; };
 		F3F5ACA8FBE2F68B4729D69C /* Pods-SimplEasy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimplEasy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimplEasy/Pods-SimplEasy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -435,6 +446,7 @@
 		8328A4A21BE849800021767D /* Vendor(第三方框架) */ = {
 			isa = PBXGroup;
 			children = (
+				B02A6FFF1BE85E4F00B8B05F /* DGElasticPullToRefresh */,
 			);
 			path = "Vendor(第三方框架)";
 			sourceTree = "<group>";
@@ -446,6 +458,19 @@
 				76780E000871521B2D5F3B15 /* Pods-SimplEasy.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		B02A6FFF1BE85E4F00B8B05F /* DGElasticPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				B02A70001BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift */,
+				B02A70011BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift */,
+				B02A70021BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift */,
+				B02A70031BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingViewCircle.swift */,
+				B02A70041BE85E4F00B8B05F /* DGElasticPullToRefreshView.swift */,
+				B02A700A1BE85E6D00B8B05F /* SimplEasy-Bridging-Header.h */,
+			);
+			path = DGElasticPullToRefresh;
 			sourceTree = "<group>";
 		};
 		B258EF6385E64B4F301FFE06 /* Frameworks */ = {
@@ -645,12 +670,17 @@
 				8328A4A31BE849800021767D /* ViewController.m in Sources */,
 				8328A4A51BE849800021767D /* Foundation+Log.m in Sources */,
 				8328A4AF1BE84E050021767D /* JYBaseModel.m in Sources */,
+				B02A70061BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift in Sources */,
 				8328A43F1BE8478B0021767D /* AppDelegate.m in Sources */,
 				8328A4A41BE849800021767D /* AppDelegate+Category.m in Sources */,
+				B02A70051BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift in Sources */,
 				8328A4A61BE849800021767D /* NSObject+Common.m in Sources */,
 				8328A4A81BE849800021767D /* NSString+QRCode.m in Sources */,
+				B02A70071BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift in Sources */,
 				8328A4A91BE849800021767D /* UIBarButtonItem+Extension.m in Sources */,
 				8328A4B21BE84E1F0021767D /* JYBaseNetManager.m in Sources */,
+				B02A70081BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */,
+				B02A70091BE85E4F00B8B05F /* DGElasticPullToRefreshView.swift in Sources */,
 				8328A4A71BE849800021767D /* NSString+PJR.m in Sources */,
 				8328A43C1BE8478B0021767D /* main.m in Sources */,
 				8328A4B51BE84E6E0021767D /* JYBaseViewModel.m in Sources */,
@@ -799,6 +829,7 @@
 			baseConfigurationReference = F3F5ACA8FBE2F68B4729D69C /* Pods-SimplEasy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INFOPLIST_FILE = SimplEasy/Info.plist;
@@ -813,6 +844,7 @@
 			baseConfigurationReference = 76780E000871521B2D5F3B15 /* Pods-SimplEasy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INFOPLIST_FILE = SimplEasy/Info.plist;
