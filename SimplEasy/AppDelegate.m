@@ -105,6 +105,8 @@
     
 
     
+    //去除 TabBar 自带的顶部阴影
+    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
     // 3.显示窗口
     [self.window makeKeyAndVisible];
 //    [self initializeWithApplication:application];
