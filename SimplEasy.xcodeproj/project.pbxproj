@@ -25,6 +25,7 @@
 		8328A4B21BE84E1F0021767D /* JYBaseNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4B11BE84E1F0021767D /* JYBaseNetManager.m */; };
 		8328A4B51BE84E6E0021767D /* JYBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4B41BE84E6E0021767D /* JYBaseViewModel.m */; };
 		8344A9931BE89D6200AD007B /* ScrollDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8344A9921BE89D6200AD007B /* ScrollDisplayViewController.m */; };
+		8344A9961BE8A29400AD007B /* JYProductDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8344A9951BE8A29400AD007B /* JYProductDetailVC.m */; };
 		B02A70051BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A70001BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift */; };
 		B02A70061BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A70011BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift */; };
 		B02A70071BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A70021BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift */; };
@@ -97,6 +98,8 @@
 		8328A4B41BE84E6E0021767D /* JYBaseViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBaseViewModel.m; sourceTree = "<group>"; };
 		8344A9911BE89D6200AD007B /* ScrollDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollDisplayViewController.h; sourceTree = "<group>"; };
 		8344A9921BE89D6200AD007B /* ScrollDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollDisplayViewController.m; sourceTree = "<group>"; };
+		8344A9941BE8A29400AD007B /* JYProductDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYProductDetailVC.h; sourceTree = "<group>"; };
+		8344A9951BE8A29400AD007B /* JYProductDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYProductDetailVC.m; sourceTree = "<group>"; };
 		B02A70001BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshConstants.swift; sourceTree = "<group>"; };
 		B02A70011BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshExtensions.swift; sourceTree = "<group>"; };
 		B02A70021BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshLoadingView.swift; sourceTree = "<group>"; };
@@ -319,6 +322,8 @@
 			children = (
 				8328A4831BE849800021767D /* JYHomeController.h */,
 				8328A4841BE849800021767D /* JYHomeController.m */,
+				8344A9941BE8A29400AD007B /* JYProductDetailVC.h */,
+				8344A9951BE8A29400AD007B /* JYProductDetailVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -724,6 +729,7 @@
 				8328A4A41BE849800021767D /* AppDelegate+Category.m in Sources */,
 				B02A70051BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift in Sources */,
 				B02A700D1BE8604100B8B05F /* JYFindController.m in Sources */,
+				8344A9961BE8A29400AD007B /* JYProductDetailVC.m in Sources */,
 				8328A4A61BE849800021767D /* NSObject+Common.m in Sources */,
 				8328A4A81BE849800021767D /* NSString+QRCode.m in Sources */,
 				B02A70071BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift in Sources */,
