@@ -32,6 +32,9 @@
 
 #import "ScrollDisplayViewController.h"
 
+//loopView
+#import "ImageScrollCell.h"
+
 #import <AFNetworking.h>
 #import <UIKit+AFNetworking.h>
 

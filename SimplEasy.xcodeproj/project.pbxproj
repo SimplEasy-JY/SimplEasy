@@ -37,6 +37,8 @@
 		B02A70171BE8638A00B8B05F /* JYPlusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70161BE8638A00B8B05F /* JYPlusButton.m */; };
 		B02A701A1BE863AE00B8B05F /* JYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70191BE863AE00B8B05F /* JYTabBar.m */; };
 		B02A701C1BE86AA000B8B05F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B02A701B1BE86AA000B8B05F /* Assets.xcassets */; };
+		B0DA5E731BE8D191001A0D85 /* ImageScrollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DA5E701BE8D191001A0D85 /* ImageScrollCell.m */; };
+		B0DA5E741BE8D191001A0D85 /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DA5E721BE8D191001A0D85 /* ImageScrollView.m */; };
 		E1F9A3C4126135B024FA3120 /* libPods-SimplEasy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F40C00061819C81121C437 /* libPods-SimplEasy.a */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +119,10 @@
 		B02A70181BE863AE00B8B05F /* JYTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYTabBar.h; sourceTree = "<group>"; };
 		B02A70191BE863AE00B8B05F /* JYTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYTabBar.m; sourceTree = "<group>"; };
 		B02A701B1BE86AA000B8B05F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B0DA5E6F1BE8D191001A0D85 /* ImageScrollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollCell.h; sourceTree = "<group>"; };
+		B0DA5E701BE8D191001A0D85 /* ImageScrollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScrollCell.m; sourceTree = "<group>"; };
+		B0DA5E711BE8D191001A0D85 /* ImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollView.h; sourceTree = "<group>"; };
+		B0DA5E721BE8D191001A0D85 /* ImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScrollView.m; sourceTree = "<group>"; };
 		F3F5ACA8FBE2F68B4729D69C /* Pods-SimplEasy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimplEasy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimplEasy/Pods-SimplEasy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -476,6 +482,7 @@
 		8328A4A21BE849800021767D /* Vendor(第三方框架) */ = {
 			isa = PBXGroup;
 			children = (
+				B0DA5E6E1BE8D191001A0D85 /* LoopView */,
 				8344A9901BE89D6200AD007B /* ScrollDisplay */,
 				B02A6FFF1BE85E4F00B8B05F /* DGElasticPullToRefresh */,
 			);
@@ -522,6 +529,17 @@
 				B02A70191BE863AE00B8B05F /* JYTabBar.m */,
 			);
 			path = tabbarPlus;
+			sourceTree = "<group>";
+		};
+		B0DA5E6E1BE8D191001A0D85 /* LoopView */ = {
+			isa = PBXGroup;
+			children = (
+				B0DA5E6F1BE8D191001A0D85 /* ImageScrollCell.h */,
+				B0DA5E701BE8D191001A0D85 /* ImageScrollCell.m */,
+				B0DA5E711BE8D191001A0D85 /* ImageScrollView.h */,
+				B0DA5E721BE8D191001A0D85 /* ImageScrollView.m */,
+			);
+			path = LoopView;
 			sourceTree = "<group>";
 		};
 		B258EF6385E64B4F301FFE06 /* Frameworks */ = {
@@ -727,6 +745,7 @@
 				B02A70171BE8638A00B8B05F /* JYPlusButton.m in Sources */,
 				8328A43F1BE8478B0021767D /* AppDelegate.m in Sources */,
 				8328A4A41BE849800021767D /* AppDelegate+Category.m in Sources */,
+				B0DA5E731BE8D191001A0D85 /* ImageScrollCell.m in Sources */,
 				B02A70051BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift in Sources */,
 				B02A700D1BE8604100B8B05F /* JYFindController.m in Sources */,
 				8344A9961BE8A29400AD007B /* JYProductDetailVC.m in Sources */,
@@ -737,6 +756,7 @@
 				8328A4B21BE84E1F0021767D /* JYBaseNetManager.m in Sources */,
 				B02A70081BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */,
 				B02A70091BE85E4F00B8B05F /* DGElasticPullToRefreshView.swift in Sources */,
+				B0DA5E741BE8D191001A0D85 /* ImageScrollView.m in Sources */,
 				B02A701A1BE863AE00B8B05F /* JYTabBar.m in Sources */,
 				8328A4A71BE849800021767D /* NSString+PJR.m in Sources */,
 				8328A43C1BE8478B0021767D /* main.m in Sources */,
