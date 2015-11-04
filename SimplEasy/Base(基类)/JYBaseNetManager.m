@@ -17,17 +17,23 @@ static AFHTTPSessionManager *manager = nil;
     dispatch_once(&onceToken, ^{
         manager = [AFHTTPSessionManager manager];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", @"text/json", @"text/javascript", nil];
+        [manager.requestSerializer
+         setAuthorizationHeaderFieldWithUsername:@"15757161281"
+         password:@"aaa"];
+        
     });
     return manager;
 }
 
 + (id)GET:(NSString *)path parameters:(NSDictionary *)params completionHandle:(void(^)(id responseObj, NSError *error))complete{
     // 打印网络请求， DDLog  与  NSLog 功能一样
-    DDLogVerbose(@"Request Path: %@, Params:%@", path, params);
+    YSHLog(@"Request Path: %@, Params:%@", path, params);
     return [[self sharedAFManager] GET:path parameters:params success:^void(NSURLSessionDataTask * task, id responseObject) {
+        YSHLog(@"请求成功");
         complete(responseObject, nil);
     } failure:^void(NSURLSessionDataTask * task, NSError * error) {
         complete(nil, error);
+         YSHLog(@"请求失败");
     }];
 }
 
@@ -38,6 +44,7 @@ static AFHTTPSessionManager *manager = nil;
         [self handleError:error];
         complete(nil, error);
     }];
+    
 }
 
 + (void)handleError:(NSError *)error{

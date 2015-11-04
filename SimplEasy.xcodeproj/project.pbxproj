@@ -37,6 +37,9 @@
 		B02A70171BE8638A00B8B05F /* JYPlusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70161BE8638A00B8B05F /* JYPlusButton.m */; };
 		B02A701A1BE863AE00B8B05F /* JYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70191BE863AE00B8B05F /* JYTabBar.m */; };
 		B02A701C1BE86AA000B8B05F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B02A701B1BE86AA000B8B05F /* Assets.xcassets */; };
+		B089AA981BE9D09400E5D2CC /* JYLoopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AA971BE9D09400E5D2CC /* JYLoopModel.m */; };
+		B089AA9E1BE9D50700E5D2CC /* JYLoopViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AA9D1BE9D50700E5D2CC /* JYLoopViewModel.m */; };
+		B089AAA11BE9D70800E5D2CC /* JYLoopNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AAA01BE9D70800E5D2CC /* JYLoopNetManager.m */; };
 		B0DA5E731BE8D191001A0D85 /* ImageScrollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DA5E701BE8D191001A0D85 /* ImageScrollCell.m */; };
 		B0DA5E741BE8D191001A0D85 /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DA5E721BE8D191001A0D85 /* ImageScrollView.m */; };
 		E1F9A3C4126135B024FA3120 /* libPods-SimplEasy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F40C00061819C81121C437 /* libPods-SimplEasy.a */; };
@@ -119,6 +122,12 @@
 		B02A70181BE863AE00B8B05F /* JYTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYTabBar.h; sourceTree = "<group>"; };
 		B02A70191BE863AE00B8B05F /* JYTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYTabBar.m; sourceTree = "<group>"; };
 		B02A701B1BE86AA000B8B05F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B089AA961BE9D09400E5D2CC /* JYLoopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLoopModel.h; sourceTree = "<group>"; };
+		B089AA971BE9D09400E5D2CC /* JYLoopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLoopModel.m; sourceTree = "<group>"; };
+		B089AA9C1BE9D50700E5D2CC /* JYLoopViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLoopViewModel.h; sourceTree = "<group>"; };
+		B089AA9D1BE9D50700E5D2CC /* JYLoopViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLoopViewModel.m; sourceTree = "<group>"; };
+		B089AA9F1BE9D70800E5D2CC /* JYLoopNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLoopNetManager.h; sourceTree = "<group>"; };
+		B089AAA01BE9D70800E5D2CC /* JYLoopNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLoopNetManager.m; sourceTree = "<group>"; };
 		B0DA5E6F1BE8D191001A0D85 /* ImageScrollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollCell.h; sourceTree = "<group>"; };
 		B0DA5E701BE8D191001A0D85 /* ImageScrollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScrollCell.m; sourceTree = "<group>"; };
 		B0DA5E711BE8D191001A0D85 /* ImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollView.h; sourceTree = "<group>"; };
@@ -305,6 +314,8 @@
 		8328A47F1BE849800021767D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B089AA961BE9D09400E5D2CC /* JYLoopModel.h */,
+				B089AA971BE9D09400E5D2CC /* JYLoopModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -312,6 +323,8 @@
 		8328A4801BE849800021767D /* NetManager */ = {
 			isa = PBXGroup;
 			children = (
+				B089AA9F1BE9D70800E5D2CC /* JYLoopNetManager.h */,
+				B089AAA01BE9D70800E5D2CC /* JYLoopNetManager.m */,
 			);
 			path = NetManager;
 			sourceTree = "<group>";
@@ -337,6 +350,8 @@
 		8328A4851BE849800021767D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B089AA9C1BE9D50700E5D2CC /* JYLoopViewModel.h */,
+				B089AA9D1BE9D50700E5D2CC /* JYLoopViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -745,6 +760,7 @@
 				B02A70171BE8638A00B8B05F /* JYPlusButton.m in Sources */,
 				8328A43F1BE8478B0021767D /* AppDelegate.m in Sources */,
 				8328A4A41BE849800021767D /* AppDelegate+Category.m in Sources */,
+				B089AA981BE9D09400E5D2CC /* JYLoopModel.m in Sources */,
 				B0DA5E731BE8D191001A0D85 /* ImageScrollCell.m in Sources */,
 				B02A70051BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift in Sources */,
 				B02A700D1BE8604100B8B05F /* JYFindController.m in Sources */,
@@ -754,12 +770,14 @@
 				B02A70071BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift in Sources */,
 				8328A4A91BE849800021767D /* UIBarButtonItem+Extension.m in Sources */,
 				8328A4B21BE84E1F0021767D /* JYBaseNetManager.m in Sources */,
+				B089AAA11BE9D70800E5D2CC /* JYLoopNetManager.m in Sources */,
 				B02A70081BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */,
 				B02A70091BE85E4F00B8B05F /* DGElasticPullToRefreshView.swift in Sources */,
 				B0DA5E741BE8D191001A0D85 /* ImageScrollView.m in Sources */,
 				B02A701A1BE863AE00B8B05F /* JYTabBar.m in Sources */,
 				8328A4A71BE849800021767D /* NSString+PJR.m in Sources */,
 				8328A43C1BE8478B0021767D /* main.m in Sources */,
+				B089AA9E1BE9D50700E5D2CC /* JYLoopViewModel.m in Sources */,
 				8328A4B51BE84E6E0021767D /* JYBaseViewModel.m in Sources */,
 				B02A70131BE860C600B8B05F /* JYMineController.m in Sources */,
 			);

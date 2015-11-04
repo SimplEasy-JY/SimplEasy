@@ -10,6 +10,7 @@
 #import "UIBarButtonItem+Extension.h"
 #import "JYProductDetailVC.h"
 #import "ImageScrollView.h"
+#import "JYLoopViewModel.h"
 @interface JYHomeController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,ImageScrollViewDelegate>{
     /**< 第一个轮播数据 */
     NSMutableArray *_focusListArray;
@@ -18,20 +19,29 @@
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(strong,nonatomic)NSArray *imageArray ;
+@property(strong,nonatomic)JYLoopViewModel *loopVM;
+
 
 @end
 
 @implementation JYHomeController
+-(JYLoopViewModel *)loopVM{
+    if (!_loopVM) {
+        _loopVM = [JYLoopViewModel new];
+    }
+    return _loopVM;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initData];
     [self setNav];
     [self setupTableView];
 
+
 }
 -(NSArray *)imageArray{
     if (!_imageArray) {
-        _imageArray = [NSArray arrayWithObjects:@"http://img0.imgtn.bdimg.com/it/u=1070902365,2619384777&fm=21&gp=0.jpg",@"http://img0.imgtn.bdimg.com/it/u=1070902365,2619384777&fm=21&gp=0.jpg",@"http://img0.imgtn.bdimg.com/it/u=1070902365,2619384777&fm=21&gp=0.jpg", nil];
+        _imageArray = [NSArray new];
     }
     return _imageArray;
 }
@@ -51,12 +61,17 @@
 }
 
 -(void)setupTableView{
+        [self.loopVM getDataFromNetCompleteHandle:^(NSError *error) {
+//            [self.tableView reloadData];
+            YSHLog(@"获取数据");
+        }];
+   
     //下拉刷新
     DGElasticPullToRefreshLoadingViewCircle *loadingView = [DGElasticPullToRefreshLoadingViewCircle new];
     loadingView.tintColor = [UIColor blueColor];
     [self.tableView dg_addPullToRefreshWithActionHandler:^{
-        YSHLog(@"下拉刷新");
-        [self.tableView dg_stopLoading];
+            [self.tableView dg_stopLoading];
+        
     } loadingView:loadingView];
     [self.tableView dg_setPullToRefreshBackgroundColor:self.tableView.backgroundColor];
     [self.tableView dg_setPullToRefreshFillColor:kRGBColor(52, 152, 82)];
@@ -131,8 +146,8 @@
         if (indexPath.row == 0) {
             static NSString *cellIndentifier = @"courseCell0";
             ImageScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
-            if (cell == nil) {
-                cell = [[ImageScrollCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier frame:CGRectMake(0, 0, kWindowW, 116) imageArray:self.imageArray];
+            if (self.loopVM.loopImageUrlArray != nil) {
+                cell = [[ImageScrollCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier frame:CGRectMake(0, 0, kWindowW, 116) imageArray:self.loopVM.loopImageUrlArray];
             }
             cell.imageScrollView.delegate = self;
             
