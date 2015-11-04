@@ -62,7 +62,7 @@
 
 -(void)setupTableView{
         [self.loopVM getDataFromNetCompleteHandle:^(NSError *error) {
-//            [self.tableView reloadData];
+            [self.tableView reloadData];
             YSHLog(@"获取数据");
         }];
    
