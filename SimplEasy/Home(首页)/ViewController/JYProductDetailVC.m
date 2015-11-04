@@ -7,22 +7,39 @@
 //
 
 #import "JYProductDetailVC.h"
+#import "ScrollDisplayViewController.h"
+//#import "JYProductDetailCell.h"
+//#import "JYSellerCell.h"
+//#import "JYCommentCell.h"
 
 @interface JYProductDetailVC ()<UITableViewDelegate,UITableViewDataSource>
-
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) ScrollDisplayViewController *sdVC;
 @end
 
 @implementation JYProductDetailVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self configTableViewHeader];
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)configTableViewHeader{
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 320)];
+    [self.sdVC removeFromParentViewController];
+    
+    self.sdVC = [[ScrollDisplayViewController alloc] initWithImageNames:@[@"picture_15",@"picture_17",@"picture_19"]];
+    self.sdVC.pageIndicatorTintColor = [UIColor blackColor];
+    self.sdVC.currentPageIndicatorTintColor = [UIColor whiteColor];
+    self.sdVC.pageControlOffset = 10;
+    [self addChildViewController:self.sdVC];
+    [headerView addSubview:self.sdVC.view];
+    [self.sdVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(headerView);
+    }];
+    self.tableView.tableHeaderView = headerView;
+    
+    
 }
 
 #pragma mark *** <UITableViewDataSource> ***
@@ -36,12 +53,27 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellIdentifier = @"DescCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    UITableViewCell *cell = nil;
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"ProductDetailCell"];
+        }else if (indexPath.row == 1){
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SellerCell"];
+        }
+    }else{
+        cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
+    }
+    
     
     return cell;
     
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 /*
 #pragma mark - Navigation
 

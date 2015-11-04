@@ -14,7 +14,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <animations/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <outlet property="dataSource" destination="BYZ-38-t0r" id="LC3-vk-enJ"/>
                             <outlet property="delegate" destination="BYZ-38-t0r" id="iTT-K6-h8m"/>
@@ -80,7 +80,7 @@
                                 <animations/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DescCell" rowHeight="110" id="iV9-Tj-584">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProductDetailCell" rowHeight="110" id="iV9-Tj-584" userLabel="ProductDetailCell" customClass="JYProductDetailCell">
                                         <rect key="frame" x="0.0" y="50" width="600" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iV9-Tj-584" id="8ai-YV-oOd">
@@ -90,11 +90,10 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="［附专柜小票］洗脸仪  乐天免税店买 5月12号韩国买的，只用过一次。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="foR-93-OGe">
                                                     <rect key="frame" x="10" y="10" width="535" height="30"/>
                                                     <animations/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="ZiI-rd-AeG"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -212,17 +211,16 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MaijiaCell" rowHeight="60" id="nEB-NR-Kw1">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SellerCell" rowHeight="60" id="nEB-NR-Kw1" userLabel="SellerCell" customClass="JYSellerCell">
                                         <rect key="frame" x="0.0" y="160" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nEB-NR-Kw1" id="U0a-nR-Kq5">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SNW-PB-fFn">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_11" translatesAutoresizingMaskIntoConstraints="NO" id="SNW-PB-fFn">
                                                     <rect key="frame" x="10" y="10" width="39" height="39"/>
                                                     <animations/>
-                                                    <color key="backgroundColor" red="0.0" green="0.99778884649276733" blue="0.0093102436512708664" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="SNW-PB-fFn" secondAttribute="height" multiplier="1:1" id="9oJ-2U-bro"/>
                                                     </constraints>
@@ -244,12 +242,12 @@
                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bG-z7-YBz">
                                                     <rect key="frame" x="551" y="10" width="39" height="39"/>
                                                     <animations/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="5bG-z7-YBz" secondAttribute="height" multiplier="1:1" id="7x8-eT-VUF"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                                                    <inset key="titleEdgeInsets" minX="-53" minY="0.0" maxX="7" maxY="0.0"/>
-                                                    <inset key="imageEdgeInsets" minX="3" minY="0.0" maxX="3" maxY="11"/>
+                                                    <inset key="titleEdgeInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
                                                     <state key="normal" title="加关注" image="middleicon_03">
                                                         <color key="titleColor" red="0.99046566611842102" green="0.69194592927631504" blue="0.030736019736842101" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
@@ -293,14 +291,14 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommentCell" id="cOl-sF-Ggf">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommentCell" id="cOl-sF-Ggf" customClass="JYCommentCell">
                                         <rect key="frame" x="0.0" y="220" width="600" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cOl-sF-Ggf" id="vvW-VD-edt">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="109"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ca7-yu-eaA">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_46" translatesAutoresizingMaskIntoConstraints="NO" id="ca7-yu-eaA">
                                                     <rect key="frame" x="10" y="10" width="50" height="50"/>
                                                     <animations/>
                                                     <constraints>
@@ -393,10 +391,13 @@
                             <constraint firstAttribute="trailing" secondItem="Fcq-zN-ZtY" secondAttribute="trailing" id="cbL-qU-vaW"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="Fcq-zN-ZtY" id="PPb-c6-aDI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ie9-31-mkC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1580" y="328"/>
+            <point key="canvasLocation" x="1508" y="290"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ytd-gK-LcZ">
@@ -423,8 +424,10 @@
         <image name="middleicon_16" width="30" height="35"/>
         <image name="middleicon_20" width="14" height="20"/>
         <image name="middleicon_34" width="26" height="27"/>
+        <image name="picture_11" width="80" height="80"/>
         <image name="picture_30" width="24" height="24"/>
         <image name="picture_38" width="20" height="20"/>
+        <image name="picture_46" width="80" height="80"/>
         <image name="topicon_1" width="30" height="30"/>
         <image name="topicon_2" width="30" height="30"/>
     </resources>
