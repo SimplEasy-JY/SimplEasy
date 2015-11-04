@@ -26,6 +26,12 @@
 		8328A4B51BE84E6E0021767D /* JYBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4B41BE84E6E0021767D /* JYBaseViewModel.m */; };
 		8344A9931BE89D6200AD007B /* ScrollDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8344A9921BE89D6200AD007B /* ScrollDisplayViewController.m */; };
 		8344A9961BE8A29400AD007B /* JYProductDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8344A9951BE8A29400AD007B /* JYProductDetailVC.m */; };
+		83E75EC21BEA45C70020D54D /* JYCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E75EBA1BEA45C70020D54D /* JYCommentCell.m */; };
+		83E75EC31BEA45C70020D54D /* JYCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83E75EBB1BEA45C70020D54D /* JYCommentCell.xib */; };
+		83E75EC41BEA45C70020D54D /* JYProductDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E75EBD1BEA45C70020D54D /* JYProductDetailCell.m */; };
+		83E75EC51BEA45C70020D54D /* JYProductDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83E75EBE1BEA45C70020D54D /* JYProductDetailCell.xib */; };
+		83E75EC61BEA45C70020D54D /* JYSellerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E75EC01BEA45C70020D54D /* JYSellerCell.m */; };
+		83E75EC71BEA45C70020D54D /* JYSellerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83E75EC11BEA45C70020D54D /* JYSellerCell.xib */; };
 		B02A70051BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A70001BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift */; };
 		B02A70061BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A70011BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift */; };
 		B02A70071BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A70021BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift */; };
@@ -105,6 +111,15 @@
 		8344A9921BE89D6200AD007B /* ScrollDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollDisplayViewController.m; sourceTree = "<group>"; };
 		8344A9941BE8A29400AD007B /* JYProductDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYProductDetailVC.h; sourceTree = "<group>"; };
 		8344A9951BE8A29400AD007B /* JYProductDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYProductDetailVC.m; sourceTree = "<group>"; };
+		83E75EB91BEA45C70020D54D /* JYCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYCommentCell.h; sourceTree = "<group>"; };
+		83E75EBA1BEA45C70020D54D /* JYCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYCommentCell.m; sourceTree = "<group>"; };
+		83E75EBB1BEA45C70020D54D /* JYCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JYCommentCell.xib; sourceTree = "<group>"; };
+		83E75EBC1BEA45C70020D54D /* JYProductDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYProductDetailCell.h; sourceTree = "<group>"; };
+		83E75EBD1BEA45C70020D54D /* JYProductDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYProductDetailCell.m; sourceTree = "<group>"; };
+		83E75EBE1BEA45C70020D54D /* JYProductDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JYProductDetailCell.xib; sourceTree = "<group>"; };
+		83E75EBF1BEA45C70020D54D /* JYSellerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYSellerCell.h; sourceTree = "<group>"; };
+		83E75EC01BEA45C70020D54D /* JYSellerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYSellerCell.m; sourceTree = "<group>"; };
+		83E75EC11BEA45C70020D54D /* JYSellerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JYSellerCell.xib; sourceTree = "<group>"; };
 		B02A70001BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshConstants.swift; sourceTree = "<group>"; };
 		B02A70011BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshExtensions.swift; sourceTree = "<group>"; };
 		B02A70021BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshLoadingView.swift; sourceTree = "<group>"; };
@@ -302,9 +317,9 @@
 		8328A47E1BE849800021767D /* Home(首页) */ = {
 			isa = PBXGroup;
 			children = (
+				83E75EB81BEA45C70020D54D /* View */,
 				8328A47F1BE849800021767D /* Model */,
 				8328A4801BE849800021767D /* NetManager */,
-				8328A4811BE849800021767D /* View */,
 				8328A4821BE849800021767D /* ViewController */,
 				8328A4851BE849800021767D /* ViewModel */,
 			);
@@ -327,13 +342,6 @@
 				B089AAA01BE9D70800E5D2CC /* JYLoopNetManager.m */,
 			);
 			path = NetManager;
-			sourceTree = "<group>";
-		};
-		8328A4811BE849800021767D /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		8328A4821BE849800021767D /* ViewController */ = {
@@ -409,8 +417,6 @@
 			isa = PBXGroup;
 			children = (
 				8328A48D1BE849800021767D /* Model */,
-				8328A48E1BE849800021767D /* NetManager */,
-				8328A48F1BE849800021767D /* View */,
 				8328A4901BE849800021767D /* ViewController */,
 				8328A4911BE849800021767D /* ViewModel */,
 			);
@@ -422,20 +428,6 @@
 			children = (
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		8328A48E1BE849800021767D /* NetManager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NetManager;
-			sourceTree = "<group>";
-		};
-		8328A48F1BE849800021767D /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		8328A4901BE849800021767D /* ViewController */ = {
@@ -511,6 +503,22 @@
 				8344A9921BE89D6200AD007B /* ScrollDisplayViewController.m */,
 			);
 			path = ScrollDisplay;
+			sourceTree = "<group>";
+		};
+		83E75EB81BEA45C70020D54D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				83E75EB91BEA45C70020D54D /* JYCommentCell.h */,
+				83E75EBA1BEA45C70020D54D /* JYCommentCell.m */,
+				83E75EBB1BEA45C70020D54D /* JYCommentCell.xib */,
+				83E75EBC1BEA45C70020D54D /* JYProductDetailCell.h */,
+				83E75EBD1BEA45C70020D54D /* JYProductDetailCell.m */,
+				83E75EBE1BEA45C70020D54D /* JYProductDetailCell.xib */,
+				83E75EBF1BEA45C70020D54D /* JYSellerCell.h */,
+				83E75EC01BEA45C70020D54D /* JYSellerCell.m */,
+				83E75EC11BEA45C70020D54D /* JYSellerCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		AF77D64987B760B66986F80A /* Pods */ = {
@@ -675,6 +683,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83E75EC51BEA45C70020D54D /* JYProductDetailCell.xib in Resources */,
+				83E75EC71BEA45C70020D54D /* JYSellerCell.xib in Resources */,
+				83E75EC31BEA45C70020D54D /* JYCommentCell.xib in Resources */,
 				8328A44A1BE8478C0021767D /* LaunchScreen.storyboard in Resources */,
 				B02A701C1BE86AA000B8B05F /* Assets.xcassets in Resources */,
 				8328A4451BE8478B0021767D /* Main.storyboard in Resources */,
@@ -750,12 +761,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83E75EC21BEA45C70020D54D /* JYCommentCell.m in Sources */,
 				8328A4AA1BE849800021767D /* UIView+Extension.m in Sources */,
 				8328A4A31BE849800021767D /* JYHomeController.m in Sources */,
 				8328A4A51BE849800021767D /* Foundation+Log.m in Sources */,
 				8328A4AF1BE84E050021767D /* JYBaseModel.m in Sources */,
 				8344A9931BE89D6200AD007B /* ScrollDisplayViewController.m in Sources */,
 				B02A70101BE8609600B8B05F /* JYMessageController.m in Sources */,
+				83E75EC41BEA45C70020D54D /* JYProductDetailCell.m in Sources */,
 				B02A70061BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift in Sources */,
 				B02A70171BE8638A00B8B05F /* JYPlusButton.m in Sources */,
 				8328A43F1BE8478B0021767D /* AppDelegate.m in Sources */,
@@ -764,6 +777,7 @@
 				B0DA5E731BE8D191001A0D85 /* ImageScrollCell.m in Sources */,
 				B02A70051BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift in Sources */,
 				B02A700D1BE8604100B8B05F /* JYFindController.m in Sources */,
+				83E75EC61BEA45C70020D54D /* JYSellerCell.m in Sources */,
 				8344A9961BE8A29400AD007B /* JYProductDetailVC.m in Sources */,
 				8328A4A61BE849800021767D /* NSObject+Common.m in Sources */,
 				8328A4A81BE849800021767D /* NSString+QRCode.m in Sources */,
