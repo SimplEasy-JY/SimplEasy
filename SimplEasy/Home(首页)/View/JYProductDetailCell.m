@@ -8,10 +8,15 @@
 
 #import "JYProductDetailCell.h"
 
+@interface JYProductDetailCell ()
+@property (weak, nonatomic) IBOutlet UIView *timeAndPlaceView;
+
+@end
+
 @implementation JYProductDetailCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    self.timeAndPlaceView.layer.cornerRadius = 10;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

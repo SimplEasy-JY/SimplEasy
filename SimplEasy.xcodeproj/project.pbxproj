@@ -10,6 +10,9 @@
 		831928411BE998B7000BBA22 /* JYProductDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 831928401BE998B7000BBA22 /* JYProductDetailCell.m */; };
 		831928441BE9994A000BBA22 /* JYSellerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 831928431BE9994A000BBA22 /* JYSellerCell.m */; };
 		831928471BE99957000BBA22 /* JYCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 831928461BE99957000BBA22 /* JYCommentCell.m */; };
+		831928491BE9C290000BBA22 /* JYProductDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 831928481BE9C290000BBA22 /* JYProductDetailCell.xib */; };
+		8319284B1BE9C29D000BBA22 /* JYSellerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8319284A1BE9C29D000BBA22 /* JYSellerCell.xib */; };
+		8319284D1BE9C2A7000BBA22 /* JYCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8319284C1BE9C2A7000BBA22 /* JYCommentCell.xib */; };
 		8328A43C1BE8478B0021767D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A43B1BE8478B0021767D /* main.m */; };
 		8328A43F1BE8478B0021767D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A43E1BE8478B0021767D /* AppDelegate.m */; };
 		8328A4451BE8478B0021767D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8328A4431BE8478B0021767D /* Main.storyboard */; };
@@ -71,6 +74,9 @@
 		831928431BE9994A000BBA22 /* JYSellerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYSellerCell.m; sourceTree = "<group>"; };
 		831928451BE99957000BBA22 /* JYCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYCommentCell.h; sourceTree = "<group>"; };
 		831928461BE99957000BBA22 /* JYCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYCommentCell.m; sourceTree = "<group>"; };
+		831928481BE9C290000BBA22 /* JYProductDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JYProductDetailCell.xib; sourceTree = "<group>"; };
+		8319284A1BE9C29D000BBA22 /* JYSellerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JYSellerCell.xib; sourceTree = "<group>"; };
+		8319284C1BE9C2A7000BBA22 /* JYCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JYCommentCell.xib; sourceTree = "<group>"; };
 		8328A4371BE8478B0021767D /* SimplEasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimplEasy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8328A43B1BE8478B0021767D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8328A43D1BE8478B0021767D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -166,10 +172,13 @@
 			children = (
 				8319283F1BE998B7000BBA22 /* JYProductDetailCell.h */,
 				831928401BE998B7000BBA22 /* JYProductDetailCell.m */,
+				831928481BE9C290000BBA22 /* JYProductDetailCell.xib */,
 				831928421BE9994A000BBA22 /* JYSellerCell.h */,
 				831928431BE9994A000BBA22 /* JYSellerCell.m */,
+				8319284A1BE9C29D000BBA22 /* JYSellerCell.xib */,
 				831928451BE99957000BBA22 /* JYCommentCell.h */,
 				831928461BE99957000BBA22 /* JYCommentCell.m */,
+				8319284C1BE9C2A7000BBA22 /* JYCommentCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -678,6 +687,9 @@
 				8328A44A1BE8478C0021767D /* LaunchScreen.storyboard in Resources */,
 				B02A701C1BE86AA000B8B05F /* Assets.xcassets in Resources */,
 				8328A4451BE8478B0021767D /* Main.storyboard in Resources */,
+				8319284B1BE9C29D000BBA22 /* JYSellerCell.xib in Resources */,
+				8319284D1BE9C2A7000BBA22 /* JYCommentCell.xib in Resources */,
+				831928491BE9C290000BBA22 /* JYProductDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

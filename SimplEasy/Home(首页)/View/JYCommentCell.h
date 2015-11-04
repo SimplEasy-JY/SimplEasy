@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface JYCommentCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *headIV;
+@property (weak, nonatomic) IBOutlet UILabel *nickNameLb;
+@property (weak, nonatomic) IBOutlet UILabel *timeLb;
+@property (weak, nonatomic) IBOutlet UIImageView *rankIV;
+@property (weak, nonatomic) IBOutlet UILabel *commentLb;
+@property (weak, nonatomic) IBOutlet UIButton *goodBtn;
 
 @end

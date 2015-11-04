@@ -8,9 +8,9 @@
 
 #import "JYProductDetailVC.h"
 #import "ScrollDisplayViewController.h"
-//#import "JYProductDetailCell.h"
-//#import "JYSellerCell.h"
-//#import "JYCommentCell.h"
+#import "JYProductDetailCell.h"
+#import "JYSellerCell.h"
+#import "JYCommentCell.h"
 
 @interface JYProductDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -22,6 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configTableViewHeader];
+    [self.tableView registerNib:[UINib nibWithNibName:@"JYProductDetailCell" bundle:nil] forCellReuseIdentifier:@"JYProductDetailCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"JYSellerCell" bundle:nil] forCellReuseIdentifier:@"JYSellerCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"JYCommentCell" bundle:nil] forCellReuseIdentifier:@"JYCommentCell"];
 }
 
 - (void)configTableViewHeader{
@@ -51,21 +54,20 @@
     return 2;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = nil;
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"ProductDetailCell"];
+            JYProductDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYProductDetailCell"];
+            return cell;
         }else if (indexPath.row == 1){
-            cell = [tableView dequeueReusableCellWithIdentifier:@"SellerCell"];
+            JYSellerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYSellerCell"];
+            return cell;
         }
     }else{
-        cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
+        JYCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYCommentCell"];
+        return cell;
     }
-    
-    
-    return cell;
+    return nil;
     
 }
 
