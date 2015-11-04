@@ -44,7 +44,7 @@
     
     //1.设置加号按钮的位置
     self.plusBtn.centerX = self.width * 0.5;
-    self.plusBtn.centerY = self.height * 0.5-20;
+    self.plusBtn.centerY = self.height * 0.5-50;
     
     //2.设置其他tabbarButton的位置和尺寸
     CGFloat tabbarButtonW = self.width / 5;

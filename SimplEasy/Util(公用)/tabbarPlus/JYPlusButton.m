@@ -124,7 +124,7 @@
 //}
 
 + (CGFloat)multiplerInCenterY {
-    return  0.3;
+    return  0.23;
 }
 
 
