@@ -9,6 +9,8 @@
 
 #ifndef JYConsts_h
 #define JYConsts_h
+
+
 /**  nslog */
 #define YSHLog(...) NSLog(__VA_ARGS__)
 /** 通过RGB设置颜色 */

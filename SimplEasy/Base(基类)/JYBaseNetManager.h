@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define kCompletionHandle completionHandle:(void(^)(id model, NSError *error))completionHandle
 @interface JYBaseNetManager : NSObject
 
 + (id)GET:(NSString *)path parameters:(NSDictionary *)params completionHandle:(void(^)(id responseObj, NSError *error))complete;
