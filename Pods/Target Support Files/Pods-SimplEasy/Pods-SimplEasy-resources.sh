@@ -72,8 +72,14 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "AwesomeMenu/AwesomeMenu/Images/icon-plus@2x.png"
   install_resource "AwesomeMenu/AwesomeMenu/Images/icon-star.png"
   install_resource "AwesomeMenu/AwesomeMenu/Images/icon-star@2x.png"
+  install_resource "FlatUIKit/Resources/flat-ui-icons-regular.ttf"
+  install_resource "FlatUIKit/Resources/Lato-Bold.ttf"
+  install_resource "FlatUIKit/Resources/Lato-Italic.ttf"
+  install_resource "FlatUIKit/Resources/Lato-Light.ttf"
+  install_resource "FlatUIKit/Resources/Lato-Regular.ttf"
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
+  install_resource "${BUILT_PRODUCTS_DIR}/MWPhotoBrowser.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "AwesomeMenu/AwesomeMenu/Images/bg-addbutton-highlighted.png"
@@ -90,8 +96,14 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "AwesomeMenu/AwesomeMenu/Images/icon-plus@2x.png"
   install_resource "AwesomeMenu/AwesomeMenu/Images/icon-star.png"
   install_resource "AwesomeMenu/AwesomeMenu/Images/icon-star@2x.png"
+  install_resource "FlatUIKit/Resources/flat-ui-icons-regular.ttf"
+  install_resource "FlatUIKit/Resources/Lato-Bold.ttf"
+  install_resource "FlatUIKit/Resources/Lato-Italic.ttf"
+  install_resource "FlatUIKit/Resources/Lato-Light.ttf"
+  install_resource "FlatUIKit/Resources/Lato-Regular.ttf"
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
+  install_resource "${BUILT_PRODUCTS_DIR}/MWPhotoBrowser.bundle"
 fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

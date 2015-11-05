@@ -47,6 +47,20 @@ static AFHTTPSessionManager *manager = nil;
     
 }
 
++ (NSString *)percentPathWithPath:(NSString *)path params:(NSDictionary *)params{
+    NSMutableString *percentPath =[NSMutableString stringWithString:path];
+    NSArray *keys = params.allKeys;
+    NSInteger count = keys.count;
+    for (int i = 0; i < count; i++) {
+        if (i == 0) {
+            [percentPath appendFormat:@"?%@=%@", keys[i], params[keys[i]]];
+        }else{
+            [percentPath appendFormat:@"&%@=%@", keys[i], params[keys[i]]];
+        }
+    }
+    return [percentPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
+
 + (void)handleError:(NSError *)error{
     [[self new] showErrorMsg:error]; //弹出错误信息
 }

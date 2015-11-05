@@ -4,6 +4,8 @@
 # use_frameworks!
 
 target 'SimplEasy' do
+    
+inhibit_all_warnings!
 
 pod 'AFNetworking'
 pod 'BlocksKit'
@@ -21,6 +23,12 @@ pod 'CocoaAsyncSocket'
 pod 'BmobSDK'
 pod 'CYLTabBarController'
 pod 'AwesomeMenu'
+pod 'Shimmer'
+pod 'FlatUIKit'
+pod 'AsyncDisplayKit'
+pod 'RESideMenu'
+pod 'SWTableViewCell'
+pod 'MWPhotoBrowser'
 
 end
 
