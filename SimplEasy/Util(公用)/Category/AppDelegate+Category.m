@@ -18,8 +18,6 @@
     [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
     
     
- 
-    
     //    电池条显示网络活动
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     //    检测网络状态

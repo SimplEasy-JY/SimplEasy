@@ -84,7 +84,9 @@
 #pragma mark - Event Response
 
 - (void)clickPublish {
-    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+    RESideMenu *menu = (RESideMenu *)self.window.rootViewController;
+    UITabBarController *tabBarController = (UITabBarController *)menu.contentViewController;
+//    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
     UIViewController *viewController = tabBarController.selectedViewController;
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     //    UIAlertAction

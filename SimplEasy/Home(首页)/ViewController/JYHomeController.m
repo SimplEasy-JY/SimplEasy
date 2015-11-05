@@ -32,6 +32,7 @@
     return _loopVM;
 }
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     [self initData];
     [self setNav];

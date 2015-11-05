@@ -12,7 +12,7 @@
 #import "JYHomeController.h"
 #import "JYMessageController.h"
 #import "JYMineController.h"
-
+#import "JYClassifyViewController.h"
 @interface AppDelegate ()
 @property(strong,nonatomic)CYLTabBarController *tabBarController;
 
@@ -20,9 +20,9 @@
 
 @implementation AppDelegate
 - (void)setupViewControllers {
-    JYHomeController *homeVc = [kStoryboard(@"Main") instantiateViewControllerWithIdentifier:@"JYHomeController"];
+
     UINavigationController *homeNavc = [[UINavigationController alloc]
-                                        initWithRootViewController:homeVc];
+                                        initWithRootViewController:kVCFromSb(@"JYHomeController", @"Main")];
     
     JYFindController *shopVC = [[JYFindController alloc] init];
     UINavigationController *shopNavc = [[UINavigationController alloc]
@@ -90,7 +90,10 @@
     //    NSString *currentVersion = [NSBundle mainBundle].infoDictionary[key];
     
     //    if ([currentVersion isEqualToString:lastVersion]) { // 版本号相同：这次打开和上次打开的是同一个版本
-    self.window.rootViewController = self.tabBarController;
+#warning 暂时侧拉框每个tabbar都可以，待改进
+    RESideMenu *menu = [[RESideMenu alloc] initWithContentViewController:self.tabBarController leftMenuViewController:[JYClassifyViewController new] rightMenuViewController:nil];
+    menu.scaleMenuView = YES;
+    self.window.rootViewController = menu;
     //    } else { // 这次打开的版本和上一次不一样，显示新特性
     //        self.window.rootViewController = [[JYNewfeatureViewController alloc] init];
     //
@@ -100,13 +103,13 @@
     //    }
     //
     
-
     
     //去除 TabBar 自带的顶部阴影
     [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
     // 3.显示窗口
     [self.window makeKeyAndVisible];
-//    [self initializeWithApplication:application];
+    [self initializeWithApplication:application];
+
     return YES;
 }
 
