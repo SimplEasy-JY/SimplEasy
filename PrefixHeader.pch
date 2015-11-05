@@ -89,4 +89,6 @@ static const int ddLogLevel = DDLogLevelError;
 
 #import <MWPhotoBrowser.h>      //图片浏览器
 
+#import "iCarousel.h"
+
 #endif /* PrefixHeader_pch */

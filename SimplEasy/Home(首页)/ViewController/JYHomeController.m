@@ -236,6 +236,7 @@
     NSLog(@"%ld",(long)indexPath.row);
     JYProductDetailVC *productDetailVC = [kStoryboard(@"Main") instantiateViewControllerWithIdentifier:@"JYProductDetailVC"];
     productDetailVC.title = @"商品详情";
+    productDetailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:productDetailVC animated:YES];
 }
 @end

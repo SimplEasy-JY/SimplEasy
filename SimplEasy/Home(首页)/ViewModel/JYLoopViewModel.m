@@ -16,6 +16,7 @@
     }
     return _loopImageUrlArray;
 }
+
 - (void)getDataFromNetCompleteHandle:(CompletionHandle)completionHandle{
     self.dataTask = [JYLoopNetManager getLoopImageWithIndex:1 completionHandle:^(JYLoopModel *model, NSError *error) {
         //清空数据

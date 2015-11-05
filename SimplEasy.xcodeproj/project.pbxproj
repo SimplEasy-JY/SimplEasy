@@ -26,6 +26,8 @@
 		8328A4B51BE84E6E0021767D /* JYBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A4B41BE84E6E0021767D /* JYBaseViewModel.m */; };
 		8344A9931BE89D6200AD007B /* ScrollDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8344A9921BE89D6200AD007B /* ScrollDisplayViewController.m */; };
 		8344A9961BE8A29400AD007B /* JYProductDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8344A9951BE8A29400AD007B /* JYProductDetailVC.m */; };
+		83476B751BEB1C6C0061F61E /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83476B741BEB1C6C0061F61E /* iCarousel.m */; };
+		83476B781BEB2E9F0061F61E /* UIImage+Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83476B771BEB2E9F0061F61E /* UIImage+Circle.m */; };
 		83E75EC21BEA45C70020D54D /* JYCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E75EBA1BEA45C70020D54D /* JYCommentCell.m */; };
 		83E75EC31BEA45C70020D54D /* JYCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83E75EBB1BEA45C70020D54D /* JYCommentCell.xib */; };
 		83E75EC41BEA45C70020D54D /* JYProductDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E75EBD1BEA45C70020D54D /* JYProductDetailCell.m */; };
@@ -111,6 +113,10 @@
 		8344A9921BE89D6200AD007B /* ScrollDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollDisplayViewController.m; sourceTree = "<group>"; };
 		8344A9941BE8A29400AD007B /* JYProductDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYProductDetailVC.h; sourceTree = "<group>"; };
 		8344A9951BE8A29400AD007B /* JYProductDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYProductDetailVC.m; sourceTree = "<group>"; };
+		83476B731BEB1C6C0061F61E /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		83476B741BEB1C6C0061F61E /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		83476B761BEB2E9F0061F61E /* UIImage+Circle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Circle.h"; sourceTree = "<group>"; };
+		83476B771BEB2E9F0061F61E /* UIImage+Circle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Circle.m"; sourceTree = "<group>"; };
 		83E75EB91BEA45C70020D54D /* JYCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYCommentCell.h; sourceTree = "<group>"; };
 		83E75EBA1BEA45C70020D54D /* JYCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYCommentCell.m; sourceTree = "<group>"; };
 		83E75EBB1BEA45C70020D54D /* JYCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JYCommentCell.xib; sourceTree = "<group>"; };
@@ -471,6 +477,8 @@
 			children = (
 				8328A4951BE849800021767D /* AppDelegate+Category.h */,
 				8328A4961BE849800021767D /* AppDelegate+Category.m */,
+				83476B761BEB2E9F0061F61E /* UIImage+Circle.h */,
+				83476B771BEB2E9F0061F61E /* UIImage+Circle.m */,
 				8328A4971BE849800021767D /* Foundation+Log.m */,
 				8328A4981BE849800021767D /* NSObject+Common.h */,
 				8328A4991BE849800021767D /* NSObject+Common.m */,
@@ -489,6 +497,7 @@
 		8328A4A21BE849800021767D /* Vendor(第三方框架) */ = {
 			isa = PBXGroup;
 			children = (
+				83476B721BEB1C6C0061F61E /* iCarousel */,
 				B0DA5E6E1BE8D191001A0D85 /* LoopView */,
 				8344A9901BE89D6200AD007B /* ScrollDisplay */,
 				B02A6FFF1BE85E4F00B8B05F /* DGElasticPullToRefresh */,
@@ -503,6 +512,15 @@
 				8344A9921BE89D6200AD007B /* ScrollDisplayViewController.m */,
 			);
 			path = ScrollDisplay;
+			sourceTree = "<group>";
+		};
+		83476B721BEB1C6C0061F61E /* iCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				83476B731BEB1C6C0061F61E /* iCarousel.h */,
+				83476B741BEB1C6C0061F61E /* iCarousel.m */,
+			);
+			path = iCarousel;
 			sourceTree = "<group>";
 		};
 		83E75EB81BEA45C70020D54D /* View */ = {
@@ -762,12 +780,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				83E75EC21BEA45C70020D54D /* JYCommentCell.m in Sources */,
+				83476B781BEB2E9F0061F61E /* UIImage+Circle.m in Sources */,
 				8328A4AA1BE849800021767D /* UIView+Extension.m in Sources */,
 				8328A4A31BE849800021767D /* JYHomeController.m in Sources */,
 				8328A4A51BE849800021767D /* Foundation+Log.m in Sources */,
 				8328A4AF1BE84E050021767D /* JYBaseModel.m in Sources */,
 				8344A9931BE89D6200AD007B /* ScrollDisplayViewController.m in Sources */,
 				B02A70101BE8609600B8B05F /* JYMessageController.m in Sources */,
+				83476B751BEB1C6C0061F61E /* iCarousel.m in Sources */,
 				83E75EC41BEA45C70020D54D /* JYProductDetailCell.m in Sources */,
 				B02A70061BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift in Sources */,
 				B02A70171BE8638A00B8B05F /* JYPlusButton.m in Sources */,
@@ -939,6 +959,7 @@
 			baseConfigurationReference = F3F5ACA8FBE2F68B4729D69C /* Pods-SimplEasy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				DEFINES_MODULE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
@@ -954,6 +975,7 @@
 			baseConfigurationReference = 76780E000871521B2D5F3B15 /* Pods-SimplEasy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				DEFINES_MODULE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
