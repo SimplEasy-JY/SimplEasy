@@ -16,12 +16,19 @@
     }
     return _loopImageUrlArray;
 }
-
+-(NSMutableArray *)loopWebUrlArray{
+    if (!_loopWebUrlArray) {
+        self.loopWebUrlArray = [[NSMutableArray  alloc]init];
+    }
+    return _loopWebUrlArray;
+    
+}
 - (void)getDataFromNetCompleteHandle:(CompletionHandle)completionHandle{
     self.dataTask = [JYLoopNetManager getLoopImageWithIndex:1 completionHandle:^(JYLoopModel *model, NSError *error) {
         //清空数据
         [self.dataArr removeAllObjects];
         [self.loopImageUrlArray removeAllObjects];
+        [self.loopWebUrlArray removeAllObjects];
         
         [self.dataArr addObjectsFromArray:model.data];
         
@@ -29,7 +36,9 @@
             JYLoopImage *loopImage = [JYLoopImage objectWithKeyValues:self.dataArr[i]];
             NSString *imageURL = [NSString stringWithFormat:@"http://www.i-jianyi.com%@",loopImage.src];
             [self.loopImageUrlArray addObject:imageURL];
+            [self.loopWebUrlArray addObject:loopImage.link];
         }
+
         completionHandle(error);
     }];
 

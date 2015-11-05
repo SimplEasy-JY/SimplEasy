@@ -10,4 +10,5 @@
 #import "JYLoopNetManager.h"
 @interface JYLoopViewModel : JYBaseViewModel
 @property(strong,nonatomic)NSMutableArray *loopImageUrlArray ;
+@property(strong,nonatomic)NSMutableArray *loopWebUrlArray;
 @end

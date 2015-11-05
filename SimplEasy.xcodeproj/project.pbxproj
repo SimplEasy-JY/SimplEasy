@@ -46,6 +46,7 @@
 		B02A70171BE8638A00B8B05F /* JYPlusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70161BE8638A00B8B05F /* JYPlusButton.m */; };
 		B02A701A1BE863AE00B8B05F /* JYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70191BE863AE00B8B05F /* JYTabBar.m */; };
 		B02A701C1BE86AA000B8B05F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B02A701B1BE86AA000B8B05F /* Assets.xcassets */; };
+		B04758D61BEB92D100C645EE /* JYWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B04758D51BEB92D100C645EE /* JYWebViewController.m */; };
 		B089AA981BE9D09400E5D2CC /* JYLoopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AA971BE9D09400E5D2CC /* JYLoopModel.m */; };
 		B089AA9E1BE9D50700E5D2CC /* JYLoopViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AA9D1BE9D50700E5D2CC /* JYLoopViewModel.m */; };
 		B089AAA11BE9D70800E5D2CC /* JYLoopNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AAA01BE9D70800E5D2CC /* JYLoopNetManager.m */; };
@@ -146,6 +147,8 @@
 		B02A70181BE863AE00B8B05F /* JYTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYTabBar.h; sourceTree = "<group>"; };
 		B02A70191BE863AE00B8B05F /* JYTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYTabBar.m; sourceTree = "<group>"; };
 		B02A701B1BE86AA000B8B05F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B04758D41BEB92D100C645EE /* JYWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYWebViewController.h; sourceTree = "<group>"; };
+		B04758D51BEB92D100C645EE /* JYWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYWebViewController.m; sourceTree = "<group>"; };
 		B089AA961BE9D09400E5D2CC /* JYLoopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLoopModel.h; sourceTree = "<group>"; };
 		B089AA971BE9D09400E5D2CC /* JYLoopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLoopModel.m; sourceTree = "<group>"; };
 		B089AA9C1BE9D50700E5D2CC /* JYLoopViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLoopViewModel.h; sourceTree = "<group>"; };
@@ -362,6 +365,8 @@
 				8344A9951BE8A29400AD007B /* JYProductDetailVC.m */,
 				83476B791BEB34830061F61E /* JYClassifyViewController.h */,
 				83476B7A1BEB34830061F61E /* JYClassifyViewController.m */,
+				B04758D41BEB92D100C645EE /* JYWebViewController.h */,
+				B04758D51BEB92D100C645EE /* JYWebViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -788,6 +793,7 @@
 				83476B781BEB2E9F0061F61E /* UIImage+Circle.m in Sources */,
 				8328A4AA1BE849800021767D /* UIView+Extension.m in Sources */,
 				8328A4A31BE849800021767D /* JYHomeController.m in Sources */,
+				B04758D61BEB92D100C645EE /* JYWebViewController.m in Sources */,
 				8328A4A51BE849800021767D /* Foundation+Log.m in Sources */,
 				8328A4AF1BE84E050021767D /* JYBaseModel.m in Sources */,
 				8344A9931BE89D6200AD007B /* ScrollDisplayViewController.m in Sources */,

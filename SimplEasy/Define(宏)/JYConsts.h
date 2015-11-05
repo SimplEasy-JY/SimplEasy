@@ -15,6 +15,8 @@
 #define YSHLog(...) NSLog(__VA_ARGS__)
 /** 通过RGB设置颜色 */
 #define kRGBColor(R,G,B)        [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1.0]
+//背景颜色 首页 webview
+#define YSHGlobalBg kRGBColor(230, 230, 230)
 
 /** 应用程序的屏幕高度 */
 #define kWindowH   [UIScreen mainScreen].bounds.size.height
