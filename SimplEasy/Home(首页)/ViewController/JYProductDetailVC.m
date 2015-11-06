@@ -11,9 +11,14 @@
 #import "JYSellerCell.h"
 #import "JYCommentCell.h"
 
+
+
 @interface JYProductDetailVC ()<UITableViewDelegate,UITableViewDataSource,iCarouselDelegate,iCarouselDataSource>
+/** tableView */
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+/** 头部滚动详情图片视图 */
 @property (nonatomic, strong) iCarousel *icView;
+/** 分页控制器（小圆点） */
 @property (nonatomic, strong) UIPageControl *pageControl;
 @end
 
@@ -22,9 +27,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configTableViewHeader];
+    //为头部滚动详情图片添加自动滚动定时器
     [NSTimer bk_scheduledTimerWithTimeInterval:3 block:^(NSTimer *timer) {
         [self.icView scrollToItemAtIndex:self.icView.currentItemIndex+1 animated:YES];
     } repeats:YES];
+    //注册cell
     [self.tableView registerNib:[UINib nibWithNibName:@"JYProductDetailCell" bundle:nil] forCellReuseIdentifier:@"JYProductDetailCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"JYSellerCell" bundle:nil] forCellReuseIdentifier:@"JYSellerCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"JYCommentCell" bundle:nil] forCellReuseIdentifier:@"JYCommentCell"];
@@ -48,8 +55,6 @@
         
     }];
     self.tableView.tableHeaderView = headerView;
-    
-    
 }
 
 #pragma mark *** <UITableViewDataSource> ***
@@ -58,30 +63,47 @@
     return 2;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    return [@[@2,@3][section] integerValue];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
+    if (indexPath.section == 0) {//如果是第一个cell分区，那么只需要配置商品详情cell和商家信息cell
         if (indexPath.row == 0) {
             JYProductDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYProductDetailCell"];
+            cell.placeLb.text = @"浙江农林大学东湖校区";
             return cell;
         }else if (indexPath.row == 1){
             JYSellerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYSellerCell"];
             return cell;
         }
-    }else{
-        JYCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYCommentCell"];
-        return cell;
+    }else{//如果是第二个分区，则配置评论cell
+        if (indexPath.row == 0) {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Cell"];
+            }
+            cell.textLabel.text = [NSString stringWithFormat:@"评论 %d",/** 评论的个数，从后台获取 */2];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"赞 %d",/** 赞的个数，从后台获取 */5];
+            return cell;
+        }else{
+            JYCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYCommentCell"];
+            return cell;
+        }
     }
     return nil;
     
 }
+
 #pragma mark *** <UITableViewDelegate> ***
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [@[@[@120,@120],@[@40,@120,@120]][indexPath.section][indexPath.row] floatValue];
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];//取消cell的选中状态
+}
+
 #pragma mark *** iCarouselDatasource & iCarouseDelegate ***
 
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel{
@@ -103,7 +125,6 @@
     return view;
 }
 
-
 - (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value{
     if (option == iCarouselOptionWrap) {
         return YES;
@@ -111,38 +132,34 @@
     return value;
 }
 
+/** carousel的item下标改变后触发该方法 */
 - (void)carouselCurrentItemIndexDidChange:(iCarousel *)carousel{
-    self.pageControl.currentPage = carousel.currentItemIndex;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.pageControl.currentPage = carousel.currentItemIndex;//设置小圆点的位置和当前carousel的item的位置一样
 }
 
 #pragma mark *** 懒加载 ***
+
 - (iCarousel *)icView {
-	if(_icView == nil) {
-		_icView = [[iCarousel alloc] init];
+    if(_icView == nil) {
+        _icView = [[iCarousel alloc] init];
         _icView.delegate = self;
         _icView.dataSource = self;
         _icView.pagingEnabled = YES;
         _icView.type = iCarouselTypeCoverFlow;
-//        _icView.autoscroll = 0.4;
-        
-	}
-	return _icView;
+        //        _icView.autoscroll = 0.4;
+    }
+    return _icView;
 }
 
 - (UIPageControl *)pageControl {
-	if(_pageControl == nil) {
-		_pageControl = [[UIPageControl alloc] init];
+    if(_pageControl == nil) {
+        _pageControl = [[UIPageControl alloc] init];
         _pageControl.numberOfPages = self.icView.numberOfItems;
         _pageControl.currentPage = self.icView.currentItemIndex;
         _pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
         _pageControl.pageIndicatorTintColor = [UIColor blackColor];
-	}
-	return _pageControl;
+    }
+    return _pageControl;
 }
 
 @end

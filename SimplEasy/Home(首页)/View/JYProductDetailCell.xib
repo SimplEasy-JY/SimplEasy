@@ -108,7 +108,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="2dc-Ms-naK"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -137,11 +137,12 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="currentPrice" destination="5YF-kn-cGL" id="F8a-vF-2Cx"/>
-                <outlet property="originPrice" destination="lUn-vs-tgU" id="9m9-M6-tB4"/>
-                <outlet property="place" destination="yum-nJ-8c9" id="6ze-1W-cN9"/>
+                <outlet property="currentPriceLb" destination="5YF-kn-cGL" id="DfO-iP-ofd"/>
+                <outlet property="originPriceLb" destination="lUn-vs-tgU" id="1PO-cJ-Ujy"/>
+                <outlet property="placeLb" destination="yum-nJ-8c9" id="Emx-YC-oeH"/>
                 <outlet property="productDescLb" destination="aGk-ut-zzK" id="GIg-fO-imv"/>
-                <outlet property="publishTime" destination="5nS-NL-vQi" id="KqX-KN-0hP"/>
+                <outlet property="publishTimeLb" destination="5nS-NL-vQi" id="9yD-un-M45"/>
+                <outlet property="shareBtn" destination="SZJ-rr-Cdp" id="z2W-kH-nm2"/>
                 <outlet property="timeAndPlaceView" destination="pZt-aN-cWy" id="lo5-cx-4Ux"/>
             </connections>
             <point key="canvasLocation" x="-106" y="292"/>

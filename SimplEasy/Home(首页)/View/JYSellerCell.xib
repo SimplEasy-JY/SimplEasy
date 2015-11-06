@@ -76,6 +76,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="followBtn" destination="oub-Ep-ii7" id="UWg-fP-cw6"/>
                 <outlet property="headIV" destination="Ode-aH-lDW" id="wQO-Q3-xag"/>
                 <outlet property="nickNameLb" destination="ZGS-tL-9kp" id="5MM-Ws-FhV"/>
                 <outlet property="rankIV" destination="0QF-HR-vGi" id="fYa-bV-KqV"/>
