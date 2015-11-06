@@ -34,7 +34,7 @@
                         <constraint firstAttribute="height" constant="40" id="t8L-wq-Xov"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                    <inset key="titleEdgeInsets" minX="-61" minY="1" maxX="0.0" maxY="0.0"/>
+                    <inset key="titleEdgeInsets" minX="-38" minY="1" maxX="0.0" maxY="0.0"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="6"/>
                     <state key="normal" title="加关注" image="middleicon_03">
                         <color key="titleColor" red="0.99046566609999998" green="0.69194592929999998" blue="0.030736019739999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -86,8 +86,8 @@
         </view>
     </objects>
     <resources>
-        <image name="middleicon_03" width="60" height="60"/>
+        <image name="middleicon_03" width="30" height="30"/>
         <image name="picture_11" width="80" height="80"/>
-        <image name="picture_30" width="24" height="24"/>
+        <image name="picture_30" width="12" height="12"/>
     </resources>
 </document>
