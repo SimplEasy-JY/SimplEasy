@@ -12,11 +12,15 @@
 #import "ImageScrollView.h"
 #import "JYLoopViewModel.h"
 #import "JYWebViewController.h"
-@interface JYHomeController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,ImageScrollViewDelegate>{
+@interface JYHomeController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,iCarouselDelegate,iCarouselDataSource>{
     /**< 第一个轮播数据 */
     NSMutableArray *_focusListArray;
     /**< 第一个轮播图片URL数据 */
     NSMutableArray *_focusImgurlArray;
+    /**  type */
+    int _type;
+    /**  当前button */
+    UIButton *_currentButton;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)categoryButton:(id)sender;
@@ -28,11 +32,24 @@
 @property(strong,nonatomic)iCarousel *loopView;
 @property(strong,nonatomic)UIPageControl *loopPage;
 
+/**  segmented Control */
+@property(strong,nonatomic)NSArray *segmentItemsArray;
+
+
+
 
 @end
 
 @implementation JYHomeController
 #pragma mark -懒加载
+-(NSArray *)segmentItemsArray{
+    if (!_segmentItemsArray) {
+        self.segmentItemsArray = [[NSArray  alloc]initWithObjects:@"今日上新",@"精选推荐",@"免费易货",nil];
+    }
+    return _segmentItemsArray;
+    
+}
+
 -(iCarousel *)loopView{
     if (!_loopView) {
         self.loopView = [[iCarousel  alloc]init];
@@ -42,7 +59,7 @@
         //修改3D显示模式
         _loopView.type = iCarouselTypeLinear;
         //自动展示,0表示不滚动，越大滚动越快
-        _loopView.autoscroll = 1;
+        _loopView.autoscroll = 0;
         //水平还是垂直  no水平
         _loopView.vertical = NO;
         //改为翻页模式
@@ -50,7 +67,6 @@
         //滚动速度
         _loopView.scrollSpeed = 2;
         
-        _loopView.decelerationRate = 0;
     }
     return _loopView;
 }
@@ -91,6 +107,11 @@
     [self initData];
     [self setNav];
     [self setupTableView];
+    
+    /**  轮播定时滚动 */
+    [NSTimer bk_scheduledTimerWithTimeInterval:2 block:^(NSTimer *timer) {
+        [self.loopView scrollToItemAtIndex:self.loopView.currentItemIndex+1 animated:YES];
+    } repeats:YES];
 
 
 }
@@ -139,7 +160,7 @@
         [self.tableView dg_stopLoading];
     } loadingView:loadingView];
     [self.tableView dg_setPullToRefreshBackgroundColor:self.tableView.backgroundColor];
-    [self.tableView dg_setPullToRefreshFillColor:kRGBColor(52, 152, 82)];
+    [self.tableView dg_setPullToRefreshFillColor:JYGlobalBg];
     
     //
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -199,7 +220,10 @@
 
 #pragma mark - UITableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0.5;
+    if (section == 2) {
+        return 30;
+    }
+    return 1;
 
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -225,7 +249,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            return 150;
+            return 116;
         }else {
             return 30;
         }
@@ -233,12 +257,14 @@
     }else if (indexPath.section == 1){
         return 140;
     }else {
-//        return UITableViewAutomaticDimension;
         return 270;
     }
+
+//        return UITableViewAutomaticDimension;
     
     
 }
+
 /**  首次加载cell的高度， 提高性能 */
 -(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
@@ -250,19 +276,62 @@
         
     }else if (indexPath.section == 1){
         return 140;
-    }else {
+    }else  {
         return 270;
     }
 }
-
+/**  header */
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (section == 2) {
+        UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kWindowW, 30)];
+        /**  设置边框宽度和颜色 */
+        [[bgView layer]setBorderWidth:0.5];
+        [[bgView layer]setBorderColor:[UIColor lightGrayColor].CGColor];
+        for (int i=0; i<self.segmentItemsArray.count; i++) {
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            /**  设置button的参数 */
+            [[button layer]setBorderWidth:0.5];
+            [[button layer]setBorderColor:[UIColor lightGrayColor].CGColor];
+            [button setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor] cornerRadius:0] forState:UIControlStateNormal];
+            [button setBackgroundImage:[UIImage imageWithColor:JYGlobalBg cornerRadius:0] forState:UIControlStateSelected];
+            button.tag = i;
+            button.titleLabel.font = [UIFont systemFontOfSize:13];
+            [button setTitle:self.segmentItemsArray[i] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+            button.frame = CGRectMake(0+kWindowW/self.segmentItemsArray.count*i, 0, kWindowW/self.segmentItemsArray.count, 30);
+            if (i == _type) {
+                _currentButton = button;
+                button.selected = YES;
+            }
+            [button bk_addEventHandler:^(UIButton *sender) {
+                if (sender != _currentButton) {
+                    _currentButton.selected = NO;
+                    sender.selected = YES;
+                    _currentButton = sender;
+                    
+                    _type = (int)sender.tag;
+                    NSInteger index = 2;
+                    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:index];
+                    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+                    YSHLog(@"sender:%d",(int)sender.tag);
+                }
+            } forControlEvents:UIControlEventTouchUpInside];
+            [bgView addSubview:button];
+        }
+        return bgView;
+    }
+    return nil;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            static NSString *cellIndentifier = @"courseCell0";
+            static NSString *cellIndentifier = @"loopCell";
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
             if (self.loopVM.loopImageUrlArray != nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
                 [cell addSubview:self.loopView];
+                
                 [self.loopView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.edges.mas_equalTo(0);
                 }];
@@ -346,8 +415,33 @@
 //        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //        return cell;
 //    }
+    else if (indexPath.section == 2){
+        if (indexPath.row == 0) {
+            static NSString *cellIndentifier = @"segmentCell";
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
+//            [cell addSubview:self.segment];
+//            [self.segment bk_addEventHandler:^(UISegmentedControl *sender) {
+//                YSHLog(@"segment：%ld",(long)sender.selectedSegmentIndex);
+//            } forControlEvents:UIControlEventValueChanged];
+//            UISegmentedControl *bcg = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@" ", @" ", @" ", @" ",@"", nil]];
+//            // The UISegmentedController you put on top of the other one
+//            [bcg setFrame:CGRectMake(-kWindowW/3+1, 0, kWindowW/3*2+kWindowW, 30)];
+//            [bcg setSelectedSegmentIndex:0];
+//            [bcg setImage:nil forSegmentAtIndex:0]; // Removing highlight color
+//            [bcg setTintColor:[UIColor lightGrayColor]];
+//            [bcg setUserInteractionEnabled:NO];
+//            bcg.userInteractionEnabled = NO;
+//            [cell addSubview:bcg];
+         
+            
 
-    
+            
+            return cell;
+            
+        }
+    }
+
     static NSString *cellIndentifier = @"courseCell1";
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIndentifier];
     return cell;
@@ -361,4 +455,6 @@
     productDetailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:productDetailVC animated:YES];
 }
+
+
 @end

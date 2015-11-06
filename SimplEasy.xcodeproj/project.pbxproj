@@ -50,6 +50,8 @@
 		B089AA981BE9D09400E5D2CC /* JYLoopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AA971BE9D09400E5D2CC /* JYLoopModel.m */; };
 		B089AA9E1BE9D50700E5D2CC /* JYLoopViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AA9D1BE9D50700E5D2CC /* JYLoopViewModel.m */; };
 		B089AAA11BE9D70800E5D2CC /* JYLoopNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AAA01BE9D70800E5D2CC /* JYLoopNetManager.m */; };
+		B0AEC8911BEC86540045F08F /* JYHomeProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AEC88F1BEC86540045F08F /* JYHomeProductCell.m */; };
+		B0AEC8921BEC86540045F08F /* JYHomeProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0AEC8901BEC86540045F08F /* JYHomeProductCell.xib */; };
 		B0DA5E731BE8D191001A0D85 /* ImageScrollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DA5E701BE8D191001A0D85 /* ImageScrollCell.m */; };
 		B0DA5E741BE8D191001A0D85 /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DA5E721BE8D191001A0D85 /* ImageScrollView.m */; };
 		E1F9A3C4126135B024FA3120 /* libPods-SimplEasy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F40C00061819C81121C437 /* libPods-SimplEasy.a */; };
@@ -155,6 +157,9 @@
 		B089AA9D1BE9D50700E5D2CC /* JYLoopViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLoopViewModel.m; sourceTree = "<group>"; };
 		B089AA9F1BE9D70800E5D2CC /* JYLoopNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLoopNetManager.h; sourceTree = "<group>"; };
 		B089AAA01BE9D70800E5D2CC /* JYLoopNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLoopNetManager.m; sourceTree = "<group>"; };
+		B0AEC88E1BEC86540045F08F /* JYHomeProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYHomeProductCell.h; sourceTree = "<group>"; };
+		B0AEC88F1BEC86540045F08F /* JYHomeProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYHomeProductCell.m; sourceTree = "<group>"; };
+		B0AEC8901BEC86540045F08F /* JYHomeProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JYHomeProductCell.xib; sourceTree = "<group>"; };
 		B0DA5E6F1BE8D191001A0D85 /* ImageScrollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollCell.h; sourceTree = "<group>"; };
 		B0DA5E701BE8D191001A0D85 /* ImageScrollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScrollCell.m; sourceTree = "<group>"; };
 		B0DA5E711BE8D191001A0D85 /* ImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollView.h; sourceTree = "<group>"; };
@@ -545,6 +550,9 @@
 				83E75EBF1BEA45C70020D54D /* JYSellerCell.h */,
 				83E75EC01BEA45C70020D54D /* JYSellerCell.m */,
 				83E75EC11BEA45C70020D54D /* JYSellerCell.xib */,
+				B0AEC88E1BEC86540045F08F /* JYHomeProductCell.h */,
+				B0AEC88F1BEC86540045F08F /* JYHomeProductCell.m */,
+				B0AEC8901BEC86540045F08F /* JYHomeProductCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -672,7 +680,7 @@
 				TargetAttributes = {
 					8328A4361BE8478B0021767D = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = N27SETL2A3;
+						DevelopmentTeam = G7YYV9K7LC;
 					};
 					8328A44F1BE8478C0021767D = {
 						CreatedOnToolsVersion = 7.1;
@@ -717,6 +725,7 @@
 				8328A44A1BE8478C0021767D /* LaunchScreen.storyboard in Resources */,
 				B02A701C1BE86AA000B8B05F /* Assets.xcassets in Resources */,
 				8328A4451BE8478B0021767D /* Main.storyboard in Resources */,
+				B0AEC8921BEC86540045F08F /* JYHomeProductCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,6 +815,7 @@
 				8328A4A41BE849800021767D /* AppDelegate+Category.m in Sources */,
 				B089AA981BE9D09400E5D2CC /* JYLoopModel.m in Sources */,
 				B0DA5E731BE8D191001A0D85 /* ImageScrollCell.m in Sources */,
+				B0AEC8911BEC86540045F08F /* JYHomeProductCell.m in Sources */,
 				B02A70051BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift in Sources */,
 				B02A700D1BE8604100B8B05F /* JYFindController.m in Sources */,
 				83E75EC61BEA45C70020D54D /* JYSellerCell.m in Sources */,
@@ -972,13 +982,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INFOPLIST_FILE = SimplEasy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy.SimplEasy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy1.SimplEasy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -988,13 +1001,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INFOPLIST_FILE = SimplEasy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy.SimplEasy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy1.SimplEasy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
