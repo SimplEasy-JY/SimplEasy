@@ -11,9 +11,6 @@
 @implementation JYLoopNetManager
 +(id)getLoopImageWithIndex:(NSInteger)index completionHandle:(void (^)(id, NSError *))completionHandle{
     NSString *path=@"http://www.i-jianyi.com/port/img/index";
-//    return [self GET:path parameters:nil completionHandler:^(id responseObj, NSError *error) {
-//        completionHandle([JYLoopModel objectWithKeyValues:responseObj], error);
-//    }];
    
    return [self GET:path parameters:nil completionHandle:^(id responseObj, NSError *error) {
         completionHandle([JYLoopModel objectWithKeyValues:responseObj], error);
