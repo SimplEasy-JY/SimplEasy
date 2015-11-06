@@ -19,6 +19,8 @@
 #define YSHGlobalBg kRGBColor(230, 230, 230)
 //绿色
 #define JYGlobalBg kRGBColor(52, 152, 82)
+//线条颜色
+#define JYLineColor kRGBColor(217, 217, 217)
 
 /** 应用程序的屏幕高度 */
 #define kWindowH   [UIScreen mainScreen].bounds.size.height

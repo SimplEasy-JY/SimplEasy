@@ -286,18 +286,18 @@
         UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kWindowW, 30)];
         /**  设置边框宽度和颜色 */
         [[bgView layer]setBorderWidth:0.5];
-        [[bgView layer]setBorderColor:[UIColor lightGrayColor].CGColor];
+        [[bgView layer]setBorderColor:kRGBColor(217, 217, 217).CGColor];
         for (int i=0; i<self.segmentItemsArray.count; i++) {
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             /**  设置button的参数 */
             [[button layer]setBorderWidth:0.5];
-            [[button layer]setBorderColor:[UIColor lightGrayColor].CGColor];
+            [[button layer]setBorderColor:kRGBColor(217, 217, 217).CGColor];
             [button setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor] cornerRadius:0] forState:UIControlStateNormal];
             [button setBackgroundImage:[UIImage imageWithColor:JYGlobalBg cornerRadius:0] forState:UIControlStateSelected];
             button.tag = i;
             button.titleLabel.font = [UIFont systemFontOfSize:13];
             [button setTitle:self.segmentItemsArray[i] forState:UIControlStateNormal];
-            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [button setTitleColor:kRGBColor(54, 54, 54) forState:UIControlStateNormal];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
             button.frame = CGRectMake(0+kWindowW/self.segmentItemsArray.count*i, 0, kWindowW/self.segmentItemsArray.count, 30);
             if (i == _type) {
@@ -420,19 +420,6 @@
             static NSString *cellIndentifier = @"segmentCell";
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
-//            [cell addSubview:self.segment];
-//            [self.segment bk_addEventHandler:^(UISegmentedControl *sender) {
-//                YSHLog(@"segment：%ld",(long)sender.selectedSegmentIndex);
-//            } forControlEvents:UIControlEventValueChanged];
-//            UISegmentedControl *bcg = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@" ", @" ", @" ", @" ",@"", nil]];
-//            // The UISegmentedController you put on top of the other one
-//            [bcg setFrame:CGRectMake(-kWindowW/3+1, 0, kWindowW/3*2+kWindowW, 30)];
-//            [bcg setSelectedSegmentIndex:0];
-//            [bcg setImage:nil forSegmentAtIndex:0]; // Removing highlight color
-//            [bcg setTintColor:[UIColor lightGrayColor]];
-//            [bcg setUserInteractionEnabled:NO];
-//            bcg.userInteractionEnabled = NO;
-//            [cell addSubview:bcg];
          
             
 
