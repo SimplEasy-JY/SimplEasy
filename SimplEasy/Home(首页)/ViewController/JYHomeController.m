@@ -12,6 +12,8 @@
 #import "ImageScrollView.h"
 #import "JYLoopViewModel.h"
 #import "JYWebViewController.h"
+
+#import "JYHomeProductCell.h"
 @interface JYHomeController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,iCarouselDelegate,iCarouselDataSource>{
     /**< 第一个轮播数据 */
     NSMutableArray *_focusListArray;
@@ -112,6 +114,10 @@
     [NSTimer bk_scheduledTimerWithTimeInterval:2 block:^(NSTimer *timer) {
         [self.loopView scrollToItemAtIndex:self.loopView.currentItemIndex+1 animated:YES];
     } repeats:YES];
+    
+    //注册cell
+    [self.tableView registerNib:[UINib nibWithNibName:@"JYHomeProductCell" bundle:nil] forCellReuseIdentifier:@"JYHomeProductCell"];
+
 
 
 }
@@ -227,6 +233,9 @@
 
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if (section == 2) {
+        return 0;
+    }
     return 10;
 }
 
@@ -416,17 +425,19 @@
 //        return cell;
 //    }
     else if (indexPath.section == 2){
-        if (indexPath.row == 0) {
-            static NSString *cellIndentifier = @"segmentCell";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
-         
-            
-
-            
-            return cell;
-            
+        static NSString *cellIndentifier = @"JYHomeProductCell";
+        JYHomeProductCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
+        if (indexPath.row == 1) {
+            cell.describeLabel.text = @"dagjf dasf gdak fgdks gf dksaghf dkhag fkdhag fdsa";
+        }else if (indexPath.row == 2){
+            cell.shopImageOne.hidden = YES;
+            cell.originalPrice.hidden =YES;
+            cell.shopImageThree.hidden = YES;
+            cell.shopImageTwo.hidden = YES;
         }
+        
+        return cell;
+            
     }
 
     static NSString *cellIndentifier = @"courseCell1";
@@ -436,12 +447,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //取消选择痕迹
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     NSLog(@"%ld",(long)indexPath.row);
     JYProductDetailVC *productDetailVC = [kStoryboard(@"Main") instantiateViewControllerWithIdentifier:@"JYProductDetailVC"];
     productDetailVC.title = @"商品详情";
     productDetailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:productDetailVC animated:YES];
 }
-
 
 @end
