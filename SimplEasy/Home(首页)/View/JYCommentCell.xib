@@ -49,16 +49,14 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Re-nD-Oj5">
-                    <rect key="frame" x="555" y="28" width="35" height="15"/>
+                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Re-nD-Oj5">
+                    <rect key="frame" x="541" y="27" width="49" height="15"/>
                     <animations/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="15" id="dBM-oQ-DCC"/>
+                        <constraint firstAttribute="width" constant="49" id="XQf-I1-JvI"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <inset key="titleEdgeInsets" minX="-7" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <inset key="imageEdgeInsets" minX="4" minY="0.0" maxX="18" maxY="0.0"/>
-                    <state key="normal" title="5" image="middleicon_34">
+                    <state key="normal" title="1000" image="middleicon_34">
                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
@@ -71,15 +69,16 @@
                 <constraint firstItem="lRG-VZ-OSo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="31n-TU-X1I"/>
                 <constraint firstItem="lRG-VZ-OSo" firstAttribute="width" secondItem="lRG-VZ-OSo" secondAttribute="height" multiplier="1:1" id="8U1-rl-wEC"/>
                 <constraint firstItem="t9n-Wb-e5v" firstAttribute="width" secondItem="t9n-Wb-e5v" secondAttribute="height" multiplier="1:1" id="8gl-QS-Kfu"/>
-                <constraint firstItem="3Re-nD-Oj5" firstAttribute="centerY" secondItem="lRG-VZ-OSo" secondAttribute="centerY" id="9yw-lL-EaW"/>
-                <constraint firstAttribute="trailing" secondItem="3Re-nD-Oj5" secondAttribute="trailing" constant="10" id="Dew-l1-Y68"/>
                 <constraint firstItem="t9n-Wb-e5v" firstAttribute="leading" secondItem="h6w-Be-cMh" secondAttribute="trailing" constant="5" id="Ka7-kt-jVN"/>
+                <constraint firstItem="3Re-nD-Oj5" firstAttribute="centerY" secondItem="lRG-VZ-OSo" secondAttribute="centerY" id="RzQ-Ve-Lil"/>
                 <constraint firstItem="zrM-gP-b12" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="UBA-XN-ZUQ"/>
                 <constraint firstItem="h6w-Be-cMh" firstAttribute="top" secondItem="lRG-VZ-OSo" secondAttribute="top" id="aqO-PW-6eU"/>
                 <constraint firstItem="OkK-Yh-VxW" firstAttribute="bottom" secondItem="lRG-VZ-OSo" secondAttribute="bottom" id="eMj-bh-EJu"/>
                 <constraint firstAttribute="bottom" secondItem="zrM-gP-b12" secondAttribute="bottom" constant="10" id="eU6-BX-Ceh"/>
+                <constraint firstItem="3Re-nD-Oj5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="27" id="lOK-TY-LfV"/>
                 <constraint firstItem="t9n-Wb-e5v" firstAttribute="centerY" secondItem="h6w-Be-cMh" secondAttribute="centerY" id="lYX-Em-PeU"/>
                 <constraint firstItem="lRG-VZ-OSo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="vLV-8D-fDI"/>
+                <constraint firstAttribute="trailing" secondItem="3Re-nD-Oj5" secondAttribute="trailing" constant="10" id="wVk-Vi-ZSy"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -95,8 +94,8 @@
         </view>
     </objects>
     <resources>
-        <image name="middleicon_34" width="26" height="27"/>
-        <image name="picture_38" width="20" height="20"/>
+        <image name="middleicon_34" width="13" height="13"/>
+        <image name="picture_38" width="10" height="10"/>
         <image name="picture_46" width="80" height="80"/>
     </resources>
 </document>

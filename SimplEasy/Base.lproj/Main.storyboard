@@ -96,6 +96,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="48"/>
                                         <animations/>
                                         <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <inset key="titleEdgeInsets" minX="-36" minY="30" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="10"/>
                                         <state key="normal" title="收藏" image="bottomicon2_03">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -106,6 +109,9 @@
                                         <rect key="frame" x="100" y="0.0" width="100" height="48"/>
                                         <animations/>
                                         <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <inset key="titleEdgeInsets" minX="-36" minY="30" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="10"/>
                                         <state key="normal" title="评论" image="bottomicon2_05">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -114,6 +120,9 @@
                                         <rect key="frame" x="200" y="0.0" width="100" height="48"/>
                                         <animations/>
                                         <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <inset key="titleEdgeInsets" minX="-31" minY="30" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="10"/>
                                         <state key="normal" title="赞" image="bottomicon2_07">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -138,6 +147,7 @@
                                     </button>
                                 </subviews>
                                 <animations/>
+                                <color key="backgroundColor" red="0.2156862745" green="0.58823529409999997" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="VYk-A3-ont" firstAttribute="leading" secondItem="cl7-Kb-gzr" secondAttribute="trailing" id="3Sz-xl-YFF"/>
                                     <constraint firstItem="bnS-jV-h83" firstAttribute="height" secondItem="ach-0I-x2v" secondAttribute="height" id="5hQ-ae-yb3"/>
