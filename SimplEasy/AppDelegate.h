@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <RESideMenu.h>
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
 /** 网络状态 */
 @property(nonatomic,getter=isOnLine) BOOL onLine;
+@property (nonatomic,strong) RESideMenu *sideMenu;
 
 @end
 
