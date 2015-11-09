@@ -29,6 +29,7 @@
 		83476B751BEB1C6C0061F61E /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83476B741BEB1C6C0061F61E /* iCarousel.m */; };
 		83476B781BEB2E9F0061F61E /* UIImage+Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83476B771BEB2E9F0061F61E /* UIImage+Circle.m */; };
 		83476B7B1BEB34830061F61E /* JYClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83476B7A1BEB34830061F61E /* JYClassifyViewController.m */; };
+		8394B2621BEDB18700D3F66F /* JYNewFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394B2611BEDB18700D3F66F /* JYNewFeatureViewController.m */; };
 		83E75EC21BEA45C70020D54D /* JYCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E75EBA1BEA45C70020D54D /* JYCommentCell.m */; };
 		83E75EC31BEA45C70020D54D /* JYCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83E75EBB1BEA45C70020D54D /* JYCommentCell.xib */; };
 		83E75EC41BEA45C70020D54D /* JYProductDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E75EBD1BEA45C70020D54D /* JYProductDetailCell.m */; };
@@ -123,6 +124,8 @@
 		83476B771BEB2E9F0061F61E /* UIImage+Circle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Circle.m"; sourceTree = "<group>"; };
 		83476B791BEB34830061F61E /* JYClassifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYClassifyViewController.h; sourceTree = "<group>"; };
 		83476B7A1BEB34830061F61E /* JYClassifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYClassifyViewController.m; sourceTree = "<group>"; };
+		8394B2601BEDB18700D3F66F /* JYNewFeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYNewFeatureViewController.h; sourceTree = "<group>"; };
+		8394B2611BEDB18700D3F66F /* JYNewFeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYNewFeatureViewController.m; sourceTree = "<group>"; };
 		83E75EB91BEA45C70020D54D /* JYCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYCommentCell.h; sourceTree = "<group>"; };
 		83E75EBA1BEA45C70020D54D /* JYCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYCommentCell.m; sourceTree = "<group>"; };
 		83E75EBB1BEA45C70020D54D /* JYCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JYCommentCell.xib; sourceTree = "<group>"; };
@@ -364,6 +367,8 @@
 		8328A4821BE849800021767D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8394B2601BEDB18700D3F66F /* JYNewFeatureViewController.h */,
+				8394B2611BEDB18700D3F66F /* JYNewFeatureViewController.m */,
 				8328A4831BE849800021767D /* JYHomeController.h */,
 				8328A4841BE849800021767D /* JYHomeController.m */,
 				8344A9941BE8A29400AD007B /* JYProductDetailVC.h */,
@@ -680,7 +685,7 @@
 				TargetAttributes = {
 					8328A4361BE8478B0021767D = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = G7YYV9K7LC;
+						DevelopmentTeam = N27SETL2A3;
 					};
 					8328A44F1BE8478C0021767D = {
 						CreatedOnToolsVersion = 7.1;
@@ -811,6 +816,7 @@
 				83E75EC41BEA45C70020D54D /* JYProductDetailCell.m in Sources */,
 				B02A70061BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift in Sources */,
 				B02A70171BE8638A00B8B05F /* JYPlusButton.m in Sources */,
+				8394B2621BEDB18700D3F66F /* JYNewFeatureViewController.m in Sources */,
 				8328A43F1BE8478B0021767D /* AppDelegate.m in Sources */,
 				8328A4A41BE849800021767D /* AppDelegate+Category.m in Sources */,
 				B089AA981BE9D09400E5D2CC /* JYLoopModel.m in Sources */,

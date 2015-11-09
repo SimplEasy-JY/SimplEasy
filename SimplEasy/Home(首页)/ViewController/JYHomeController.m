@@ -95,7 +95,7 @@
 #pragma mark - 响应方法
 /**  分类按钮 */
 - (IBAction)categoryButton:(id)sender {
-    
+    [kAppDelegate.sideMenu presentLeftMenuViewController];
 }
 /**  定位按钮 */
 - (IBAction)positionButton:(id)sender {
