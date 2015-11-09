@@ -86,6 +86,8 @@
             return cell;
         }else{
             JYCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYCommentCell"];
+            cell.commentLb.text = @"我最近正想买个洗脸仪呢，这个真的好用么？拉萨的克己复礼上看见对方；拉丝  阿斯顿立法局阿里斯顿肌肤    ；拉框的设计风；  啊； 刻录机；肥胖纹哦 if 会看到你发了";
+            NSLog(@"cell.commentLb.height = %f",cell.commentLb.height);
             return cell;
         }
     }

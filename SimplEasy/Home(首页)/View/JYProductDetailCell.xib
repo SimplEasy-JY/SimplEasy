@@ -146,7 +146,7 @@
                 <outlet property="shareBtn" destination="SZJ-rr-Cdp" id="z2W-kH-nm2"/>
                 <outlet property="timeAndPlaceView" destination="pZt-aN-cWy" id="lo5-cx-4Ux"/>
             </connections>
-            <point key="canvasLocation" x="-106" y="292"/>
+            <point key="canvasLocation" x="-185" y="171"/>
         </view>
     </objects>
     <resources>
