@@ -340,8 +340,8 @@
 				83E75EB81BEA45C70020D54D /* View */,
 				8328A47F1BE849800021767D /* Model */,
 				8328A4801BE849800021767D /* NetManager */,
-				8328A4821BE849800021767D /* ViewController */,
 				8328A4851BE849800021767D /* ViewModel */,
+				8328A4821BE849800021767D /* ViewController */,
 			);
 			path = "Home(首页)";
 			sourceTree = "<group>";

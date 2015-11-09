@@ -52,7 +52,6 @@
     [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(0);
         make.bottom.mas_equalTo(10);
-        
     }];
     self.tableView.tableHeaderView = headerView;
 }
@@ -96,9 +95,12 @@
 
 #pragma mark *** <UITableViewDelegate> ***
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [@[@[@120,@120],@[@40,@120,@120]][indexPath.section][indexPath.row] floatValue];
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewAutomaticDimension;
 }
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return [@[@[@120,@120],@[@40,@120,@120]][indexPath.section][indexPath.row] floatValue];
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];//取消cell的选中状态
@@ -146,7 +148,6 @@
         _icView.dataSource = self;
         _icView.pagingEnabled = YES;
         _icView.type = iCarouselTypeCoverFlow;
-        //        _icView.autoscroll = 0.4;
     }
     return _icView;
 }

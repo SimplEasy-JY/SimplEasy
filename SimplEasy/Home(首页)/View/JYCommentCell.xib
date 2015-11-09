@@ -42,8 +42,8 @@
                         <constraint firstAttribute="width" constant="14" id="ibN-Me-cce"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我最近正想买个洗脸仪呢，这个真的好用么？" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrM-gP-b12">
-                    <rect key="frame" x="10" y="80" width="320" height="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我最近正想买个洗脸仪呢，这个真的好用么？拉萨的克己复礼上看见对方；拉丝  阿斯顿立法局阿里斯顿肌肤    ；拉框的设计风；  啊； 刻录机；肥胖纹哦 if 会看到你发了" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrM-gP-b12">
+                    <rect key="frame" x="10" y="70" width="580" height="30"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -70,11 +70,13 @@
                 <constraint firstItem="lRG-VZ-OSo" firstAttribute="width" secondItem="lRG-VZ-OSo" secondAttribute="height" multiplier="1:1" id="8U1-rl-wEC"/>
                 <constraint firstItem="t9n-Wb-e5v" firstAttribute="width" secondItem="t9n-Wb-e5v" secondAttribute="height" multiplier="1:1" id="8gl-QS-Kfu"/>
                 <constraint firstItem="t9n-Wb-e5v" firstAttribute="leading" secondItem="h6w-Be-cMh" secondAttribute="trailing" constant="5" id="Ka7-kt-jVN"/>
+                <constraint firstAttribute="trailing" secondItem="zrM-gP-b12" secondAttribute="trailing" constant="10" id="Rs6-N9-UdT"/>
                 <constraint firstItem="3Re-nD-Oj5" firstAttribute="centerY" secondItem="lRG-VZ-OSo" secondAttribute="centerY" id="RzQ-Ve-Lil"/>
                 <constraint firstItem="zrM-gP-b12" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="UBA-XN-ZUQ"/>
                 <constraint firstItem="h6w-Be-cMh" firstAttribute="top" secondItem="lRG-VZ-OSo" secondAttribute="top" id="aqO-PW-6eU"/>
                 <constraint firstItem="OkK-Yh-VxW" firstAttribute="bottom" secondItem="lRG-VZ-OSo" secondAttribute="bottom" id="eMj-bh-EJu"/>
                 <constraint firstAttribute="bottom" secondItem="zrM-gP-b12" secondAttribute="bottom" constant="10" id="eU6-BX-Ceh"/>
+                <constraint firstItem="zrM-gP-b12" firstAttribute="top" secondItem="lRG-VZ-OSo" secondAttribute="bottom" constant="10" id="i6B-33-khF"/>
                 <constraint firstItem="3Re-nD-Oj5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="27" id="lOK-TY-LfV"/>
                 <constraint firstItem="t9n-Wb-e5v" firstAttribute="centerY" secondItem="h6w-Be-cMh" secondAttribute="centerY" id="lYX-Em-PeU"/>
                 <constraint firstItem="lRG-VZ-OSo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="vLV-8D-fDI"/>
@@ -90,7 +92,7 @@
                 <outlet property="rankIV" destination="t9n-Wb-e5v" id="8sg-iO-iiX"/>
                 <outlet property="timeLb" destination="OkK-Yh-VxW" id="KvC-Pd-d4h"/>
             </connections>
-            <point key="canvasLocation" x="449" y="165"/>
+            <point key="canvasLocation" x="317" y="16"/>
         </view>
     </objects>
     <resources>

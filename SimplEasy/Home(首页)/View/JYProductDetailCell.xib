@@ -34,21 +34,21 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥ 35" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5YF-kn-cGL">
-                    <rect key="frame" x="10" y="50" width="36" height="21"/>
+                    <rect key="frame" x="10" y="50" width="36" height="20"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥ 48" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUn-vs-tgU">
-                    <rect key="frame" x="56" y="54" width="31" height="17"/>
+                    <rect key="frame" x="56" y="53" width="31" height="17"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3I9-FH-Vqf" userLabel="lineViewH">
-                    <rect key="frame" x="56" y="62" width="31" height="1"/>
+                    <rect key="frame" x="56" y="61" width="31" height="1"/>
                     <animations/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -126,6 +126,7 @@
                 <constraint firstAttribute="trailing" secondItem="aGk-ut-zzK" secondAttribute="trailing" constant="55" id="Gfw-qZ-cg5"/>
                 <constraint firstItem="bJ9-sr-xrc" firstAttribute="centerY" secondItem="SZJ-rr-Cdp" secondAttribute="centerY" id="PfB-ID-Ubo"/>
                 <constraint firstItem="pZt-aN-cWy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="PsB-LL-T4s"/>
+                <constraint firstItem="pZt-aN-cWy" firstAttribute="top" secondItem="lUn-vs-tgU" secondAttribute="bottom" constant="10" id="UwP-TW-yo0"/>
                 <constraint firstItem="3I9-FH-Vqf" firstAttribute="centerY" secondItem="lUn-vs-tgU" secondAttribute="centerY" id="Yco-Pk-gUc"/>
                 <constraint firstItem="3I9-FH-Vqf" firstAttribute="width" secondItem="lUn-vs-tgU" secondAttribute="width" id="ebV-Vr-8RH"/>
                 <constraint firstItem="SZJ-rr-Cdp" firstAttribute="leading" secondItem="bJ9-sr-xrc" secondAttribute="trailing" id="hcr-mL-Elv"/>
