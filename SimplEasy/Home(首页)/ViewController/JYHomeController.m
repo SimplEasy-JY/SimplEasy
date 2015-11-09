@@ -14,13 +14,23 @@
 #import "JYWebViewController.h"
 
 #import "JYHomeProductCell.h"
+#import "JYRecommendCell.h"
+#import "JYFreeChargeCell.h"
+
+#import "UIImage+Circle.h"
+/**  cell id */
+static NSString *JYLoopCellIndentifier = @"loopCell";
+static NSString *JYHomeProductCellIndentifier = @"JYHomeProductCell";
+static NSString *JYRecommendCellIndentifier = @"JYRecommendCell";
+static NSString *JYChargeCellIndentifier = @"freeChargeCell";
+
 @interface JYHomeController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,iCarouselDelegate,iCarouselDataSource>{
     /**< 第一个轮播数据 */
     NSMutableArray *_focusListArray;
     /**< 第一个轮播图片URL数据 */
     NSMutableArray *_focusImgurlArray;
-    /**  type */
-    int _type;
+//    /**  type */
+    int _cellType;
     /**  当前button */
     UIButton *_currentButton;
 }
@@ -43,6 +53,13 @@
 @end
 
 @implementation JYHomeController
+#pragma mark -枚举
+typedef NS_ENUM(NSInteger, cellType) {
+    //以下是枚举成员
+    JYHomeProduct = 0,
+    JYRecommend = 1,
+    JYFreeCharge = 2,
+};
 #pragma mark -懒加载
 -(NSArray *)segmentItemsArray{
     if (!_segmentItemsArray) {
@@ -116,9 +133,9 @@
     } repeats:YES];
     
     //注册cell
-    [self.tableView registerNib:[UINib nibWithNibName:@"JYHomeProductCell" bundle:nil] forCellReuseIdentifier:@"JYHomeProductCell"];
-
-
+    [self.tableView registerNib:[UINib nibWithNibName:@"JYHomeProductCell" bundle:nil] forCellReuseIdentifier:JYHomeProductCellIndentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"JYRecommendCell" bundle:nil] forCellReuseIdentifier:JYRecommendCellIndentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"JYFreeChargeCell" bundle:nil] forCellReuseIdentifier:JYChargeCellIndentifier];
 
 }
 
@@ -168,8 +185,8 @@
     [self.tableView dg_setPullToRefreshBackgroundColor:self.tableView.backgroundColor];
     [self.tableView dg_setPullToRefreshFillColor:JYGlobalBg];
     
-    //
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //cell的分割线
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     
     
@@ -266,6 +283,31 @@
     }else if (indexPath.section == 1){
         return 140;
     }else {
+        switch (_cellType) {
+            case JYHomeProduct:{
+//                JYHomeProductCell *cell = [tableView dequeueReusableCellWithIdentifier:JYHomeProductCellIndentifier];
+//                CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+//                return height;
+                return 280;
+                break;
+            }
+                
+                
+            case JYRecommend:{
+                JYRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:JYRecommendCellIndentifier];
+                CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+                return height;
+                break;
+            }
+            case JYFreeCharge:{
+                JYFreeChargeCell *cell = [tableView dequeueReusableCellWithIdentifier:JYChargeCellIndentifier];
+                CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+                return height;
+                break;
+            }
+               
+                
+        }
         return 270;
     }
 
@@ -286,7 +328,7 @@
     }else if (indexPath.section == 1){
         return 140;
     }else  {
-        return 270;
+        return 280;
     }
 }
 /**  header */
@@ -309,7 +351,7 @@
             [button setTitleColor:kRGBColor(54, 54, 54) forState:UIControlStateNormal];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
             button.frame = CGRectMake(0+kWindowW/self.segmentItemsArray.count*i, 0, kWindowW/self.segmentItemsArray.count, 30);
-            if (i == _type) {
+            if (i == _cellType) {
                 _currentButton = button;
                 button.selected = YES;
             }
@@ -319,7 +361,7 @@
                     sender.selected = YES;
                     _currentButton = sender;
                     
-                    _type = (int)sender.tag;
+                    _cellType = (int)sender.tag;
                     NSInteger index = 2;
                     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:index];
                     [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
@@ -335,10 +377,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            static NSString *cellIndentifier = @"loopCell";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
+            
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:JYLoopCellIndentifier];
             if (self.loopVM.loopImageUrlArray != nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JYLoopCellIndentifier];
                 [cell addSubview:self.loopView];
                 
                 [self.loopView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -425,20 +467,45 @@
 //        return cell;
 //    }
     else if (indexPath.section == 2){
-        static NSString *cellIndentifier = @"JYHomeProductCell";
-        JYHomeProductCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
-        if (indexPath.row == 1) {
-            cell.describeLabel.text = @"dagjf dasf gdak fgdks gf dksaghf dkhag fkdhag fdsa";
-        }else if (indexPath.row == 2){
-            cell.shopImageOne.hidden = YES;
-            cell.originalPrice.hidden =YES;
-            cell.shopImageThree.hidden = YES;
-            cell.shopImageTwo.hidden = YES;
+        switch (_cellType) {
+            case JYHomeProduct: {
+
+                JYHomeProductCell *cell = [tableView dequeueReusableCellWithIdentifier:JYHomeProductCellIndentifier];
+                    cell.userImageView.image = [UIImage circleImageWithImage:[UIImage imageNamed:@"headerImage"] borderWidth:0.5 borderColor:[UIColor whiteColor]];
+                if (indexPath.row == 0) {
+                    cell.describeLabel.text = @"dagjf dasf gdak fgdks gf dksaghf dkhag fkdhag fd反倒是飞洒发飞";
+                    cell.shopImageOne.hidden = YES;
+                    cell.originalPrice.hidden =YES;
+                    cell.shopImageThree.hidden = YES;
+                    cell.shopImageTwo.hidden = YES;
+                
+                }
+                [cell.userButton bk_addEventHandler:^(id sender) {
+                    YSHLog(@"点击用户头像~");
+                } forControlEvents:(UIControlEventTouchUpInside)];
+                return cell;
+            }
+                break;
+            case JYRecommend:{
+
+                JYRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:JYRecommendCellIndentifier];
+                cell.describeLabel.text = @"dagjf dasf gdak fgdks gf dksaghf dkhag fkdhag fd反倒是飞洒发飞";
+                cell.currentPrice.text = @"1000";
+                cell.imageView.image = [UIImage scaleToSize:[UIImage imageNamed:@"picture_15"] size:CGSizeMake(110.0, 82.0)];
+
+                return cell;
+            }
+                break;
+            case JYFreeCharge: {
+                JYFreeChargeCell *cell = [tableView dequeueReusableCellWithIdentifier:JYChargeCellIndentifier];
+                return  cell;
+                
+            }
         }
-        
-        return cell;
-            
     }
+    
+        
+    
 
     static NSString *cellIndentifier = @"courseCell1";
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIndentifier];
