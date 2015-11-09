@@ -93,7 +93,8 @@
         _sideMenu.panGestureEnabled = NO;
         /** 可以让出现菜单时不显示状态栏 */
         _sideMenu.menuPrefersStatusBarHidden = YES;
-        _sideMenu.contentViewInPortraitOffsetCenterX = 30;
+//        _sideMenu.contentViewInPortraitOffsetCenterX = 80;
+//        _sideMenu.contentViewScaleValue = 1.0f;
     }
     return _sideMenu;
 }
