@@ -12,6 +12,11 @@
 
 static CGFloat rightViewWidth = 80;
 static CGFloat headerViewHeight = 120;
+static CGFloat statusBarHeight = 20;
+/** 右边图标和签名离父视图的间隙 */
+static CGFloat margin = 5;
+/** 内容视图缩放后的宽度（竖屏） */
+#define contentVCWidth (kWindowW * kAppDelegate.sideMenu.contentViewScaleValue/2 - kAppDelegate.sideMenu.contentViewInPortraitOffsetCenterX)
 
 @interface JYClassifyViewController ()<UITableViewDelegate,UITableViewDataSource>
 /** 分类数组 */
@@ -26,29 +31,28 @@ static CGFloat headerViewHeight = 120;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.view.backgroundColor = JYHexColor(0x272C35);
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
+    _tableView.showsVerticalScrollIndicator = NO;
     _tableView.backgroundColor = JYHexColor(0x272C35);
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    /** 内容视图缩放后的宽度（竖屏） */
-    CGFloat contentVCWidth = kWindowW*kAppDelegate.sideMenu.contentViewScaleValue/2-kAppDelegate.sideMenu.contentViewInPortraitOffsetCenterX;
-    
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, contentVCWidth + rightViewWidth));
+        make.edges.mas_equalTo(UIEdgeInsetsMake(statusBarHeight, 0, 0, contentVCWidth + rightViewWidth));
     }];
     [self configHeaderView];
     [self configRightView];
 }
- 
+
+/** 配置右侧的视图 */
 - (void)configRightView{
     /** 右边的视图配置 */
     UIView *rightView = [[UIView alloc] init];
     [self.view addSubview:rightView];
     [rightView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.tableView.mas_right).mas_equalTo(0);
-        make.bottom.top.mas_equalTo(self.view);
+        make.bottom.mas_equalTo(self.view);
+        make.top.mas_equalTo(statusBarHeight);
         make.width.mas_equalTo(rightViewWidth);
     }];
     rightView.backgroundColor = JYHexColor(0x272C35);
@@ -58,7 +62,8 @@ static CGFloat headerViewHeight = 120;
     iconIV.contentMode = UIViewContentModeScaleAspectFit;
     [rightView addSubview:iconIV];
     [iconIV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(0);
+        make.left.top.mas_equalTo(margin);
+        make.right.mas_equalTo(-margin);
         make.height.mas_equalTo(self.tableView.tableHeaderView.height);
     }];
     
@@ -68,12 +73,15 @@ static CGFloat headerViewHeight = 120;
     [rightView addSubview:signIV];
     [signIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo((kWindowH-self.tableView.tableHeaderView.height)/2);
-        make.left.right.mas_equalTo(0);
+        make.left.mas_equalTo(margin);
+        make.right.mas_equalTo(-margin);
         make.bottom.mas_equalTo(-20);
     }];
     
     
 }
+
+/** 配置头部视图 */
 - (void)configHeaderView{
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, headerViewHeight)];
     self.tableView.tableHeaderView = headerView;
@@ -99,15 +107,15 @@ static CGFloat headerViewHeight = 120;
     cell.textColor = [UIColor whiteColor];
     cell.selectedTextColor = JYGlobalBg;
     cell.backgroundColor = [UIColor clearColor];
+    cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
+    cell.selectedBackgroundView.backgroundColor = JYHexColor(0x272C35);
     
     /** 文字 */
     JYClassifyModel *model = self.dataArr[indexPath.row];
-    cell.textLabel.text = model.name;
     if (model.subClass) {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.text = model.name;
     }else{
-        cell.textLabel.textAlignment = NSTextAlignmentRight;
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.textLabel.text = [NSString stringWithFormat: @"    %@",model.name];
     }
     /** 图片 */
     if (model.icon && model.selectedIcon) {
@@ -117,7 +125,7 @@ static CGFloat headerViewHeight = 120;
         cell.imageView.image = nil;
         cell.imageView.highlightedImage = nil;
     }
-
+    
     return cell;
     
 }
@@ -128,6 +136,7 @@ static CGFloat headerViewHeight = 120;
     
     JYClassifyModel *model = self.dataArr[indexPath.row];
     if (model.subClass && !model.isSelected) {
+        /** 将subClass中的子类型模型化，加入到data数组中 */
         NSMutableArray *mutArr = [NSMutableArray new];
         for (NSString *str in model.subClass) {
             JYClassifyModel *model = [JYClassifyModel new];
@@ -140,14 +149,15 @@ static CGFloat headerViewHeight = 120;
         }
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(indexPath.row+1, model.subClass.count)];
         [self.dataArr insertObjects:[mutArr copy] atIndexes:indexSet];
-        [self.tableView reloadData];
-        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        [tableView reloadData];
+        [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
         model.selected = YES;
-    }else if(model.subClass && model.isSelected){
+        [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
+    }else if(model.subClass && model.isSelected){/** 从data数组中删除子类 */
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(indexPath.row+1, model.subClass.count)];
         [self.dataArr removeObjectsAtIndexes:indexSet];
-        [self.tableView reloadData];
-        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+        [tableView reloadData];
+        [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
         model.selected = NO;
     }else{
         /** 回到contentView */

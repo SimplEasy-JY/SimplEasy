@@ -392,7 +392,7 @@ typedef NS_ENUM(NSInteger, cellType) {
             [[button layer]setBorderWidth:0.5];
             [[button layer]setBorderColor:kRGBColor(217, 217, 217).CGColor];
             [button setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor] cornerRadius:0] forState:UIControlStateNormal];
-            [button setBackgroundImage:[UIImage imageWithColor:JYGlobalBg cornerRadius:0] forState:UIControlStateSelected];
+            [button setBackgroundImage:[UIImage imageWithColor:JYHexColor(0x272C35) cornerRadius:0] forState:UIControlStateSelected];
             button.tag = i;
             button.titleLabel.font = [UIFont systemFontOfSize:13];
             [button setTitle:self.segmentItemsArray[i] forState:UIControlStateNormal];
