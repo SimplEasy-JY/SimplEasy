@@ -8,9 +8,17 @@
 
 #import "JYClassifyViewController.h"
 #import "JYSellerCell.h"
+#import "JYClassifyModel.h"
+
+static CGFloat rightViewWidth = 80;
+static CGFloat headerViewHeight = 120;
 
 @interface JYClassifyViewController ()<UITableViewDelegate,UITableViewDataSource>
+/** 分类数组 */
 @property (nonatomic, strong) NSArray *classArr;
+/** 数据数组 */
+@property (nonatomic, strong) NSMutableArray *dataArr;
+/** tableView */
 @property (nonatomic, strong) UITableView *tableView;
 @end
 
@@ -18,24 +26,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     self.view.backgroundColor = JYHexColor(0x272C35);
     [self.view addSubview:self.tableView];
     _tableView.backgroundColor = JYHexColor(0x272C35);
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    /** 内容视图缩放后的宽度（竖屏） */
+    CGFloat contentVCWidth = kWindowW*kAppDelegate.sideMenu.contentViewScaleValue/2-kAppDelegate.sideMenu.contentViewInPortraitOffsetCenterX;
+    
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, kWindowW*kAppDelegate.sideMenu.contentViewScaleValue/2-kAppDelegate.sideMenu.contentViewInPortraitOffsetCenterX+80));
+        make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, contentVCWidth + rightViewWidth));
     }];
     [self configHeaderView];
     [self configRightView];
 }
-
+ 
 - (void)configRightView{
+    /** 右边的视图配置 */
     UIView *rightView = [[UIView alloc] init];
     [self.view addSubview:rightView];
     [rightView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.tableView.mas_right).mas_equalTo(0);
         make.bottom.top.mas_equalTo(self.view);
-        make.width.mas_equalTo(80);
+        make.width.mas_equalTo(rightViewWidth);
     }];
     rightView.backgroundColor = JYHexColor(0x272C35);
     
@@ -61,13 +75,7 @@
     
 }
 - (void)configHeaderView{
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 120)];
-//    UIImageView *imageView = [[UIImageView alloc] init];
-//    imageView.backgroundColor = JYHexColor(0x272C35);
-//    [headerView addSubview:imageView];
-//    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.mas_equalTo(UIEdgeInsetsZero);
-//    }];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, headerViewHeight)];
     self.tableView.tableHeaderView = headerView;
 }
 
@@ -78,7 +86,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.classArr.count;
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -87,26 +95,64 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    /** 颜色 */
     cell.textColor = [UIColor whiteColor];
     cell.selectedTextColor = JYGlobalBg;
     cell.backgroundColor = [UIColor clearColor];
-    cell.textLabel.text = self.classArr[indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat: @"typeicon0%ld",indexPath.row+1]];
-    cell.imageView.highlightedImage = [UIImage imageNamed:[NSString stringWithFormat:@"typeicon0%ld_selected",indexPath.row+1]];
+    
+    /** 文字 */
+    JYClassifyModel *model = self.dataArr[indexPath.row];
+    cell.textLabel.text = model.name;
+    if (model.subClass) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }else{
+        cell.textLabel.textAlignment = NSTextAlignmentRight;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    /** 图片 */
+    if (model.icon && model.selectedIcon) {
+        cell.imageView.image = [UIImage imageNamed:model.icon];
+        cell.imageView.highlightedImage = [UIImage imageNamed:model.selectedIcon];
+    }else{
+        cell.imageView.image = nil;
+        cell.imageView.highlightedImage = nil;
+    }
+
     return cell;
     
 }
 
 #pragma mark *** <UITableViewDelegate> ***
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return (kWindowH-self.tableView.tableHeaderView.height)/self.classArr.count;
-//}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    /** 回到contentView */
-    [self.sideMenuViewController hideMenuViewController];
+    
+    JYClassifyModel *model = self.dataArr[indexPath.row];
+    if (model.subClass && !model.isSelected) {
+        NSMutableArray *mutArr = [NSMutableArray new];
+        for (NSString *str in model.subClass) {
+            JYClassifyModel *model = [JYClassifyModel new];
+            model.name = str;
+            model.icon = nil;
+            model.selectedIcon = nil;
+            model.subClass = nil;
+            model.selected = nil;
+            [mutArr addObject:model];
+        }
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(indexPath.row+1, model.subClass.count)];
+        [self.dataArr insertObjects:[mutArr copy] atIndexes:indexSet];
+        [self.tableView reloadData];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        model.selected = YES;
+    }else if(model.subClass && model.isSelected){
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(indexPath.row+1, model.subClass.count)];
+        [self.dataArr removeObjectsAtIndexes:indexSet];
+        [self.tableView reloadData];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+        model.selected = NO;
+    }else{
+        /** 回到contentView */
+        [self.sideMenuViewController hideMenuViewController];
+    }
 }
 
 #pragma mark *** Lazy Loading ***
@@ -122,9 +168,21 @@
 
 - (NSArray *)classArr {
 	if(_classArr == nil) {
-		_classArr = @[@"鞋服配饰",@"个人护理",@"生活用品",@"运动户外",@"旅行箱包",@"数码外设",@"图书音像",@"卡券转让",@"食品专区"];
+		_classArr = [NSArray objectArrayWithFilename:@"Classify.plist"];
 	}
 	return _classArr;
+}
+
+- (NSMutableArray *)dataArr {
+	if(_dataArr == nil) {
+        _dataArr = [NSMutableArray new];
+        for (NSDictionary *dict in self.classArr) {
+            JYClassifyModel *model = [JYClassifyModel new];
+            [model setValuesForKeysWithDictionary:dict];
+            [_dataArr addObject:model];
+        }
+	}
+	return _dataArr;
 }
 
 @end

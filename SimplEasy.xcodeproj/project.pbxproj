@@ -30,6 +30,8 @@
 		83476B781BEB2E9F0061F61E /* UIImage+Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83476B771BEB2E9F0061F61E /* UIImage+Circle.m */; };
 		83476B7B1BEB34830061F61E /* JYClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83476B7A1BEB34830061F61E /* JYClassifyViewController.m */; };
 		8394B2621BEDB18700D3F66F /* JYNewFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394B2611BEDB18700D3F66F /* JYNewFeatureViewController.m */; };
+		83DECFB41BF197D300A1FE7C /* Classify.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83DECFB31BF197D300A1FE7C /* Classify.plist */; };
+		83DECFB71BF1C28900A1FE7C /* JYClassifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DECFB61BF1C28900A1FE7C /* JYClassifyModel.m */; };
 		83E75EC21BEA45C70020D54D /* JYCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E75EBA1BEA45C70020D54D /* JYCommentCell.m */; };
 		83E75EC31BEA45C70020D54D /* JYCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83E75EBB1BEA45C70020D54D /* JYCommentCell.xib */; };
 		83E75EC41BEA45C70020D54D /* JYProductDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E75EBD1BEA45C70020D54D /* JYProductDetailCell.m */; };
@@ -132,6 +134,9 @@
 		83476B7A1BEB34830061F61E /* JYClassifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYClassifyViewController.m; sourceTree = "<group>"; };
 		8394B2601BEDB18700D3F66F /* JYNewFeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYNewFeatureViewController.h; sourceTree = "<group>"; };
 		8394B2611BEDB18700D3F66F /* JYNewFeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYNewFeatureViewController.m; sourceTree = "<group>"; };
+		83DECFB31BF197D300A1FE7C /* Classify.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Classify.plist; sourceTree = "<group>"; };
+		83DECFB51BF1C28900A1FE7C /* JYClassifyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYClassifyModel.h; sourceTree = "<group>"; };
+		83DECFB61BF1C28900A1FE7C /* JYClassifyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYClassifyModel.m; sourceTree = "<group>"; };
 		83E75EB91BEA45C70020D54D /* JYCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYCommentCell.h; sourceTree = "<group>"; };
 		83E75EBA1BEA45C70020D54D /* JYCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYCommentCell.m; sourceTree = "<group>"; };
 		83E75EBB1BEA45C70020D54D /* JYCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JYCommentCell.xib; sourceTree = "<group>"; };
@@ -366,6 +371,8 @@
 			children = (
 				B089AA961BE9D09400E5D2CC /* JYLoopModel.h */,
 				B089AA971BE9D09400E5D2CC /* JYLoopModel.m */,
+				83DECFB51BF1C28900A1FE7C /* JYClassifyModel.h */,
+				83DECFB61BF1C28900A1FE7C /* JYClassifyModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -490,6 +497,7 @@
 		8328A4921BE849800021767D /* Resource(资源) */ = {
 			isa = PBXGroup;
 			children = (
+				83DECFB21BF197D300A1FE7C /* Plist */,
 				B02A701B1BE86AA000B8B05F /* Assets.xcassets */,
 				8328A4AB1BE84C060021767D /* PrefixHeader.pch */,
 				8328A4431BE8478B0021767D /* Main.storyboard */,
@@ -556,6 +564,14 @@
 				83476B741BEB1C6C0061F61E /* iCarousel.m */,
 			);
 			path = iCarousel;
+			sourceTree = "<group>";
+		};
+		83DECFB21BF197D300A1FE7C /* Plist */ = {
+			isa = PBXGroup;
+			children = (
+				83DECFB31BF197D300A1FE7C /* Classify.plist */,
+			);
+			path = Plist;
 			sourceTree = "<group>";
 		};
 		83E75EB81BEA45C70020D54D /* View */ = {
@@ -758,6 +774,7 @@
 				B02A701C1BE86AA000B8B05F /* Assets.xcassets in Resources */,
 				8328A4451BE8478B0021767D /* Main.storyboard in Resources */,
 				B0AEC8921BEC86540045F08F /* JYHomeProductCell.xib in Resources */,
+				83DECFB41BF197D300A1FE7C /* Classify.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -845,6 +862,7 @@
 				83E75EC41BEA45C70020D54D /* JYProductDetailCell.m in Sources */,
 				B02A70061BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift in Sources */,
 				B02A70171BE8638A00B8B05F /* JYPlusButton.m in Sources */,
+				83DECFB71BF1C28900A1FE7C /* JYClassifyModel.m in Sources */,
 				8394B2621BEDB18700D3F66F /* JYNewFeatureViewController.m in Sources */,
 				8328A43F1BE8478B0021767D /* AppDelegate.m in Sources */,
 				8328A4A41BE849800021767D /* AppDelegate+Category.m in Sources */,
