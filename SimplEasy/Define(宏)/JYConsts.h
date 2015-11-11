@@ -11,6 +11,18 @@
 #define JYConsts_h
 
 
+
+
+/**  数据 */
+//第一个轮播图的高
+#define firstLVH 116
+//第二个轮播图的高
+#define secondLVH 30
+
+
+
+
+
 /**  nslog */
 #define YSHLog(...) NSLog(__VA_ARGS__)
 /** 通过RGB设置颜色 */

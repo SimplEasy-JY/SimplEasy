@@ -9,5 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface JYFreeChargeCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIButton *leftButton;
+@property (weak, nonatomic) IBOutlet UIButton *rightButton;
+@property (weak, nonatomic) IBOutlet UIImageView *leftImage;
+@property (weak, nonatomic) IBOutlet UIImageView *rightImage;
+@property (weak, nonatomic) IBOutlet UIButton *leftShopButton;
+@property (weak, nonatomic) IBOutlet UIButton *rightShopButton;
+@property (weak, nonatomic) IBOutlet UILabel *letfLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rightLabel;
+@property(assign,nonatomic)NSInteger goodsId;
 
 @end

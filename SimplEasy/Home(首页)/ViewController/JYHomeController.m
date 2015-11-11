@@ -20,6 +20,7 @@
 #import "UIImage+Circle.h"
 /**  cell id */
 static NSString *JYLoopCellIndentifier = @"loopCell";
+static NSString *JYLoopCellSecondIndentifier = @"loopSecondCell";
 static NSString *JYHomeProductCellIndentifier = @"JYHomeProductCell";
 static NSString *JYRecommendCellIndentifier = @"JYRecommendCell";
 static NSString *JYChargeCellIndentifier = @"freeChargeCell";
@@ -41,9 +42,9 @@ static NSString *JYChargeCellIndentifier = @"freeChargeCell";
 @property(strong,nonatomic)JYLoopViewModel *loopVM;
 
 /**  顶部轮播 */
-@property(strong,nonatomic)iCarousel *loopView;
-@property(strong,nonatomic)UIPageControl *loopPage;
-
+@property(strong,nonatomic)iCarousel *firstLoopView;
+@property(strong,nonatomic)UIPageControl *firstLoopPage;
+@property(strong,nonatomic)iCarousel *secondLoopView;
 /**  segmented Control */
 @property(strong,nonatomic)NSArray *segmentItemsArray;
 
@@ -56,9 +57,9 @@ static NSString *JYChargeCellIndentifier = @"freeChargeCell";
 #pragma mark -枚举
 typedef NS_ENUM(NSInteger, cellType) {
     //以下是枚举成员
-    JYHomeProduct = 0,
-    JYRecommend = 1,
-    JYFreeCharge = 2,
+    homeProduct = 0,
+    recommend = 1,
+    freeCharge = 2,
 };
 #pragma mark -懒加载
 -(NSArray *)segmentItemsArray{
@@ -69,37 +70,55 @@ typedef NS_ENUM(NSInteger, cellType) {
     
 }
 
--(iCarousel *)loopView{
-    if (!_loopView) {
-        self.loopView = [[iCarousel  alloc]init];
+-(iCarousel *)firstLoopView{
+    if (!_firstLoopView) {
+        self.firstLoopView = [[iCarousel  alloc]init];
         //就是仿写的CollectionView
-        _loopView.delegate = self;
-        _loopView.dataSource = self;
+        _firstLoopView.delegate = self;
+        _firstLoopView.dataSource = self;
         //修改3D显示模式
-        _loopView.type = iCarouselTypeLinear;
+        _firstLoopView.type = iCarouselTypeLinear;
         //自动展示,0表示不滚动，越大滚动越快
-        _loopView.autoscroll = 0;
+        _firstLoopView.autoscroll = 0;
         //水平还是垂直  no水平
-        _loopView.vertical = NO;
+        _firstLoopView.vertical = NO;
         //改为翻页模式
-        _loopView.pagingEnabled = YES;
+        _firstLoopView.pagingEnabled = YES;
         //滚动速度
-        _loopView.scrollSpeed = 2;
+        _firstLoopView.scrollSpeed = 2;
         
     }
-    return _loopView;
+    return _firstLoopView;
 }
--(UIPageControl *)loopPage{
-    if (!_loopPage) {
-        self.loopPage = [[UIPageControl  alloc]init];
-        _loopPage.numberOfPages = self.loopView.numberOfItems;
-        _loopPage.currentPage = self.loopView.currentItemIndex;
-        _loopPage.currentPageIndicatorTintColor = [UIColor whiteColor];
-        _loopPage.pageIndicatorTintColor = [UIColor blackColor];
+
+-(iCarousel *)secondLoopView{
+    if (!_secondLoopView) {
+        self.secondLoopView = [[iCarousel  alloc]init];
+        _secondLoopView.delegate = self;
+        _secondLoopView.dataSource = self;
         
-        
+        //修改3D显示模式
+        _secondLoopView.type = iCarouselTypeLinear;
+        //自动展示,0表示不滚动，越大滚动越快
+        _secondLoopView.autoscroll = 0;
+        //水平还是垂直  no水平
+        _secondLoopView.vertical = YES;
+        //改为翻页模式
+        _secondLoopView.pagingEnabled = YES;
     }
-    return _loopPage;
+    return _secondLoopView;
+    
+}
+
+-(UIPageControl *)firstLoopPage{
+    if (!_firstLoopPage) {
+        self.firstLoopPage = [[UIPageControl  alloc]init];
+        _firstLoopPage.numberOfPages = self.firstLoopView.numberOfItems;
+        _firstLoopPage.currentPage = self.firstLoopView.currentItemIndex;
+        _firstLoopPage.currentPageIndicatorTintColor = [UIColor whiteColor];
+        _firstLoopPage.pageIndicatorTintColor = [UIColor blackColor];
+    }
+    return _firstLoopPage;
     
 }
 -(JYLoopViewModel *)loopVM{
@@ -129,8 +148,12 @@ typedef NS_ENUM(NSInteger, cellType) {
     
     /**  轮播定时滚动 */
     [NSTimer bk_scheduledTimerWithTimeInterval:2 block:^(NSTimer *timer) {
-        [self.loopView scrollToItemAtIndex:self.loopView.currentItemIndex+1 animated:YES];
+        [self.firstLoopView scrollToItemAtIndex:self.firstLoopView.currentItemIndex+1 animated:YES];
     } repeats:YES];
+    [NSTimer bk_scheduledTimerWithTimeInterval:3 block:^(NSTimer *timer) {
+        [self.secondLoopView scrollToItemAtIndex:self.secondLoopView.currentItemIndex+1 animated:YES];
+    } repeats:YES];
+    
     
     //注册cell
     [self.tableView registerNib:[UINib nibWithNibName:@"JYHomeProductCell" bundle:nil] forCellReuseIdentifier:JYHomeProductCellIndentifier];
@@ -170,7 +193,7 @@ typedef NS_ENUM(NSInteger, cellType) {
 -(void)setupTableView{
         [self.loopVM getDataFromNetCompleteHandle:^(NSError *error) {
             [self.tableView reloadData];
-            [self.loopView reloadData];
+            [self.firstLoopView reloadData];
             YSHLog(@"获取数据");
         }];
    
@@ -194,24 +217,47 @@ typedef NS_ENUM(NSInteger, cellType) {
 #pragma mark *** iCarouselDatasource & iCarouseDelegate ***
 
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel{
-    return self.loopVM.loopImageUrlArray.count;
+    if (carousel == _firstLoopView) {
+        return self.loopVM.loopImageUrlArray.count;
+    } else if (carousel == _secondLoopView){
+        return 3;
+    }
+    return 0;
+    
+    
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view{
-    if (!view) {
-        view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWindowW, 116)];
-        UIImageView *imageView = [[UIImageView alloc] init];
-        imageView.tag = 100;
-        [view addSubview: imageView];
-        [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(view);
-        }];
+    if (carousel == _firstLoopView){
+        if (!view) {
+            view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWindowW, firstLVH)];
+            UIImageView *imageView = [[UIImageView alloc] init];
+            imageView.tag = 100;
+            [view addSubview: imageView];
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.mas_equalTo(view);
+            }];
+        }
+        UIImageView *imageView = (UIImageView *)[view viewWithTag:100];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:self.loopVM.loopImageUrlArray[index]] placeholderImage:nil];
+        return view;
+    }else if (carousel == _secondLoopView){
+        if (!view) {
+            view = [[UIView alloc]initWithFrame:CGRectMake(0, firstLVH, kWindowW, secondLVH)];
+            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+            imageView.backgroundColor = [UIColor yellowColor];
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(30, 0, kWindowW-30, 30)];
+            label.text =  @"test~test~test~test~test~test~";
+            
+            [view addSubview:imageView];
+            [view addSubview:label];
+        }
+        return  view;
     }
-    UIImageView *imageView = (UIImageView *)[view viewWithTag:100];
-    [imageView sd_setImageWithURL:[NSURL URLWithString:self.loopVM.loopImageUrlArray[index]] placeholderImage:nil];
-    return view;
+    return  nil;
 }
 
+/**  添加循环滚动 */
 - (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value{
     if (option == iCarouselOptionWrap) {
         return YES;
@@ -223,19 +269,22 @@ typedef NS_ENUM(NSInteger, cellType) {
 }
 
 - (void)carouselCurrentItemIndexDidChange:(iCarousel *)carousel{
-    self.loopPage.currentPage = carousel.currentItemIndex;
+    if (carousel == _firstLoopView) {
+         self.firstLoopPage.currentPage = carousel.currentItemIndex;
+    }
+   
 }
-
+/**  选中方法 */
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index{
     NSLog(@"选择了第%ld张",index);
-    
-    JYWebViewController *JYWebVC = [[JYWebViewController alloc]init];
-    NSString *webUrl = [NSString stringWithFormat:@"http://%@",self.loopVM.loopWebUrlArray[index]];
-    JYWebVC.webUrl = webUrl;
-    JYWebVC.hidesBottomBarWhenPushed = YES;
-    
-    JYWebVC.title = @"这里是自定义标题";
-    [self.navigationController pushViewController:JYWebVC animated:YES];
+    if (carousel == _firstLoopView) {
+        JYWebViewController *JYWebVC = [[JYWebViewController alloc]init];
+        NSString *webUrl = [NSString stringWithFormat:@"http://%@",self.loopVM.loopWebUrlArray[index]];
+        JYWebVC.webUrl = webUrl;
+        JYWebVC.hidesBottomBarWhenPushed = YES;
+        JYWebVC.title = @"这里是自定义标题";
+        [self.navigationController pushViewController:JYWebVC animated:YES];
+    }
 
 }
 
@@ -284,7 +333,7 @@ typedef NS_ENUM(NSInteger, cellType) {
         return 140;
     }else {
         switch (_cellType) {
-            case JYHomeProduct:{
+            case homeProduct:{
 //                JYHomeProductCell *cell = [tableView dequeueReusableCellWithIdentifier:JYHomeProductCellIndentifier];
 //                CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
 //                return height;
@@ -293,13 +342,13 @@ typedef NS_ENUM(NSInteger, cellType) {
             }
                 
                 
-            case JYRecommend:{
+            case recommend:{
                 JYRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:JYRecommendCellIndentifier];
                 CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
                 return height;
                 break;
             }
-            case JYFreeCharge:{
+            case freeCharge:{
                 JYFreeChargeCell *cell = [tableView dequeueReusableCellWithIdentifier:JYChargeCellIndentifier];
                 CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
                 return height;
@@ -324,7 +373,6 @@ typedef NS_ENUM(NSInteger, cellType) {
         }else {
             return 30;
         }
-        
     }else if (indexPath.section == 1){
         return 140;
     }else  {
@@ -360,7 +408,6 @@ typedef NS_ENUM(NSInteger, cellType) {
                     _currentButton.selected = NO;
                     sender.selected = YES;
                     _currentButton = sender;
-                    
                     _cellType = (int)sender.tag;
                     NSInteger index = 2;
                     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:index];
@@ -377,98 +424,39 @@ typedef NS_ENUM(NSInteger, cellType) {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:JYLoopCellIndentifier];
             if (self.loopVM.loopImageUrlArray != nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JYLoopCellIndentifier];
-                [cell addSubview:self.loopView];
-                
-                [self.loopView mas_makeConstraints:^(MASConstraintMaker *make) {
+                /**  加入滚动视图 */
+                [cell addSubview:self.firstLoopView];
+                [self.firstLoopView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.edges.mas_equalTo(0);
                 }];
-                [cell addSubview:self.loopPage];
-                [self.loopPage mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.centerX.mas_equalTo(cell);
+                /**  加入pageview */
+                [cell addSubview:self.firstLoopPage];
+                [self.firstLoopPage mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.centerX.mas_equalTo(0);
                     make.bottom.mas_equalTo(10);
                 }];
+                
             }
-            
-            
+            return cell;
+        }
+        if (indexPath.row == 1) {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:JYLoopCellSecondIndentifier];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JYLoopCellSecondIndentifier];
+            /**  加入滚动视图 */
+            [cell addSubview:self.secondLoopView];
+            [self.secondLoopView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.mas_equalTo(0);
+            }];
             return cell;
         }
     }
-//        }else if (indexPath.row == 1){
-//            static NSString *cellIndentifier = @"courseCell1";
-//            JZAlbumCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
-//            if (cell == nil) {
-//                cell = [[JZAlbumCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier frame:CGRectMake(0, 0, screen_width, 90)];
-//                //下划线
-//                UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 89.5, screen_width, 0.5)];
-//                lineView.backgroundColor = separaterColor;
-//                [cell addSubview:lineView];
-//            }
-//            
-//            cell.delegate = self;
-//            [cell setImgurlArray:_albumImgurlArray];
-//            
-//            return cell;
-//        }else if (indexPath.row > 1){
-//            static NSString *cellIndentifier = @"courseCell2";
-//            JZCourseCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
-//            if (cell == nil) {
-//                cell = [[JZCourseCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
-//                //            NSLog(@"%f/%f",cell.frame.size.width,cell.frame.size.height);
-//                //下划线
-//                UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 71.5, screen_width, 0.5)];
-//                lineView.backgroundColor = separaterColor;
-//                [cell addSubview:lineView];
-//            }
-//            
-//            JZCourseListModel *jzCourseM = _courseListArray[indexPath.row-2];
-//            [cell setJzCourseM:jzCourseM];
-//            UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIndentifier];
-//            return cell;
-//        }
-//        static NSString *cellIndentifier = @"courseCell";
-//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
-//        if (cell == nil) {
-//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
-//        }
-//        
-//        return cell;
-//    }else{
-//        static NSString *cellIndentifier = @"courseClassCell";
-//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
-//        if (cell == nil) {
-//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
-//            //下划线
-//            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 59.5, screen_width, 0.5)];
-//            lineView.backgroundColor = separaterColor;
-//            [cell addSubview:lineView];
-//            //图
-//            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
-//            imageView.tag = 10;
-//            [cell addSubview:imageView];
-//            //标题
-//            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 15, 100, 30)];
-//            titleLabel.tag = 11;
-//            [cell addSubview:titleLabel];
-//        }
-//        NSDictionary *dataDic = _classCategoryArray[indexPath.row];
-//        UIImageView *imageView = (UIImageView *)[cell viewWithTag:10];
-//        NSString *imageStr = [dataDic objectForKey:@"image"];
-//        [imageView setImage:[UIImage imageNamed:imageStr]];
-//        UILabel *titleLabel = (UILabel *)[cell viewWithTag:11];
-//        titleLabel.text = [dataDic objectForKey:@"title"];
-//        
-//        
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//        return cell;
-//    }
+
     else if (indexPath.section == 2){
         switch (_cellType) {
-            case JYHomeProduct: {
+            case homeProduct: {
 
                 JYHomeProductCell *cell = [tableView dequeueReusableCellWithIdentifier:JYHomeProductCellIndentifier];
                     cell.userImageView.image = [UIImage circleImageWithImage:[UIImage imageNamed:@"headerImage"] borderWidth:0.5 borderColor:[UIColor whiteColor]];
@@ -480,24 +468,25 @@ typedef NS_ENUM(NSInteger, cellType) {
                     cell.shopImageTwo.hidden = YES;
                 
                 }
-                [cell.userButton bk_addEventHandler:^(id sender) {
-                    YSHLog(@"点击用户头像~");
-                } forControlEvents:(UIControlEventTouchUpInside)];
+             
                 return cell;
             }
                 break;
-            case JYRecommend:{
+            case recommend:{
 
                 JYRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:JYRecommendCellIndentifier];
                 cell.describeLabel.text = @"dagjf dasf gdak fgdks gf dksaghf dkhag fkdhag fd反倒是飞洒发飞";
                 cell.currentPrice.text = @"1000";
-                cell.imageView.image = [UIImage scaleToSize:[UIImage imageNamed:@"picture_15"] size:CGSizeMake(110.0, 82.0)];
+                cell.shopImage.image = [UIImage scaleToSize:[UIImage imageNamed:@"picture_15"] size:CGSizeMake(110.0, 82.0)];
 
                 return cell;
             }
                 break;
-            case JYFreeCharge: {
+            case freeCharge: {
                 JYFreeChargeCell *cell = [tableView dequeueReusableCellWithIdentifier:JYChargeCellIndentifier];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.goodsId = 10;
+                
                 return  cell;
                 
             }
@@ -514,14 +503,18 @@ typedef NS_ENUM(NSInteger, cellType) {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"cellType%d",_cellType);
     //取消选择痕迹
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    if (_cellType != freeCharge) {
+        JYProductDetailVC *productDetailVC = [kStoryboard(@"Main") instantiateViewControllerWithIdentifier:@"JYProductDetailVC"];
+        productDetailVC.title = @"商品详情";
+        productDetailVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:productDetailVC animated:YES];
+    }
     NSLog(@"%ld",(long)indexPath.row);
-    JYProductDetailVC *productDetailVC = [kStoryboard(@"Main") instantiateViewControllerWithIdentifier:@"JYProductDetailVC"];
-    productDetailVC.title = @"商品详情";
-    productDetailVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:productDetailVC animated:YES];
+   
+
 }
 
 @end

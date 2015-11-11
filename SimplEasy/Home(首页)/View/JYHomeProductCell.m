@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIView *longLine;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UIView *bgPrice;
+@property (weak, nonatomic) IBOutlet UIButton *userButton;
 
 
 
@@ -36,6 +37,9 @@
     self.currentPrice.textColor = kRGBColor(190, 44, 44);
     self.describeLabel.textColor = kRGBColor(102, 102, 102);
     self.placeNow.textColor = kRGBColor(153, 204, 242);
+    [self.userButton bk_addEventHandler:^(id sender) {
+        YSHLog(@"点击了用户头像");
+    } forControlEvents:UIControlEventTouchUpInside];
 
     
 }

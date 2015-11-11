@@ -23,7 +23,7 @@
                             <constraint firstAttribute="height" constant="35" id="t7B-Hl-gFd"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="￥35" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EI-b0-zZ1">
@@ -34,8 +34,13 @@
                             <constraint firstAttribute="height" constant="20.5" id="dSm-7F-zjI"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="EAf-Ak-SwX"/>
+                            </mask>
+                        </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥48" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIh-3b-xwO">
                         <rect key="frame" x="172" y="62" width="30" height="16"/>
@@ -47,7 +52,7 @@
                             <constraint firstAttribute="height" constant="13" id="odj-oh-mgI"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                         <variation key="default">
                             <mask key="constraints">
@@ -71,7 +76,7 @@
                             <constraint firstAttribute="height" constant="15" id="OkY-5P-oeS"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Tm-x6-6Z1">
@@ -196,10 +201,10 @@
             <connections>
                 <outlet property="currentPrice" destination="0EI-b0-zZ1" id="FfG-OF-Ppv"/>
                 <outlet property="describeLabel" destination="eGd-bn-qON" id="Nji-la-qWf"/>
-                <outlet property="imageView" destination="u3b-sC-ZPQ" id="0Ce-C5-IBD"/>
                 <outlet property="originalPrice" destination="zIh-3b-xwO" id="Hhy-ou-Z0x"/>
                 <outlet property="placeNow" destination="4vi-gD-xR0" id="11o-ah-p3B"/>
                 <outlet property="shopButton" destination="7Tm-x6-6Z1" id="Wem-7L-6ZG"/>
+                <outlet property="shopImage" destination="u3b-sC-ZPQ" id="kr2-6i-Arn"/>
             </connections>
             <point key="canvasLocation" x="331" y="334.5"/>
         </tableViewCell>

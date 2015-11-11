@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *placeNow;
 @property (weak, nonatomic) IBOutlet UILabel *currentPrice;
 @property (weak, nonatomic) IBOutlet UILabel *originalPrice;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *shopImage;
+
 
 @end

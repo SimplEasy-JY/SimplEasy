@@ -59,8 +59,6 @@
 		B0CC9A8A1BF07E3800FCC177 /* JYRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0CC9A881BF07E3800FCC177 /* JYRecommendCell.xib */; };
 		B0CC9A8E1BF0A9F500FCC177 /* JYFreeChargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0CC9A8C1BF0A9F500FCC177 /* JYFreeChargeCell.m */; };
 		B0CC9A8F1BF0A9F500FCC177 /* JYFreeChargeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0CC9A8D1BF0A9F500FCC177 /* JYFreeChargeCell.xib */; };
-		B0CC9A981BF0D84500FCC177 /* JYChargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0CC9A961BF0D84400FCC177 /* JYChargeCell.m */; };
-		B0CC9A991BF0D84500FCC177 /* JYChargeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0CC9A971BF0D84400FCC177 /* JYChargeCell.xib */; };
 		B0DA5E731BE8D191001A0D85 /* ImageScrollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DA5E701BE8D191001A0D85 /* ImageScrollCell.m */; };
 		B0DA5E741BE8D191001A0D85 /* ImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DA5E721BE8D191001A0D85 /* ImageScrollView.m */; };
 		E1F9A3C4126135B024FA3120 /* libPods-SimplEasy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F40C00061819C81121C437 /* libPods-SimplEasy.a */; };
@@ -180,9 +178,6 @@
 		B0CC9A8B1BF0A9F500FCC177 /* JYFreeChargeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYFreeChargeCell.h; sourceTree = "<group>"; };
 		B0CC9A8C1BF0A9F500FCC177 /* JYFreeChargeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYFreeChargeCell.m; sourceTree = "<group>"; };
 		B0CC9A8D1BF0A9F500FCC177 /* JYFreeChargeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JYFreeChargeCell.xib; sourceTree = "<group>"; };
-		B0CC9A951BF0D84400FCC177 /* JYChargeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYChargeCell.h; sourceTree = "<group>"; };
-		B0CC9A961BF0D84400FCC177 /* JYChargeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYChargeCell.m; sourceTree = "<group>"; };
-		B0CC9A971BF0D84400FCC177 /* JYChargeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JYChargeCell.xib; sourceTree = "<group>"; };
 		B0DA5E6F1BE8D191001A0D85 /* ImageScrollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollCell.h; sourceTree = "<group>"; };
 		B0DA5E701BE8D191001A0D85 /* ImageScrollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScrollCell.m; sourceTree = "<group>"; };
 		B0DA5E711BE8D191001A0D85 /* ImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollView.h; sourceTree = "<group>"; };
@@ -595,9 +590,6 @@
 				B0CC9A8B1BF0A9F500FCC177 /* JYFreeChargeCell.h */,
 				B0CC9A8C1BF0A9F500FCC177 /* JYFreeChargeCell.m */,
 				B0CC9A8D1BF0A9F500FCC177 /* JYFreeChargeCell.xib */,
-				B0CC9A951BF0D84400FCC177 /* JYChargeCell.h */,
-				B0CC9A961BF0D84400FCC177 /* JYChargeCell.m */,
-				B0CC9A971BF0D84400FCC177 /* JYChargeCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -764,7 +756,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0CC9A991BF0D84500FCC177 /* JYChargeCell.xib in Resources */,
 				83E75EC51BEA45C70020D54D /* JYProductDetailCell.xib in Resources */,
 				B0CC9A8F1BF0A9F500FCC177 /* JYFreeChargeCell.xib in Resources */,
 				B0CC9A8A1BF07E3800FCC177 /* JYRecommendCell.xib in Resources */,
@@ -851,7 +842,6 @@
 				83476B781BEB2E9F0061F61E /* UIImage+Circle.m in Sources */,
 				8328A4AA1BE849800021767D /* UIView+Extension.m in Sources */,
 				8328A4A31BE849800021767D /* JYHomeController.m in Sources */,
-				B0CC9A981BF0D84500FCC177 /* JYChargeCell.m in Sources */,
 				B04758D61BEB92D100C645EE /* JYWebViewController.m in Sources */,
 				8328A4A51BE849800021767D /* Foundation+Log.m in Sources */,
 				8328A4AF1BE84E050021767D /* JYBaseModel.m in Sources */,

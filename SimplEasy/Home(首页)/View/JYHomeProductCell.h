@@ -10,7 +10,7 @@
 
 @interface JYHomeProductCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIButton *userButton;
+
 
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
