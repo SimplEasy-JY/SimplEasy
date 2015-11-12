@@ -11,11 +11,13 @@
 #import "JYSellerCell.h"
 #import "JYCommentCell.h"
 
-
+static CGFloat bottomBtnWidth = 40;
+static CGFloat bottomBtnHeight = 50;
 
 @interface JYProductDetailVC ()<UITableViewDelegate,UITableViewDataSource,iCarouselDelegate,iCarouselDataSource>
 /** tableView */
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+//@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UITableView *tableView;
 /** 头部滚动详情图片视图 */
 @property (nonatomic, strong) iCarousel *icView;
 /** 分页控制器（小圆点） */
@@ -26,15 +28,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     [self configTableViewHeader];
+    [self configBottomButtons];
     //为头部滚动详情图片添加自动滚动定时器
     [NSTimer bk_scheduledTimerWithTimeInterval:3 block:^(NSTimer *timer) {
         [self.icView scrollToItemAtIndex:self.icView.currentItemIndex+1 animated:YES];
     } repeats:YES];
     //注册cell
-    [self.tableView registerNib:[UINib nibWithNibName:@"JYProductDetailCell" bundle:nil] forCellReuseIdentifier:@"JYProductDetailCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"JYSellerCell" bundle:nil] forCellReuseIdentifier:@"JYSellerCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"JYCommentCell" bundle:nil] forCellReuseIdentifier:@"JYCommentCell"];
+    [self.tableView registerClass:[JYProductDetailCell class] forCellReuseIdentifier:@"JYProductDetailCell"];
+    [self.tableView registerClass:[JYSellerCell class] forCellReuseIdentifier:@"JYSellerCell"];
+    [self.tableView registerClass:[JYCommentCell class] forCellReuseIdentifier:@"JYCommentCell"];
 }
 
 #pragma mark *** 私有方法 ***
@@ -56,6 +60,42 @@
     self.tableView.tableHeaderView = headerView;
 }
 
+/** 配置底部的按钮 */
+- (void)configBottomButtons{
+    UIView *bottomView = [UIView new];
+    [self.view addSubview:bottomView];
+    [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(bottomBtnHeight);
+    }];
+    NSArray *btnNames = @[@"收藏",@"评论",@"赞",@"联系卖家",@"立即易货"];
+    NSArray *btnBgColors = @[kRGBColor(60, 183, 21),kRGBColor(55, 150, 84),kRGBColor(245, 245, 245)];
+    for (int i = 0; i < 3; i++) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [bottomView addSubview:btn];
+        [btn setTitle:btnNames[i] forState:UIControlStateNormal];
+        [btn setBackgroundColor:btnBgColors[2]];
+        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(i*bottomBtnWidth);
+            make.top.bottom.mas_equalTo(0);
+            make.width.mas_equalTo(bottomBtnWidth);
+        }];
+    }
+    
+    for (int i = 0; i < 2; i++) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [bottomView addSubview:btn];
+        [btn setTitle:btnNames[3+i] forState:UIControlStateNormal];
+        btn.titleLabel.textColor = [UIColor darkGrayColor];
+        [btn setBackgroundColor:btnBgColors[i]];
+        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo((kWindowW-3*bottomBtnWidth)/2);
+            make.left.mas_equalTo(3*bottomBtnWidth+i*(kWindowW-3*bottomBtnWidth)/2);
+            make.top.bottom.mas_equalTo(0);
+        }];
+    }
+}
+
 #pragma mark *** <UITableViewDataSource> ***
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -66,16 +106,26 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {//如果是第一个cell分区，那么只需要配置商品详情cell和商家信息cell
+    if (indexPath.section == 0) {/** 如果是第一个cell分区，那么只需要配置商品详情cell和商家信息cell */
         if (indexPath.row == 0) {
+        /** 商品详情cell */
             JYProductDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYProductDetailCell"];
+            cell.productDescLb.text = @"［附专柜小票］洗脸仪  乐天免税店买 5月12号韩国买的，只用过一次。";
+            cell.currentPriceLb.text = @"¥ 35";
+            cell.originPriceLb.text = @"¥ 45";
+            /** 需要先设置地点再设置时间，否则约束会乱，如果没有地点就不用设置 */
             cell.placeLb.text = @"浙江农林大学东湖校区";
-            return cell;
-        }else if (indexPath.row == 1){
-            JYSellerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYSellerCell"];
+            cell.publishTimeLb.text = @"5分钟前";
             return cell;
         }
-    }else{//如果是第二个分区，则配置评论cell
+    /** 商家信息cell */
+        JYSellerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYSellerCell"];
+        cell.headIV.image = [UIImage imageNamed:@"picture_11"];
+        cell.nickNameLb.text = @"我是大蕴蕴";
+        cell.schoolLb.text = @"浙江农林大学";
+        cell.rankIV.image = [UIImage imageNamed:@"picture_30"];
+        return cell;
+    }else{/** 如果是第二个分区，则配置评论cell */
         if (indexPath.row == 0) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
             if (cell == nil) {
@@ -84,15 +134,16 @@
             cell.textLabel.text = [NSString stringWithFormat:@"评论 %d",/** 评论的个数，从后台获取 */2];
             cell.detailTextLabel.text = [NSString stringWithFormat:@"赞 %d",/** 赞的个数，从后台获取 */5];
             return cell;
-        }else{
-            JYCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYCommentCell"];
-            cell.commentLb.text = @"我最近正想买个洗脸仪呢，这个真的好用么？拉萨的克己复礼上看见对方；拉丝  阿斯顿立法局阿里斯顿肌肤    ；拉框的设计风；  啊； 刻录机；肥胖纹哦 if 会看到你发了";
-            NSLog(@"cell.commentLb.height = %f",cell.commentLb.height);
-            return cell;
         }
+        JYCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYCommentCell"];
+        cell.headIV.image = [UIImage imageNamed:@"picture_46"];
+        cell.nickNameLb.text = @"乔昔之";
+        cell.timeLb.text = @"11-5 13:28";
+        cell.rankIV.image = [UIImage imageNamed:@"picture_38"];
+        [cell.goodBtn setTitle:@"5" forState:UIControlStateNormal];
+        cell.commentLb.text = @"我最近正想买个洗脸仪呢，这个真的好用么？味全丹麦活性菌，源自丹麦©SINCE1916.";
+        return cell;
     }
-    return nil;
-    
 }
 
 #pragma mark *** <UITableViewDelegate> ***
@@ -100,10 +151,10 @@
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewAutomaticDimension;
 }
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return [@[@[@120,@120],@[@40,@120,@120]][indexPath.section][indexPath.row] floatValue];
-//}
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 20;
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];//取消cell的选中状态
 }
@@ -163,6 +214,19 @@
         _pageControl.pageIndicatorTintColor = [UIColor blackColor];
     }
     return _pageControl;
+}
+
+- (UITableView *)tableView {
+	if(_tableView == nil) {
+		_tableView = [[UITableView alloc] init];
+        _tableView.dataSource = self;
+        _tableView.delegate = self;
+        [self.view addSubview:_tableView];
+        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(0);
+        }];
+	}
+	return _tableView;
 }
 
 @end

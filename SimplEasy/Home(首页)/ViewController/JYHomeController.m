@@ -611,9 +611,6 @@ typedef NS_ENUM(NSInteger, cellType) {
             }
         }
     }
-    
-        
-    
 
     static NSString *cellIndentifier = @"courseCell1";
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIndentifier];
@@ -625,8 +622,10 @@ typedef NS_ENUM(NSInteger, cellType) {
     NSLog(@"cellType%d",_cellType);
     //取消选择痕迹
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
     if (_cellType != freeCharge && indexPath.section == 2) {
-        JYProductDetailVC *productDetailVC = [kStoryboard(@"Main") instantiateViewControllerWithIdentifier:@"JYProductDetailVC"];
+        JYProductDetailVC *productDetailVC = [[JYProductDetailVC alloc] init];
+//        kVCFromSb(@"JYProductDetailVC", @"Main");
         productDetailVC.title = @"商品详情";
         productDetailVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:productDetailVC animated:YES];

@@ -9,15 +9,17 @@
 #import <UIKit/UIKit.h>
 
 @interface JYSellerCell : UITableViewCell
+
 /** 头像 */
-@property (weak, nonatomic) IBOutlet UIImageView *headIV;
+@property (nonatomic, strong) UIImageView *headIV;
 /** 昵称 */
-@property (weak, nonatomic) IBOutlet UILabel *nickNameLb;
+@property (nonatomic, strong) UILabel *nickNameLb;
 /** 学校 */
-@property (weak, nonatomic) IBOutlet UILabel *schoolLb;
+@property (nonatomic, strong) UILabel *schoolLb;
 /** 等级 */
-@property (weak, nonatomic) IBOutlet UIImageView *rankIV;
-/** 加关注 */
-@property (weak, nonatomic) IBOutlet UIButton *followBtn;
+@property (nonatomic, strong) UIImageView *rankIV;
+
+
+
 
 @end

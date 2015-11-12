@@ -9,17 +9,18 @@
 #import <UIKit/UIKit.h>
 
 @interface JYCommentCell : UITableViewCell
+
 /** 头像 */
-@property (weak, nonatomic) IBOutlet UIImageView *headIV;
+@property (nonatomic, strong) UIImageView *headIV;
 /** 昵称 */
-@property (weak, nonatomic) IBOutlet UILabel *nickNameLb;
+@property (nonatomic, strong) UILabel *nickNameLb;
 /** 时间 */
-@property (weak, nonatomic) IBOutlet UILabel *timeLb;
+@property (nonatomic, strong) UILabel *timeLb;
 /** 等级 */
-@property (weak, nonatomic) IBOutlet UIImageView *rankIV;
+@property (nonatomic, strong) UIImageView *rankIV;
 /** 评论 */
-@property (weak, nonatomic) IBOutlet UILabel *commentLb;
+@property (nonatomic, strong) UILabel *commentLb;
 /** 点赞 */
-@property (weak, nonatomic) IBOutlet UIButton *goodBtn;
+@property (nonatomic, strong) UIButton *goodBtn;
 
 @end
