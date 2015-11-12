@@ -7,7 +7,8 @@
 //
 
 #import "JYLoopViewModel.h"
-
+#import "JYLoopNetManager.h"
+#import "JYLoopModel.h"
 
 @implementation JYLoopViewModel
 -(NSMutableArray *)loopImageUrlArray{
@@ -25,13 +26,7 @@
 }
 - (void)getDataFromNetCompleteHandle:(CompletionHandle)completionHandle{
     self.dataTask = [JYLoopNetManager getLoopImageWithIndex:1 completionHandle:^(JYLoopModel *model, NSError *error) {
-        //清空数据
-        [self.dataArr removeAllObjects];
-        [self.loopImageUrlArray removeAllObjects];
-        [self.loopWebUrlArray removeAllObjects];
-        
         [self.dataArr addObjectsFromArray:model.data];
-        
         for (int i=0; i<self.dataArr.count; i++) {
             JYLoopImage *loopImage = [JYLoopImage objectWithKeyValues:self.dataArr[i]];
             NSString *imageURL = [NSString stringWithFormat:@"http://www.i-jianyi.com%@",loopImage.src];
@@ -45,6 +40,12 @@
 }
 
 - (void)refreshDataCompletionHandle:(CompletionHandle)completionHandle{
+     //清空数据
+    [self.dataArr removeAllObjects];
+    [self.loopImageUrlArray removeAllObjects];
+    [self.loopWebUrlArray removeAllObjects];
+    
+    
     [self getDataFromNetCompleteHandle:completionHandle];
 }
 - (void)getMoreDataCompletionHandle:(CompletionHandle)completionHandle{

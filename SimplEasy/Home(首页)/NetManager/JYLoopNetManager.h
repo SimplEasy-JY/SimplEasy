@@ -7,7 +7,7 @@
 //
 
 #import "JYBaseNetManager.h"
-#import "JYLoopModel.h"
+
 @interface JYLoopNetManager : JYBaseNetManager
 
 +(id)getLoopImageWithIndex:(NSInteger)index kCompletionHandle;

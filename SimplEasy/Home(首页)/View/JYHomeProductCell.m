@@ -9,6 +9,20 @@
 #import "JYHomeProductCell.h"
 #import "UIImage+Circle.h"
 @interface JYHomeProductCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
+@property (weak, nonatomic) IBOutlet UILabel *userName;
+@property (weak, nonatomic) IBOutlet UILabel *time;
+@property (weak, nonatomic) IBOutlet UILabel *currentPrice;
+@property (weak, nonatomic) IBOutlet UILabel *originalPrice;
+@property (weak, nonatomic) IBOutlet UIImageView *shopImageOne;
+@property (weak, nonatomic) IBOutlet UIImageView *shopImageTwo;
+@property (weak, nonatomic) IBOutlet UIImageView *shopImageThree;
+@property (weak, nonatomic) IBOutlet UILabel *placeNow;
+@property (weak, nonatomic) IBOutlet UIButton *collectButton;
+@property (weak, nonatomic) IBOutlet UIButton *reviewButton;
+@property (weak, nonatomic) IBOutlet UIButton *supportButton;
+@property (weak, nonatomic) IBOutlet UILabel *describeLabel;
+@property (weak, nonatomic) IBOutlet UIView *lineView;
 @property (weak, nonatomic) IBOutlet UIView *lineOne;
 @property (weak, nonatomic) IBOutlet UIView *lineTwo;
 @property (weak, nonatomic) IBOutlet UIView *longLine;
@@ -40,7 +54,27 @@
     [self.userButton bk_addEventHandler:^(id sender) {
         YSHLog(@"点击了用户头像");
     } forControlEvents:UIControlEventTouchUpInside];
+}
 
+    -(void)setMessage{
+    //图片
+    NSString *imageURL = [NSString stringWithFormat:@"http://www.i-jianyi.com%@",self.goodsItems.pic];
+    //地址
+    NSArray *strSchool = [self.goodsItems.schoolname componentsSeparatedByString:@"-"];
+    //时间
+    NSArray *strTime = [self.goodsItems.time componentsSeparatedByString:@" "];
+    NSLog(@"strtime%@",strTime);
+    NSString *time = [strTime[0] substringFromIndex:5];
+    /**  属性设置 */
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:self.goodsItems.headImg]placeholderImage:nil];
+    self.userImageView.image = [UIImage circleImageWithImage:self.userImageView.image borderWidth:0.5 borderColor:[UIColor whiteColor]];
+    [self.shopImageOne sd_setImageWithURL:[NSURL URLWithString:imageURL]];
+    self.userName.text = self.goodsItems.username;
+    self.describeLabel.text = self.goodsItems.name;
+    self.currentPrice.text = self.goodsItems.price;
+    self.time.text = time;
+    NSLog(@"strSchool%@",strSchool);
+    self.placeNow.text = [strSchool firstObject];;
     
 }
 

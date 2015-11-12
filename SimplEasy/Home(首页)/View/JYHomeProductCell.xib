@@ -116,15 +116,15 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kEX-E3-rPU">
                         <rect key="frame" x="0.0" y="75" width="320" height="98"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_11" translatesAutoresizingMaskIntoConstraints="NO" id="NlF-D5-zV6">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NlF-D5-zV6">
                                 <rect key="frame" x="10" y="0.0" width="98" height="98"/>
                                 <animations/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_11" translatesAutoresizingMaskIntoConstraints="NO" id="XRG-3Y-yDK">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XRG-3Y-yDK">
                                 <rect key="frame" x="111" y="0.0" width="98" height="98"/>
                                 <animations/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_11" translatesAutoresizingMaskIntoConstraints="NO" id="5Fb-Ni-Cik">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Fb-Ni-Cik">
                                 <rect key="frame" x="212" y="0.0" width="98" height="98"/>
                                 <animations/>
                             </imageView>

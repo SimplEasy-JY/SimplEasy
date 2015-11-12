@@ -7,7 +7,7 @@
 //
 
 #import "JYLoopNetManager.h"
-
+#import "JYLoopModel.h"
 @implementation JYLoopNetManager
 +(id)getLoopImageWithIndex:(NSInteger)index completionHandle:(void (^)(id, NSError *))completionHandle{
     NSString *path=@"http://www.i-jianyi.com/port/img/index";

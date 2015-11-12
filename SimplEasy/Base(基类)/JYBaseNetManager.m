@@ -27,13 +27,15 @@ static AFHTTPSessionManager *manager = nil;
 
 + (id)GET:(NSString *)path parameters:(NSDictionary *)params completionHandle:(void(^)(id responseObj, NSError *error))complete{
     // 打印网络请求， DDLog  与  NSLog 功能一样
-    YSHLog(@"Request Path: %@, Params:%@", path, params);
+
     return [[self sharedAFManager] GET:path parameters:params success:^void(NSURLSessionDataTask * task, id responseObject) {
         YSHLog(@"请求成功");
+
         complete(responseObject, nil);
     } failure:^void(NSURLSessionDataTask * task, NSError * error) {
         complete(nil, error);
-         YSHLog(@"请求失败");
+        
+         YSHLog(@"请求失败%@",error);
     }];
 }
 

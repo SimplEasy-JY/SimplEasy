@@ -60,7 +60,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wXk-Um-ZyM">
                         <rect key="frame" x="10" y="157" width="146" height="25"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="middleicon_32" translatesAutoresizingMaskIntoConstraints="NO" id="FE2-VK-ZIq">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_07" translatesAutoresizingMaskIntoConstraints="NO" id="FE2-VK-ZIq">
                                 <rect key="frame" x="4" y="5" width="12" height="15"/>
                                 <animations/>
                                 <constraints>
@@ -107,7 +107,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qi-Xi-soV">
                         <rect key="frame" x="164" y="157" width="146" height="25"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="middleicon_32" translatesAutoresizingMaskIntoConstraints="NO" id="zUo-lz-GaF">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_07" translatesAutoresizingMaskIntoConstraints="NO" id="zUo-lz-GaF">
                                 <rect key="frame" x="4" y="5" width="12" height="15"/>
                                 <animations/>
                                 <constraints>
@@ -244,7 +244,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="middleicon_32" width="7" height="10"/>
+        <image name="location_07" width="12" height="16"/>
         <image name="picture_35" width="196" height="196"/>
         <image name="picture_36" width="196" height="196"/>
     </resources>

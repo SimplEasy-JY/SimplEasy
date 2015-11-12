@@ -50,6 +50,9 @@
 		B02A701A1BE863AE00B8B05F /* JYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70191BE863AE00B8B05F /* JYTabBar.m */; };
 		B02A701C1BE86AA000B8B05F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B02A701B1BE86AA000B8B05F /* Assets.xcassets */; };
 		B04758D61BEB92D100C645EE /* JYWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B04758D51BEB92D100C645EE /* JYWebViewController.m */; };
+		B048007E1BF489DD007D39F4 /* JYGoodsNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B048007D1BF489DD007D39F4 /* JYGoodsNetManager.m */; };
+		B04800811BF48A65007D39F4 /* JYGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B04800801BF48A65007D39F4 /* JYGoodsModel.m */; };
+		B04800841BF48DF0007D39F4 /* JYGoodsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B04800831BF48DF0007D39F4 /* JYGoodsViewModel.m */; };
 		B089AA981BE9D09400E5D2CC /* JYLoopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AA971BE9D09400E5D2CC /* JYLoopModel.m */; };
 		B089AA9E1BE9D50700E5D2CC /* JYLoopViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AA9D1BE9D50700E5D2CC /* JYLoopViewModel.m */; };
 		B089AAA11BE9D70800E5D2CC /* JYLoopNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AAA01BE9D70800E5D2CC /* JYLoopNetManager.m */; };
@@ -163,6 +166,12 @@
 		B02A701B1BE86AA000B8B05F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B04758D41BEB92D100C645EE /* JYWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYWebViewController.h; sourceTree = "<group>"; };
 		B04758D51BEB92D100C645EE /* JYWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYWebViewController.m; sourceTree = "<group>"; };
+		B048007C1BF489DD007D39F4 /* JYGoodsNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYGoodsNetManager.h; sourceTree = "<group>"; };
+		B048007D1BF489DD007D39F4 /* JYGoodsNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYGoodsNetManager.m; sourceTree = "<group>"; };
+		B048007F1BF48A65007D39F4 /* JYGoodsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYGoodsModel.h; sourceTree = "<group>"; };
+		B04800801BF48A65007D39F4 /* JYGoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYGoodsModel.m; sourceTree = "<group>"; };
+		B04800821BF48DF0007D39F4 /* JYGoodsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYGoodsViewModel.h; sourceTree = "<group>"; };
+		B04800831BF48DF0007D39F4 /* JYGoodsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYGoodsViewModel.m; sourceTree = "<group>"; };
 		B089AA961BE9D09400E5D2CC /* JYLoopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLoopModel.h; sourceTree = "<group>"; };
 		B089AA971BE9D09400E5D2CC /* JYLoopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLoopModel.m; sourceTree = "<group>"; };
 		B089AA9C1BE9D50700E5D2CC /* JYLoopViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLoopViewModel.h; sourceTree = "<group>"; };
@@ -368,6 +377,8 @@
 				B089AA971BE9D09400E5D2CC /* JYLoopModel.m */,
 				83DECFB51BF1C28900A1FE7C /* JYClassifyModel.h */,
 				83DECFB61BF1C28900A1FE7C /* JYClassifyModel.m */,
+				B048007F1BF48A65007D39F4 /* JYGoodsModel.h */,
+				B04800801BF48A65007D39F4 /* JYGoodsModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -377,6 +388,8 @@
 			children = (
 				B089AA9F1BE9D70800E5D2CC /* JYLoopNetManager.h */,
 				B089AAA01BE9D70800E5D2CC /* JYLoopNetManager.m */,
+				B048007C1BF489DD007D39F4 /* JYGoodsNetManager.h */,
+				B048007D1BF489DD007D39F4 /* JYGoodsNetManager.m */,
 			);
 			path = NetManager;
 			sourceTree = "<group>";
@@ -403,6 +416,8 @@
 			children = (
 				B089AA9C1BE9D50700E5D2CC /* JYLoopViewModel.h */,
 				B089AA9D1BE9D50700E5D2CC /* JYLoopViewModel.m */,
+				B04800821BF48DF0007D39F4 /* JYGoodsViewModel.h */,
+				B04800831BF48DF0007D39F4 /* JYGoodsViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -848,6 +863,7 @@
 				8344A9931BE89D6200AD007B /* ScrollDisplayViewController.m in Sources */,
 				B02A70101BE8609600B8B05F /* JYMessageController.m in Sources */,
 				83476B751BEB1C6C0061F61E /* iCarousel.m in Sources */,
+				B048007E1BF489DD007D39F4 /* JYGoodsNetManager.m in Sources */,
 				B0CC9A8E1BF0A9F500FCC177 /* JYFreeChargeCell.m in Sources */,
 				83E75EC41BEA45C70020D54D /* JYProductDetailCell.m in Sources */,
 				B02A70061BE85E4F00B8B05F /* DGElasticPullToRefreshExtensions.swift in Sources */,
@@ -866,6 +882,7 @@
 				8328A4A61BE849800021767D /* NSObject+Common.m in Sources */,
 				8328A4A81BE849800021767D /* NSString+QRCode.m in Sources */,
 				B0CC9A891BF07E3800FCC177 /* JYRecommendCell.m in Sources */,
+				B04800811BF48A65007D39F4 /* JYGoodsModel.m in Sources */,
 				B02A70071BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift in Sources */,
 				8328A4A91BE849800021767D /* UIBarButtonItem+Extension.m in Sources */,
 				8328A4B21BE84E1F0021767D /* JYBaseNetManager.m in Sources */,
@@ -875,6 +892,7 @@
 				B0DA5E741BE8D191001A0D85 /* ImageScrollView.m in Sources */,
 				B02A701A1BE863AE00B8B05F /* JYTabBar.m in Sources */,
 				8328A4A71BE849800021767D /* NSString+PJR.m in Sources */,
+				B04800841BF48DF0007D39F4 /* JYGoodsViewModel.m in Sources */,
 				8328A43C1BE8478B0021767D /* main.m in Sources */,
 				B089AA9E1BE9D50700E5D2CC /* JYLoopViewModel.m in Sources */,
 				83476B7B1BEB34830061F61E /* JYClassifyViewController.m in Sources */,
