@@ -8,18 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface JYProductDetailCell : UITableViewCell
+
 /** 商品描述 */
-@property (weak, nonatomic) IBOutlet UILabel *productDescLb;
+@property (nonatomic, strong) UILabel *productDescLb;
 /** 现在的价格 */
-@property (weak, nonatomic) IBOutlet UILabel *currentPriceLb;
+@property (nonatomic, strong) UILabel *currentPriceLb;
 /** 原价 */
-@property (weak, nonatomic) IBOutlet UILabel *originPriceLb;
+@property (nonatomic, strong) UILabel *originPriceLb;
 /** 发布时间（几分钟前） */
-@property (weak, nonatomic) IBOutlet UILabel *publishTimeLb;
+@property (nonatomic, strong) UILabel *publishTimeLb;
 /** 发布地点 */
-@property (weak, nonatomic) IBOutlet UILabel *placeLb;
+@property (nonatomic, strong) UILabel *placeLb;
 /** 分享按钮 */
-@property (weak, nonatomic) IBOutlet UIButton *shareBtn;
+@property (nonatomic, strong) UIButton *shareBtn;
+
+
+
+
 
 @end

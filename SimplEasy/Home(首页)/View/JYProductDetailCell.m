@@ -7,22 +7,148 @@
 //
 
 #import "JYProductDetailCell.h"
-
+#import "UILabel+Line.h"
 @interface JYProductDetailCell ()
-@property (weak, nonatomic) IBOutlet UIView *timeAndPlaceView;
+
+/** 放置时间地点的view */
+@property (nonatomic, strong) UIView *timeAndPlaceView;
+/** 小气球 */
+@property (nonatomic, strong) UIImageView *locationIV;
 
 @end
 
 @implementation JYProductDetailCell
 
-- (void)awakeFromNib {
-    self.timeAndPlaceView.layer.cornerRadius = 10;
+
+- (UILabel *)productDescLb {
+    if(_productDescLb == nil) {
+        _productDescLb = [[UILabel alloc] init];
+        _productDescLb.font = [UIFont systemFontOfSize:12];
+        _productDescLb.numberOfLines = 0;
+        [self.contentView addSubview:_productDescLb];
+        [_productDescLb mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.top.mas_equalTo(10);
+            make.right.mas_equalTo(self.contentView).mas_equalTo(-55);
+        }];
+    }
+    return _productDescLb;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (UIButton *)shareBtn {
+    if(_shareBtn == nil) {
+        _shareBtn = [[UIButton alloc] init];
+        [_shareBtn setImage:[UIImage imageNamed:@"middleicon_16"] forState:UIControlStateNormal];
+        [_shareBtn setTitle:@"分享" forState:UIControlStateNormal];
+        [self.contentView addSubview:_shareBtn];
+        [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(10);
+            make.right.mas_equalTo(0);
+            make.width.height.mas_equalTo(40);
+        }];
+    }
+    return _shareBtn;
 }
+
+- (UILabel *)currentPriceLb {
+    if(_currentPriceLb == nil) {
+        _currentPriceLb = [[UILabel alloc] init];
+        _currentPriceLb.font = [UIFont systemFontOfSize:17];
+        _currentPriceLb.textColor = [UIColor redColor];
+        [self.contentView addSubview:_currentPriceLb];
+        [_currentPriceLb mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(10);
+            make.top.mas_equalTo(self.productDescLb.mas_bottom).mas_equalTo(10);
+        }];
+    }
+    return _currentPriceLb;
+}
+
+- (UILabel *)originPriceLb {
+    if(_originPriceLb == nil) {
+        _originPriceLb = [[UILabel alloc] init];
+        _originPriceLb.font = [UIFont systemFontOfSize:14];
+        _originPriceLb.textColor = [UIColor darkGrayColor];
+        [self.contentView addSubview:_originPriceLb];
+        
+        [_originPriceLb bk_addObserverForKeyPath:@"text" task:^(id target) {
+            [target addMidLine];
+        }];
+        [_originPriceLb mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(self.currentPriceLb.mas_bottom);
+            make.left.mas_equalTo(self.currentPriceLb.mas_right).mas_equalTo(10);
+        }];
+    }
+    return _originPriceLb;
+}
+
+- (UIView *)timeAndPlaceView {
+	if(_timeAndPlaceView == nil) {
+		_timeAndPlaceView = [[UIView alloc] init];
+        _timeAndPlaceView.layer.cornerRadius = 10;
+        [self.contentView addSubview:_timeAndPlaceView];
+        [_timeAndPlaceView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(20);
+            make.left.mas_equalTo(10);
+            make.bottom.mas_equalTo(-10);
+            make.top.mas_equalTo(self.currentPriceLb.mas_bottom).mas_equalTo(10);
+        }];
+	}
+	return _timeAndPlaceView;
+}
+
+- (UILabel *)publishTimeLb {
+    if(_publishTimeLb == nil) {
+        _publishTimeLb = [[UILabel alloc] init];
+        _publishTimeLb.font = [UIFont systemFontOfSize:11];
+        [self.timeAndPlaceView addSubview:_publishTimeLb];
+        [_publishTimeLb mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(10);
+            make.top.bottom.mas_equalTo(0);
+            if (!_placeLb) {
+                make.right.mas_equalTo(-10);
+            }
+        }];
+    }
+    return _publishTimeLb;
+}
+
+- (UIImageView *)locationIV {
+    if(_locationIV == nil) {
+        _locationIV = [[UIImageView alloc] init];
+        _locationIV.contentMode = UIViewContentModeScaleAspectFit;
+        _locationIV.image = [UIImage imageNamed:@"middleicon_20"];
+        [self.timeAndPlaceView addSubview:_locationIV];
+        [_locationIV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.publishTimeLb.mas_right).mas_equalTo(10);
+            make.centerY.mas_equalTo(self.publishTimeLb.centerY);
+            make.height.mas_equalTo(12);
+            make.width.mas_equalTo(20);
+        }];
+    }
+    return _locationIV;
+}
+
+- (UILabel *)placeLb {
+    if(_placeLb == nil) {
+        _placeLb = [[UILabel alloc] init];
+        _placeLb.font = [UIFont systemFontOfSize:11];
+        [self.timeAndPlaceView addSubview:_placeLb];
+        [_placeLb mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.locationIV.mas_right).mas_equalTo(0);
+            make.top.bottom.mas_equalTo(0);
+            make.right.mas_equalTo(-10);
+        }];
+    }
+    return _placeLb;
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self.timeAndPlaceView.backgroundColor = kRGBColor(236, 236, 236);
+    self.shareBtn.selected = NO;
+    return self;
+}
+
+
 
 @end
