@@ -48,7 +48,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="901-Ga-QV7" userLabel="价格">
-                        <rect key="frame" x="244" y="20" width="70" height="30"/>
+                        <rect key="frame" x="268" y="20" width="37" height="30"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥78" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GnM-VI-07l" userLabel="现价">
                                 <rect key="frame" x="0.0" y="0.0" width="37" height="30"/>
@@ -56,16 +56,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TLp-Ew-UU4">
-                                <rect key="frame" x="39" y="15" width="31" height="2"/>
-                                <animations/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="31" id="JbN-Mu-Kgw"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥106" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSj-V3-lV8" userLabel="原价">
-                                <rect key="frame" x="37" y="4" width="33" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSj-V3-lV8" userLabel="原价">
+                                <rect key="frame" x="37" y="4" width="0.0" height="22"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -78,13 +70,7 @@
                             <constraint firstItem="GnM-VI-07l" firstAttribute="leading" secondItem="901-Ga-QV7" secondAttribute="leading" id="0hF-C9-GWu"/>
                             <constraint firstAttribute="bottom" secondItem="NSj-V3-lV8" secondAttribute="bottom" constant="4" id="35C-VW-1nf"/>
                             <constraint firstAttribute="height" constant="30" id="3RE-cp-9nG"/>
-                            <constraint firstAttribute="bottom" secondItem="TLp-Ew-UU4" secondAttribute="bottom" constant="13" id="3Zl-br-hoZ"/>
-                            <constraint firstAttribute="bottom" secondItem="TLp-Ew-UU4" secondAttribute="bottom" constant="14" id="3ea-V6-RgJ"/>
-                            <constraint firstItem="TLp-Ew-UU4" firstAttribute="leading" secondItem="901-Ga-QV7" secondAttribute="leading" constant="40" id="5y9-RA-tkl"/>
                             <constraint firstItem="GnM-VI-07l" firstAttribute="top" secondItem="901-Ga-QV7" secondAttribute="top" id="7NM-GC-SfZ"/>
-                            <constraint firstAttribute="trailing" secondItem="TLp-Ew-UU4" secondAttribute="trailing" id="7be-Gf-sRT"/>
-                            <constraint firstAttribute="trailing" secondItem="TLp-Ew-UU4" secondAttribute="trailing" constant="8" id="8wa-zN-n3r"/>
-                            <constraint firstItem="TLp-Ew-UU4" firstAttribute="top" secondItem="901-Ga-QV7" secondAttribute="top" constant="15" id="Nqk-ls-VmA"/>
                             <constraint firstItem="NSj-V3-lV8" firstAttribute="top" secondItem="901-Ga-QV7" secondAttribute="top" constant="4" id="Nte-RZ-nGX"/>
                             <constraint firstItem="GnM-VI-07l" firstAttribute="top" secondItem="901-Ga-QV7" secondAttribute="top" id="TB7-hp-la9"/>
                             <constraint firstAttribute="bottom" secondItem="GnM-VI-07l" secondAttribute="bottom" id="WE1-zW-ae5"/>
@@ -94,7 +80,6 @@
                             <constraint firstItem="NSj-V3-lV8" firstAttribute="top" secondItem="901-Ga-QV7" secondAttribute="top" constant="4" id="hsg-py-Kh0"/>
                             <constraint firstAttribute="bottom" secondItem="GnM-VI-07l" secondAttribute="bottom" id="k0Z-Kv-FMd"/>
                             <constraint firstItem="NSj-V3-lV8" firstAttribute="leading" secondItem="GnM-VI-07l" secondAttribute="trailing" id="kgy-tA-dOu"/>
-                            <constraint firstItem="TLp-Ew-UU4" firstAttribute="top" secondItem="901-Ga-QV7" secondAttribute="top" constant="14" id="lgR-zb-Zap"/>
                             <constraint firstAttribute="trailing" secondItem="NSj-V3-lV8" secondAttribute="trailing" id="mt1-O9-nTf"/>
                             <constraint firstAttribute="bottom" secondItem="NSj-V3-lV8" secondAttribute="bottom" constant="4" id="wUE-pv-Ygi"/>
                         </constraints>
@@ -106,10 +91,6 @@
                                 <exclude reference="hsg-py-Kh0"/>
                                 <exclude reference="mt1-O9-nTf"/>
                                 <exclude reference="wUE-pv-Ygi"/>
-                                <exclude reference="3ea-V6-RgJ"/>
-                                <exclude reference="5y9-RA-tkl"/>
-                                <exclude reference="8wa-zN-n3r"/>
-                                <exclude reference="lgR-zb-Zap"/>
                             </mask>
                         </variation>
                     </view>
@@ -342,10 +323,11 @@
                     <constraint firstAttribute="trailingMargin" secondItem="H8V-bk-Vnp" secondAttribute="trailing" constant="-8" id="NTn-EY-9mJ"/>
                     <constraint firstItem="rTI-zh-pXd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="NbS-zK-KOb"/>
                     <constraint firstItem="55J-41-HiI" firstAttribute="top" secondItem="kEX-E3-rPU" secondAttribute="bottom" constant="5" id="P6C-gk-8QU"/>
+                    <constraint firstAttribute="trailing" secondItem="901-Ga-QV7" secondAttribute="trailing" constant="15" id="PCI-ia-AuX"/>
                     <constraint firstItem="iE6-NR-Gb3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="PPW-Fm-jMP"/>
                     <constraint firstItem="H8V-bk-Vnp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="QIv-vM-O79"/>
                     <constraint firstItem="4eT-WG-uSR" firstAttribute="top" secondItem="55J-41-HiI" secondAttribute="bottom" constant="10" id="QJO-h1-B9Q"/>
-                    <constraint firstItem="901-Ga-QV7" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="2" id="Qo8-Cs-U6O"/>
+                    <constraint firstItem="901-Ga-QV7" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="7" id="Qo8-Cs-U6O"/>
                     <constraint firstItem="H8V-bk-Vnp" firstAttribute="top" secondItem="iE6-NR-Gb3" secondAttribute="bottom" constant="6" id="RfJ-AQ-aWY"/>
                     <constraint firstAttribute="trailingMargin" secondItem="kEX-E3-rPU" secondAttribute="trailing" constant="-8" id="SMY-f1-GCw"/>
                     <constraint firstItem="uK4-uy-yPO" firstAttribute="leading" secondItem="tJg-kS-jlR" secondAttribute="trailing" id="TFq-Rm-Mbx"/>
@@ -417,11 +399,12 @@
                         <exclude reference="xOL-jo-4Cf"/>
                         <exclude reference="X2z-ub-nbA"/>
                         <exclude reference="h8a-QO-I6K"/>
-                        <exclude reference="esg-rf-aFR"/>
-                        <exclude reference="poI-lg-1Ir"/>
                         <exclude reference="aEy-P1-6yB"/>
                         <exclude reference="hHJ-9M-uWx"/>
                         <exclude reference="wL5-vv-Feh"/>
+                        <exclude reference="Qo8-Cs-U6O"/>
+                        <exclude reference="esg-rf-aFR"/>
+                        <exclude reference="poI-lg-1Ir"/>
                         <exclude reference="7RG-BO-0LW"/>
                         <exclude reference="Vhu-eH-HUB"/>
                         <exclude reference="ZSN-eC-fEr"/>
@@ -442,7 +425,6 @@
                 <outlet property="describeLabel" destination="55J-41-HiI" id="THE-G6-zTb"/>
                 <outlet property="lineOne" destination="MDz-qU-M0V" id="MX4-EI-oct"/>
                 <outlet property="lineTwo" destination="uK4-uy-yPO" id="WYd-ib-939"/>
-                <outlet property="lineView" destination="TLp-Ew-UU4" id="WIE-av-aUA"/>
                 <outlet property="longLine" destination="H8V-bk-Vnp" id="5Rz-6O-Ls8"/>
                 <outlet property="originalPrice" destination="NSj-V3-lV8" id="HxE-I9-pbm"/>
                 <outlet property="placeNow" destination="4eT-WG-uSR" id="Ool-J7-vSQ"/>

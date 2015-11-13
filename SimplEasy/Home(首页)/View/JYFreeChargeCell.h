@@ -7,16 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "JYGoodsModel.h"
 @interface JYFreeChargeCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIButton *leftButton;
-@property (weak, nonatomic) IBOutlet UIButton *rightButton;
-@property (weak, nonatomic) IBOutlet UIImageView *leftImage;
-@property (weak, nonatomic) IBOutlet UIImageView *rightImage;
-@property (weak, nonatomic) IBOutlet UIButton *leftShopButton;
-@property (weak, nonatomic) IBOutlet UIButton *rightShopButton;
-@property (weak, nonatomic) IBOutlet UILabel *letfLabel;
-@property (weak, nonatomic) IBOutlet UILabel *rightLabel;
-@property(assign,nonatomic)NSInteger goodsId;
 
+//@property(assign,nonatomic)NSInteger firstGoodsId;
+//@property(assign,nonatomic)NSInteger secondGoodsId;
+@property(strong,nonatomic)JYGoodsItems *firstGoodsItem;
+@property(strong,nonatomic)JYGoodsItems *secondGoodsItem;
+
+-(void)setAttribute;
 @end

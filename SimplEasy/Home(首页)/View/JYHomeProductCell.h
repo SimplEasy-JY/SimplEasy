@@ -11,6 +11,6 @@
 @interface JYHomeProductCell : UITableViewCell
 @property(strong,nonatomic)JYGoodsItems *goodsItems;
 
--(void)setMessage;
+-(void)setAttribute;
 
 @end

@@ -11,4 +11,5 @@
 @interface JYLoopViewModel : JYBaseViewModel
 @property(strong,nonatomic)NSMutableArray *loopImageUrlArray ;
 @property(strong,nonatomic)NSMutableArray *loopWebUrlArray;
+@property(assign,nonatomic)NSInteger type ;
 @end

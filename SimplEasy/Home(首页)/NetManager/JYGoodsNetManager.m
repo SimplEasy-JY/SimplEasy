@@ -14,7 +14,6 @@
     
     return [self GET:path parameters:params completionHandle:^(id responseObj, NSError *error) {
         completionHandle([JYGoodsModel objectWithKeyValues:responseObj], error);
-        NSLog(@"%@",responseObj);
         NSLog(@"error%@",error);
     }];
 }

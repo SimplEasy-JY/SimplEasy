@@ -117,6 +117,7 @@
     [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
     [[UINavigationBar appearance] setTintColor:JYGlobalBg];
     [[UINavigationBar appearance] setTranslucent:NO];
+
 }
 
 /** 配置新特性（或欢迎界面） */

@@ -7,7 +7,15 @@
 //
 
 #import "JYRecommendCell.h"
-
+#import "UILabel+Line.h"
+@interface JYRecommendCell ()
+@property (weak, nonatomic) IBOutlet UIButton *shopButton;
+@property (weak, nonatomic) IBOutlet UILabel *describeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *placeNow;
+@property (weak, nonatomic) IBOutlet UILabel *currentPrice;
+@property (weak, nonatomic) IBOutlet UILabel *originalPrice;
+@property (weak, nonatomic) IBOutlet UIImageView *shopImage;
+@end
 @implementation JYRecommendCell
 
 - (void)awakeFromNib {
@@ -19,8 +27,21 @@
     self.currentPrice.textColor = kRGBColor(189, 33, 33);
     self.originalPrice.textColor = kRGBColor(152, 152, 152);
     self.describeLabel.textColor = kRGBColor(102, 102, 102);
+    [self.originalPrice addMidLine];
     
     
+}
+-(void)setAttribute{
+    //图片
+    NSString *imageURL = [NSString stringWithFormat:@"http://www.i-jianyi.com%@",self.goodsItems.pic];
+    //地址
+    NSArray *strSchool = [self.goodsItems.schoolname componentsSeparatedByString:@"-"];
+    //时间
+    /**  属性设置 */
+    [self.shopImage sd_setImageWithURL:[NSURL URLWithString:imageURL]];
+    self.describeLabel.text = self.goodsItems.name;
+    self.currentPrice.text = [NSString stringWithFormat:@"￥%@",self.goodsItems.price];
+    self.placeNow.text = [strSchool firstObject];;
     
 }
 

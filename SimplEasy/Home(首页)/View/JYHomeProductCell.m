@@ -8,6 +8,7 @@
 
 #import "JYHomeProductCell.h"
 #import "UIImage+Circle.h"
+#import "UILabel+Line.h"
 @interface JYHomeProductCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
@@ -54,27 +55,28 @@
     [self.userButton bk_addEventHandler:^(id sender) {
         YSHLog(@"点击了用户头像");
     } forControlEvents:UIControlEventTouchUpInside];
+    [self.originalPrice addMidLine];
 }
 
-    -(void)setMessage{
+-(void)setAttribute{
     //图片
     NSString *imageURL = [NSString stringWithFormat:@"http://www.i-jianyi.com%@",self.goodsItems.pic];
-    //地址
-    NSArray *strSchool = [self.goodsItems.schoolname componentsSeparatedByString:@"-"];
+
     //时间
     NSArray *strTime = [self.goodsItems.time componentsSeparatedByString:@" "];
-    NSLog(@"strtime%@",strTime);
     NSString *time = [strTime[0] substringFromIndex:5];
     /**  属性设置 */
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:self.goodsItems.headImg]placeholderImage:nil];
-    self.userImageView.image = [UIImage circleImageWithImage:self.userImageView.image borderWidth:0.5 borderColor:[UIColor whiteColor]];
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:self.goodsItems.headImg] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        self.userImageView.image = [UIImage circleImageWithImage:self.userImageView.image borderWidth:0.5 borderColor:[UIColor whiteColor]];
+    }];
+    
     [self.shopImageOne sd_setImageWithURL:[NSURL URLWithString:imageURL]];
     self.userName.text = self.goodsItems.username;
     self.describeLabel.text = self.goodsItems.name;
-    self.currentPrice.text = self.goodsItems.price;
+    self.currentPrice.text = [NSString stringWithFormat:@"￥%@ ",self.goodsItems.price];
     self.time.text = time;
-    NSLog(@"strSchool%@",strSchool);
-    self.placeNow.text = [strSchool firstObject];;
+    self.placeNow.text = self.goodsItems.schoolname ;
     
 }
 

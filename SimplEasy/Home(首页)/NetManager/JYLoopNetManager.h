@@ -10,5 +10,5 @@
 
 @interface JYLoopNetManager : JYBaseNetManager
 
-+(id)getLoopImageWithIndex:(NSInteger)index kCompletionHandle;
++(id)getLoopImageWithType:(NSInteger)type kCompletionHandle;
 @end

@@ -7,14 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "JYGoodsModel.h"
 @interface JYRecommendCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIButton *shopButton;
-@property (weak, nonatomic) IBOutlet UILabel *describeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *placeNow;
-@property (weak, nonatomic) IBOutlet UILabel *currentPrice;
-@property (weak, nonatomic) IBOutlet UILabel *originalPrice;
-@property (weak, nonatomic) IBOutlet UIImageView *shopImage;
 
+@property(strong,nonatomic)JYGoodsItems *goodsItems;
+
+-(void)setAttribute;
 
 @end

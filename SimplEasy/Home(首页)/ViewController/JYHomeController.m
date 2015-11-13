@@ -51,6 +51,12 @@ static NSString *JYChargeCellIndentifier = @"freeChargeCell";
 /**  segmented Control */
 @property(strong,nonatomic)NSArray *segmentItemsArray;
 
+@property(strong,nonatomic)NSArray *goodsTitleArray;
+
+
+
+
+
 
 
 
@@ -60,6 +66,11 @@ static NSString *JYChargeCellIndentifier = @"freeChargeCell";
 
 @implementation JYHomeController
 #pragma mark -枚举
+typedef NS_ENUM(NSInteger, loopType) {
+    //以下是枚举成员
+    firstLoop = 1,
+    secondLoop = 2,
+};
 typedef NS_ENUM(NSInteger, cellType) {
     //以下是枚举成员
     homeProduct = 0,
@@ -67,6 +78,13 @@ typedef NS_ENUM(NSInteger, cellType) {
     freeCharge = 2,
 };
 #pragma mark -懒加载
+-(NSArray *)goodsTitleArray{
+    if (!_goodsTitleArray) {
+        self.goodsTitleArray = [[NSArray  alloc]initWithObjects:@"all",@"hot",@"free",nil];
+    }
+    return _goodsTitleArray;
+    
+}
 -(NSArray *)segmentItemsArray{
     if (!_segmentItemsArray) {
         self.segmentItemsArray = [[NSArray  alloc]initWithObjects:@"今日上新",@"精选推荐",@"免费易货",nil];
@@ -202,61 +220,57 @@ typedef NS_ENUM(NSInteger, cellType) {
     CGRect frame = CGRectMake(0, 0, 190, 28);
     /**  加中间层，防止切换闪 */
     UIView *titleView = [[UIView alloc] initWithFrame:frame];
-    UIColor *color =  [UIColor whiteColor];
-    [titleView setBackgroundColor:color];
-    titleView.layer.cornerRadius = 15;
+    //设置边框宽度和颜色   取消黑线
+    [titleView.layer setBorderWidth:1];
+    [titleView.layer setBorderColor:[UIColor whiteColor].CGColor];
     titleView.layer.masksToBounds = YES;
     UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:frame];
+
     /**  设置自定义搜索图片 */
+    
     [searchBar setImage:[UIImage imageNamed:@"topicon_3"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
-    searchBar.backgroundColor = color;
-    searchBar.layer.cornerRadius = 15;
-    searchBar.layer.masksToBounds = YES;
+    //设置背景颜色
+    UIView *searchTextField = nil;
+    searchBar.barTintColor = [UIColor whiteColor];
+    searchTextField = [[[searchBar.subviews firstObject] subviews] lastObject];
+    searchTextField.backgroundColor = kRGBColor(240, 240, 240);
+
     
     
 #warning 后台数据替换
-    searchBar.placeholder = @"老板娘怀孕，全场免费~";
+    searchBar.placeholder = @"简易破蛋人大酬宾~";
     searchBar.delegate = self;
     [titleView addSubview:searchBar];
     self.navigationItem.titleView = titleView;
 }
 
 -(void)setupTableView{
+    self.loopVM.type = firstLoop;
     [self.loopVM refreshDataCompletionHandle:^(NSError *error) {
-//        [self.tableView reloadData];
         [self.firstLoopView reloadData];
         YSHLog(@"获取数据");
+        self.loopVM.type = secondLoop;
+        [self.loopVM refreshDataCompletionHandle:^(NSError *error) {
+            [self.thirdLoopView reloadData];
+        }];
     }];
     
-    _page = 1;
-    self.goodsVM.params = [self setParamsWithPage:[NSString stringWithFormat:@"%d",_page] title:@"new" sort:@"all"];
-   [self.goodsVM refreshDataCompletionHandle:^(NSError *error) {
-//       [self.tableView reloadData];
-       NSInteger index = 2;
-       NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:index];
-       [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
-   }];
+    //加载数据
+    [self isRefresh:YES];
+    
     //下拉刷新
     DGElasticPullToRefreshLoadingViewCircle *loadingView = [DGElasticPullToRefreshLoadingViewCircle new];
     loadingView.tintColor = [UIColor blueColor];
     [self.tableView dg_addPullToRefreshWithActionHandler:^{
-//        [self.tableView reloadData];
+        [self isRefresh:YES];
         [self.tableView dg_stopLoading];
     } loadingView:loadingView];
     [self.tableView dg_setPullToRefreshBackgroundColor:self.tableView.backgroundColor];
     [self.tableView dg_setPullToRefreshFillColor:JYGlobalBg];
     
-    //添加下拉刷新
+    //添加上拉加载
     self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        _page ++;
-        self.goodsVM.params = [self setParamsWithPage:[NSString stringWithFormat:@"%d",_page] title:@"new" sort:@"all"];
-        [self.goodsVM getMoreDataCompletionHandle:^(NSError *error) {
-            //       [self.tableView reloadData];
-            NSInteger index = 2;
-            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:index];
-            [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
-            [self.tableView.footer endRefreshing];
-        }];
+        [self isRefresh:NO];
     }];
     
     //cell的分割线
@@ -273,7 +287,7 @@ typedef NS_ENUM(NSInteger, cellType) {
     } else if (carousel == _secondLoopView){
         return 3;
     }
-    return 10;
+    return self.loopVM.loopImageUrlArray.count;
     
     
 }
@@ -305,23 +319,19 @@ typedef NS_ENUM(NSInteger, cellType) {
         UIImageView *imageView = (UIImageView *)[view viewWithTag:100];
         imageView.image = [UIImage imageNamed:@"middleicon_15"];
         UILabel *label = (UILabel *)[view viewWithTag:101];
-        label.text =  @"test~test~test~test~test~test~";
+        label.text =  @"【急需】求购二手小电驴，价格1500左右 ";
+        label.font = [UIFont systemFontOfSize:13];
         return  view;
     }else if (carousel == _thirdLoopView) {
         if (!view) {
             view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, (kWindowW-20)/2, 100)];
             UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, (kWindowW-20)/2, 100 )];
-//            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(30, 0, kWindowW-30, 30)];
             imageView.tag = 100;
             imageView.backgroundColor = [UIColor yellowColor];
-//            label.tag = 101;
             [view addSubview:imageView];
-//            [view addSubview:label];
         }
-//        UIImageView *imageView = (UIImageView *)[view viewWithTag:100];
-//        imageView.image = [UIImage imageNamed:@"middleicon_15"];
-//        UILabel *label = (UILabel *)[view viewWithTag:101];
-//        label.text =  @"test~test~test~test~test~test~";
+        UIImageView *imageView = (UIImageView *)[view viewWithTag:100];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:self.loopVM.loopImageUrlArray[index]] placeholderImage:nil];
         return  view;
 
     }
@@ -402,6 +412,10 @@ typedef NS_ENUM(NSInteger, cellType) {
     else if(section == 1) {
         return 1;
     } else {
+        if (_cellType == 2) {
+            return (self.goodsVM.dataArr.count / 2 + (self.goodsVM.dataArr.count%2 == 0 ?0:1));
+            
+        }
         return self.goodsVM.dataArr.count;
     }
 }
@@ -494,9 +508,7 @@ typedef NS_ENUM(NSInteger, cellType) {
                     sender.selected = YES;
                     _currentButton = sender;
                     _cellType = (int)sender.tag;
-                    NSInteger index = 2;
-                    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:index];
-                    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+                    [self isRefresh:YES];
                     YSHLog(@"sender:%d",(int)sender.tag);
                 }
             } forControlEvents:UIControlEventTouchUpInside];
@@ -586,17 +598,17 @@ typedef NS_ENUM(NSInteger, cellType) {
                 JYHomeProductCell *cell = [tableView dequeueReusableCellWithIdentifier:JYHomeProductCellIndentifier];
                 if (self.goodsVM.dataArr.count != 0) {
                     cell.goodsItems = self.goodsVM.dataArr[indexPath.row];
-                    [cell setMessage];
+                    [cell setAttribute];
                 }
                 return cell;
             }
                 break;
             case recommend:{
-
                 JYRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:JYRecommendCellIndentifier];
-                cell.describeLabel.text = @"dagjf dasf gdak fgdks gf dksaghf dkhag fkdhag fd反倒是飞洒发飞";
-                cell.currentPrice.text = @"1000";
-                cell.shopImage.image = [UIImage scaleToSize:[UIImage imageNamed:@"picture_15"] size:CGSizeMake(110.0, 82.0)];
+                if (self.goodsVM.dataArr.count != 0) {
+                    cell.goodsItems = self.goodsVM.dataArr[indexPath.row];
+                    [cell setAttribute];
+                }
 
                 return cell;
             }
@@ -604,8 +616,11 @@ typedef NS_ENUM(NSInteger, cellType) {
             case freeCharge: {
                 JYFreeChargeCell *cell = [tableView dequeueReusableCellWithIdentifier:JYChargeCellIndentifier];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.goodsId = 10;
-                
+                if (self.goodsVM.dataArr.count != 0) {
+                    cell.firstGoodsItem = self.goodsVM.dataArr[2*indexPath.row];
+                    cell.secondGoodsItem = self.goodsVM.dataArr[2*indexPath.row  + 1];
+                    [cell setAttribute];
+                }
                 return  cell;
                 
             }
@@ -634,13 +649,32 @@ typedef NS_ENUM(NSInteger, cellType) {
    
 
 }
-
--(NSDictionary *)setParamsWithPage:(NSString *)page title:(NSString *)title sort:(NSString *)sort {
+#pragma mark - 方法封装
+/**  生成params参数 */
+-(NSDictionary *)setParams {
     NSMutableDictionary *params = [NSMutableDictionary new];
-    params[@"page"] = page;
-    params[@"title"] = title;
-    params[@"sort"] = sort;
-    return  params;
+    params[@"page"] = [NSString stringWithFormat:@"%d",_page];
+    params[@"title"] = self.goodsTitleArray[_cellType];
+    params[@"sort"] = @"all";
+    return  [params copy];
 }
-
+/**  发送请求并刷新 */
+-(void)isRefresh:(BOOL) isRefresh{
+    _page = isRefresh ? 1 : _page+1;
+    self.goodsVM.params = [self setParams];
+    if (isRefresh) {
+        [self.goodsVM refreshDataCompletionHandle:^(NSError *error) {
+            NSInteger index = 2;
+            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:index];
+            [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+        }];
+    }else {
+        [self.goodsVM getMoreDataCompletionHandle:^(NSError *error) {
+            NSInteger index = 2;
+            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:index];
+            [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+            [self.tableView.footer endRefreshing];
+        }];
+    }
+}
 @end

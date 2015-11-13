@@ -24,16 +24,18 @@
     return _loopWebUrlArray;
     
 }
+
 - (void)getDataFromNetCompleteHandle:(CompletionHandle)completionHandle{
-    self.dataTask = [JYLoopNetManager getLoopImageWithIndex:1 completionHandle:^(JYLoopModel *model, NSError *error) {
+    self.dataTask = [JYLoopNetManager getLoopImageWithType:self.type completionHandle:^(JYLoopModel *model, NSError *error) {
         [self.dataArr addObjectsFromArray:model.data];
         for (int i=0; i<self.dataArr.count; i++) {
-            JYLoopImage *loopImage = [JYLoopImage objectWithKeyValues:self.dataArr[i]];
-            NSString *imageURL = [NSString stringWithFormat:@"http://www.i-jianyi.com%@",loopImage.src];
-            [self.loopImageUrlArray addObject:imageURL];
-            [self.loopWebUrlArray addObject:loopImage.link];
-        }
+                JYLoopImage *loopImage = [JYLoopImage objectWithKeyValues:self.dataArr[i]];
+                NSString *imageURL = [NSString stringWithFormat:@"http://www.i-jianyi.com%@",loopImage.src];
+                [self.loopImageUrlArray addObject:imageURL];
+                [self.loopWebUrlArray addObject:loopImage.link];
 
+           
+        }
         completionHandle(error);
     }];
 

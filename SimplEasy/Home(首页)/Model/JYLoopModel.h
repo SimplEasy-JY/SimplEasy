@@ -30,5 +30,6 @@
 
 @property (nonatomic, copy) NSString *link;
 
+
 @end
 
