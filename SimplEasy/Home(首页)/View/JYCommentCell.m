@@ -30,7 +30,7 @@
         [self.contentView addSubview:_nickNameLb];
         [_nickNameLb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.headIV.mas_right).mas_equalTo(10);
-            make.bottom.mas_equalTo(self.headIV.mas_centerY);
+            make.bottom.mas_equalTo(self.headIV.mas_centerY).mas_equalTo(-5);
         }];
     }
     return _nickNameLb;
@@ -43,7 +43,7 @@
         [self.contentView addSubview:_timeLb];
         [_timeLb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.nickNameLb.mas_left);
-            make.top.mas_equalTo(self.headIV.mas_centerY);
+            make.top.mas_equalTo(self.headIV.mas_centerY).mas_equalTo(5);
         }];
     }
     return _timeLb;

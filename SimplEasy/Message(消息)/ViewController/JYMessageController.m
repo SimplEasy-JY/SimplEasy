@@ -45,6 +45,7 @@ static CGFloat rowHeight = 60;
 
 #pragma mark *** <UITableViewDelegate> ***
 
+kRemoveCellSeparator
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return rowHeight;
 }

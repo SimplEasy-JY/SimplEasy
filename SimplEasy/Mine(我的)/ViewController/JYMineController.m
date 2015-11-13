@@ -7,16 +7,150 @@
 //
 
 #import "JYMineController.h"
+#import "JYSellerCell.h"
+#import "JYUserInfoViewController.h"
+#import "JYSettingViewController.h"
 
-@interface JYMineController ()
-
+@interface JYMineController ()<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSArray *dataArr;
 @end
 
 @implementation JYMineController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = @"我的";
+    /** 添加naviRightItem */
+    UIBarButtonItem *rightBBI = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:self action:@selector(jumpToSetting)];
+    self.navigationItem.rightBarButtonItem = rightBBI;
+    [self.tableView registerClass:[JYSellerCell class] forCellReuseIdentifier:@"JYSellerCell"];
+}
+
+#pragma mark *** 私有方法 ***
+
+/** 配置sectionFooterView，第一个section */
+- (UIView *)sectionFooterView{
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWindowW, 50)];
+    NSArray *labelNames = @[@"39",@"12",@"84"];
+    NSArray *btnNames = @[@"闲置",@"需求",@"易友"];
+    for (int i = 0; i < 3; i++) {
+        
+        UILabel *label = [UILabel new];
+        [footerView addSubview:label];
+        label.text = labelNames[i];
+        label.textAlignment = NSTextAlignmentCenter;
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(i*kWindowW/3);
+            make.top.mas_equalTo(0);
+            make.bottom.mas_equalTo(footerView.mas_centerY);
+            make.width.mas_equalTo(kWindowW/3);
+        }];
+        
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [btn setTitleColor:JYGlobalBg forState:UIControlStateHighlighted];
+        [btn setTitle:btnNames[i] forState:UIControlStateNormal];
+        [footerView addSubview:btn];
+        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(i*kWindowW/3);
+            make.top.mas_equalTo(footerView.mas_centerY);
+            make.bottom.mas_equalTo(0);
+            make.width.mas_equalTo(kWindowW/3);
+        }];
+    }
+    return footerView;
+}
+
+/** 跳转到设置界面 */
+- (void)jumpToSetting{
+    JYSettingViewController *setVC = [[JYSettingViewController alloc] init];
+    setVC.title = @"设置";
+    setVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:setVC animated:YES];
+}
+#pragma mark *** <UITableViewDataSource> ***
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 3;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [@[@1,@2,@2][section] integerValue];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        JYSellerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYSellerCell"];
+        cell.headIV.image = [UIImage imageNamed:@"picture_46"];
+        cell.nickNameLb.text = @"完美无瑕";
+        cell.schoolLb.text = @"简介：我是收藏的好玩家";
+        cell.schoolLb.textColor = [UIColor darkGrayColor];
+        cell.rankIV.image = [UIImage imageNamed:@"grade"];
+        cell.followBtn.hidden = YES;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        return cell;
+    }else{
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MineCell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"MineCell"];
+        }
+        cell.textLabel.font = [UIFont systemFontOfSize:16];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
+        if (indexPath.section == 1) {
+            if (indexPath.row == 1) {
+                cell.detailTextLabel.text = @"发布30条闲置";
+                [cell.detailTextLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                    make.left.mas_equalTo(cell.textLabel.mas_right).mas_equalTo(10);
+                    make.centerY.mas_equalTo(cell.textLabel.mas_centerY);
+                }];
+                cell.detailTextLabel.textAlignment = NSTextAlignmentLeft;
+            }
+            cell.textLabel.text = @[@"新的易友",@"简易等级"][indexPath.row];
+            cell.imageView.image = @[[UIImage imageNamed:@"newfriend"],[UIImage imageNamed:@"grade2"]][indexPath.row];
+            cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"point"]];
+        }
+        if (indexPath.section == 2) {
+            cell.textLabel.text = @[@"我的收藏",@"草稿箱"][indexPath.row];
+            cell.imageView.image = @[[UIImage imageNamed:@"collection"],[UIImage imageNamed:@"draught"]][indexPath.row];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        return cell;
+    }
+}
+
+#pragma mark *** <UITableViewDelegate> ***
+
+kRemoveCellSeparator
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    if (section == 0) {
+        return [self sectionFooterView];
+    }
+    return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return indexPath.section == 0?80:45;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 10;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if (section == 0) {
+        return 50;
+    }
+    return 0;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        JYUserInfoViewController *userInfoVC = [[JYUserInfoViewController alloc] init];
+        userInfoVC.title = @"个人信息";
+        userInfoVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:userInfoVC animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +158,25 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UITableView *)tableView {
+	if(_tableView == nil) {
+		_tableView = [[UITableView alloc] init];
+        [self.view addSubview:_tableView];
+        _tableView.tableFooterView = [UIView new];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(0);
+        }];
+	}
+	return _tableView;
 }
-*/
+
+- (NSArray *)dataArr {
+	if(_dataArr == nil) {
+		_dataArr = [[NSArray alloc] init];
+	}
+	return _dataArr;
+}
 
 @end

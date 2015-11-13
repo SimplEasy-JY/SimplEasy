@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		831A04C71BF5CAFC00F78986 /* JYMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70121BE860C600B8B05F /* JYMineController.m */; };
+		831A04CA1BF5CCCA00F78986 /* JYUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831A04C91BF5CCCA00F78986 /* JYUserInfoViewController.m */; };
+		831A04CD1BF5D08300F78986 /* JYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831A04CC1BF5D08300F78986 /* JYSettingViewController.m */; };
 		8328A43C1BE8478B0021767D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A43B1BE8478B0021767D /* main.m */; };
 		8328A43F1BE8478B0021767D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A43E1BE8478B0021767D /* AppDelegate.m */; };
 		8328A4451BE8478B0021767D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8328A4431BE8478B0021767D /* Main.storyboard */; };
@@ -85,6 +88,10 @@
 /* Begin PBXFileReference section */
 		68F40C00061819C81121C437 /* libPods-SimplEasy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimplEasy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76780E000871521B2D5F3B15 /* Pods-SimplEasy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimplEasy.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimplEasy/Pods-SimplEasy.release.xcconfig"; sourceTree = "<group>"; };
+		831A04C81BF5CCCA00F78986 /* JYUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYUserInfoViewController.h; sourceTree = "<group>"; };
+		831A04C91BF5CCCA00F78986 /* JYUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYUserInfoViewController.m; sourceTree = "<group>"; };
+		831A04CB1BF5D08300F78986 /* JYSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYSettingViewController.h; sourceTree = "<group>"; };
+		831A04CC1BF5D08300F78986 /* JYSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYSettingViewController.m; sourceTree = "<group>"; };
 		8328A4371BE8478B0021767D /* SimplEasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimplEasy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8328A43B1BE8478B0021767D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8328A43D1BE8478B0021767D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -490,6 +497,10 @@
 			children = (
 				B02A70111BE860C600B8B05F /* JYMineController.h */,
 				B02A70121BE860C600B8B05F /* JYMineController.m */,
+				831A04C81BF5CCCA00F78986 /* JYUserInfoViewController.h */,
+				831A04C91BF5CCCA00F78986 /* JYUserInfoViewController.m */,
+				831A04CB1BF5D08300F78986 /* JYSettingViewController.h */,
+				831A04CC1BF5D08300F78986 /* JYSettingViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -850,6 +861,7 @@
 				83476B781BEB2E9F0061F61E /* UIImage+Circle.m in Sources */,
 				8328A4AA1BE849800021767D /* UIView+Extension.m in Sources */,
 				8328A4A31BE849800021767D /* JYHomeController.m in Sources */,
+				831A04CD1BF5D08300F78986 /* JYSettingViewController.m in Sources */,
 				B04758D61BEB92D100C645EE /* JYWebViewController.m in Sources */,
 				8328A4A51BE849800021767D /* Foundation+Log.m in Sources */,
 				8328A4AF1BE84E050021767D /* JYBaseModel.m in Sources */,
@@ -881,6 +893,7 @@
 				8328A4A91BE849800021767D /* UIBarButtonItem+Extension.m in Sources */,
 				8328A4B21BE84E1F0021767D /* JYBaseNetManager.m in Sources */,
 				B089AAA11BE9D70800E5D2CC /* JYLoopNetManager.m in Sources */,
+				831A04CA1BF5CCCA00F78986 /* JYUserInfoViewController.m in Sources */,
 				B02A70081BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */,
 				B02A70091BE85E4F00B8B05F /* DGElasticPullToRefreshView.swift in Sources */,
 				B0DA5E741BE8D191001A0D85 /* ImageScrollView.m in Sources */,
@@ -900,6 +913,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8328A4551BE8478C0021767D /* SimplEasyTests.m in Sources */,
+				831A04C71BF5CAFC00F78986 /* JYMineController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

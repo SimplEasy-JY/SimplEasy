@@ -13,6 +13,7 @@
 static CGFloat rightViewWidth = 80;
 static CGFloat headerViewHeight = 120;
 static CGFloat statusBarHeight = 20;
+
 /** 右边图标和签名离父视图的间隙 */
 static CGFloat margin = 5;
 /** 内容视图缩放后的宽度（竖屏） */
@@ -22,7 +23,7 @@ static CGFloat margin = 5;
 /** 分类数组 */
 @property (nonatomic, strong) NSArray *classArr;
 /** 数据数组 */
-@property (nonatomic, strong) NSMutableArray *dataArr;
+//@property (nonatomic, strong) NSMutableArray *dataArr;
 /** tableView */
 @property (nonatomic, strong) UITableView *tableView;
 @end
@@ -46,6 +47,7 @@ static CGFloat margin = 5;
 
 /** 配置右侧的视图 */
 - (void)configRightView{
+    
     /** 右边的视图配置 */
     UIView *rightView = [[UIView alloc] init];
     [self.view addSubview:rightView];
@@ -62,7 +64,8 @@ static CGFloat margin = 5;
     iconIV.contentMode = UIViewContentModeScaleAspectFit;
     [rightView addSubview:iconIV];
     [iconIV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.mas_equalTo(margin);
+        make.left.mas_equalTo(0);
+        make.top.mas_equalTo(margin);
         make.right.mas_equalTo(-margin);
         make.height.mas_equalTo(self.tableView.tableHeaderView.height);
     }];
@@ -73,11 +76,10 @@ static CGFloat margin = 5;
     [rightView addSubview:signIV];
     [signIV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo((kWindowH-self.tableView.tableHeaderView.height)/2);
-        make.left.mas_equalTo(margin);
+        make.left.mas_equalTo(0);
         make.right.mas_equalTo(-margin);
         make.bottom.mas_equalTo(-20);
     }];
-    
     
 }
 
@@ -94,7 +96,7 @@ static CGFloat margin = 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.dataArr.count;
+    return self.classArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -103,6 +105,7 @@ static CGFloat margin = 5;
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    
     /** 颜色 */
     cell.textColor = [UIColor whiteColor];
     cell.selectedTextColor = JYGlobalBg;
@@ -111,20 +114,12 @@ static CGFloat margin = 5;
     cell.selectedBackgroundView.backgroundColor = JYHexColor(0x272C35);
     
     /** 文字 */
-    JYClassifyModel *model = self.dataArr[indexPath.row];
-    if (model.subClass) {
-        cell.textLabel.text = model.name;
-    }else{
-        cell.textLabel.text = [NSString stringWithFormat: @"    %@",model.name];
-    }
+    JYClassifyModel *model = self.classArr[indexPath.row];
+    cell.textLabel.text = model.name;
+    
     /** 图片 */
-    if (model.icon && model.selectedIcon) {
-        cell.imageView.image = [UIImage imageNamed:model.icon];
-        cell.imageView.highlightedImage = [UIImage imageNamed:model.selectedIcon];
-    }else{
-        cell.imageView.image = nil;
-        cell.imageView.highlightedImage = nil;
-    }
+    cell.imageView.image = [UIImage imageNamed:model.icon];
+    cell.imageView.highlightedImage = [UIImage imageNamed:model.selectedIcon];
     
     return cell;
     
@@ -134,35 +129,8 @@ static CGFloat margin = 5;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    JYClassifyModel *model = self.dataArr[indexPath.row];
-    if (model.subClass && !model.isSelected) {
-        /** 将subClass中的子类型模型化，加入到data数组中 */
-        NSMutableArray *mutArr = [NSMutableArray new];
-        for (NSString *str in model.subClass) {
-            JYClassifyModel *model = [JYClassifyModel new];
-            model.name = str;
-            model.icon = nil;
-            model.selectedIcon = nil;
-            model.subClass = nil;
-            model.selected = nil;
-            [mutArr addObject:model];
-        }
-        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(indexPath.row+1, model.subClass.count)];
-        [self.dataArr insertObjects:[mutArr copy] atIndexes:indexSet];
-        [tableView reloadData];
-        [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-        model.selected = YES;
-        [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
-    }else if(model.subClass && model.isSelected){/** 从data数组中删除子类 */
-        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(indexPath.row+1, model.subClass.count)];
-        [self.dataArr removeObjectsAtIndexes:indexSet];
-        [tableView reloadData];
-        [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
-        model.selected = NO;
-    }else{
-        /** 回到contentView */
-        [self.sideMenuViewController hideMenuViewController];
-    }
+    /** 回到contentView */
+    [self.sideMenuViewController hideMenuViewController];
 }
 
 #pragma mark *** Lazy Loading ***
@@ -179,20 +147,16 @@ static CGFloat margin = 5;
 - (NSArray *)classArr {
 	if(_classArr == nil) {
 		_classArr = [NSArray objectArrayWithFilename:@"Classify.plist"];
+        NSMutableArray *mutableArr = [NSMutableArray new];
+        for (NSDictionary *dict in _classArr) {
+            JYClassifyModel *model = [JYClassifyModel new];
+            [model setValuesForKeysWithDictionary:dict];
+            [mutableArr addObject:model];
+        }
+        _classArr = [mutableArr copy];
 	}
 	return _classArr;
 }
 
-- (NSMutableArray *)dataArr {
-	if(_dataArr == nil) {
-        _dataArr = [NSMutableArray new];
-        for (NSDictionary *dict in self.classArr) {
-            JYClassifyModel *model = [JYClassifyModel new];
-            [model setValuesForKeysWithDictionary:dict];
-            [_dataArr addObject:model];
-        }
-	}
-	return _dataArr;
-}
 
 @end

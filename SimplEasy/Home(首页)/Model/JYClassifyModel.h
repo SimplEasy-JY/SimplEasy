@@ -13,6 +13,8 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *icon;
 @property (nonatomic, strong) NSString *selectedIcon;
-@property (nonatomic, strong) NSArray *subClass;
 @property (nonatomic, getter=isSelected) BOOL selected;
+@property (nonatomic, assign) NSNumber *index;
+@property (nonatomic, strong) NSArray *subClass;
+
 @end

@@ -10,8 +10,6 @@
 
 @interface JYSellerCell ()
 
-/** 加关注 */
-@property (nonatomic, strong) UIButton *followBtn;
 
 @end
 
@@ -25,7 +23,8 @@
         [_headIV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.mas_equalTo(10);
             make.bottom.mas_equalTo(-10);
-            make.size.mas_equalTo(CGSizeMake(40, 40));
+//            make.size.mas_equalTo(CGSizeMake(40, 40));
+            make.width.mas_equalTo(_headIV.mas_height);
         }];
     }
     return _headIV;
@@ -38,7 +37,7 @@
         [self.contentView addSubview:_nickNameLb];
         [_nickNameLb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.headIV.mas_right).mas_equalTo(10);
-            make.bottom.mas_equalTo(self.headIV.mas_centerY);
+            make.bottom.mas_equalTo(self.headIV.mas_centerY).mas_equalTo(-5);
         }];
     }
     return _nickNameLb;
@@ -51,7 +50,7 @@
         [self.contentView addSubview:_schoolLb];
         [_schoolLb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.nickNameLb.mas_left);
-            make.top.mas_equalTo(self.headIV.mas_centerY);
+            make.top.mas_equalTo(self.headIV.mas_centerY).mas_equalTo(5);
         }];
     }
     return _schoolLb;

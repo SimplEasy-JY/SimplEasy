@@ -11,6 +11,8 @@
 		<string>typeicon01_selected</string>
 		<key>selected</key>
 		<false/>
+		<key>index</key>
+		<integer>0</integer>
 		<key>subClass</key>
 		<array>
 			<string>全部</string>
@@ -35,6 +37,8 @@
 		<string>typeicon02_selected</string>
 		<key>selected</key>
 		<false/>
+		<key>index</key>
+		<integer>1</integer>
 		<key>subClass</key>
 		<array>
 			<string>全部</string>
@@ -53,6 +57,8 @@
 		<string>typeicon03_selected</string>
 		<key>selected</key>
 		<false/>
+		<key>index</key>
+		<integer>2</integer>
 		<key>subClass</key>
 		<array>
 			<string>全部</string>
@@ -72,6 +78,8 @@
 		<string>typeicon04_selected</string>
 		<key>selected</key>
 		<false/>
+		<key>index</key>
+		<integer>3</integer>
 		<key>subClass</key>
 		<array>
 			<string>全部</string>
@@ -90,6 +98,8 @@
 		<string>typeicon05_selected</string>
 		<key>selected</key>
 		<false/>
+		<key>index</key>
+		<integer>4</integer>
 		<key>subClass</key>
 		<array>
 			<string>全部</string>
@@ -108,6 +118,8 @@
 		<string>typeicon06_selected</string>
 		<key>selected</key>
 		<false/>
+		<key>index</key>
+		<integer>5</integer>
 		<key>subClass</key>
 		<array>
 			<string>全部</string>
@@ -128,6 +140,8 @@
 		<string>typeicon07_selected</string>
 		<key>selected</key>
 		<false/>
+		<key>index</key>
+		<integer>6</integer>
 		<key>subClass</key>
 		<array>
 			<string>全部</string>
@@ -150,6 +164,8 @@
 		<string>typeicon08_selected</string>
 		<key>selected</key>
 		<false/>
+		<key>index</key>
+		<integer>7</integer>
 		<key>subClass</key>
 		<array>
 			<string>全部</string>
@@ -169,6 +185,8 @@
 		<string>typeicon09_selected</string>
 		<key>selected</key>
 		<false/>
+		<key>index</key>
+		<integer>8</integer>
 		<key>subClass</key>
 		<array>
 			<string>休闲零食</string>

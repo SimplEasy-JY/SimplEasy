@@ -18,8 +18,8 @@
 @property (nonatomic, strong) UILabel *schoolLb;
 /** 等级 */
 @property (nonatomic, strong) UIImageView *rankIV;
-
-
+/** 加关注 */
+@property (nonatomic, strong) UIButton *followBtn;
 
 
 @end

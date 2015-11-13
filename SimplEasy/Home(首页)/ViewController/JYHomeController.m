@@ -640,7 +640,6 @@ typedef NS_ENUM(NSInteger, cellType) {
 
     if (_cellType != freeCharge && indexPath.section == 2) {
         JYProductDetailVC *productDetailVC = [[JYProductDetailVC alloc] init];
-//        kVCFromSb(@"JYProductDetailVC", @"Main");
         productDetailVC.title = @"商品详情";
         productDetailVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:productDetailVC animated:YES];
