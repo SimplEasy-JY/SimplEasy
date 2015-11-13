@@ -20,9 +20,9 @@
 
 - (void)awakeFromNib {
     /**  颜色 边框 设置 */
-    [self.shopButton.layer setBorderWidth:1.5];
-    [self.shopButton.layer setBorderColor:kRGBColor(130, 198, 88).CGColor];
-    [self.shopButton setTintColor:kRGBColor(130, 198, 88)];
+    [self.shopButton.layer setBorderWidth:1];
+    [self.shopButton.layer setBorderColor:kRGBColor(0, 182, 0).CGColor];
+    [self.shopButton setTintColor:kRGBColor(0, 182,0)];
     self.placeNow.textColor = kRGBColor(158, 207, 242);
     self.currentPrice.textColor = kRGBColor(189, 33, 33);
     self.originalPrice.textColor = kRGBColor(152, 152, 152);

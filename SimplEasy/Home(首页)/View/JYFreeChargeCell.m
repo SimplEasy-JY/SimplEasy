@@ -32,6 +32,11 @@
     [self.leftButton bk_addEventHandler:^(id sender) {
         NSLog(@"leftButtonClick~");
     } forControlEvents:UIControlEventTouchUpInside];
+    self.leftShopButton.backgroundColor = kRGBColor(75, 190, 44);
+    self.rightShopButton.backgroundColor = kRGBColor(75, 190, 44);
+    self.leftLabel.textColor = kRGBColor(102, 102, 102);
+    self.rightLabel.textColor = kRGBColor(102, 102, 102);
+
 }
 
 -(void)setAttribute{

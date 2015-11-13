@@ -30,7 +30,7 @@
 //背景颜色 首页 webview
 #define YSHGlobalBg kRGBColor(230, 230, 230)
 //绿色
-#define JYGlobalBg kRGBColor(52, 152, 82)
+#define JYGlobalBg kRGBColor(72, 171, 108)
 //线条颜色
 #define JYLineColor kRGBColor(217, 217, 217)
 /** 十六进制转换颜色,需要写0x前缀 */
