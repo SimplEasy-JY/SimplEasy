@@ -34,6 +34,15 @@ static NSString *JYChargeCellIndentifier = @"freeChargeCell";
     int _cellType;
     /**  当前button */
     UIButton *_currentButton;
+    /**  今日上新array */
+    NSArray *_firstGoodsArray;
+    /**  精选array */
+    NSArray *_secondGoodsArray;
+    /**  免费array */
+    NSArray *_thirdGoodsArray;
+    /**  当前count */
+    NSInteger _currentCount;
+    
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)categoryButton:(id)sender;
@@ -42,6 +51,9 @@ static NSString *JYChargeCellIndentifier = @"freeChargeCell";
 /**  vm */
 @property(strong,nonatomic)JYLoopViewModel *loopVM;
 @property(strong,nonatomic)JYGoodsViewModel *goodsVM;
+
+/**  cell reload array */
+@property(strong,nonatomic)NSMutableArray *reloadArray;
 
 /**  顶部轮播 */
 @property(strong,nonatomic)iCarousel *firstLoopView;
@@ -78,6 +90,15 @@ typedef NS_ENUM(NSInteger, cellType) {
     freeCharge = 2,
 };
 #pragma mark -懒加载
+-(NSMutableArray *)reloadArray{
+    if (!_reloadArray) {
+        self.reloadArray = [[NSMutableArray  alloc]init];
+    }
+    return _reloadArray;
+    
+}
+
+
 -(NSArray *)goodsTitleArray{
     if (!_goodsTitleArray) {
         self.goodsTitleArray = [[NSArray  alloc]initWithObjects:@"all",@"hot",@"free",nil];
@@ -296,12 +317,12 @@ typedef NS_ENUM(NSInteger, cellType) {
     if (carousel == _firstLoopView){
         if (!view) {
             view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWindowW, firstLVH)];
-            UIImageView *imageView = [[UIImageView alloc] init];
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kWindowW, firstLVH)];
             imageView.tag = 100;
             [view addSubview: imageView];
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.mas_equalTo(view);
-            }];
+//            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.edges.mas_equalTo(view);
+//            }];
         }
         UIImageView *imageView = (UIImageView *)[view viewWithTag:100];
         [imageView sd_setImageWithURL:[NSURL URLWithString:self.loopVM.loopImageUrlArray[index]] placeholderImage:nil];
@@ -419,64 +440,17 @@ typedef NS_ENUM(NSInteger, cellType) {
         return self.goodsVM.dataArr.count;
     }
 }
-/**  cell高度 */
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            return 116;
-        }else {
-            return 30;
-        }
-
-    }else if (indexPath.section == 1){
-        return 140;
-    }else {
-        switch (_cellType) {
-            case homeProduct:{
-//                JYHomeProductCell *cell = [tableView dequeueReusableCellWithIdentifier:JYHomeProductCellIndentifier];
-//                CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-//                return height;
-                return 280;
-                break;
-            }
-                
-                
-            case recommend:{
-                JYRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:JYRecommendCellIndentifier];
-                CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-                return height;
-                break;
-            }
-            case freeCharge:{
-                JYFreeChargeCell *cell = [tableView dequeueReusableCellWithIdentifier:JYChargeCellIndentifier];
-                CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-                return height;
-                break;
-            }
-               
-                
-        }
-        return 270;
+        return (indexPath.row == 0 ? 116:30);
     }
+    return UITableViewAutomaticDimension;
 
-//        return UITableViewAutomaticDimension;
-    
-    
 }
-
 /**  首次加载cell的高度， 提高性能 */
 -(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            return 116;
-        }else {
-            return 30;
-        }
-    }else if (indexPath.section == 1){
-        return 140;
-    }else  {
-        return 280;
-    }
+    return UITableViewAutomaticDimension;
 }
 /**  header */
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -488,8 +462,10 @@ typedef NS_ENUM(NSInteger, cellType) {
         for (int i=0; i<self.segmentItemsArray.count; i++) {
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             /**  设置button的参数 */
-            [[button layer]setBorderWidth:0.5];
-            [[button layer]setBorderColor:kRGBColor(217, 217, 217).CGColor];
+            if (i == 1) {
+                [[button layer]setBorderWidth:1];
+                [[button layer]setBorderColor:kRGBColor(217, 217, 217).CGColor];
+            }
             [button setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor] cornerRadius:0] forState:UIControlStateNormal];
             [button setBackgroundImage:[UIImage imageWithColor:JYHexColor(0x272C35) cornerRadius:0] forState:UIControlStateSelected];
             button.tag = i;
@@ -522,13 +498,15 @@ typedef NS_ENUM(NSInteger, cellType) {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:JYLoopCellIndentifier];
-            if (self.loopVM.loopImageUrlArray != nil) {
+            if (cell == nil ) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JYLoopCellIndentifier];
                 /**  加入滚动视图 */
+                self.firstLoopView.frame = CGRectMake(0, 0, kWindowW, firstLVH);
                 [cell addSubview:self.firstLoopView];
                 [self.firstLoopView mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.edges.mas_equalTo(0);
+                    make.edges.mas_equalTo(cell).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
                 }];
+                
                 /**  加入pageview */
                 [cell addSubview:self.firstLoopPage];
                 [self.firstLoopPage mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -541,12 +519,14 @@ typedef NS_ENUM(NSInteger, cellType) {
         }
         if (indexPath.row == 1) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:JYLoopCellSecondIndentifier];
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JYLoopCellSecondIndentifier];
-            /**  加入滚动视图 */
-            [cell addSubview:self.secondLoopView];
-            [self.secondLoopView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.mas_equalTo(0);
-            }];
+            if  (cell == nil ) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JYLoopCellSecondIndentifier];
+                /**  加入滚动视图 */
+                [cell addSubview:self.secondLoopView];
+                [self.secondLoopView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.edges.mas_equalTo(0);
+                }];
+            }
             return cell;
         }
     }
@@ -555,6 +535,8 @@ typedef NS_ENUM(NSInteger, cellType) {
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JYLoopCellThirdIndentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//            NSLog(@"%@",NSStringFromCGRect(self.firstLoopView.frame));
+            NSLog(@"%@",NSStringFromCGRect(cell.frame));
             //添加最新活动label
             UILabel *label = [UILabel new];
             label.text = @"最新活动";
@@ -589,7 +571,7 @@ typedef NS_ENUM(NSInteger, cellType) {
             [self.thirdLoopView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.mas_equalTo(cell).with.insets(UIEdgeInsetsMake(30, 0, 10, 0));
             }];
-            }
+        }
             return cell;
     }
     else if (indexPath.section == 2){
@@ -597,7 +579,11 @@ typedef NS_ENUM(NSInteger, cellType) {
             case homeProduct: {
                 JYHomeProductCell *cell = [tableView dequeueReusableCellWithIdentifier:JYHomeProductCellIndentifier];
                 if (self.goodsVM.dataArr.count != 0) {
-                    cell.goodsItems = self.goodsVM.dataArr[indexPath.row];
+                    if (!_firstGoodsArray) {
+                        _firstGoodsArray = self.goodsVM.dataArr;
+                        
+                    }
+                    cell.goodsItems = _firstGoodsArray[indexPath.row];
                     [cell setAttribute];
                 }
                 return cell;
@@ -606,7 +592,11 @@ typedef NS_ENUM(NSInteger, cellType) {
             case recommend:{
                 JYRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:JYRecommendCellIndentifier];
                 if (self.goodsVM.dataArr.count != 0) {
-                    cell.goodsItems = self.goodsVM.dataArr[indexPath.row];
+                    cell.rootController = self.navigationController;
+                    if (_secondGoodsArray == nil) {
+                        _secondGoodsArray = self.goodsVM.dataArr;
+                    }
+                    cell.goodsItems = _secondGoodsArray[indexPath.row];
                     [cell setAttribute];
                 }
 
@@ -617,6 +607,7 @@ typedef NS_ENUM(NSInteger, cellType) {
                 JYFreeChargeCell *cell = [tableView dequeueReusableCellWithIdentifier:JYChargeCellIndentifier];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 if (self.goodsVM.dataArr.count != 0) {
+                    cell.rootController = self.navigationController;
                     cell.firstGoodsItem = self.goodsVM.dataArr[2*indexPath.row];
                     cell.secondGoodsItem = self.goodsVM.dataArr[2*indexPath.row  + 1];
                     [cell setAttribute];
@@ -626,27 +617,23 @@ typedef NS_ENUM(NSInteger, cellType) {
             }
         }
     }
-
-    static NSString *cellIndentifier = @"courseCell1";
-    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIndentifier];
-    return cell;
+    return nil;
 
 }
-
+#pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"cellType%d",_cellType);
     //取消选择痕迹
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     if (_cellType != freeCharge && indexPath.section == 2) {
         JYProductDetailVC *productDetailVC = [[JYProductDetailVC alloc] init];
+        JYGoodsItems *item = self.goodsVM.dataArr[indexPath.row];
+        productDetailVC.goodsID = item.ID;
+        NSLog(@"商品ID:%@",item.ID);
         productDetailVC.title = @"商品详情";
         productDetailVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:productDetailVC animated:YES];
     }
-    NSLog(@"%ld",(long)indexPath.row);
-   
-
 }
 #pragma mark - 方法封装
 /**  生成params参数 */
@@ -663,16 +650,13 @@ typedef NS_ENUM(NSInteger, cellType) {
     self.goodsVM.params = [self setParams];
     if (isRefresh) {
         [self.goodsVM refreshDataCompletionHandle:^(NSError *error) {
-            NSInteger index = 2;
-            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:index];
-            [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+            [self.tableView reloadData];
         }];
     }else {
         [self.goodsVM getMoreDataCompletionHandle:^(NSError *error) {
-            NSInteger index = 2;
-            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:index];
-            [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+            [self.tableView reloadData];
             [self.tableView.footer endRefreshing];
+
         }];
     }
 }

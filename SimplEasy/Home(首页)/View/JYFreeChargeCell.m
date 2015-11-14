@@ -7,7 +7,7 @@
 //
 
 #import "JYFreeChargeCell.h"
-
+#import "JYProductDetailVC.h"
 @interface JYFreeChargeCell ()
 @property (weak, nonatomic) IBOutlet UIButton *leftButton;
 @property (weak, nonatomic) IBOutlet UIButton *rightButton;
@@ -54,12 +54,37 @@
     self.rightLabel.text = self.secondGoodsItem.name;
     self.leftPlaceNow.text = [fStrSchool firstObject];
     self.rightPlaceNow.text = [sStrSchool firstObject];
+    //左边的点击方法
+    [self.leftButton addTarget:self action:@selector(leftClickButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.leftShopButton addTarget:self action:@selector(leftClickButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.rightButton addTarget:self action:@selector(rightClickButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.rightShopButton addTarget:self action:@selector(rightClickButton:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+#pragma mark - 响应方法
+-(void)leftClickButton:(UIButton *)button {
+    JYProductDetailVC *productDetailVC = [[JYProductDetailVC alloc] init];
+    productDetailVC.goodsID = self.firstGoodsItem.ID;
+    NSLog(@"商品ID:%@",self.firstGoodsItem.ID);
+    productDetailVC.title = @"商品详情";
+    productDetailVC.hidesBottomBarWhenPushed = YES;
+    [self.rootController pushViewController:productDetailVC animated:YES];
+
+}
+-(void)rightClickButton:(UIButton *)button {
+    JYProductDetailVC *productDetailVC = [[JYProductDetailVC alloc] init];
+    productDetailVC.goodsID = self.secondGoodsItem.ID;
+      NSLog(@"商品ID:%@",self.secondGoodsItem.ID);
+    productDetailVC.title = @"商品详情";
+    productDetailVC.hidesBottomBarWhenPushed = YES;
+    [self.rootController pushViewController:productDetailVC animated:YES];
+    
 }
 
 

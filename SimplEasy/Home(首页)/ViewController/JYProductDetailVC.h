@@ -10,4 +10,6 @@
 
 @interface JYProductDetailVC : UIViewController
 
+@property(strong,nonatomic)NSString *goodsID;
+
 @end

@@ -10,8 +10,8 @@
 #import "JYGoodsModel.h"
 @interface JYFreeChargeCell : UITableViewCell
 
-//@property(assign,nonatomic)NSInteger firstGoodsId;
-//@property(assign,nonatomic)NSInteger secondGoodsId;
+/**  传控制器 */
+@property(strong,nonatomic)id rootController;
 @property(strong,nonatomic)JYGoodsItems *firstGoodsItem;
 @property(strong,nonatomic)JYGoodsItems *secondGoodsItem;
 

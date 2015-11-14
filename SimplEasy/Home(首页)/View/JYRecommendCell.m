@@ -7,6 +7,8 @@
 //
 
 #import "JYRecommendCell.h"
+#import "JYProductDetailVC.h"
+
 #import "UILabel+Line.h"
 @interface JYRecommendCell ()
 @property (weak, nonatomic) IBOutlet UIButton *shopButton;
@@ -41,8 +43,16 @@
     [self.shopImage sd_setImageWithURL:[NSURL URLWithString:imageURL]];
     self.describeLabel.text = self.goodsItems.name;
     self.currentPrice.text = [NSString stringWithFormat:@"￥%@",self.goodsItems.price];
-    self.placeNow.text = [strSchool firstObject];;
-    
+    self.placeNow.text = [strSchool firstObject];
+    [self.shopButton bk_addEventHandler:^(id sender) {
+        JYProductDetailVC *productDetailVC = [[JYProductDetailVC alloc] init];
+        productDetailVC.goodsID = self.goodsItems.ID;
+        NSLog(@"商品ID:%@",self.goodsItems.ID);
+        productDetailVC.title = @"商品详情";
+        productDetailVC.hidesBottomBarWhenPushed = YES;
+        [self.rootController pushViewController:productDetailVC animated:YES];
+        
+    } forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
