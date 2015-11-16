@@ -79,22 +79,22 @@
     return _commentLb;
 }
 
-- (UIButton *)goodBtn {
-    if(_goodBtn == nil) {
-        _goodBtn = [[UIButton alloc] init];
-        _goodBtn.tintColor = [UIColor darkGrayColor];
-        _goodBtn.titleLabel.textColor = [UIColor darkGrayColor];
-        _goodBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-        [_goodBtn setImage:[UIImage imageNamed:@"middleicon_34"] forState:UIControlStateNormal];
-        [_goodBtn setImage:[UIImage imageNamed:@"middleicon_41"] forState:UIControlStateHighlighted];
-        [self.contentView addSubview:_goodBtn];
-        [_goodBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(self.contentView).mas_equalTo(-10);
-            make.centerY.mas_equalTo(self.headIV.mas_centerY);
-        }];
-    }
-    return _goodBtn;
-}
+//- (UIButton *)goodBtn {
+//    if(_goodBtn == nil) {
+//        _goodBtn = [[UIButton alloc] init];
+//        _goodBtn.tintColor = [UIColor darkGrayColor];
+//        [_goodBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+//        _goodBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+//        [_goodBtn setImage:[UIImage imageNamed:@"middleicon_34"] forState:UIControlStateNormal];
+//        [_goodBtn setImage:[UIImage imageNamed:@"middleicon_41"] forState:UIControlStateHighlighted];
+//        [self.contentView addSubview:_goodBtn];
+//        [_goodBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.right.mas_equalTo(self.contentView).mas_equalTo(-10);
+//            make.centerY.mas_equalTo(self.headIV.mas_centerY);
+//        }];
+//    }
+//    return _goodBtn;
+//}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

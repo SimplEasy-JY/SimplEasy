@@ -10,6 +10,7 @@
 #import "JYProductDetailCell.h"
 #import "JYSellerCell.h"
 #import "JYCommentCell.h"
+#import "UIButton+VerticalBtn.h"
 
 static CGFloat bottomBtnWidth = 40;
 static CGFloat bottomBtnHeight = 50;
@@ -69,17 +70,24 @@ static CGFloat bottomBtnHeight = 50;
         make.height.mas_equalTo(bottomBtnHeight);
     }];
     NSArray *btnNames = @[@"收藏",@"评论",@"赞",@"联系卖家",@"立即易货"];
+    NSArray *btnImages = @[[UIImage imageNamed:@"bottomicon2_03"],[UIImage imageNamed:@"bottomicon2_05"],[UIImage imageNamed:@"bottomicon2_07"]];
+    NSArray *btnHighlightedImages = @[[UIImage imageNamed:@"bottomicon_03"],[UIImage imageNamed:@"bottomicon2_05"],[UIImage imageNamed:@"bottomicon_07"]];
     NSArray *btnBgColors = @[kRGBColor(60, 183, 21),kRGBColor(55, 150, 84),kRGBColor(245, 245, 245)];
     for (int i = 0; i < 3; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [bottomView addSubview:btn];
+        [btn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [btn setTitle:btnNames[i] forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:10];
+        [btn setImage:btnImages[i] forState:UIControlStateNormal];
+        [btn setImage:btnHighlightedImages[i] forState:UIControlStateHighlighted];
         [btn setBackgroundColor:btnBgColors[2]];
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(i*bottomBtnWidth);
             make.top.bottom.mas_equalTo(0);
             make.width.mas_equalTo(bottomBtnWidth);
         }];
+        [btn centerImageAndTitleWithSpace:3.0f];
     }
     
     for (int i = 0; i < 2; i++) {
@@ -140,7 +148,6 @@ static CGFloat bottomBtnHeight = 50;
         cell.nickNameLb.text = @"乔昔之";
         cell.timeLb.text = @"11-5 13:28";
         cell.rankIV.image = [UIImage imageNamed:@"picture_38"];
-        [cell.goodBtn setTitle:@"5" forState:UIControlStateNormal];
         cell.commentLb.text = @"我最近正想买个洗脸仪呢，这个真的好用么？味全丹麦活性菌，源自丹麦©SINCE1916.";
         return cell;
     }
@@ -223,7 +230,7 @@ static CGFloat bottomBtnHeight = 50;
         _tableView.delegate = self;
         [self.view addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(0);
+            make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, bottomBtnHeight, 0));
         }];
 	}
 	return _tableView;

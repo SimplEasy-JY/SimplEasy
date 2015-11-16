@@ -10,6 +10,30 @@
 #import "JYSellerCell.h"
 #import "JYClassifyModel.h"
 
+
+@interface JYClassifyTableViewCell : UITableViewCell
+
+@end
+
+@implementation JYClassifyTableViewCell
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    [self.imageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(16);
+        make.height.mas_equalTo(16);
+        make.centerY.mas_equalTo(0);
+        make.left.mas_equalTo(10);
+    }];
+    [self.textLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.imageView.mas_right).mas_equalTo(10);
+        make.centerY.mas_equalTo(0);
+    }];
+}
+
+@end
+
+
 static CGFloat rightViewWidth = 80;
 static CGFloat headerViewHeight = 120;
 static CGFloat statusBarHeight = 20;
@@ -101,9 +125,9 @@ static CGFloat margin = 5;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    JYClassifyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[JYClassifyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
     /** 颜色 */
@@ -118,6 +142,7 @@ static CGFloat margin = 5;
     cell.textLabel.text = model.name;
     
     /** 图片 */
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
     cell.imageView.image = [UIImage imageNamed:model.icon];
     cell.imageView.highlightedImage = [UIImage imageNamed:model.selectedIcon];
     

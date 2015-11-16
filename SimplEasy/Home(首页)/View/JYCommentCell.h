@@ -21,6 +21,6 @@
 /** 评论 */
 @property (nonatomic, strong) UILabel *commentLb;
 /** 点赞 */
-@property (nonatomic, strong) UIButton *goodBtn;
+//@property (nonatomic, strong) UIButton *goodBtn;
 
 @end

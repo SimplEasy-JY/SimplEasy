@@ -8,6 +8,7 @@
 
 #import "JYSettingViewController.h"
 
+
 @interface JYSettingViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @end
@@ -69,7 +70,8 @@
             cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
             cell.detailTextLabel.layer.cornerRadius = 7.5;
             cell.detailTextLabel.textColor = JYGlobalBg;
-            cell.detailTextLabel.backgroundColor = JYGlobalBg;
+//            [cell.detailTextLabel setValue:[UIColor redColor] forKey:@"backgroundColor"];
+            [cell setValue:[UIColor redColor] forKeyPath:@"detailTextLabel.backgroundColor"];
             [cell.detailTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.mas_equalTo(cell.textLabel.mas_centerY);
                 make.left.mas_equalTo(cell.textLabel.mas_right).mas_equalTo(10);

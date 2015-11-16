@@ -8,6 +8,7 @@
 
 #import "JYProductDetailCell.h"
 #import "UILabel+Line.h"
+#import "UIButton+VerticalBtn.h"
 @interface JYProductDetailCell ()
 
 /** 放置时间地点的view */
@@ -39,12 +40,15 @@
         _shareBtn = [[UIButton alloc] init];
         [_shareBtn setImage:[UIImage imageNamed:@"middleicon_16"] forState:UIControlStateNormal];
         [_shareBtn setTitle:@"分享" forState:UIControlStateNormal];
+        [_shareBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        _shareBtn.titleLabel.font = [UIFont systemFontOfSize:8];
         [self.contentView addSubview:_shareBtn];
         [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(10);
             make.right.mas_equalTo(0);
             make.width.height.mas_equalTo(40);
         }];
+        [_shareBtn centerImageAndTitleWithSpace:3.0f];
     }
     return _shareBtn;
 }

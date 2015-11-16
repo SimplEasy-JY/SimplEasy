@@ -7,6 +7,7 @@
 //
 
 #import "JYSellerCell.h"
+#import "UIButton+VerticalBtn.h"
 
 @interface JYSellerCell ()
 
@@ -23,7 +24,6 @@
         [_headIV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.mas_equalTo(10);
             make.bottom.mas_equalTo(-10);
-//            make.size.mas_equalTo(CGSizeMake(40, 40));
             make.width.mas_equalTo(_headIV.mas_height);
         }];
     }
@@ -72,7 +72,9 @@
 - (UIButton *)followBtn {
     if(_followBtn == nil) {
         _followBtn = [[UIButton alloc] init];
-        [_followBtn setTitle:@"关注" forState:UIControlStateNormal];
+        _followBtn.titleLabel.font = [UIFont systemFontOfSize:8];
+        [_followBtn setTitle:@"加关注" forState:UIControlStateNormal];
+        [_followBtn setTitleColor:kRGBColor(255, 177, 0) forState:UIControlStateNormal];
         [_followBtn setImage:[UIImage imageNamed:@"middleicon_03"] forState:UIControlStateNormal];
         [self.contentView addSubview:_followBtn];
         [_followBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -80,6 +82,7 @@
             make.right.mas_equalTo(-10);
             make.height.width.mas_equalTo(40);
         }];
+        [_followBtn centerImageAndTitleWithSpace:0.0f];
     }
     return _followBtn;
 }

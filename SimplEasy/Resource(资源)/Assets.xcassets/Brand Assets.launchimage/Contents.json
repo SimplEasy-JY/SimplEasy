@@ -1,39 +1,45 @@
 {
   "images" : [
     {
-      "extent" : "full-screen",
-      "idiom" : "iphone",
-      "subtype" : "736h",
-      "filename" : "loading.png",
-      "minimum-system-version" : "8.0",
       "orientation" : "portrait",
-      "scale" : "3x"
+      "idiom" : "ipad",
+      "minimum-system-version" : "7.0",
+      "extent" : "full-screen",
+      "scale" : "2x"
     },
     {
+      "orientation" : "landscape",
+      "idiom" : "ipad",
+      "minimum-system-version" : "7.0",
       "extent" : "full-screen",
-      "idiom" : "iphone",
-      "subtype" : "667h",
-      "filename" : "loading-1.png",
-      "minimum-system-version" : "8.0",
-      "orientation" : "portrait",
+      "scale" : "1x"
+    },
+    {
+      "orientation" : "landscape",
+      "idiom" : "ipad",
+      "minimum-system-version" : "7.0",
+      "extent" : "full-screen",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "filename" : "loading-2.png",
-      "extent" : "full-screen",
       "minimum-system-version" : "7.0",
       "scale" : "2x"
     },
     {
-      "extent" : "full-screen",
+      "orientation" : "portrait",
       "idiom" : "iphone",
+      "minimum-system-version" : "7.0",
       "subtype" : "retina4",
-      "filename" : "loading-3.png",
-      "minimum-system-version" : "7.0",
-      "orientation" : "portrait",
       "scale" : "2x"
+    },
+    {
+      "orientation" : "portrait",
+      "idiom" : "ipad",
+      "minimum-system-version" : "7.0",
+      "extent" : "full-screen",
+      "scale" : "1x"
     }
   ],
   "info" : {
