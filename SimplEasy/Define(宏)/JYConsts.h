@@ -5,7 +5,7 @@
 //  Created by EvenLam on 15/11/3.
 //  Copyright © 2015年 SimplEasy. All rights reserved.
 //
-
+#import "JYRootViewController.h"
 
 #ifndef JYConsts_h
 #define JYConsts_h
@@ -43,6 +43,7 @@
 /** 应用程序的屏幕宽度 */
 #define kWindowW    [UIScreen mainScreen].bounds.size.width
 
+#define rootVC [JYRootViewController shareRootVC]
 #define kAppDelegate ((AppDelegate*)([UIApplication sharedApplication].delegate))
 
 #define kStoryboard(StoryboardName)     [UIStoryboard storyboardWithName:StoryboardName bundle:nil]

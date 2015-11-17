@@ -14,7 +14,7 @@
 
 /** 网络状态 */
 @property(nonatomic,getter=isOnLine) BOOL onLine;
-@property (nonatomic,strong) RESideMenu *sideMenu;
+//@property (nonatomic,strong) RESideMenu *sideMenu;
 
 @end
 

@@ -29,6 +29,7 @@
 
 //用于存放全局宏定义 或者 静态字符串
 #import "JYConsts.h"
+#import "IMDefine.h"
 
 #import "ScrollDisplayViewController.h"
 

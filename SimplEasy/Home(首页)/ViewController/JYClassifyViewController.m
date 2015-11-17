@@ -41,7 +41,7 @@ static CGFloat statusBarHeight = 20;
 /** 右边图标和签名离父视图的间隙 */
 static CGFloat margin = 5;
 /** 内容视图缩放后的宽度（竖屏） */
-#define contentVCWidth (kWindowW * kAppDelegate.sideMenu.contentViewScaleValue/2 - kAppDelegate.sideMenu.contentViewInPortraitOffsetCenterX)
+#define contentVCWidth (kWindowW * rootVC.sideMenu.contentViewScaleValue/2 - rootVC.sideMenu.contentViewInPortraitOffsetCenterX)
 
 @interface JYClassifyViewController ()<UITableViewDelegate,UITableViewDataSource>
 /** 分类数组 */

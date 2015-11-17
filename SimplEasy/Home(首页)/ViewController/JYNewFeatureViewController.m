@@ -7,6 +7,7 @@
 //
 
 #import "JYNewFeatureViewController.h"
+#import "JYLoginViewController.h"
 
 @interface JYNewFeatureViewController ()<iCarouselDelegate,iCarouselDataSource>
 /** iCarouselView */
@@ -88,9 +89,9 @@
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index{
     if (index == self.imageArr.count-1) {
         /** 重新设置根视图，防止调用根视图的时候程序崩溃（加号） */
-        kAppDelegate.window.rootViewController = kAppDelegate.sideMenu;
-        kAppDelegate.sideMenu.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [self presentViewController:kAppDelegate.sideMenu animated:YES completion:nil];
+//        kAppDelegate.window.rootViewController = rootVC.sideMenu;
+//        rootVC.sideMenu.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:[[JYLoginViewController alloc]init] animated:YES completion:nil];
     }
 }
 

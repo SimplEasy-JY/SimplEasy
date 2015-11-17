@@ -201,7 +201,7 @@ typedef NS_ENUM(NSInteger, cellType) {
 #pragma mark - 响应方法
 /**  分类按钮 */
 - (IBAction)categoryButton:(id)sender {
-    [kAppDelegate.sideMenu presentLeftMenuViewController];
+    [rootVC.sideMenu presentLeftMenuViewController];
 }
 /**  定位按钮 */
 - (IBAction)positionButton:(id)sender {
