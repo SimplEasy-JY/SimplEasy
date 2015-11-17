@@ -44,7 +44,7 @@
         _shareBtn.titleLabel.font = [UIFont systemFontOfSize:8];
         [self.contentView addSubview:_shareBtn];
         [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(10);
+            make.centerY.mas_equalTo(self.productDescLb);
             make.right.mas_equalTo(0);
             make.width.height.mas_equalTo(40);
         }];
