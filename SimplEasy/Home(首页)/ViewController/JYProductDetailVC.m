@@ -118,7 +118,7 @@ static CGFloat bottomBtnHeight = 50;
         if (indexPath.row == 0) {
         /** 商品详情cell */
             JYProductDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYProductDetailCell"];
-            cell.productDescLb.text = @"［附专柜小票］洗脸仪  乐天免税店买 5月12号韩国买的，只用过一次。［附专柜小票］洗脸仪  乐天免税店买 5月12号韩国买的，只用过一次。［附专柜小票］洗脸仪  乐天免税店买 5月12号韩国买的，只用过一次。［附专柜小票］洗脸仪  乐天免税店买 5月12号韩国买的，只用过一次。［附专柜小票］洗脸仪  乐天免税店买 5月12号韩国买的，只用过一次。";
+            cell.productDescLb.text = @"［附专柜小票］洗脸仪  乐天免税店买 5月12号韩国买的，只用过一次。";
             cell.currentPriceLb.text = @"¥ 35";
             cell.originPriceLb.text = @"¥ 45";
             /** 需要先设置地点再设置时间，否则约束会乱，如果没有地点就不用设置 */

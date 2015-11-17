@@ -132,6 +132,7 @@
 		838D15B11BFA0314003C4F87 /* IM_press_audio@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 838D154C1BFA0314003C4F87 /* IM_press_audio@2x.png */; };
 		838D15B21BFA0314003C4F87 /* libIMSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 838D15501BFA0314003C4F87 /* libIMSDK.a */; };
 		838E61F81BFA0DAC00DFE6FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 838E61F71BFA0DAC00DFE6FE /* LaunchScreen.storyboard */; };
+		838E61FA1BFA0DF600DFE6FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 838E61F91BFA0DF600DFE6FE /* Images.xcassets */; };
 		8394B2621BEDB18700D3F66F /* JYNewFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394B2611BEDB18700D3F66F /* JYNewFeatureViewController.m */; };
 		83DECFB41BF197D300A1FE7C /* Classify.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83DECFB31BF197D300A1FE7C /* Classify.plist */; };
 		83DECFB71BF1C28900A1FE7C /* JYClassifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DECFB61BF1C28900A1FE7C /* JYClassifyModel.m */; };
@@ -385,6 +386,7 @@
 		838D154F1BFA0314003C4F87 /* IMGroupChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMGroupChatView.h; sourceTree = "<group>"; };
 		838D15501BFA0314003C4F87 /* libIMSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libIMSDK.a; sourceTree = "<group>"; };
 		838E61F71BFA0DAC00DFE6FE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		838E61F91BFA0DF600DFE6FE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8394B2601BEDB18700D3F66F /* JYNewFeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYNewFeatureViewController.h; sourceTree = "<group>"; };
 		8394B2611BEDB18700D3F66F /* JYNewFeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYNewFeatureViewController.m; sourceTree = "<group>"; };
 		83DECFB31BF197D300A1FE7C /* Classify.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Classify.plist; sourceTree = "<group>"; };
@@ -516,6 +518,7 @@
 				8328A4921BE849800021767D /* Resource(资源) */,
 				8328A4931BE849800021767D /* Util(公用) */,
 				8328A4A21BE849800021767D /* Vendor(第三方框架) */,
+				838E61F91BFA0DF600DFE6FE /* Images.xcassets */,
 				8328A43A1BE8478B0021767D /* Supporting Files */,
 			);
 			path = SimplEasy;
@@ -1441,6 +1444,7 @@
 				838D155B1BFA0314003C4F87 /* dt_dab@2x.png in Resources */,
 				8328A4451BE8478B0021767D /* Main.storyboard in Resources */,
 				838D15951BFA0314003C4F87 /* IM_login_user@2x.png in Resources */,
+				838E61FA1BFA0DF600DFE6FE /* Images.xcassets in Resources */,
 				838D15641BFA0314003C4F87 /* dt_han@2x.png in Resources */,
 				B0AEC8921BEC86540045F08F /* JYHomeProductCell.xib in Resources */,
 				838D15621BFA0314003C4F87 /* dt_guz@2x.png in Resources */,
@@ -1752,7 +1756,6 @@
 			baseConfigurationReference = F3F5ACA8FBE2F68B4729D69C /* Pods-SimplEasy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
@@ -1845,7 +1848,6 @@
 			baseConfigurationReference = 76780E000871521B2D5F3B15 /* Pods-SimplEasy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;

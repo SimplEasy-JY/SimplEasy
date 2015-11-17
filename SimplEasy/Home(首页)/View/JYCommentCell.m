@@ -70,9 +70,9 @@
         [self.contentView addSubview:_commentLb];
         [_commentLb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.headIV.mas_bottom).mas_equalTo(10);
-            make.left.mas_equalTo(10);
-            make.right.mas_equalTo(-10);
-            make.bottom.mas_equalTo(-10);
+            make.left.mas_equalTo(self.contentView).mas_equalTo(10);
+            make.right.mas_equalTo(self.contentView).mas_equalTo(-10);
+            make.bottom.mas_equalTo(self.contentView).mas_equalTo(-10);
         }];
         
     }
