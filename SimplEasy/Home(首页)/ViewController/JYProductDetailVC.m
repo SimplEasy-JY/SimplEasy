@@ -11,6 +11,7 @@
 #import "JYSellerCell.h"
 #import "JYCommentCell.h"
 #import "UIButton+VerticalBtn.h"
+#import "JYProductDetailViewModel.h"
 
 static CGFloat bottomBtnWidth = 40;
 static CGFloat bottomBtnHeight = 50;
@@ -23,13 +24,20 @@ static CGFloat bottomBtnHeight = 50;
 @property (nonatomic, strong) iCarousel *icView;
 /** 分页控制器（小圆点） */
 @property (nonatomic, strong) UIPageControl *pageControl;
+
+@property (nonatomic, strong) JYProductDetailViewModel *pdVM;
 @end
 
 @implementation JYProductDetailVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    DDLogVerbose(@"============================= 进入详情页面 =============================");
+    [self.pdVM getDataFromNetCompleteHandle:^(NSError *error) {
+        if (error) {
+            DDLogVerbose(@"ERROR:%@",error.description);
+        }
+    }];
     [self configTableViewHeader];
     [self configBottomButtons];
     //为头部滚动详情图片添加自动滚动定时器
@@ -118,12 +126,12 @@ static CGFloat bottomBtnHeight = 50;
         if (indexPath.row == 0) {
         /** 商品详情cell */
             JYProductDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYProductDetailCell"];
-            cell.productDescLb.text = @"［附专柜小票］洗脸仪  乐天免税店买 5月12号韩国买的，只用过一次。";
-            cell.currentPriceLb.text = @"¥ 35";
-            cell.originPriceLb.text = @"¥ 45";
+            cell.productDescLb.text = [self.pdVM descForProduct];
+            cell.currentPriceLb.text = [self.pdVM currentPriceForProduct];
+            cell.originPriceLb.text = [self.pdVM originPriceForProduct];
             /** 需要先设置地点再设置时间，否则约束会乱，如果没有地点就不用设置 */
-            cell.placeLb.text = @"浙江农林大学东湖校区";
-            cell.publishTimeLb.text = @"5分钟前";
+            cell.placeLb.text = @"浙江传媒学院";
+            cell.publishTimeLb.text = [self.pdVM publishTimeForProduct];
             return cell;
         }
     /** 商家信息cell */
@@ -160,7 +168,7 @@ static CGFloat bottomBtnHeight = 50;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 20;
+    return section == 0?0:20;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];//取消cell的选中状态
@@ -234,6 +242,14 @@ static CGFloat bottomBtnHeight = 50;
         }];
 	}
 	return _tableView;
+}
+
+- (JYProductDetailViewModel *)pdVM {
+	if(_pdVM == nil) {
+		_pdVM = [[JYProductDetailViewModel alloc] init];
+        _pdVM.ID = [self.goodsID integerValue];
+	}
+	return _pdVM;
 }
 
 @end

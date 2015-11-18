@@ -9,6 +9,9 @@
 #import "JYProductDetailCell.h"
 #import "UILabel+Line.h"
 #import "UIButton+VerticalBtn.h"
+
+static CGFloat verticalMargin = 10.0f;
+
 @interface JYProductDetailCell ()
 
 /** 放置时间地点的view */
@@ -28,7 +31,7 @@
         _productDescLb.numberOfLines = 0;
         [self.contentView addSubview:_productDescLb];
         [_productDescLb mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.top.mas_equalTo(10);
+            make.top.left.mas_equalTo(verticalMargin);
             make.right.mas_equalTo(self.contentView).mas_equalTo(-55);
         }];
     }
@@ -44,7 +47,7 @@
         _shareBtn.titleLabel.font = [UIFont systemFontOfSize:8];
         [self.contentView addSubview:_shareBtn];
         [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(10);
+            make.centerY.mas_equalTo(self.productDescLb);
             make.right.mas_equalTo(0);
             make.width.height.mas_equalTo(40);
         }];
@@ -60,8 +63,8 @@
         _currentPriceLb.textColor = [UIColor redColor];
         [self.contentView addSubview:_currentPriceLb];
         [_currentPriceLb mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(10);
-            make.top.mas_equalTo(self.productDescLb.mas_bottom).mas_equalTo(10);
+            make.left.mas_equalTo(verticalMargin);
+            make.top.mas_equalTo(self.productDescLb.mas_bottom).mas_equalTo(verticalMargin);
         }];
     }
     return _currentPriceLb;
@@ -73,10 +76,6 @@
         _originPriceLb.font = [UIFont systemFontOfSize:14];
         _originPriceLb.textColor = [UIColor darkGrayColor];
         [self.contentView addSubview:_originPriceLb];
-        
-        [_originPriceLb bk_addObserverForKeyPath:@"text" task:^(id target) {
-            [target addMidLine];
-        }];
         [_originPriceLb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.mas_equalTo(self.currentPriceLb.mas_bottom);
             make.left.mas_equalTo(self.currentPriceLb.mas_right).mas_equalTo(10);
@@ -91,10 +90,10 @@
         _timeAndPlaceView.layer.cornerRadius = 10;
         [self.contentView addSubview:_timeAndPlaceView];
         [_timeAndPlaceView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(verticalMargin);
+            make.bottom.mas_equalTo(-verticalMargin);
+            make.top.mas_equalTo(self.currentPriceLb.mas_bottom).mas_equalTo(verticalMargin);
             make.height.mas_equalTo(20);
-            make.left.mas_equalTo(10);
-            make.bottom.mas_equalTo(-10);
-            make.top.mas_equalTo(self.currentPriceLb.mas_bottom).mas_equalTo(10);
         }];
 	}
 	return _timeAndPlaceView;
@@ -106,10 +105,10 @@
         _publishTimeLb.font = [UIFont systemFontOfSize:11];
         [self.timeAndPlaceView addSubview:_publishTimeLb];
         [_publishTimeLb mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(10);
-            make.top.bottom.mas_equalTo(0);
+            make.left.mas_equalTo(verticalMargin);
+            make.centerY.mas_equalTo(0);
             if (!_placeLb) {
-                make.right.mas_equalTo(-10);
+                make.right.mas_equalTo(-verticalMargin);
             }
         }];
     }
@@ -139,8 +138,8 @@
         [self.timeAndPlaceView addSubview:_placeLb];
         [_placeLb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.locationIV.mas_right).mas_equalTo(0);
-            make.top.bottom.mas_equalTo(0);
-            make.right.mas_equalTo(-10);
+            make.centerY.mas_equalTo(0);
+            make.right.mas_equalTo(-verticalMargin);
         }];
     }
     return _placeLb;
@@ -150,6 +149,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     self.timeAndPlaceView.backgroundColor = kRGBColor(236, 236, 236);
     self.shareBtn.selected = NO;
+
     return self;
 }
 

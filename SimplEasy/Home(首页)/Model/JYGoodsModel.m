@@ -26,10 +26,7 @@
 
 
 @implementation JYGoodsItems
-+ (NSDictionary *)replacedKeyFromPropertyName{
-    return @{@"ID": @"id",
-             };
-}
+
 
 @end
 

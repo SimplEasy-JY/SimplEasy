@@ -186,7 +186,7 @@
                 <outlet property="shopButton" destination="7Tm-x6-6Z1" id="Wem-7L-6ZG"/>
                 <outlet property="shopImage" destination="u3b-sC-ZPQ" id="kr2-6i-Arn"/>
             </connections>
-            <point key="canvasLocation" x="331" y="334.5"/>
+            <point key="canvasLocation" x="363" y="272.5"/>
         </tableViewCell>
     </objects>
     <resources>

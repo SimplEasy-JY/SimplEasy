@@ -17,10 +17,7 @@
 
 @end
 @implementation JYLoopImage
-+ (NSDictionary *)replacedKeyFromPropertyName{
-    return @{@"ID": @"id",
-             };
-}
+
 @end
 
 
