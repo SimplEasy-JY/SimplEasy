@@ -34,7 +34,7 @@
 @end
 
 
-static CGFloat rightViewWidth = 80;
+static CGFloat rightViewWidth = 120;
 static CGFloat headerViewHeight = 120;
 static CGFloat statusBarHeight = 20;
 
