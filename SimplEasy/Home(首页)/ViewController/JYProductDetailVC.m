@@ -12,7 +12,8 @@
 #import "JYCommentCell.h"
 #import "UIButton+VerticalBtn.h"
 #import "JYProductDetailViewModel.h"
-
+#import "UILabel+Line.h"
+#import "UIImage+Circle.h"
 static CGFloat bottomBtnWidth = 40;
 static CGFloat bottomBtnHeight = 50;
 
@@ -32,18 +33,16 @@ static CGFloat bottomBtnHeight = 50;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    DDLogVerbose(@"============================= 进入详情页面 =============================");
+    JYLog(@"============================= 进入详情页面 =============================");
     [self.pdVM getDataFromNetCompleteHandle:^(NSError *error) {
         if (error) {
-            DDLogVerbose(@"ERROR:%@",error.description);
+            JYLog(@"ERROR:%@",error.description);
         }
+        JYLog(@"得到数据");
+        [self.tableView reloadData];
+        [self configTableViewHeader];
     }];
-    [self configTableViewHeader];
-    [self configBottomButtons];
-    //为头部滚动详情图片添加自动滚动定时器
-    [NSTimer bk_scheduledTimerWithTimeInterval:3 block:^(NSTimer *timer) {
-        [self.icView scrollToItemAtIndex:self.icView.currentItemIndex+1 animated:YES];
-    } repeats:YES];
+    
     //注册cell
     [self.tableView registerClass:[JYProductDetailCell class] forCellReuseIdentifier:@"JYProductDetailCell"];
     [self.tableView registerClass:[JYSellerCell class] forCellReuseIdentifier:@"JYSellerCell"];
@@ -61,12 +60,21 @@ static CGFloat bottomBtnHeight = 50;
         make.edges.mas_equalTo(headerView);
     }];
     //加入pageControl
-    [headerView addSubview: self.pageControl];
-    [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(0);
-        make.bottom.mas_equalTo(10);
-    }];
+    if ([self.pdVM picArrForProduct].count>1) {
+        [headerView addSubview: self.pageControl];
+        [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(0);
+            make.bottom.mas_equalTo(10);
+        }];
+    }
     self.tableView.tableHeaderView = headerView;
+    
+    //为头部滚动详情图片添加自动滚动定时器
+    if ([self.pdVM picArrForProduct].count>1){
+        [NSTimer bk_scheduledTimerWithTimeInterval:3 block:^(NSTimer *timer) {
+            [self.icView scrollToItemAtIndex:self.icView.currentItemIndex+1 animated:YES];
+        } repeats:YES];
+    }
 }
 
 /** 配置底部的按钮 */
@@ -117,6 +125,7 @@ static CGFloat bottomBtnHeight = 50;
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [@[@2,@3][section] integerValue];
 }
@@ -126,20 +135,28 @@ static CGFloat bottomBtnHeight = 50;
         if (indexPath.row == 0) {
         /** 商品详情cell */
             JYProductDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYProductDetailCell"];
+            
             cell.productDescLb.text = [self.pdVM descForProduct];
             cell.currentPriceLb.text = [self.pdVM currentPriceForProduct];
             cell.originPriceLb.text = [self.pdVM originPriceForProduct];
+            if (cell.originPriceLb.text) {
+                [cell.originPriceLb addMidLine];
+            }
             /** 需要先设置地点再设置时间，否则约束会乱，如果没有地点就不用设置 */
-            cell.placeLb.text = @"浙江传媒学院";
+            cell.placeLb.text = self.schoolName;
             cell.publishTimeLb.text = [self.pdVM publishTimeForProduct];
             return cell;
         }
     /** 商家信息cell */
         JYSellerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYSellerCell"];
-        cell.headIV.image = [UIImage imageNamed:@"picture_11"];
-        cell.nickNameLb.text = @"我是大蕴蕴";
-        cell.schoolLb.text = @"浙江农林大学";
-        cell.rankIV.image = [UIImage imageNamed:@"picture_30"];
+        [cell.headIV sd_setImageWithURL:[NSURL URLWithString:self.headImage] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            image = [UIImage scaleToSize:image size:CGSizeMake(60, 60)];
+            image = [UIImage circleImageWithImage:image borderWidth:0 borderColor:JYGlobalBg];
+            cell.headIV.image = image;
+        }];
+        cell.nickNameLb.text = self.userName;
+        cell.schoolLb.text = self.schoolName;
+//        cell.rankIV.image = [UIImage imageNamed:@"picture_30"];
         return cell;
     }else{/** 如果是第二个分区，则配置评论cell */
         if (indexPath.row == 0) {
@@ -153,7 +170,7 @@ static CGFloat bottomBtnHeight = 50;
         }
         JYCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYCommentCell"];
         cell.headIV.image = [UIImage imageNamed:@"picture_46"];
-        cell.nickNameLb.text = @"乔昔之";
+        cell.nickNameLb.text = @"评论人";
         cell.timeLb.text = @"11-5 13:28";
         cell.rankIV.image = [UIImage imageNamed:@"picture_38"];
         cell.commentLb.text = @"我最近正想买个洗脸仪呢，这个真的好用么？味全丹麦活性菌，源自丹麦©SINCE1916.";
@@ -177,7 +194,7 @@ static CGFloat bottomBtnHeight = 50;
 #pragma mark *** iCarouselDatasource & iCarouseDelegate ***
 
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel{
-    return 3;
+    return [self.pdVM picArrForProduct].count;
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view{
@@ -191,7 +208,10 @@ static CGFloat bottomBtnHeight = 50;
         }];
     }
     UIImageView *imageView = (UIImageView *)[view viewWithTag:100];
-    imageView.image = @[[UIImage imageNamed:@"picture_15"],[UIImage imageNamed:@"picture_17"],[UIImage imageNamed:@"picture_19"]][index];
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    NSURL *url = [self.pdVM picArrForProduct][index];
+    [imageView sd_setImageWithURL:url];
+    
     return view;
 }
 
@@ -215,7 +235,7 @@ static CGFloat bottomBtnHeight = 50;
         _icView.delegate = self;
         _icView.dataSource = self;
         _icView.pagingEnabled = YES;
-        _icView.type = iCarouselTypeCoverFlow;
+        _icView.type = iCarouselTypeLinear;
     }
     return _icView;
 }
@@ -240,6 +260,7 @@ static CGFloat bottomBtnHeight = 50;
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, bottomBtnHeight, 0));
         }];
+        [self configBottomButtons];
 	}
 	return _tableView;
 }

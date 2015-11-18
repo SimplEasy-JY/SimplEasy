@@ -22,6 +22,8 @@
 
 - (NSString *)publishTimeForProduct;
 
+- (NSArray *)picArrForProduct;
+
 - (JYProductDetailDataModel *)model;
 
 @end

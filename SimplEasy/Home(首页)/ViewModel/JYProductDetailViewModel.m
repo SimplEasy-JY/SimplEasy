@@ -26,6 +26,18 @@
 - (NSString *)descForProduct{
     return [NSString stringWithFormat:@"[%@] %@",[self model].name,[self model].detail];
 }
+
+- (NSArray *)picArrForProduct{
+    NSMutableArray *arr = [NSMutableArray new];
+#warning 这里现在只有一张图片，等后台改成数组再改
+    JYLog(@"图片:------%@",[self model].pic);
+    NSString *imageStr = [JYURL stringByAppendingString:[self model].pic];
+    NSURL *imageUrl = [NSURL URLWithString:imageStr];
+    [arr addObject:imageUrl];
+    return [arr copy];
+}
+
+
 - (NSString *)currentPriceForProduct{
     return [self model].price;
 }

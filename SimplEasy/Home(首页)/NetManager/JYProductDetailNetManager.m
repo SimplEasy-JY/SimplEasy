@@ -13,7 +13,7 @@
 
 + (id)getProductDetailInfoWithId:(NSInteger)ID completionHandle:(void (^)(id, NSError *))completionHandle{
     
-    NSString *path = [JYURL stringByAppendingPathComponent:[NSString stringWithFormat:@"Goods/show/%lu",ID]];
+    NSString *path = [JYURL stringByAppendingPathComponent:[NSString stringWithFormat:@"port/Goods/show/%lu",ID]];
     
     return [self GET:path parameters:nil completionHandle:^(id responseObj, NSError *error) {
         completionHandle([JYProductDetailModel objectWithKeyValues:responseObj],error);

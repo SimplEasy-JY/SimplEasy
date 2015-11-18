@@ -10,7 +10,11 @@
 #ifndef JYConsts_h
 #define JYConsts_h
 
-
+#ifdef DEBUG
+#define JYLog(...) NSLog(__VA_ARGS__)
+#else
+#define JYLog(...)
+#endif
 
 
 /**  数据 */
@@ -36,7 +40,7 @@
 /** 十六进制转换颜色,需要写0x前缀 */
 #define JYHexColor(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 //url前缀
-#define JYURL @"http://www.i-jianyi.com/port"
+#define JYURL @"http://www.i-jianyi.com"
 
 /** 应用程序的屏幕高度 */
 #define kWindowH   [UIScreen mainScreen].bounds.size.height

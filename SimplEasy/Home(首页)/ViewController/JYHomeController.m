@@ -635,7 +635,14 @@ typedef NS_ENUM(NSInteger, cellType) {
         JYProductDetailVC *productDetailVC = [[JYProductDetailVC alloc] init];
         JYGoodsItems *item = self.goodsVM.dataArr[indexPath.row];
         productDetailVC.goodsID = item.ID;
+        productDetailVC.schoolName = item.schoolname;
+        productDetailVC.headImage = item.headImg;
+        productDetailVC.userName = item.username;
+        NSMutableArray *pics = [NSMutableArray array];
+        [pics addObject:item.pic];
+        productDetailVC.pics = [pics copy];
         NSLog(@"商品ID:%@",item.ID);
+        
         productDetailVC.title = @"商品详情";
         productDetailVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:productDetailVC animated:YES];
