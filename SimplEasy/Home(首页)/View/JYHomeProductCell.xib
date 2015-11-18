@@ -222,6 +222,7 @@
                         <color key="backgroundColor" red="1" green="0.43579264280000002" blue="0.47581131500000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="1" id="BsD-xR-4Nr"/>
+                            <constraint firstAttribute="width" constant="1" id="eGI-or-Nx4"/>
                             <constraint firstAttribute="height" constant="18" id="hub-DG-Tqh"/>
                         </constraints>
                         <variation key="default">

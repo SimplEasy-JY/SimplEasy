@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="113"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="112"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="112.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="【付专柜小票】洗脸仪洗脸仪洗脸仪洗脸仪洗脸仪洗脸仪洗脸仪洗脸仪洗脸仪" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGd-bn-qON">
@@ -138,6 +138,7 @@
                     <constraint firstAttribute="bottomMargin" secondItem="u3b-sC-ZPQ" secondAttribute="bottom" constant="7.5" id="f2Y-ll-YWf"/>
                     <constraint firstItem="u3b-sC-ZPQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="ffR-Pf-9TO"/>
                     <constraint firstAttribute="trailingMargin" secondItem="zIh-3b-xwO" secondAttribute="trailing" constant="110" id="ipV-Ei-Z6U"/>
+                    <constraint firstItem="eGd-bn-qON" firstAttribute="leading" secondItem="u3b-sC-ZPQ" secondAttribute="trailing" constant="10" id="keM-ab-kTV"/>
                     <constraint firstItem="4vi-gD-xR0" firstAttribute="leading" secondItem="wxh-y4-XeV" secondAttribute="trailing" constant="5" id="l56-zD-dTq"/>
                     <constraint firstAttribute="bottomMargin" secondItem="wxh-y4-XeV" secondAttribute="bottom" constant="7" id="ld0-k7-kuh"/>
                     <constraint firstItem="eGd-bn-qON" firstAttribute="leading" secondItem="u3b-sC-ZPQ" secondAttribute="trailing" constant="10" id="nns-kx-XnD"/>

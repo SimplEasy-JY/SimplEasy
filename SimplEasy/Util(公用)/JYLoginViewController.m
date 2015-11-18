@@ -62,8 +62,30 @@
     // Do any additional setup after loading the view.
     _loginView = [[IMLoginView alloc] initWithFrame:self.view.bounds];
     
+
+
     [_loginView setDelegate:self];
-    [[self view] addSubview:_loginView];
+    [self.view addSubview:_loginView];
+    
+    /**  跳过注册按钮、  实际是采用自动注册 */
+    UIButton *button = [[UIButton alloc]init];
+    [_loginView addSubview:button];
+    button.backgroundColor = [UIColor blackColor];
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(_loginView).width.insets(UIEdgeInsetsMake(70, kWindowW-10-100, kWindowH-70-50, 10));
+    }];
+    [button bk_addEventHandler:^(id sender) {
+        [g_pIMMyself autoRegisterWithTimeoutInterval:5 success:^(NSString *customUserID, NSString *password) {
+            JYRootViewController *controller = [[JYRootViewController alloc] init];
+            
+            [self addChildViewController:controller];
+            [[self view] addSubview:controller.view];
+        } failure:^(NSString *error) {
+            NSLog(@"注册失败");
+        }];
+       
+
+    } forControlEvents:UIControlEventTouchUpInside];
     
 
     
@@ -77,6 +99,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logout) name:IMLogoutNotification object:nil];
     
 }
+
+
+
+    
+
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -195,8 +223,8 @@
 - (void)loginViewDidLogin:(BOOL)autoLogin {
     JYRootViewController *controller = [[JYRootViewController alloc] init];
     
-    [self addChildViewController:controller.sideMenu];
-    [[self view] addSubview:controller.sideMenu.view];
+    [self addChildViewController:controller];
+    [[self view] addSubview:controller.view];
     
     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:IMLastLoginTime];
     [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself customUserID] forKey:IMLoginCustomUserID];

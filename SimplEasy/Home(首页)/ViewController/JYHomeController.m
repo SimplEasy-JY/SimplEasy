@@ -19,6 +19,8 @@
 #import "JYFreeChargeCell.h"
 
 #import "UIImage+Circle.h"
+
+#import "JYLoginViewController.h"
 /**  cell id */
 static NSString *JYLoopCellIndentifier = @"loopCell";
 static NSString *JYLoopCellSecondIndentifier = @"loopSecondCell";
@@ -205,6 +207,8 @@ typedef NS_ENUM(NSInteger, cellType) {
 }
 /**  定位按钮 */
 - (IBAction)positionButton:(id)sender {
+    JYLoginViewController *vc = [[JYLoginViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
@@ -238,9 +242,10 @@ typedef NS_ENUM(NSInteger, cellType) {
 }
 -(void)setNav{
     //中间的搜索条
-    CGRect frame = CGRectMake(0, 0, 190, 28);
+    CGRect frame = CGRectMake(0, 0, kWindowW-130, 28);
     /**  加中间层，防止切换闪 */
     UIView *titleView = [[UIView alloc] initWithFrame:frame];
+   
     //设置边框宽度和颜色   取消黑线
     [titleView.layer setBorderWidth:1];
     [titleView.layer setBorderColor:[UIColor whiteColor].CGColor];
@@ -263,6 +268,7 @@ typedef NS_ENUM(NSInteger, cellType) {
     searchBar.delegate = self;
     [titleView addSubview:searchBar];
     self.navigationItem.titleView = titleView;
+
 }
 
 -(void)setupTableView{

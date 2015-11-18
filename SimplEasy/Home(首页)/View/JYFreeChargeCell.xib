@@ -93,6 +93,7 @@
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wSW-gm-C6O" firstAttribute="leading" secondItem="FE2-VK-ZIq" secondAttribute="trailing" constant="1" id="1T3-UQ-JML"/>
                             <constraint firstAttribute="bottom" secondItem="txT-se-eF5" secondAttribute="bottom" constant="5" id="4Ff-sk-4la"/>
                             <constraint firstAttribute="bottom" secondItem="FE2-VK-ZIq" secondAttribute="bottom" constant="5" id="KCR-9a-ORh"/>
                             <constraint firstAttribute="bottom" secondItem="wSW-gm-C6O" secondAttribute="bottom" constant="2" id="LCT-xg-PbG"/>
@@ -148,6 +149,7 @@
                             <constraint firstAttribute="bottom" secondItem="zUo-lz-GaF" secondAttribute="bottom" constant="5" id="hdv-6Q-VcF"/>
                             <constraint firstAttribute="trailing" secondItem="JN6-Wc-F94" secondAttribute="trailing" constant="5" id="j22-fo-R3l"/>
                             <constraint firstItem="zUo-lz-GaF" firstAttribute="leading" secondItem="1qi-Xi-soV" secondAttribute="leading" constant="4" id="lcs-LK-Y6T"/>
+                            <constraint firstItem="9nM-e5-Onw" firstAttribute="leading" secondItem="zUo-lz-GaF" secondAttribute="trailing" constant="1" id="rZU-ue-gcn"/>
                             <constraint firstAttribute="height" constant="25" id="vzI-mH-z1c"/>
                         </constraints>
                     </view>

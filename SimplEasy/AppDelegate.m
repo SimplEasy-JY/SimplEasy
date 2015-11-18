@@ -146,7 +146,7 @@
     //版本号相同：这次打开和上次打开的是同一个版本,根控制器就是sideMenu
     if ([currentVersion isEqualToString:lastVersion]) {
         NSLog(@"%@",rootVC);
-        self.window.rootViewController = rootVC.sideMenu;
+        self.window.rootViewController = rootVC;
     }else{ //这次打开的版本和上一次不一样，显示新特性
         self.window.rootViewController = [[JYNewFeatureViewController alloc] init];
         [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:key];//将当前的版本号存进沙盒

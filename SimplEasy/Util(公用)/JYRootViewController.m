@@ -162,6 +162,9 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
     [g_pIMMyself setRelationshipDelegate:self];
     [g_pIMMyself setGroupDelegate:self];
     [g_pIMMyself setCustomUserInfoDelegate:self];
+    [self addChildViewController:self.sideMenu];
+    [self.view addSubview:self.sideMenu.view];
+
     
 }
 
@@ -187,7 +190,7 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
 }
 
 - (void)logout {
-    [_tabBarController setSelectedIndex:0];
+    [self.tabBarController setSelectedIndex:0];
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:IMLoginCustomUserID];
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:IMLoginPassword];
     [[NSUserDefaults standardUserDefaults] synchronize];
