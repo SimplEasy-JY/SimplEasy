@@ -29,7 +29,6 @@
 		8333E08C1BF4A5E4005CE5B4 /* UILabel+Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 8333E08B1BF4A5E4005CE5B4 /* UILabel+Line.m */; };
 		8344A9931BE89D6200AD007B /* ScrollDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8344A9921BE89D6200AD007B /* ScrollDisplayViewController.m */; };
 		8344A9961BE8A29400AD007B /* JYProductDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8344A9951BE8A29400AD007B /* JYProductDetailVC.m */; };
-		8345CDB31BFB406A002A5910 /* JYProductDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8345CDB21BFB406A002A5910 /* JYProductDetailModel.m */; };
 		8345CDB61BFB4156002A5910 /* JYProductDetailNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8345CDB51BFB4156002A5910 /* JYProductDetailNetManager.m */; };
 		83476B751BEB1C6C0061F61E /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83476B741BEB1C6C0061F61E /* iCarousel.m */; };
 		83476B781BEB2E9F0061F61E /* UIImage+Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83476B771BEB2E9F0061F61E /* UIImage+Circle.m */; };
@@ -152,6 +151,7 @@
 		B02A70171BE8638A00B8B05F /* JYPlusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70161BE8638A00B8B05F /* JYPlusButton.m */; };
 		B02A701A1BE863AE00B8B05F /* JYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70191BE863AE00B8B05F /* JYTabBar.m */; };
 		B02A701C1BE86AA000B8B05F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B02A701B1BE86AA000B8B05F /* Assets.xcassets */; };
+		B02DE3891BFC8DEC0035C135 /* JYProductDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8345CDB21BFB406A002A5910 /* JYProductDetailModel.m */; };
 		B04758D61BEB92D100C645EE /* JYWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B04758D51BEB92D100C645EE /* JYWebViewController.m */; };
 		B048007E1BF489DD007D39F4 /* JYGoodsNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B048007D1BF489DD007D39F4 /* JYGoodsNetManager.m */; };
 		B04800811BF48A65007D39F4 /* JYGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B04800801BF48A65007D39F4 /* JYGoodsModel.m */; };
@@ -1746,6 +1746,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B02DE3891BFC8DEC0035C135 /* JYProductDetailModel.m in Sources */,
 				83E75EC21BEA45C70020D54D /* JYCommentCell.m in Sources */,
 				B0AFA3B01BFB226E00F795F9 /* NSString+IM.m in Sources */,
 				83476B781BEB2E9F0061F61E /* UIImage+Circle.m in Sources */,
