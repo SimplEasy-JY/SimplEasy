@@ -10,20 +10,26 @@
 #import "JYProductDetailModel.h"
 @interface JYProductDetailViewModel : JYBaseViewModel
 
-@property (nonatomic, assign) NSInteger ID;
+- (instancetype)initWithID: (NSInteger)ID;
 
+/** 获取数据 */
 - (void)getDataFromNetCompleteHandle:(CompletionHandle)completionHandle;
-
+/** 获得商品描述 */
 - (NSString *)descForProduct;
-
+/** 当前价格 */
 - (NSString *)currentPriceForProduct;
-
+/** 原始价格 */
 - (NSString *)originPriceForProduct;
-
+/** 商品发布时间 */
 - (NSString *)publishTimeForProduct;
-
+/** 商品图片数组 */
 - (NSArray *)picArrForProduct;
+/** 卖家名字 */
+- (NSString *)nameForSeller;
+/** 卖家头像URL */
+- (NSURL *)headImageForSeller;
+/** 卖家的学校 */
+- (NSString *)schoolNameForSeller;
 
-- (JYProductDetailDataModel *)model;
 
 @end

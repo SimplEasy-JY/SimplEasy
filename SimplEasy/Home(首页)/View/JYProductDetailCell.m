@@ -10,7 +10,7 @@
 #import "UILabel+Line.h"
 #import "UIButton+VerticalBtn.h"
 
-static CGFloat verticalMargin = 10.0f;
+static CGFloat verticalMargin = 5.0f;
 
 @interface JYProductDetailCell ()
 

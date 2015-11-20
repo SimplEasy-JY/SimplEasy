@@ -37,6 +37,7 @@
 #define JYGlobalBg kRGBColor(72, 171, 108)
 //线条颜色
 #define JYLineColor kRGBColor(217, 217, 217)
+
 /** 十六进制转换颜色,需要写0x前缀 */
 #define JYHexColor(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 //url前缀

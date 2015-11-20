@@ -63,7 +63,7 @@ static CGFloat margin = 5;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsMake(statusBarHeight, 0, 0, contentVCWidth + rightViewWidth));
+        make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, contentVCWidth + rightViewWidth));
     }];
     [self configHeaderView];
     [self configRightView];
@@ -78,7 +78,7 @@ static CGFloat margin = 5;
     [rightView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.tableView.mas_right).mas_equalTo(0);
         make.bottom.mas_equalTo(self.view);
-        make.top.mas_equalTo(statusBarHeight);
+        make.top.mas_equalTo(0);
         make.width.mas_equalTo(rightViewWidth);
     }];
     rightView.backgroundColor = JYHexColor(0x272C35);

@@ -14,7 +14,12 @@
 
 @implementation JYProductDetailDataModel
 
-
++ (NSDictionary *)objectClassInArray{
+    return @{@"pics":[JYProductDetailDataPicsModel class]};
+}
 @end
 
+@implementation JYProductDetailDataPicsModel
 
+
+@end

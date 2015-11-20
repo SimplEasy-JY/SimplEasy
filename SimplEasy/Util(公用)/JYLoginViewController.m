@@ -109,7 +109,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     
 //    NSMutableString *customUserID = [[NSMutableString alloc] initWithFormat:@"%@",[_userNameField text]];
 //    
