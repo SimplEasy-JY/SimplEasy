@@ -97,7 +97,33 @@
 }
 
 - (NSString *)publishTimeForProduct{
-    return [self model].time;
+    NSString *time = [self requiredTime:[self model].time];
+    return time;
+}
+
+- (NSString *)requiredTime: (NSString *)publishTime{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    NSDate *publishDate = [dateFormatter dateFromString:publishTime];// 开始时间
+    NSDate *now = [NSDate date];// 结束时间
+    //设置日历单元 **这个不能漏写**
+    NSCalendarUnit unit =NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute;
+    //设置日期组件
+    NSDateComponents *cmps = [[NSCalendar currentCalendar] components:unit fromDate:publishDate toDate:now options:0];
+    if (cmps.month >= 1) {
+        return [NSString stringWithFormat:@"%ld个月前",cmps.month];
+    }else if(cmps.day>=3){
+        return [NSString stringWithFormat:@"%ld天前",cmps.day];
+    }else if (cmps.day<1){
+        if (cmps.hour==0) {
+            return [NSString stringWithFormat:@"%ld分钟前",cmps.minute];
+        }
+        return [NSString stringWithFormat:@"%ld小时前",cmps.hour];
+    }else{
+        return [NSString stringWithFormat:@"%ld天 %ld小时前",cmps.day,cmps.hour];
+    }
 }
 
 @end
