@@ -34,6 +34,7 @@ static CGFloat bottomBtnHeight = 50;
 - (void)viewDidLoad {
     [super viewDidLoad];
     JYLog(@"\n\n******************** 进入详情页面 ********************\n\n");
+    //获取数据
     [self.pdVM getDataFromNetCompleteHandle:^(NSError *error) {
         if (error) {
             JYLog(@"ERROR:%@",error.description);
@@ -43,10 +44,10 @@ static CGFloat bottomBtnHeight = 50;
         [self configTableViewHeader];
     }];
     
-    UIBarButtonItem *leftBBI = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"back_btn"] style:UIBarButtonItemStyleDone handler:^(id sender) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
-    self.navigationItem.leftBarButtonItem = leftBBI;
+    //    UIBarButtonItem *leftBBI = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"back_btn"] style:UIBarButtonItemStyleDone handler:^(id sender) {
+    //        [self.navigationController popViewControllerAnimated:YES];
+    //    }];
+    //    self.navigationItem.leftBarButtonItem = leftBBI;
     
     //注册cell
     [self.tableView registerClass:[JYProductDetailCell class] forCellReuseIdentifier:@"JYProductDetailCell"];
@@ -105,7 +106,7 @@ static CGFloat bottomBtnHeight = 50;
         make.bottom.left.right.mas_equalTo(0);
         make.height.mas_equalTo(bottomBtnHeight);
     }];
-
+    
     NSArray *btnNames = @[@"浏览",@"评论",@"收藏",@"联系卖家",@"立即易货"];
     NSArray *btnImages = @[[UIImage scaleToSize:[UIImage imageNamed:@"eye_16"] size:CGSizeMake(20, 20)],[UIImage imageNamed:@"bottomicon2_05"],[UIImage imageNamed:@"bottomicon2_03"]];
     NSArray *btnHighlightedImages = @[[UIImage scaleToSize:[UIImage imageNamed:@"eye_16"] size:CGSizeMake(20, 20)],[UIImage imageNamed:@"bottomicon2_05"],[UIImage imageNamed:@"bottomicon_03"]];
@@ -155,7 +156,7 @@ static CGFloat bottomBtnHeight = 50;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {/** 如果是第一个cell分区，那么只需要配置商品详情cell和商家信息cell */
         if (indexPath.row == 0) {
-        /** 商品详情cell */
+            /** 商品详情cell */
             JYProductDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYProductDetailCell"];
             cell.productDescLb.text = [self.pdVM descForProduct];//商品描述
             cell.currentPriceLb.text = [self.pdVM currentPriceForProduct];//当前价格
@@ -168,8 +169,8 @@ static CGFloat bottomBtnHeight = 50;
             cell.publishTimeLb.text = [self.pdVM publishTimeForProduct];//发布时间
             return cell;
         }
-    /** 商家信息cell */
-        JYSellerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYSellerCell"]; 
+        /** 商家信息cell */
+        JYSellerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYSellerCell"];
         [cell.headIV sd_setImageWithURL:[self.pdVM headImageForSeller] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             image = [UIImage scaleToSize:image size:CGSizeMake(60, 60)];
             image = [UIImage circleImageWithImage:image borderWidth:0 borderColor:JYGlobalBg];
@@ -179,6 +180,7 @@ static CGFloat bottomBtnHeight = 50;
         cell.schoolLb.text = [self.pdVM schoolNameForSeller];// 设置学校
         return cell;
     }else{/** 如果是第二个分区，则配置评论cell */
+#warning 评论后台还没弄好，待完善
         if (indexPath.row == 0) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
             if (cell == nil) {
@@ -272,8 +274,8 @@ static CGFloat bottomBtnHeight = 50;
 }
 
 - (UITableView *)tableView {
-	if(_tableView == nil) {
-		_tableView = [[UITableView alloc] init];
+    if(_tableView == nil) {
+        _tableView = [[UITableView alloc] init];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         [self.view addSubview:_tableView];
@@ -281,15 +283,15 @@ static CGFloat bottomBtnHeight = 50;
             make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, bottomBtnHeight, 0));
         }];
         [self configBottomButtons];
-	}
-	return _tableView;
+    }
+    return _tableView;
 }
 
 - (JYProductDetailViewModel *)pdVM {
-	if(_pdVM == nil) {
-		_pdVM = [[JYProductDetailViewModel alloc] initWithID:[self.goodsID integerValue]];
-	}
-	return _pdVM;
+    if(_pdVM == nil) {
+        _pdVM = [[JYProductDetailViewModel alloc] initWithID:[self.goodsID integerValue]];
+    }
+    return _pdVM;
 }
 
 @end

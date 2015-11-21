@@ -56,7 +56,7 @@
 }
 
 - (NSString *)descForProduct{
-    return [NSString stringWithFormat:@"[%@] %@",[self model].name,[self model].detail];
+    return [NSString stringWithFormat:@"[%@]\n%@",[self model].name,[self model].detail];
 }
 
 - (NSArray *)picArrForProduct{
@@ -97,19 +97,28 @@
 }
 
 - (NSString *)publishTimeForProduct{
-    NSString *time = [self requiredTime:[self model].time];
+    NSString *time = [self model].time?[self requiredTime:[self model].time]:nil;
     return time;
 }
 
+/**
+ *  格式化时间
+ *
+ *  @param publishTime 传入的时间格式为:2015-02-15 18:09:38
+ *
+ *  @return 根据距离现在的时间返回不同的字符串
+ */
 - (NSString *)requiredTime: (NSString *)publishTime{
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];//设置格式
     
     NSDate *publishDate = [dateFormatter dateFromString:publishTime];// 开始时间
     NSDate *now = [NSDate date];// 结束时间
+    
     //设置日历单元 **这个不能漏写**
     NSCalendarUnit unit =NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute;
+    
     //设置日期组件
     NSDateComponents *cmps = [[NSCalendar currentCalendar] components:unit fromDate:publishDate toDate:now options:0];
     if (cmps.month >= 1) {

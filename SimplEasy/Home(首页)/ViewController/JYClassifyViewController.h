@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^ReturnBlock)(UIViewController *viewController,NSString *selectedType);
+
 @interface JYClassifyViewController : UIViewController
+
+- (void)didSelectTypeWithBlock: (ReturnBlock)block;
 
 @end

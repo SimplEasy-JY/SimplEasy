@@ -82,7 +82,7 @@
         [self.contentView addSubview:_followBtn];
         [_followBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.headIV);
-            make.right.mas_equalTo(-10);
+            make.right.mas_equalTo(-5);
             make.height.width.mas_equalTo(40);
         }];
         [_followBtn centerImageAndTitleWithSpace:0.0f];

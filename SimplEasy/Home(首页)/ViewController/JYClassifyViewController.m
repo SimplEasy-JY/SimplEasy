@@ -9,13 +9,20 @@
 #import "JYClassifyViewController.h"
 #import "JYSellerCell.h"
 #import "JYClassifyModel.h"
+#import "JYClassifyContentVC.h"
+
+#pragma mark *** 自定义cell ***
+
 
 
 @interface JYClassifyTableViewCell : UITableViewCell
 
 @end
 
+
+
 @implementation JYClassifyTableViewCell
+
 
 - (void)layoutSubviews{
     [super layoutSubviews];
@@ -34,23 +41,29 @@
 @end
 
 
+
+#pragma mark *** 控制器 ***
+
 static CGFloat rightViewWidth = 120;
 static CGFloat headerViewHeight = 120;
-static CGFloat statusBarHeight = 20;
-
 /** 右边图标和签名离父视图的间隙 */
 static CGFloat margin = 5;
 /** 内容视图缩放后的宽度（竖屏） */
 #define contentVCWidth (kWindowW * rootVC.sideMenu.contentViewScaleValue/2 - rootVC.sideMenu.contentViewInPortraitOffsetCenterX)
 
+
 @interface JYClassifyViewController ()<UITableViewDelegate,UITableViewDataSource>
+
 /** 分类数组 */
 @property (nonatomic, strong) NSArray *classArr;
-/** 数据数组 */
-//@property (nonatomic, strong) NSMutableArray *dataArr;
 /** tableView */
 @property (nonatomic, strong) UITableView *tableView;
+/** 传回去的block */
+@property (nonatomic, copy) ReturnBlock backBlock;
+
 @end
+
+
 
 @implementation JYClassifyViewController
 
@@ -67,6 +80,10 @@ static CGFloat margin = 5;
     }];
     [self configHeaderView];
     [self configRightView];
+}
+
+- (void)didSelectTypeWithBlock:(ReturnBlock)block{
+    self.backBlock = block;
 }
 
 /** 配置右侧的视图 */
@@ -153,7 +170,12 @@ static CGFloat margin = 5;
 #pragma mark *** <UITableViewDelegate> ***
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    JYClassifyContentVC *vc = [[JYClassifyContentVC alloc] init];
+    JYClassifyModel *model = self.classArr[indexPath.row];
+    vc.title = model.name;
+    if (self.backBlock) {
+        self.backBlock(vc,model.name);//实现block
+    }
     /** 回到contentView */
     [self.sideMenuViewController hideMenuViewController];
 }
@@ -182,6 +204,5 @@ static CGFloat margin = 5;
 	}
 	return _classArr;
 }
-
 
 @end
