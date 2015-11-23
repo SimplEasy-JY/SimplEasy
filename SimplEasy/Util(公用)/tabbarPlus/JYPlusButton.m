@@ -84,7 +84,7 @@
 #pragma mark - Event Response
 
 - (void)clickPublish {
-    RESideMenu *menu = (RESideMenu *)self.window.rootViewController;
+    RESideMenu *menu = rootVC.sideMenu;
     UITabBarController *tabBarController = (UITabBarController *)menu.contentViewController;
 //    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
     UIViewController *viewController = tabBarController.selectedViewController;

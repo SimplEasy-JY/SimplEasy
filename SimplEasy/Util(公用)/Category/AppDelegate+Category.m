@@ -35,6 +35,8 @@
         }
     }];
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

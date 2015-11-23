@@ -10,6 +10,8 @@
 #import "UIBarButtonItem+Extension.h"
 #import "JYProductDetailVC.h"
 #import "JYWebViewController.h"
+#import "JYClassifyViewController.h"
+#import "JYClassifyContentVC.h"
 
 #import "JYLoopViewModel.h"
 #import "JYGoodsViewModel.h"
@@ -203,11 +205,20 @@ typedef NS_ENUM(NSInteger, cellType) {
 #pragma mark - 响应方法
 /**  分类按钮 */
 - (IBAction)categoryButton:(id)sender {
-    [rootVC.sideMenu presentLeftMenuViewController];
+    JYClassifyViewController *classifyVC = (JYClassifyViewController *)self.sideMenuViewController.leftMenuViewController;
+    
+    [classifyVC didSelectTypeWithBlock:^(UIViewController *viewController, NSString *selectedType) {
+        viewController.title = selectedType;
+        viewController.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:viewController animated:YES];
+    }];
+    
+    [self.sideMenuViewController presentLeftMenuViewController];
 }
 /**  定位按钮 */
 - (IBAction)positionButton:(id)sender {
     JYLoginViewController *vc = [[JYLoginViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -635,12 +646,7 @@ typedef NS_ENUM(NSInteger, cellType) {
         JYProductDetailVC *productDetailVC = [[JYProductDetailVC alloc] init];
         JYGoodsItems *item = self.goodsVM.dataArr[indexPath.row];
         productDetailVC.goodsID = item.ID;
-        productDetailVC.schoolName = item.schoolname;
-        productDetailVC.headImage = item.headImg;
-        productDetailVC.userName = item.username;
-        NSMutableArray *pics = [NSMutableArray array];
-        [pics addObject:item.pic];
-        productDetailVC.pics = [pics copy];
+
         NSLog(@"商品ID:%@",item.ID);
         
         productDetailVC.title = @"商品详情";

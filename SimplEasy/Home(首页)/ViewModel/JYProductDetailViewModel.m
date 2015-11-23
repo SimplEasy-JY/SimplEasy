@@ -8,15 +8,47 @@
 
 #import "JYProductDetailViewModel.h"
 #import "JYProductDetailNetManager.h"
+#import "JYUserInfoNetManager.h"
+#import "JYUserInfoModel.h"
+
+
+@interface JYProductDetailViewModel ()
+
+@property (nonatomic, strong) NSURLSessionDataTask *userDataTask;
+@property (nonatomic, strong) NSMutableArray *userDataArr;
+@property (nonatomic, assign) NSInteger ID;
+@end
 
 @implementation JYProductDetailViewModel
 
+- (instancetype)initWithID: (NSInteger)ID{
+    if (self = [super init]) {
+        self.ID = ID;
+    }
+    return self;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    NSAssert(NO, @"%s:必须使用initWithID初始化",__FUNCTION__);
+    return self;
+}
 
 - (void)getDataFromNetCompleteHandle:(CompletionHandle)completionHandle{
     self.dataTask = [JYProductDetailNetManager getProductDetailInfoWithId:_ID completionHandle:^(JYProductDetailModel *model, NSError *error) {
+        JYProductDetailDataModel *dataModel = model.data;
         [self.dataArr addObject:model.data];
+        
         completionHandle(error);
+        
+        self.userDataTask = [JYUserInfoNetManager getUserInfoWithUserID:[dataModel.uid integerValue] completionHandle:^(JYUserInfoModel *model, NSError *error) {
+            self.userDataArr = [NSMutableArray array];
+            [self.userDataArr addObject:model.data];
+            completionHandle(error);
+        }];
     }];
+    
 }
 
 - (JYProductDetailDataModel *)model{
@@ -24,19 +56,37 @@
 }
 
 - (NSString *)descForProduct{
-    return [NSString stringWithFormat:@"[%@] %@",[self model].name,[self model].detail];
+    return [NSString stringWithFormat:@"[%@]\n%@",[self model].name,[self model].detail];
 }
 
 - (NSArray *)picArrForProduct{
     NSMutableArray *arr = [NSMutableArray new];
-#warning 这里现在只有一张图片，等后台改成数组再改
-    JYLog(@"图片:------%@",[self model].pic);
-    NSString *imageStr = [JYURL stringByAppendingString:[self model].pic];
-    NSURL *imageUrl = [NSURL URLWithString:imageStr];
-    [arr addObject:imageUrl];
+    if (![self model].pics) {
+        return nil;
+    }
+    for (JYProductDetailDataPicsModel *picsModel in [self model].pics) {
+        NSString *imageStr = [JYURL stringByAppendingString:picsModel.pic];
+        NSURL *imageUrl = [NSURL URLWithString:imageStr];
+        [arr addObject:imageUrl];
+    }
     return [arr copy];
 }
 
+- (JYUserInfoDataModel *)userDataModel{
+    return self.userDataArr.firstObject;
+}
+
+- (NSString *)nameForSeller{
+    return [self userDataModel].name;
+}
+
+- (NSURL *)headImageForSeller{
+    return [NSURL URLWithString:[self userDataModel].headImg];
+}
+
+- (NSString *)schoolNameForSeller{
+    return [self userDataModel].school;
+}
 
 - (NSString *)currentPriceForProduct{
     return [self model].price;
@@ -47,7 +97,42 @@
 }
 
 - (NSString *)publishTimeForProduct{
-    return [self model].time;
+    NSString *time = [self model].time?[self requiredTime:[self model].time]:nil;
+    return time;
+}
+
+/**
+ *  格式化时间
+ *
+ *  @param publishTime 传入的时间格式为:2015-02-15 18:09:38
+ *
+ *  @return 根据距离现在的时间返回不同的字符串
+ */
+- (NSString *)requiredTime: (NSString *)publishTime{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];//设置格式
+    
+    NSDate *publishDate = [dateFormatter dateFromString:publishTime];// 开始时间
+    NSDate *now = [NSDate date];// 结束时间
+    
+    //设置日历单元 **这个不能漏写**
+    NSCalendarUnit unit =NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute;
+    
+    //设置日期组件
+    NSDateComponents *cmps = [[NSCalendar currentCalendar] components:unit fromDate:publishDate toDate:now options:0];
+    if (cmps.month >= 1) {
+        return [NSString stringWithFormat:@"%ld个月前",cmps.month];
+    }else if(cmps.day>=3){
+        return [NSString stringWithFormat:@"%ld天前",cmps.day];
+    }else if (cmps.day<1){
+        if (cmps.hour==0) {
+            return [NSString stringWithFormat:@"%ld分钟前",cmps.minute];
+        }
+        return [NSString stringWithFormat:@"%ld小时前",cmps.hour];
+    }else{
+        return [NSString stringWithFormat:@"%ld天 %ld小时前",cmps.day,cmps.hour];
+    }
 }
 
 @end

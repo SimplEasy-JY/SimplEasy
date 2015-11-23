@@ -17,7 +17,6 @@
 #import "JYRootViewController.h"
 
 
-
 #import "JYLoginViewController.h"
 #import "IMDefine.h"
 //#import "JYUserDialogViewController.h"
@@ -27,91 +26,42 @@
 #import "IMMyself.h"
 @interface AppDelegate ()
 
-//@property(strong,nonatomic)CYLTabBarController *tabBarController;
 
 @end
 
 @implementation AppDelegate
 
-///** 设置VC */
-//- (void)setupViewControllers {
-//    
-//    UINavigationController *homeNavc = [[UINavigationController alloc]
-//                                        initWithRootViewController:kVCFromSb(@"JYHomeController", @"Main")];
-//    
-//    JYFindController *shopVC = [[JYFindController alloc] init];
-//    UINavigationController *shopNavc = [[UINavigationController alloc]
-//                                        initWithRootViewController:shopVC];
-//    
-//    JYMessageController *messageVC = [[JYMessageController alloc] init];
-//    UINavigationController *messageNavc = [[UINavigationController alloc]
-//                                           initWithRootViewController:messageVC];
-//    
-//    JYMineController *profileVC = [[JYMineController alloc] init];
-//    UINavigationController *profileNavc = [[UINavigationController alloc]
-//                                           initWithRootViewController:profileVC];
-//    
-//    
-//    CYLTabBarController *tabBarController = [[CYLTabBarController alloc] init];
-//    
-//    [self customizeTabBarForController:tabBarController];
-//    
-//    [tabBarController setViewControllers:@[
-//                                           homeNavc,
-//                                           shopNavc,
-//                                           messageNavc,
-//                                           profileNavc
-//                                           ]];
-//    tabBarController.tabBar.selectedImageTintColor = JYGlobalBg;
-//    self.tabBarController = tabBarController;
-//}
-//
-///** 设置tabBar */
-//- (void)customizeTabBarForController:(CYLTabBarController *)tabBarController {
-//    
-//    NSDictionary *dict1 = @{
-//                            CYLTabBarItemTitle : @"首页",
-//                            CYLTabBarItemImage : @"bottom_1",
-//                            CYLTabBarItemSelectedImage : @"bottom_1_h",
-//                            };
-//    NSDictionary *dict2 = @{
-//                            CYLTabBarItemTitle : @"发现",
-//                            CYLTabBarItemImage : @"bottom_2",
-//                            CYLTabBarItemSelectedImage : @"bottom_2_h",
-//                            };
-//    NSDictionary *dict3 = @{
-//                            CYLTabBarItemTitle : @"消息",
-//                            CYLTabBarItemImage : @"bottom_3",
-//                            CYLTabBarItemSelectedImage : @"bottom_3_h",
-//                            };
-//    
-//    NSDictionary *dict4 = @{
-//                            CYLTabBarItemTitle : @"我的",
-//                            CYLTabBarItemImage : @"bottom_4",
-//                            CYLTabBarItemSelectedImage : @"bottom_4_h",
-//                            };
-//    
-//    
-//    NSArray *tabBarItemsAttributes = @[ dict1, dict2 ,dict3,dict4 ];
-//    tabBarController.tabBarItemsAttributes = tabBarItemsAttributes;
-//}
-//
-///** 设置侧拉框 */
-//- (RESideMenu *)sideMenu{
-//    if (!_sideMenu) {
-//        _sideMenu=[[RESideMenu alloc]initWithContentViewController:self.tabBarController leftMenuViewController:[JYClassifyViewController new] rightMenuViewController:nil];
-//        /** 让侧拉框不能通过手势调出，解决每个tabBar都会调出侧拉框的问题 */
-//        _sideMenu.panGestureEnabled = NO;
-//        /** 可以让出现菜单时不显示状态栏 */
-//        _sideMenu.menuPrefersStatusBarHidden = YES;
-//        /** 关闭透视，视差效果 */
-//        _sideMenu.parallaxEnabled = NO;
-//        _sideMenu.contentViewInPortraitOffsetCenterX = 80;
-//        _sideMenu.contentViewScaleValue = 1.0f;
-//    }
-//    return _sideMenu;
-//}
+/** 应用程序入口 */
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    [self configGlobalUIStyle];
+    
+    [g_pIMSDK initWithAppKey:IMDeveloper_APPKey];
+    
+    /** 网络状态检测 */
+    [self initializeWithApplication:application];
+
+    [self configNewFeatureViewController];
+    
+    
+    
+    return YES;
+}
+
+/** 配置全局的UI样式 */
+- (void)configGlobalUIStyle{
+    /** 去除 TabBar 自带的顶部阴影 */
+    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
+    
+    /** 设置statusBar的颜色 */
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    
+    /** UINavigationBar的相关设置 */
+    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];// 文字颜色
+    [[UINavigationBar appearance] setTranslucent:NO];// 透明度
+//    [[UINavigationBar appearance] setBarTintColor:JYGlobalBg];//  背景颜色
+    
+}
 
 /** 设置window */
 - (UIWindow *)window{
@@ -123,14 +73,7 @@
     return _window;
 }
 
-/** 配置全局的UI样式 */
-- (void)configGlobalUIStyle{
-    /** 去除 TabBar 自带的顶部阴影 */
-    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
-    [[UINavigationBar appearance] setTintColor:JYGlobalBg];
-    [[UINavigationBar appearance] setTranslucent:NO];
 
-}
 
 /** 配置新特性（或欢迎界面） */
 - (void)configNewFeatureViewController{
@@ -155,21 +98,6 @@
     
 }
 
-/** 应用程序入口 */
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [g_pIMSDK initWithAppKey:IMDeveloper_APPKey];
-    
-    /** 网络状态检测 */
-    [self initializeWithApplication:application];
-    /** 以下两行代码先后顺序不可打乱 */
-//    [self setupViewControllers];
-    [self configNewFeatureViewController];
-    [self configGlobalUIStyle];
-    
-    
-    
-    return YES;
-}
 /**  程序进入后台 */
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
@@ -186,4 +114,84 @@
 }
 
 
+/**
+ * 设置VC
+ //- (void)setupViewControllers {
+ //
+ //    UINavigationController *homeNavc = [[UINavigationController alloc]
+ //                                        initWithRootViewController:kVCFromSb(@"JYHomeController", @"Main")];
+ //
+ //    JYFindController *shopVC = [[JYFindController alloc] init];
+ //    UINavigationController *shopNavc = [[UINavigationController alloc]
+ //                                        initWithRootViewController:shopVC];
+ //
+ //    JYMessageController *messageVC = [[JYMessageController alloc] init];
+ //    UINavigationController *messageNavc = [[UINavigationController alloc]
+ //                                           initWithRootViewController:messageVC];
+ //
+ //    JYMineController *profileVC = [[JYMineController alloc] init];
+ //    UINavigationController *profileNavc = [[UINavigationController alloc]
+ //                                           initWithRootViewController:profileVC];
+ //
+ //
+ //    CYLTabBarController *tabBarController = [[CYLTabBarController alloc] init];
+ //
+ //    [self customizeTabBarForController:tabBarController];
+ //
+ //    [tabBarController setViewControllers:@[
+ //                                           homeNavc,
+ //                                           shopNavc,
+ //                                           messageNavc,
+ //                                           profileNavc
+ //                                           ]];
+ //    tabBarController.tabBar.selectedImageTintColor = JYGlobalBg;
+ //    self.tabBarController = tabBarController;
+ //}
+ //
+ * 设置tabBar
+ //- (void)customizeTabBarForController:(CYLTabBarController *)tabBarController {
+ //
+ //    NSDictionary *dict1 = @{
+ //                            CYLTabBarItemTitle : @"首页",
+ //                            CYLTabBarItemImage : @"bottom_1",
+ //                            CYLTabBarItemSelectedImage : @"bottom_1_h",
+ //                            };
+ //    NSDictionary *dict2 = @{
+ //                            CYLTabBarItemTitle : @"发现",
+ //                            CYLTabBarItemImage : @"bottom_2",
+ //                            CYLTabBarItemSelectedImage : @"bottom_2_h",
+ //                            };
+ //    NSDictionary *dict3 = @{
+ //                            CYLTabBarItemTitle : @"消息",
+ //                            CYLTabBarItemImage : @"bottom_3",
+ //                            CYLTabBarItemSelectedImage : @"bottom_3_h",
+ //                            };
+ //
+ //    NSDictionary *dict4 = @{
+ //                            CYLTabBarItemTitle : @"我的",
+ //                            CYLTabBarItemImage : @"bottom_4",
+ //                            CYLTabBarItemSelectedImage : @"bottom_4_h",
+ //                            };
+ //
+ //
+ //    NSArray *tabBarItemsAttributes = @[ dict1, dict2 ,dict3,dict4 ];
+ //    tabBarController.tabBarItemsAttributes = tabBarItemsAttributes;
+ //}
+ //
+ * 设置侧拉框
+ //- (RESideMenu *)sideMenu{
+ //    if (!_sideMenu) {
+ //        _sideMenu=[[RESideMenu alloc]initWithContentViewController:self.tabBarController leftMenuViewController:[JYClassifyViewController new] rightMenuViewController:nil];
+ * 让侧拉框不能通过手势调出，解决每个tabBar都会调出侧拉框的问题
+ //        _sideMenu.panGestureEnabled = NO;
+ * 可以让出现菜单时不显示状态栏
+ //        _sideMenu.menuPrefersStatusBarHidden = YES;
+ * 关闭透视，视差效果
+ //        _sideMenu.parallaxEnabled = NO;
+ //        _sideMenu.contentViewInPortraitOffsetCenterX = 80;
+ //        _sideMenu.contentViewScaleValue = 1.0f;
+ //    }
+ //    return _sideMenu;
+ //}
+ */
 @end

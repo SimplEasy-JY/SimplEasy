@@ -20,7 +20,7 @@
 
 @end
 
-@interface JYProductDetailDataModel : NSObject
+@interface JYProductDetailDataModel : JYBaseModel
 
 @property (nonatomic, copy) NSString *ID;
 
@@ -57,6 +57,17 @@
 @property (nonatomic, copy) NSString *name;
 
 @property (nonatomic, copy) NSString *top;
+
+@property (nonatomic, strong) NSArray *pics;
+
+@end
+
+@interface JYProductDetailDataPicsModel : JYBaseModel
+
+@property (nonatomic, copy) NSString *ID;
+@property (nonatomic, copy) NSString *pic;
+@property (nonatomic, copy) NSString *gid;
+@property (nonatomic, copy) NSString *del;
 
 @end
 

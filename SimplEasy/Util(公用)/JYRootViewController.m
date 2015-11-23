@@ -503,7 +503,7 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
 */
 /** 设置VC */
 - (void)setupViewControllers {
-    
+
     UINavigationController *homeNavc = [[UINavigationController alloc]
                                         initWithRootViewController:kVCFromSb(@"JYHomeController", @"Main")];
     
@@ -533,6 +533,7 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
     tabBarController.tabBar.selectedImageTintColor = JYGlobalBg;
     self.tabBarController = tabBarController;
 }
+
 
 /** 设置tabBar */
 - (void)customizeTabBarForController:(CYLTabBarController *)tabBarController {

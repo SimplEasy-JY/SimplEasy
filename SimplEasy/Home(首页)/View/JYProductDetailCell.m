@@ -10,7 +10,7 @@
 #import "UILabel+Line.h"
 #import "UIButton+VerticalBtn.h"
 
-static CGFloat verticalMargin = 10.0f;
+static CGFloat verticalMargin = 6.0f;
 
 @interface JYProductDetailCell ()
 
@@ -47,8 +47,8 @@ static CGFloat verticalMargin = 10.0f;
         _shareBtn.titleLabel.font = [UIFont systemFontOfSize:8];
         [self.contentView addSubview:_shareBtn];
         [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.mas_equalTo(self.productDescLb);
-            make.right.mas_equalTo(0);
+            make.centerY.mas_equalTo(self.contentView);
+            make.right.mas_equalTo(-5);
             make.width.height.mas_equalTo(40);
         }];
         [_shareBtn centerImageAndTitleWithSpace:3.0f];
@@ -93,7 +93,7 @@ static CGFloat verticalMargin = 10.0f;
             make.left.mas_equalTo(verticalMargin);
             make.bottom.mas_equalTo(-verticalMargin);
             make.top.mas_equalTo(self.currentPriceLb.mas_bottom).mas_equalTo(verticalMargin);
-            make.height.mas_equalTo(20);
+            make.height.mas_equalTo(18);
         }];
 	}
 	return _timeAndPlaceView;

@@ -33,7 +33,8 @@ static CGFloat bottomBtnHeight = 50;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    JYLog(@"============================= 进入详情页面 =============================");
+    JYLog(@"\n\n******************** 进入详情页面 ********************\n\n");
+    //获取数据
     [self.pdVM getDataFromNetCompleteHandle:^(NSError *error) {
         if (error) {
             JYLog(@"ERROR:%@",error.description);
@@ -42,6 +43,11 @@ static CGFloat bottomBtnHeight = 50;
         [self.tableView reloadData];
         [self configTableViewHeader];
     }];
+    
+    //    UIBarButtonItem *leftBBI = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"back_btn"] style:UIBarButtonItemStyleDone handler:^(id sender) {
+    //        [self.navigationController popViewControllerAnimated:YES];
+    //    }];
+    //    self.navigationItem.leftBarButtonItem = leftBBI;
     
     //注册cell
     [self.tableView registerClass:[JYProductDetailCell class] forCellReuseIdentifier:@"JYProductDetailCell"];
@@ -53,28 +59,43 @@ static CGFloat bottomBtnHeight = 50;
 
 /** 配置tableView的头部视图 */
 - (void)configTableViewHeader{
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 320)];
-    //加入滚动视图
+    
+    UIView *headerView = [[UIView alloc] init];
+    headerView.frame = CGRectMake(0, 0, 0, 320);
+    
+    /** 加入滚动视图 */
     [headerView addSubview: self.icView];
     [self.icView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(headerView);
     }];
-    //加入pageControl
+    
+    /** 如果图片大于一张 */
     if ([self.pdVM picArrForProduct].count>1) {
+        /** 加入pageControl */
         [headerView addSubview: self.pageControl];
         [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(0);
             make.bottom.mas_equalTo(10);
         }];
-    }
-    self.tableView.tableHeaderView = headerView;
-    
-    //为头部滚动详情图片添加自动滚动定时器
-    if ([self.pdVM picArrForProduct].count>1){
+        /** 为头部滚动详情图片添加自动滚动定时器 */
         [NSTimer bk_scheduledTimerWithTimeInterval:3 block:^(NSTimer *timer) {
             [self.icView scrollToItemAtIndex:self.icView.currentItemIndex+1 animated:YES];
         } repeats:YES];
     }
+    /** 如果没有图片，加入一个label，提示没有图片 */
+    if ([self.pdVM picArrForProduct].count == 0) {
+        UILabel *label = [[UILabel alloc] init];
+        [headerView addSubview:label];
+        label.text = @"没有图片哦";
+        label.textColor = [UIColor whiteColor];
+        label.textAlignment = NSTextAlignmentCenter;
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(0);
+        }];
+    }
+    
+    self.tableView.tableHeaderView = headerView;
+    self.tableView.tableHeaderView.backgroundColor = JYGlobalBg;
 }
 
 /** 配置底部的按钮 */
@@ -85,11 +106,13 @@ static CGFloat bottomBtnHeight = 50;
         make.bottom.left.right.mas_equalTo(0);
         make.height.mas_equalTo(bottomBtnHeight);
     }];
-    NSArray *btnNames = @[@"收藏",@"评论",@"赞",@"联系卖家",@"立即易货"];
-    NSArray *btnImages = @[[UIImage imageNamed:@"bottomicon2_03"],[UIImage imageNamed:@"bottomicon2_05"],[UIImage imageNamed:@"bottomicon2_07"]];
-    NSArray *btnHighlightedImages = @[[UIImage imageNamed:@"bottomicon_03"],[UIImage imageNamed:@"bottomicon2_05"],[UIImage imageNamed:@"bottomicon_07"]];
+    
+    NSArray *btnNames = @[@"浏览",@"评论",@"收藏",@"联系卖家",@"立即易货"];
+    NSArray *btnImages = @[[UIImage scaleToSize:[UIImage imageNamed:@"eye_16"] size:CGSizeMake(20, 20)],[UIImage imageNamed:@"bottomicon2_05"],[UIImage imageNamed:@"bottomicon2_03"]];
+    NSArray *btnHighlightedImages = @[[UIImage scaleToSize:[UIImage imageNamed:@"eye_16"] size:CGSizeMake(20, 20)],[UIImage imageNamed:@"bottomicon2_05"],[UIImage imageNamed:@"bottomicon_03"]];
     NSArray *btnBgColors = @[kRGBColor(60, 183, 21),kRGBColor(55, 150, 84),kRGBColor(245, 245, 245)];
-    for (int i = 0; i < 3; i++) {
+    
+    for (int i = 0; i < btnImages.count; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [bottomView addSubview:btn];
         [btn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
@@ -133,32 +156,31 @@ static CGFloat bottomBtnHeight = 50;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {/** 如果是第一个cell分区，那么只需要配置商品详情cell和商家信息cell */
         if (indexPath.row == 0) {
-        /** 商品详情cell */
+            /** 商品详情cell */
             JYProductDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYProductDetailCell"];
-            
-            cell.productDescLb.text = [self.pdVM descForProduct];
-            cell.currentPriceLb.text = [self.pdVM currentPriceForProduct];
-            cell.originPriceLb.text = [self.pdVM originPriceForProduct];
+            cell.productDescLb.text = [self.pdVM descForProduct];//商品描述
+            cell.currentPriceLb.text = [self.pdVM currentPriceForProduct];//当前价格
+            cell.originPriceLb.text = [self.pdVM originPriceForProduct];//原始价格
             if (cell.originPriceLb.text) {
-                [cell.originPriceLb addMidLine];
+                [cell.originPriceLb addMidLine];//加入删除线
             }
             /** 需要先设置地点再设置时间，否则约束会乱，如果没有地点就不用设置 */
-            cell.placeLb.text = self.schoolName;
-            cell.publishTimeLb.text = [self.pdVM publishTimeForProduct];
+            cell.placeLb.text = [self.pdVM schoolNameForSeller];//学校名称
+            cell.publishTimeLb.text = [self.pdVM publishTimeForProduct];//发布时间
             return cell;
         }
-    /** 商家信息cell */
+        /** 商家信息cell */
         JYSellerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYSellerCell"];
-        [cell.headIV sd_setImageWithURL:[NSURL URLWithString:self.headImage] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [cell.headIV sd_setImageWithURL:[self.pdVM headImageForSeller] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             image = [UIImage scaleToSize:image size:CGSizeMake(60, 60)];
             image = [UIImage circleImageWithImage:image borderWidth:0 borderColor:JYGlobalBg];
             cell.headIV.image = image;
-        }];
-        cell.nickNameLb.text = self.userName;
-        cell.schoolLb.text = self.schoolName;
-//        cell.rankIV.image = [UIImage imageNamed:@"picture_30"];
+        }];//设置头像
+        cell.nickNameLb.text = [self.pdVM nameForSeller];// 设置昵称
+        cell.schoolLb.text = [self.pdVM schoolNameForSeller];// 设置学校
         return cell;
     }else{/** 如果是第二个分区，则配置评论cell */
+#warning 评论后台还没弄好，待完善
         if (indexPath.row == 0) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
             if (cell == nil) {
@@ -245,15 +267,15 @@ static CGFloat bottomBtnHeight = 50;
         _pageControl = [[UIPageControl alloc] init];
         _pageControl.numberOfPages = self.icView.numberOfItems;
         _pageControl.currentPage = self.icView.currentItemIndex;
-        _pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
-        _pageControl.pageIndicatorTintColor = [UIColor blackColor];
+        _pageControl.currentPageIndicatorTintColor = [UIColor colorWithWhite:1 alpha:1];
+        _pageControl.pageIndicatorTintColor = [UIColor colorWithWhite:0.5 alpha:0.5];
     }
     return _pageControl;
 }
 
 - (UITableView *)tableView {
-	if(_tableView == nil) {
-		_tableView = [[UITableView alloc] init];
+    if(_tableView == nil) {
+        _tableView = [[UITableView alloc] init];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         [self.view addSubview:_tableView];
@@ -261,16 +283,15 @@ static CGFloat bottomBtnHeight = 50;
             make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, bottomBtnHeight, 0));
         }];
         [self configBottomButtons];
-	}
-	return _tableView;
+    }
+    return _tableView;
 }
 
 - (JYProductDetailViewModel *)pdVM {
-	if(_pdVM == nil) {
-		_pdVM = [[JYProductDetailViewModel alloc] init];
-        _pdVM.ID = [self.goodsID integerValue];
-	}
-	return _pdVM;
+    if(_pdVM == nil) {
+        _pdVM = [[JYProductDetailViewModel alloc] initWithID:[self.goodsID integerValue]];
+    }
+    return _pdVM;
 }
 
 @end

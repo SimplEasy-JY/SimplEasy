@@ -10,7 +10,7 @@
             <objects>
                 <viewController storyboardIdentifier="JYHomeController" id="BYZ-38-t0r" customClass="JYHomeController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="tqy-ej-FLg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -29,7 +29,7 @@
                                 <inset key="titleEdgeInsets" minX="-47" minY="28" maxX="0.0" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="-8" minY="-8" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="分类" image="topicon_1">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -49,7 +49,7 @@
                                 <inset key="titleEdgeInsets" minX="-38" minY="28" maxX="0.0" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="-8" minY="-8" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="定位" image="topicon_2">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -66,14 +66,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="737" y="240"/>
+            <point key="canvasLocation" x="90" y="-63"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ytd-gK-LcZ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FRL-u9-l3z" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jha-4r-Wsm">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="jha-4r-Wsm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
@@ -85,7 +85,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91e-Dn-YKR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-340" y="235"/>
+            <point key="canvasLocation" x="-563" y="-53"/>
         </scene>
     </scenes>
     <resources>

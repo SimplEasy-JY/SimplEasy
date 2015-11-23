@@ -11,9 +11,5 @@
 @interface JYProductDetailVC : UIViewController
 
 @property(strong,nonatomic)NSString *goodsID;
-@property (nonatomic, strong) NSString *schoolName;
-@property (nonatomic, strong) NSString *headImage;
-@property (nonatomic, strong) NSString *userName;
-@property (nonatomic, strong) NSArray *pics;
 
 @end
