@@ -30,6 +30,8 @@ static CGFloat publishDateFont = 12.0;
 - (UIImageView *)productIV {
     if(_productIV == nil) {
         _productIV = [[UIImageView alloc] init];
+        _productIV.contentMode = UIViewContentModeScaleAspectFill;
+        _productIV.clipsToBounds = YES;
         [self.contentView addSubview:_productIV];
         [_productIV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.mas_equalTo(margin);

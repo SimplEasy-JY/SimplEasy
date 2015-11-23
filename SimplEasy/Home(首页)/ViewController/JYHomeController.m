@@ -208,8 +208,9 @@ typedef NS_ENUM(NSInteger, cellType) {
 - (IBAction)categoryButton:(id)sender {
     JYClassifyViewController *classifyVC = (JYClassifyViewController *)self.sideMenuViewController.leftMenuViewController;
     
-    [classifyVC didSelectTypeWithBlock:^(UIViewController *viewController, NSString *selectedType) {
+    [classifyVC didSelectTypeWithBlock:^(JYClassifyContentVC *viewController, NSString *selectedType) {
         viewController.title = selectedType;
+        viewController.type = selectedType;
         viewController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:viewController animated:YES];
     }];

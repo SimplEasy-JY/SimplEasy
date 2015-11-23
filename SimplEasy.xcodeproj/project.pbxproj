@@ -33,6 +33,7 @@
 		83476B751BEB1C6C0061F61E /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83476B741BEB1C6C0061F61E /* iCarousel.m */; };
 		83476B781BEB2E9F0061F61E /* UIImage+Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83476B771BEB2E9F0061F61E /* UIImage+Circle.m */; };
 		83476B7B1BEB34830061F61E /* JYClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83476B7A1BEB34830061F61E /* JYClassifyViewController.m */; };
+		8385E8581C02E5AE0026604A /* JYProductInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8385E8571C02E5AE0026604A /* JYProductInfoViewModel.m */; };
 		838D14AC1BFA00C6003C4F87 /* UIButton+VerticalBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 838D14AB1BFA00C6003C4F87 /* UIButton+VerticalBtn.m */; };
 		838D15511BFA0314003C4F87 /* dt_ain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 838D14E61BFA0314003C4F87 /* dt_ain@2x.png */; };
 		838D15521BFA0314003C4F87 /* dt_aiq@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 838D14E71BFA0314003C4F87 /* dt_aiq@2x.png */; };
@@ -270,6 +271,8 @@
 		83476B771BEB2E9F0061F61E /* UIImage+Circle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Circle.m"; sourceTree = "<group>"; };
 		83476B791BEB34830061F61E /* JYClassifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYClassifyViewController.h; sourceTree = "<group>"; };
 		83476B7A1BEB34830061F61E /* JYClassifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYClassifyViewController.m; sourceTree = "<group>"; };
+		8385E8561C02E5AE0026604A /* JYProductInfoViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYProductInfoViewModel.h; sourceTree = "<group>"; };
+		8385E8571C02E5AE0026604A /* JYProductInfoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYProductInfoViewModel.m; sourceTree = "<group>"; };
 		838D14AA1BFA00C6003C4F87 /* UIButton+VerticalBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+VerticalBtn.h"; sourceTree = "<group>"; };
 		838D14AB1BFA00C6003C4F87 /* UIButton+VerticalBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+VerticalBtn.m"; sourceTree = "<group>"; };
 		838D14B11BFA0314003C4F87 /* IMCommentInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMCommentInfo.h; sourceTree = "<group>"; };
@@ -759,6 +762,8 @@
 				B089AA9D1BE9D50700E5D2CC /* JYLoopViewModel.m */,
 				B04800821BF48DF0007D39F4 /* JYGoodsViewModel.h */,
 				B04800831BF48DF0007D39F4 /* JYGoodsViewModel.m */,
+				8385E8561C02E5AE0026604A /* JYProductInfoViewModel.h */,
+				8385E8571C02E5AE0026604A /* JYProductInfoViewModel.m */,
 				83F4EC311BFC120800D6A3D7 /* JYProductDetailViewModel.h */,
 				83F4EC321BFC120800D6A3D7 /* JYProductDetailViewModel.m */,
 			);
@@ -1840,6 +1845,7 @@
 				B0AFA3A11BFB213E00F795F9 /* JSONKit.m in Sources */,
 				B0AFA3A81BFB213E00F795F9 /* JYRootViewController.m in Sources */,
 				B089AA9E1BE9D50700E5D2CC /* JYLoopViewModel.m in Sources */,
+				8385E8581C02E5AE0026604A /* JYProductInfoViewModel.m in Sources */,
 				83476B7B1BEB34830061F61E /* JYClassifyViewController.m in Sources */,
 				8328A4B51BE84E6E0021767D /* JYBaseViewModel.m in Sources */,
 				B02A70131BE860C600B8B05F /* JYMineController.m in Sources */,

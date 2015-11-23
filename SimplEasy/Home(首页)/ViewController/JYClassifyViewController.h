@@ -7,8 +7,9 @@
 //  侧拉框视图
 
 #import <UIKit/UIKit.h>
+#import "JYClassifyContentVC.h"
 
-typedef void(^ReturnBlock)(UIViewController *viewController,NSString *selectedType);
+typedef void(^ReturnBlock)(JYClassifyContentVC *viewController,NSString *selectedType);
 
 @interface JYClassifyViewController : UIViewController
 

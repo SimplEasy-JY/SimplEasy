@@ -19,6 +19,7 @@
         completionHandle(error);
     }];
 }
+
 - (void)refreshDataCompletionHandle:(CompletionHandle)completionHandle{
     //清空数据
     [self.dataArr removeAllObjects];
