@@ -139,6 +139,18 @@ typedef NS_ENUM(NSInteger, cellType) {
     return _firstLoopView;
 }
 
+-(UIPageControl *)firstLoopPage{
+    if (!_firstLoopPage) {
+        self.firstLoopPage = [[UIPageControl  alloc]init];
+        _firstLoopPage.numberOfPages = self.firstLoopView.numberOfItems;
+        _firstLoopPage.currentPage = self.firstLoopView.currentItemIndex;
+        _firstLoopPage.currentPageIndicatorTintColor = [UIColor whiteColor];
+        _firstLoopPage.pageIndicatorTintColor = [UIColor lightGrayColor];
+    }
+    return _firstLoopPage;
+    
+}
+
 -(iCarousel *)secondLoopView{
     if (!_secondLoopView) {
         self.secondLoopView = [[iCarousel  alloc]init];
@@ -150,7 +162,7 @@ typedef NS_ENUM(NSInteger, cellType) {
         //自动展示,0表示不滚动，越大滚动越快
         _secondLoopView.autoscroll = 0;
         //水平还是垂直  no水平
-        _secondLoopView.vertical = YES;
+        _secondLoopView.vertical = NO;
 
         //改为翻页模式
         _secondLoopView.pagingEnabled = YES;
@@ -178,17 +190,6 @@ typedef NS_ENUM(NSInteger, cellType) {
     
 }
 
--(UIPageControl *)firstLoopPage{
-    if (!_firstLoopPage) {
-        self.firstLoopPage = [[UIPageControl  alloc]init];
-        _firstLoopPage.numberOfPages = self.firstLoopView.numberOfItems;
-        _firstLoopPage.currentPage = self.firstLoopView.currentItemIndex;
-        _firstLoopPage.currentPageIndicatorTintColor = [UIColor whiteColor];
-        _firstLoopPage.pageIndicatorTintColor = [UIColor blackColor];
-    }
-    return _firstLoopPage;
-    
-}
 -(JYLoopViewModel *)loopVM{
     if (!_loopVM) {
         _loopVM = [JYLoopViewModel new];
@@ -227,7 +228,6 @@ typedef NS_ENUM(NSInteger, cellType) {
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    [self initData];
     [self setNav];
     [self setupTableView];
     
@@ -236,7 +236,7 @@ typedef NS_ENUM(NSInteger, cellType) {
         [self.firstLoopView scrollToItemAtIndex:self.firstLoopView.currentItemIndex+1 animated:YES];
     } repeats:YES];
     [NSTimer bk_scheduledTimerWithTimeInterval:3 block:^(NSTimer *timer) {
-        [self.secondLoopView scrollToItemAtIndex:self.secondLoopView.currentItemIndex+1 animated:NO];
+        [self.secondLoopView scrollToItemAtIndex:self.secondLoopView.currentItemIndex+1 animated:YES];
     } repeats:YES];
     
     
@@ -248,9 +248,7 @@ typedef NS_ENUM(NSInteger, cellType) {
 }
 
 
--(void)initData{
 
-}
 -(void)setNav{
     //中间的搜索条
     CGRect frame = CGRectMake(0, 0, kWindowW-130, 28);
@@ -387,14 +385,7 @@ typedef NS_ENUM(NSInteger, cellType) {
             return value * 1.066 ;
         }
     }
-    if (carousel == _secondLoopView) {
-        if (option == iCarouselOptionSpacing)
-        {
-            return value * 100 ;
-        }
-    }
     
-
     if (option == iCarouselOptionCount) {
         return YES;
     }
@@ -515,7 +506,7 @@ typedef NS_ENUM(NSInteger, cellType) {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:JYLoopCellIndentifier];
-            if (cell == nil ) {
+//            if (cell == nil ) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JYLoopCellIndentifier];
                 /**  加入滚动视图 */
                 self.firstLoopView.frame = CGRectMake(0, 0, kWindowW, firstLVH);
@@ -525,13 +516,13 @@ typedef NS_ENUM(NSInteger, cellType) {
                 }];
                 
                 /**  加入pageview */
+            self.firstLoopPage.numberOfPages = self.firstLoopView.numberOfItems;
                 [cell addSubview:self.firstLoopPage];
                 [self.firstLoopPage mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.centerX.mas_equalTo(0);
                     make.bottom.mas_equalTo(10);
                 }];
-                
-            }
+//            }
             return cell;
         }
         if (indexPath.row == 1) {
