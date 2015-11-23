@@ -302,16 +302,6 @@ typedef NS_ENUM(NSInteger, cellType) {
     self.tableView.header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
         [self isRefresh:YES];
     }];
-    
-//    DGElasticPullToRefreshLoadingViewCircle *loadingView = [DGElasticPullToRefreshLoadingViewCircle new];
-//    loadingView.tintColor = [UIColor blueColor];
-//    [self.tableView dg_addPullToRefreshWithActionHandler:^{
-//        [self isRefresh:YES];
-//        [self.tableView dg_stopLoading];
-//    } loadingView:loadingView];
-//    [self.tableView dg_setPullToRefreshBackgroundColor:self.tableView.backgroundColor];
-//    [self.tableView dg_setPullToRefreshFillColor:JYGlobalBg];
-    
     //添加上拉加载
     self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [self isRefresh:NO];
