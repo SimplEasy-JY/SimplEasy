@@ -61,8 +61,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _loginView = [[IMLoginView alloc] initWithFrame:self.view.bounds];
-    
-
+    _loginView.buttonBackgroundImage = [UIImage imageWithColor:kRGBColor(33, 36, 43) cornerRadius:0];
+    _loginView.backgroundImage = [UIImage imageNamed:@"login_bg"];
 
     [_loginView setDelegate:self];
     [self.view addSubview:_loginView];

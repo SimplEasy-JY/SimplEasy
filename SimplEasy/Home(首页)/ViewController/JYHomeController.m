@@ -245,6 +245,9 @@ typedef NS_ENUM(NSInteger, cellType) {
     [self.tableView registerNib:[UINib nibWithNibName:@"JYHomeProductCell" bundle:nil] forCellReuseIdentifier:JYHomeProductCellIndentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"JYRecommendCell" bundle:nil] forCellReuseIdentifier:JYRecommendCellIndentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"JYFreeChargeCell" bundle:nil] forCellReuseIdentifier:JYChargeCellIndentifier];
+    
+    //刷新
+    [self.tableView.header beginRefreshing];
 
 }
 
@@ -296,14 +299,18 @@ typedef NS_ENUM(NSInteger, cellType) {
     [self isRefresh:YES];
     
     //下拉刷新
-    DGElasticPullToRefreshLoadingViewCircle *loadingView = [DGElasticPullToRefreshLoadingViewCircle new];
-    loadingView.tintColor = [UIColor blueColor];
-    [self.tableView dg_addPullToRefreshWithActionHandler:^{
+    self.tableView.header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
         [self isRefresh:YES];
-        [self.tableView dg_stopLoading];
-    } loadingView:loadingView];
-    [self.tableView dg_setPullToRefreshBackgroundColor:self.tableView.backgroundColor];
-    [self.tableView dg_setPullToRefreshFillColor:JYGlobalBg];
+    }];
+    
+//    DGElasticPullToRefreshLoadingViewCircle *loadingView = [DGElasticPullToRefreshLoadingViewCircle new];
+//    loadingView.tintColor = [UIColor blueColor];
+//    [self.tableView dg_addPullToRefreshWithActionHandler:^{
+//        [self isRefresh:YES];
+//        [self.tableView dg_stopLoading];
+//    } loadingView:loadingView];
+//    [self.tableView dg_setPullToRefreshBackgroundColor:self.tableView.backgroundColor];
+//    [self.tableView dg_setPullToRefreshFillColor:JYGlobalBg];
     
     //添加上拉加载
     self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
@@ -507,7 +514,7 @@ typedef NS_ENUM(NSInteger, cellType) {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:JYLoopCellIndentifier];
-//            if (cell == nil ) {
+            if (cell == nil ) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JYLoopCellIndentifier];
                 /**  加入滚动视图 */
                 self.firstLoopView.frame = CGRectMake(0, 0, kWindowW, firstLVH);
@@ -523,7 +530,7 @@ typedef NS_ENUM(NSInteger, cellType) {
                     make.centerX.mas_equalTo(0);
                     make.bottom.mas_equalTo(10);
                 }];
-//            }
+            }
             return cell;
         }
         if (indexPath.row == 1) {
@@ -661,6 +668,7 @@ typedef NS_ENUM(NSInteger, cellType) {
     if (isRefresh) {
         [self.goodsVM refreshDataCompletionHandle:^(NSError *error) {
             [self.tableView reloadData];
+            [self.tableView.header endRefreshing];
         }];
     }else {
         [self.goodsVM getMoreDataCompletionHandle:^(NSError *error) {
