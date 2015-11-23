@@ -25,8 +25,10 @@ static CGFloat bottomBtnHeight = 50;
 @property (nonatomic, strong) iCarousel *icView;
 /** 分页控制器（小圆点） */
 @property (nonatomic, strong) UIPageControl *pageControl;
-
+/** 视图模型 */
 @property (nonatomic, strong) JYProductDetailViewModel *pdVM;
+/** 定时器 */
+@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation JYProductDetailVC
@@ -59,6 +61,7 @@ static CGFloat bottomBtnHeight = 50;
 
 /** 配置tableView的头部视图 */
 - (void)configTableViewHeader{
+    [_timer invalidate];
     
     UIView *headerView = [[UIView alloc] init];
     headerView.frame = CGRectMake(0, 0, 0, 320);
@@ -78,7 +81,7 @@ static CGFloat bottomBtnHeight = 50;
             make.bottom.mas_equalTo(10);
         }];
         /** 为头部滚动详情图片添加自动滚动定时器 */
-        [NSTimer bk_scheduledTimerWithTimeInterval:3 block:^(NSTimer *timer) {
+        self.timer = [NSTimer bk_scheduledTimerWithTimeInterval:3 block:^(NSTimer *timer) {
             [self.icView scrollToItemAtIndex:self.icView.currentItemIndex+1 animated:YES];
         } repeats:YES];
     }
@@ -108,7 +111,7 @@ static CGFloat bottomBtnHeight = 50;
     }];
     
     NSArray *btnNames = @[@"浏览",@"评论",@"收藏",@"联系卖家",@"立即易货"];
-    NSArray *btnImages = @[[UIImage scaleToSize:[UIImage imageNamed:@"eye_16"] size:CGSizeMake(20, 20)],[UIImage imageNamed:@"bottomicon2_05"],[UIImage imageNamed:@"bottomicon2_03"]];
+    NSArray *btnImages = @[[UIImage imageNamed:@"eye_16"],[UIImage imageNamed:@"bottomicon2_05"],[UIImage imageNamed:@"bottomicon2_03"]];
     NSArray *btnHighlightedImages = @[[UIImage scaleToSize:[UIImage imageNamed:@"eye_16"] size:CGSizeMake(20, 20)],[UIImage imageNamed:@"bottomicon2_05"],[UIImage imageNamed:@"bottomicon_03"]];
     NSArray *btnBgColors = @[kRGBColor(60, 183, 21),kRGBColor(55, 150, 84),kRGBColor(245, 245, 245)];
     
@@ -146,7 +149,7 @@ static CGFloat bottomBtnHeight = 50;
 #pragma mark *** <UITableViewDataSource> ***
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -179,7 +182,9 @@ static CGFloat bottomBtnHeight = 50;
         cell.nickNameLb.text = [self.pdVM nameForSeller];// 设置昵称
         cell.schoolLb.text = [self.pdVM schoolNameForSeller];// 设置学校
         return cell;
-    }else{/** 如果是第二个分区，则配置评论cell */
+    }
+    /** 如果是第二个分区，则配置评论cell */
+    else{
 #warning 评论后台还没弄好，待完善
         if (indexPath.row == 0) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
@@ -247,6 +252,10 @@ static CGFloat bottomBtnHeight = 50;
 /** carousel的item下标改变后触发该方法 */
 - (void)carouselCurrentItemIndexDidChange:(iCarousel *)carousel{
     self.pageControl.currentPage = carousel.currentItemIndex;//设置小圆点的位置和当前carousel的item的位置一样
+}
+- (void)carouselDidEndDragging:(iCarousel *)carousel willDecelerate:(BOOL)decelerate{
+    /** 一旦用户拖动，停止计时器 */
+    [self.timer invalidate];
 }
 
 #pragma mark *** 懒加载 ***

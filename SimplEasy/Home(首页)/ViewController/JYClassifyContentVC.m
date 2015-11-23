@@ -8,21 +8,54 @@
 
 #import "JYClassifyContentVC.h"
 #import "JYClassifyCell.h"
+#import "JYProductInfoViewModel.h"
+#import "JYProductDetailVC.h"
 
 static NSString *cellIdentifier = @"Cell";
 static CGFloat sectionHeaderH = 30.0;
+
 
 @interface JYClassifyContentVC ()<UITableViewDelegate,UITableViewDataSource>
 
 /** 表格视图 */
 @property (nonatomic, strong) UITableView *tableView;
+
+/** 商品视图控制器 */
+@property (nonatomic, strong) JYProductInfoViewModel *productInfoVM;
+/** 排序（子分类）*/
+@property (nonatomic, strong) NSString *sort;
+
 @end
 
 @implementation JYClassifyContentVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.sort = @"all";
     self.tableView.dataSource = self;
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self.productInfoVM refreshDataCompletionHandle:^(NSError *error) {
+            if (error) {
+                JYLog(@"刷新出错: %@",error.description);
+                [self.tableView.header endRefreshing];
+            }
+            [self.tableView.header endRefreshing];
+            [self.tableView reloadData];
+        }];
+    }];
+    
+    [self.tableView.header beginRefreshing];
+    
+    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self.productInfoVM getMoreDataCompletionHandle:^(NSError *error) {
+            if (error) {
+                JYLog(@"获取更多出错: %@",error.description);
+                [self.tableView.footer endRefreshing];
+            }
+            [self.tableView.footer endRefreshing];
+            [self.tableView reloadData];
+        }];
+    }];
 }
 
 
@@ -32,18 +65,19 @@ static CGFloat sectionHeaderH = 30.0;
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return [self.productInfoVM rowNum];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JYClassifyCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    cell.productIV.image = [UIImage imageNamed:@"picture_12"];
-    cell.productDesc.text = @"啊就是浪费空间啊浪费就发牢骚的风景是否啦";
-    cell.currentPrice.text = @"¥ 35";
-    cell.originPrice.text = @"¥ 48";
-    cell.schoolNameLb.text = @"浙江农林大学";
-    cell.publishDateLb.text = @"11-30";
+    
+    [cell.productIV sd_setImageWithURL:[self.productInfoVM imageURLForRow:indexPath.row]];
+    cell.productDesc.text = [self.productInfoVM productDescForRow:indexPath.row];
+    cell.currentPrice.text = [self.productInfoVM currentPriceForRow:indexPath.row];
+    cell.schoolNameLb.text = [self.productInfoVM schoolNameForRow:indexPath.row];
+    cell.publishDateLb.text = [self.productInfoVM publishTimeForRow:indexPath.row];
+    
     return cell;
     
 }
@@ -58,8 +92,6 @@ static CGFloat sectionHeaderH = 30.0;
     return sectionHeaderH;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    JYLog(@"配置了没");
-//    return section == 0?[self sectionHeader]:nil;
     return [self sectionHeader];
 }
 /** 配置头部视图 */
@@ -89,6 +121,9 @@ kRemoveCellSeparator
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    JYProductDetailVC *vc = [[JYProductDetailVC alloc] init];
+    vc.goodsID = [self.productInfoVM productIDForRow:indexPath.row];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark *** Lazy Loading ***
@@ -104,6 +139,13 @@ kRemoveCellSeparator
         [_tableView registerClass:[JYClassifyCell class] forCellReuseIdentifier:cellIdentifier];
 	}
 	return _tableView;
+}
+
+- (JYProductInfoViewModel *)productInfoVM {
+	if(_productInfoVM == nil) {
+		_productInfoVM = [[JYProductInfoViewModel alloc] initWithType:_type sort:_sort];
+	}
+	return _productInfoVM;
 }
 
 @end

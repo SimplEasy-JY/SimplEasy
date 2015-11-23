@@ -65,8 +65,11 @@
 @interface JYProductDetailDataPicsModel : JYBaseModel
 
 @property (nonatomic, copy) NSString *ID;
+
 @property (nonatomic, copy) NSString *pic;
+
 @property (nonatomic, copy) NSString *gid;
+
 @property (nonatomic, copy) NSString *del;
 
 @end
