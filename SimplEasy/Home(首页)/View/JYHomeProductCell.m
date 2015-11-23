@@ -15,15 +15,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *time;
 @property (weak, nonatomic) IBOutlet UILabel *currentPrice;
 @property (weak, nonatomic) IBOutlet UILabel *originalPrice;
-@property (weak, nonatomic) IBOutlet UIImageView *shopImageOne;
-@property (weak, nonatomic) IBOutlet UIImageView *shopImageTwo;
-@property (weak, nonatomic) IBOutlet UIImageView *shopImageThree;
+@property (weak, nonatomic) IBOutlet UIImageView *shopImage;
 @property (weak, nonatomic) IBOutlet UILabel *placeNow;
 @property (weak, nonatomic) IBOutlet UIButton *collectButton;
 @property (weak, nonatomic) IBOutlet UIButton *reviewButton;
 @property (weak, nonatomic) IBOutlet UIButton *supportButton;
 @property (weak, nonatomic) IBOutlet UILabel *describeLabel;
-@property (weak, nonatomic) IBOutlet UIView *lineView;
 @property (weak, nonatomic) IBOutlet UIView *lineOne;
 @property (weak, nonatomic) IBOutlet UIView *lineTwo;
 @property (weak, nonatomic) IBOutlet UIView *longLine;
@@ -71,7 +68,7 @@
         self.userImageView.image = [UIImage circleImageWithImage:self.userImageView.image borderWidth:0.5 borderColor:[UIColor whiteColor]];
     }];
     
-    [self.shopImageOne sd_setImageWithURL:[NSURL URLWithString:imageURL]];
+    [self.shopImage sd_setImageWithURL:[NSURL URLWithString:imageURL]];
     self.userName.text = self.goodsItems.username;
     self.describeLabel.text = self.goodsItems.name;
     self.currentPrice.text = [NSString stringWithFormat:@"￥%@ ",self.goodsItems.price];
