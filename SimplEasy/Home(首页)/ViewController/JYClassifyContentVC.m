@@ -123,6 +123,7 @@ kRemoveCellSeparator
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     JYProductDetailVC *vc = [[JYProductDetailVC alloc] init];
     vc.goodsID = [self.productInfoVM productIDForRow:indexPath.row];
+    vc.schoolName = [self.productInfoVM schoolNameForRow:indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

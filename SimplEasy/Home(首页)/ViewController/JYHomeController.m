@@ -299,7 +299,7 @@ typedef NS_ENUM(NSInteger, cellType) {
     [self isRefresh:YES];
     
     //下拉刷新
-    self.tableView.header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self isRefresh:YES];
     }];
     
@@ -644,7 +644,7 @@ typedef NS_ENUM(NSInteger, cellType) {
         JYProductDetailVC *productDetailVC = [[JYProductDetailVC alloc] init];
         JYGoodsItems *item = self.goodsVM.dataArr[indexPath.row];
         productDetailVC.goodsID = item.ID;
-
+        productDetailVC.schoolName = item.schoolname;
         NSLog(@"商品ID:%@",item.ID);
         
         productDetailVC.title = @"商品详情";

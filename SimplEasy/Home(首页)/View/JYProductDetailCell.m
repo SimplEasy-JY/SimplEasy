@@ -18,7 +18,8 @@ static CGFloat verticalMargin = 6.0f;
 @property (nonatomic, strong) UIView *timeAndPlaceView;
 /** 小气球 */
 @property (nonatomic, strong) UIImageView *locationIV;
-
+/** 线 */
+@property (nonatomic, strong) UIView *lineView;
 @end
 
 @implementation JYProductDetailCell
@@ -44,10 +45,11 @@ static CGFloat verticalMargin = 6.0f;
         [_shareBtn setImage:[UIImage imageNamed:@"middleicon_16"] forState:UIControlStateNormal];
         [_shareBtn setTitle:@"分享" forState:UIControlStateNormal];
         [_shareBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [_shareBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
         _shareBtn.titleLabel.font = [UIFont systemFontOfSize:8];
         [self.contentView addSubview:_shareBtn];
         [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.mas_equalTo(self.contentView);
+            make.centerY.mas_equalTo(self.productDescLb);
             make.right.mas_equalTo(-5);
             make.width.height.mas_equalTo(40);
         }];
@@ -55,6 +57,22 @@ static CGFloat verticalMargin = 6.0f;
     }
     return _shareBtn;
 }
+
+- (UIView *)lineView {
+    if(_lineView == nil) {
+        _lineView = [[UIView alloc] init];
+        _lineView.alpha = 0.5;
+        [self.contentView addSubview:_lineView];
+        [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(self.productDescLb);
+            make.right.mas_equalTo(self.shareBtn.mas_left).mas_equalTo(-3);
+            make.width.mas_equalTo(1);
+            make.height.mas_equalTo(24);
+        }];
+    }
+    return _lineView;
+}
+
 
 - (UILabel *)currentPriceLb {
     if(_currentPriceLb == nil) {
@@ -149,9 +167,11 @@ static CGFloat verticalMargin = 6.0f;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     self.timeAndPlaceView.backgroundColor = kRGBColor(236, 236, 236);
     self.shareBtn.selected = NO;
-
+    self.lineView.backgroundColor = [UIColor lightGrayColor];
     return self;
 }
+
+
 
 
 
