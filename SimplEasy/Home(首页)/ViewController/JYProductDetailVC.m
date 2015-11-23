@@ -29,6 +29,7 @@ static CGFloat bottomBtnHeight = 50;
 @property (nonatomic, strong) JYProductDetailViewModel *pdVM;
 /** 定时器 */
 @property (nonatomic, strong) NSTimer *timer;
+
 @end
 
 @implementation JYProductDetailVC
@@ -42,8 +43,8 @@ static CGFloat bottomBtnHeight = 50;
             JYLog(@"ERROR:%@",error.description);
         }
         JYLog(@"得到数据");
-        [self.tableView reloadData];
         [self configTableViewHeader];
+        [self.tableView reloadData];
     }];
     
     //    UIBarButtonItem *leftBBI = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"back_btn"] style:UIBarButtonItemStyleDone handler:^(id sender) {
@@ -98,7 +99,7 @@ static CGFloat bottomBtnHeight = 50;
     }
     
     self.tableView.tableHeaderView = headerView;
-    self.tableView.tableHeaderView.backgroundColor = JYGlobalBg;
+    self.tableView.tableHeaderView.backgroundColor = JYHexColor(0x272C35);
 }
 
 /** 配置底部的按钮 */
@@ -111,8 +112,8 @@ static CGFloat bottomBtnHeight = 50;
     }];
     
     NSArray *btnNames = @[@"浏览",@"评论",@"收藏",@"联系卖家",@"立即易货"];
-    NSArray *btnImages = @[[UIImage imageNamed:@"eye_16"],[UIImage imageNamed:@"bottomicon2_05"],[UIImage imageNamed:@"bottomicon2_03"]];
-    NSArray *btnHighlightedImages = @[[UIImage scaleToSize:[UIImage imageNamed:@"eye_16"] size:CGSizeMake(20, 20)],[UIImage imageNamed:@"bottomicon2_05"],[UIImage imageNamed:@"bottomicon_03"]];
+    NSArray *btnImages = @[[UIImage imageNamed:@"eye"],[UIImage imageNamed:@"bottomicon2_05"],[UIImage imageNamed:@"bottomicon2_03"]];
+    NSArray *btnHighlightedImages = @[[UIImage imageNamed:@"eye"],[UIImage imageNamed:@"bottomicon2_05"],[UIImage imageNamed:@"bottomicon_03"]];
     NSArray *btnBgColors = @[kRGBColor(60, 183, 21),kRGBColor(55, 150, 84),kRGBColor(245, 245, 245)];
     
     for (int i = 0; i < btnImages.count; i++) {
@@ -168,7 +169,7 @@ static CGFloat bottomBtnHeight = 50;
                 [cell.originPriceLb addMidLine];//加入删除线
             }
             /** 需要先设置地点再设置时间，否则约束会乱，如果没有地点就不用设置 */
-            cell.placeLb.text = [self.pdVM schoolNameForSeller];//学校名称
+            cell.placeLb.text = self.schoolName;//学校名称
             cell.publishTimeLb.text = [self.pdVM publishTimeForProduct];//发布时间
             return cell;
         }
@@ -180,7 +181,7 @@ static CGFloat bottomBtnHeight = 50;
             cell.headIV.image = image;
         }];//设置头像
         cell.nickNameLb.text = [self.pdVM nameForSeller];// 设置昵称
-        cell.schoolLb.text = [self.pdVM schoolNameForSeller];// 设置学校
+        cell.schoolLb.text = self.schoolName;// 设置学校
         return cell;
     }
     /** 如果是第二个分区，则配置评论cell */
@@ -227,17 +228,39 @@ static CGFloat bottomBtnHeight = 50;
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view{
     if (!view) {
         view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWindowW, 320)];
+        
+        UIImageView *bgImageView = [[UIImageView alloc] init];
+        bgImageView.contentMode = UIViewContentModeScaleAspectFill;
+        bgImageView.clipsToBounds = YES;
+        bgImageView.tag = 200;
+        [view addSubview: bgImageView];
+        
+        /** 加入毛玻璃效果 */
+        UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
+        [view addSubview:blurView];
+        [blurView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(0);
+        }];
+        
         UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
         imageView.tag = 100;
         [view addSubview: imageView];
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(view);
         }];
+        
     }
+    UIImageView *bgImageView = (UIImageView *)[view viewWithTag:200];
+    [bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(view);
+    }];
     UIImageView *imageView = (UIImageView *)[view viewWithTag:100];
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
     NSURL *url = [self.pdVM picArrForProduct][index];
+    [bgImageView sd_setImageWithURL:url];
     [imageView sd_setImageWithURL:url];
+    
+    
     
     return view;
 }
@@ -287,6 +310,7 @@ static CGFloat bottomBtnHeight = 50;
         _tableView = [[UITableView alloc] init];
         _tableView.dataSource = self;
         _tableView.delegate = self;
+        _tableView.showsVerticalScrollIndicator = NO;
         [self.view addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, bottomBtnHeight, 0));

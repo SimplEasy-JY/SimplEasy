@@ -83,7 +83,7 @@
 - (NSURL *)headImageForSeller{
     return [NSURL URLWithString:[self userDataModel].headImg];
 }
-
+#warning 暂时弃用这个学校名
 - (NSString *)schoolNameForSeller{
     return [self userDataModel].school;
 }
