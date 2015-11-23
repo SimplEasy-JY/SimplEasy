@@ -10,10 +10,6 @@
 #import "JYGoodsModel.h"
 @interface JYRecommendCell : UITableViewCell
 
-
-/**  传控制器 */
-@property(strong,nonatomic)id rootController;
-
 @property(strong,nonatomic)JYGoodsItems *goodsItems;
 
 -(void)setAttribute;

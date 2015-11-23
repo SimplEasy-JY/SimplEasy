@@ -67,8 +67,10 @@
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:self.goodsItems.headImg] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         self.userImageView.image = [UIImage circleImageWithImage:self.userImageView.image borderWidth:0.5 borderColor:[UIColor whiteColor]];
     }];
-    
+    self.shopImage.contentMode = 2;
+    self.shopImage.clipsToBounds = YES;
     [self.shopImage sd_setImageWithURL:[NSURL URLWithString:imageURL]];
+    
     self.userName.text = self.goodsItems.username;
     self.describeLabel.text = self.goodsItems.name;
     self.currentPrice.text = [NSString stringWithFormat:@"￥%@ ",self.goodsItems.price];

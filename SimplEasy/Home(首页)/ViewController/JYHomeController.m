@@ -601,7 +601,6 @@ typedef NS_ENUM(NSInteger, cellType) {
             case recommend:{
                 JYRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:JYRecommendCellIndentifier];
                 if (self.goodsVM.dataArr.count != 0) {
-                    cell.rootController = self.navigationController;
                     if (_secondGoodsArray == nil) {
                         _secondGoodsArray = self.goodsVM.dataArr;
                     }

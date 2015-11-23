@@ -11,7 +11,7 @@
 
 #import "UILabel+Line.h"
 @interface JYRecommendCell ()
-@property (weak, nonatomic) IBOutlet UIButton *shopButton;
+@property (weak, nonatomic) IBOutlet UILabel *shopLabel;
 @property (weak, nonatomic) IBOutlet UILabel *describeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *placeNow;
 @property (weak, nonatomic) IBOutlet UILabel *currentPrice;
@@ -22,9 +22,9 @@
 
 - (void)awakeFromNib {
     /**  颜色 边框 设置 */
-    [self.shopButton.layer setBorderWidth:1];
-    [self.shopButton.layer setBorderColor:kRGBColor(0, 182, 0).CGColor];
-    [self.shopButton setTintColor:kRGBColor(0, 182,0)];
+    [self.shopLabel.layer setBorderWidth:2];
+    [self.shopLabel.layer setBorderColor:kRGBColor(0, 182, 0).CGColor];
+    [self.shopLabel setTextColor:kRGBColor(0, 182,0)];
     self.placeNow.textColor = kRGBColor(158, 207, 242);
     self.currentPrice.textColor = kRGBColor(189, 33, 33);
     self.originalPrice.textColor = kRGBColor(152, 152, 152);
@@ -44,15 +44,7 @@
     self.describeLabel.text = self.goodsItems.name;
     self.currentPrice.text = [NSString stringWithFormat:@"￥%@",self.goodsItems.price];
     self.placeNow.text = [strSchool firstObject];
-    [self.shopButton bk_addEventHandler:^(id sender) {
-        JYProductDetailVC *productDetailVC = [[JYProductDetailVC alloc] init];
-        productDetailVC.goodsID = self.goodsItems.ID;
-        NSLog(@"商品ID:%@",self.goodsItems.ID);
-        productDetailVC.title = @"商品详情";
-        productDetailVC.hidesBottomBarWhenPushed = YES;
-        [self.rootController pushViewController:productDetailVC animated:YES];
-        
-    } forControlEvents:UIControlEventTouchUpInside];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
