@@ -91,7 +91,7 @@
                             <color key="titleShadowColor" red="0.06118072225" green="1" blue="0.48388760739999997" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_15" translatesAutoresizingMaskIntoConstraints="NO" id="u3b-sC-ZPQ">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_15" translatesAutoresizingMaskIntoConstraints="NO" id="u3b-sC-ZPQ">
                         <rect key="frame" x="10" y="15" width="110" height="82"/>
                         <animations/>
                         <color key="backgroundColor" red="0.06118072225" green="1" blue="0.48388760739999997" alpha="1" colorSpace="calibratedRGB"/>

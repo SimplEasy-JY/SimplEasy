@@ -1531,7 +1531,7 @@
 				TargetAttributes = {
 					8328A4361BE8478B0021767D = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = N27SETL2A3;
+						DevelopmentTeam = G7YYV9K7LC;
 					};
 					8328A44F1BE8478C0021767D = {
 						CreatedOnToolsVersion = 7.1;
@@ -2030,7 +2030,7 @@
 					"\"Photos\"",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy.SimplEasy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy1.SimplEasy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -2123,7 +2123,7 @@
 					"\"Photos\"",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy.SimplEasy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy1.SimplEasy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
