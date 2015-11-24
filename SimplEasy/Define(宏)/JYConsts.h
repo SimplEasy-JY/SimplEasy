@@ -35,6 +35,8 @@
 #define YSHGlobalBg kRGBColor(230, 230, 230)
 //绿色
 #define JYGlobalBg kRGBColor(72, 171, 108)
+//略白
+#define JYWhite kRGBColor(250, 250, 250)
 //线条颜色
 #define JYLineColor kRGBColor(217, 217, 217)
 
