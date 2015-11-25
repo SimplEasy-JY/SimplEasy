@@ -175,6 +175,7 @@
 		B048007E1BF489DD007D39F4 /* JYGoodsNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B048007D1BF489DD007D39F4 /* JYGoodsNetManager.m */; };
 		B04800811BF48A65007D39F4 /* JYGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B04800801BF48A65007D39F4 /* JYGoodsModel.m */; };
 		B04800841BF48DF0007D39F4 /* JYGoodsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B04800831BF48DF0007D39F4 /* JYGoodsViewModel.m */; };
+		B0800A2C1C05DFE70096F90B /* JYPhoneNumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0800A2B1C05DFE70096F90B /* JYPhoneNumViewController.m */; };
 		B089AA981BE9D09400E5D2CC /* JYLoopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AA971BE9D09400E5D2CC /* JYLoopModel.m */; };
 		B089AA9E1BE9D50700E5D2CC /* JYLoopViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AA9D1BE9D50700E5D2CC /* JYLoopViewModel.m */; };
 		B089AAA11BE9D70800E5D2CC /* JYLoopNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AAA01BE9D70800E5D2CC /* JYLoopNetManager.m */; };
@@ -491,6 +492,8 @@
 		B04800801BF48A65007D39F4 /* JYGoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYGoodsModel.m; sourceTree = "<group>"; };
 		B04800821BF48DF0007D39F4 /* JYGoodsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYGoodsViewModel.h; sourceTree = "<group>"; };
 		B04800831BF48DF0007D39F4 /* JYGoodsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYGoodsViewModel.m; sourceTree = "<group>"; };
+		B0800A2A1C05DFE70096F90B /* JYPhoneNumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYPhoneNumViewController.h; sourceTree = "<group>"; };
+		B0800A2B1C05DFE70096F90B /* JYPhoneNumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYPhoneNumViewController.m; sourceTree = "<group>"; };
 		B089AA961BE9D09400E5D2CC /* JYLoopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLoopModel.h; sourceTree = "<group>"; };
 		B089AA971BE9D09400E5D2CC /* JYLoopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLoopModel.m; sourceTree = "<group>"; };
 		B089AA9C1BE9D50700E5D2CC /* JYLoopViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLoopViewModel.h; sourceTree = "<group>"; };
@@ -879,6 +882,8 @@
 				B03FD5751C0568F60031A18C /* JYRegisterViewController.m */,
 				B03FD58A1C05BA2F0031A18C /* JYUserProtocolViewController.h */,
 				B03FD58B1C05BA2F0031A18C /* JYUserProtocolViewController.m */,
+				B0800A2A1C05DFE70096F90B /* JYPhoneNumViewController.h */,
+				B0800A2B1C05DFE70096F90B /* JYPhoneNumViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1845,6 +1850,7 @@
 				B02A70101BE8609600B8B05F /* JYMessageController.m in Sources */,
 				83476B751BEB1C6C0061F61E /* iCarousel.m in Sources */,
 				B03FD5761C0568F60031A18C /* JYRegisterViewController.m in Sources */,
+				B0800A2C1C05DFE70096F90B /* JYPhoneNumViewController.m in Sources */,
 				B048007E1BF489DD007D39F4 /* JYGoodsNetManager.m in Sources */,
 				B0AFA39F1BFB213E00F795F9 /* RecordAudio.m in Sources */,
 				B0CC9A8E1BF0A9F500FCC177 /* JYFreeChargeCell.m in Sources */,

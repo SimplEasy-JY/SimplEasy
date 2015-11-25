@@ -17,7 +17,7 @@
 //third-party
 #import "SFCountdownView.h"
 #import "BDKNotifyHUD.h"
-#import <SMS_SDK/SMSSDK.h>
+
 
 //IMSDK Header
 #import "IMMyself.h"
@@ -26,12 +26,7 @@
 #import "IMSDK+CustomUserInfo.h"
 
 static CGFloat textFieldH = 44;
-static CGFloat leftTextFieldH = 44;
-static CGFloat leftTextFieldW = 105;
-static CGFloat bottomLR = 63;
-static CGFloat bottomLabelW = 122;
-static CGFloat bottomLabelH = 18;
-static CGFloat bottomButtomW = 67;
+static CGFloat space = 30;
 
 
 @interface JYRegisterViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
@@ -39,18 +34,9 @@ static CGFloat bottomButtomW = 67;
 @property(strong,nonatomic)UITextField *userField;
 @property(strong,nonatomic)UITextField *passField;
 @property(strong,nonatomic)UITextField *confirmPassField;
-@property(strong,nonatomic)UITextField *phoneNumField;
-@property(strong,nonatomic)UITextField *testField;
 @property(strong,nonatomic)UIButton *registerButton;
 @property(strong,nonatomic)NSArray *textFieldArr;
 
-//倒计时
-@property(assign,nonatomic)NSInteger totalTime;
-@property(strong,nonatomic)UILabel *rightLabel;
-
-//底部
-@property(strong,nonatomic)UILabel *bottomLabel;
-@property(strong,nonatomic)UIButton *bottomButton;
 
 @end
 
@@ -62,8 +48,7 @@ static CGFloat bottomButtomW = 67;
 }
 -(TPKeyboardAvoidingTableView *)tableView{
     if (!_tableView) {
-        self.tableView = [[TPKeyboardAvoidingTableView  alloc]initWithFrame:CGRectMake(0, kWindowH/2-textFieldH*4, kWindowW, textFieldH*5)];
-//        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.tableView = [[TPKeyboardAvoidingTableView  alloc]initWithFrame:CGRectMake(0, kWindowH/2-textFieldH*4, kWindowW, textFieldH*3)];
         _tableView.backgroundColor = JYWhite;
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -72,7 +57,7 @@ static CGFloat bottomButtomW = 67;
 }
 -(NSArray *)textFieldArr{
     if (!_textFieldArr) {
-        self.textFieldArr = [[NSArray  alloc]initWithObjects:self.userField,self.passField,self.confirmPassField,self.phoneNumField,self.testField,nil];
+        self.textFieldArr = [[NSArray  alloc]initWithObjects:self.userField,self.passField,self.confirmPassField,nil];
     }
     return _textFieldArr;
 }
@@ -100,51 +85,12 @@ static CGFloat bottomButtomW = 67;
     }
     return _confirmPassField;
 }
--(UITextField *)phoneNumField{
-    if (!_phoneNumField) {
-        self.phoneNumField = [[UITextField  alloc]initWithFrame:CGRectMake(0, 0, kWindowW, textFieldH)];
-        _phoneNumField.placeholder = @"请输入手机号";
-        _phoneNumField.delegate = self;
-        UILabel *leftLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, leftTextFieldW , leftTextFieldH)];
-        leftLabel.text = @"   中国 +86";
-        leftLabel.textColor = JYGlobalBg;
-        _phoneNumField.leftView = leftLabel;
-        _phoneNumField.leftViewMode = UITextFieldViewModeAlways;
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(leftTextFieldW-1, 0, 1, leftTextFieldH)];
-        view.backgroundColor = JYLineColor;
-        [_phoneNumField addSubview:view];
-        
-    }
-    return _phoneNumField;
-}
--(UITextField *)testField{
-    if (!_testField) {
-        self.testField = [[UITextField  alloc]initWithFrame:CGRectMake(0, 0, kWindowW, textFieldH)];
-        _testField.delegate = self;
-        //右边按钮
-        UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, leftTextFieldW , leftTextFieldH)];
-        [leftButton setTitle:@"发送验证码" forState:UIControlStateNormal];
-        [leftButton setTitleColor:JYWhite forState:UIControlStateNormal];
-        [leftButton setTitleColor:kRGBColor(146, 146, 146) forState:UIControlStateSelected];
-        [leftButton setBackgroundImage:[UIImage imageWithColor:JYGlobalBg cornerRadius:0] forState:UIControlStateNormal];
-        [leftButton setBackgroundImage:[UIImage imageWithColor:JYLineColor cornerRadius:0] forState:UIControlStateSelected];
-        [leftButton addTarget:self action:@selector(getSmsCode:) forControlEvents:UIControlEventTouchUpInside];
-        _testField.leftView = leftButton;
-        _testField.leftViewMode = UITextFieldViewModeAlways;
-        //左边倒计时
-        self.rightLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, leftTextFieldW/2, leftTextFieldH)];
-        self.rightLabel.textColor = JYLineColor;
-        _testField.rightView = self.rightLabel;
-        _testField.rightViewMode = UITextFieldViewModeAlways;
-        _testField.rightView.hidden = YES;
-    }
-    return _testField;
-}
+
 -(UIButton *)registerButton{
     if (!_registerButton) {
         self.registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _registerButton.frame = CGRectMake(30, kWindowH/2+textFieldH+10, kWindowW-60, textFieldH);
-        _registerButton.backgroundColor = JYHexColor(0x263554);
+        _registerButton.frame = CGRectMake(space, kWindowH/2+15-textFieldH, kWindowW-space*2, textFieldH);
+        _registerButton.backgroundColor = JYButtonColor;
         [_registerButton setTitle:@"注册" forState:UIControlStateNormal];
         [_registerButton addTarget:self action:@selector(registerClick:) forControlEvents:UIControlEventTouchUpInside];
 //        _loginButton.tag = 100;
@@ -152,36 +98,11 @@ static CGFloat bottomButtomW = 67;
     }
     return _registerButton;
 }
--(UILabel *)bottomLabel{
-    if (!_bottomLabel) {
-        self.bottomLabel = [[UILabel  alloc]initWithFrame:CGRectMake(bottomLR, kWindowH-bottomLabelH-20, bottomLabelW, bottomLabelH)];
-        _bottomLabel.text = @"点击注册表示同意";
-        _bottomLabel.font = [UIFont systemFontOfSize:15];
-        _bottomLabel.textColor = kRGBColor(108, 106, 105);
-    }
-    return _bottomLabel;
-}
--(UIButton *)bottomButton{
-    if (!_bottomButton) {
-        self.bottomButton = [UIButton  buttonWithType:UIButtonTypeCustom];
-        _bottomButton.frame = CGRectMake(bottomLR+bottomLabelW, kWindowH-bottomLabelH-20, bottomButtomW, bottomLabelH);
-        NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:@"用户协议"];
-        NSRange titleRange = {0,[title length]};
-        [title addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:titleRange];
-        [_bottomButton setAttributedTitle:title
-                          forState:UIControlStateNormal];
-        [_bottomButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
-    }
-    return _bottomButton;
-}
 
 #pragma mark - viewDidLoad
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.bottomButton bk_addEventHandler:^(id sender) {
-        JYUserProtocolViewController *vc = [[JYUserProtocolViewController alloc]init];
-        [self presentViewController:vc animated:YES completion:nil];
-    } forControlEvents:UIControlEventTouchUpInside];
+    self.title = @"用户注册";
     
 }
 
@@ -192,76 +113,21 @@ static CGFloat bottomButtomW = 67;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        //取消按钮
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(0, 15, 40, 30);
-        button.titleLabel.font = [UIFont systemFontOfSize:13];
-        [button setTitle:@"取消" forState:UIControlStateNormal];
-        [button setTitleColor:JYHexColor(0x49e046) forState:UIControlStateNormal];
-        [button setTitleColor:kRGBColor(200, 200, 200) forState:UIControlStateHighlighted];
-        [button bk_addEventHandler:^(id sender) {
-            [self dismissViewControllerAnimated:YES completion:nil];
-        } forControlEvents:UIControlEventTouchUpInside];
-        
-
         self.view.backgroundColor = kRGBColor(239, 239, 239);
-        [self.view addSubview:button];
         [self.view addSubview:self.tableView];
         [self.view addSubview:self.registerButton];
-        [self.view addSubview:self.bottomLabel];
-        [self.view addSubview:self.bottomButton];
         
     }
     return self;
 }
 #pragma mark - 响应方法
--(void)getSmsCode:(UIButton *)sender{
-    //zone 国家代码  86 代表中国
-    [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:self.phoneNumField.text zone:@"86" customIdentifier:nil result:^(NSError *error) {
-        if (error) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"验证码发送失败" preferredStyle:UIAlertControllerStyleAlert];
-            [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil]];
-            [self presentViewController:alert animated:YES completion:nil];
-        }else{
-            //锁定按钮状态
-            if (sender.selected) {
-                return ;
-            }
-            sender.selected = YES;
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"验证码发送成功" preferredStyle:UIAlertControllerStyleAlert];
-            [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil]];
-            [self presentViewController:alert animated:YES completion:nil];
-            self.testField.rightView.hidden = NO;
-            dispatch_queue_t queue = dispatch_queue_create("countQueue", DISPATCH_QUEUE_CONCURRENT);
-            dispatch_queue_t mainQueue = dispatch_get_main_queue();
-            
-            dispatch_async(queue, ^{
-                self.totalTime = 10;
-                while (self.totalTime > 0) {
-                    [NSThread sleepForTimeInterval:1];
-                    self.totalTime -- ;
-                    NSString *timeStr = [NSString stringWithFormat:@"(%lds)",self.totalTime];
-                    dispatch_async(mainQueue, ^{
-                        self.rightLabel.text = timeStr;
-                    });
-                }
-                //解锁按钮状态
-                dispatch_async(mainQueue, ^{//主线程刷新UI
-                    sender.selected = NO;
-            });
-                self.rightLabel.hidden = YES;
-            });
-        }
-    }];
-
-}
 -(void)registerClick:(UIButton *)sender{
     [[self view] endEditing:YES];
     
     NSString *customUserID = self.userField.text;
     NSString *password = self.passField.text;
     NSString *confirmPassword = self.confirmPassField.text;
-    NSString *testNumb = self.phoneNumField.text;
+  
     
     if (customUserID.length > 0) {
         if (password.length == 0 || confirmPassword.length == 0) {
@@ -276,25 +142,7 @@ static CGFloat bottomButtomW = 67;
             [self presentViewController:alert animated:YES completion:nil];
             return;
         }
-        if (testNumb.length == 0) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"请输入验证码" preferredStyle:UIAlertControllerStyleAlert];
-            [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
-            [self presentViewController:alert animated:YES completion:nil];
-            return;
-            
-        }
-        if (self.phoneNumField.text.length == 0) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"请输入手机号" preferredStyle:UIAlertControllerStyleAlert];
-            [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
-            [self presentViewController:alert animated:YES completion:nil];
-            return;
-        }
-        [SMSSDK commitVerificationCode:testNumb phoneNumber:self.phoneNumField.text zone:@"86" result:^(NSError *error) {
-            if (error) {
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"验证码错误" preferredStyle:UIAlertControllerStyleAlert];
-                [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
-                [self presentViewController:alert animated:YES completion:nil];
-            }else {
+        else {
                 [g_pIMMyself setCustomUserID:customUserID];
                 [g_pIMMyself setPassword:password];
                 [g_pIMMyself registerWithTimeoutInterval:5 success:^{
@@ -340,7 +188,6 @@ static CGFloat bottomButtomW = 67;
                     [self performSelector:@selector(loginError:) withObject:error afterDelay:0.5];
                 }];
             }
-        }];
             } else {
         _notifyText = @"请输入用户名";
         _notifyImage = [UIImage imageNamed:@"IM_alert_image.png"];
@@ -372,7 +219,7 @@ kRemoveCellSeparator
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -423,33 +270,6 @@ kRemoveCellSeparator
             
             return NO;
         }
-        
-//        NSMutableString *customUserID = [[NSMutableString alloc] initWithFormat:@"%@",[textField text]];
-//        
-//        [customUserID replaceCharactersInRange:range withString:string];
-//        
-//        UIImage *image = [g_pIMSDK mainPhotoOfUser:customUserID];
-//        
-//        if (image) {
-//            [_headView setImage:image];
-//        } else {
-//            NSString *customInfo = [g_pIMSDK customUserInfoWithCustomUserID:customUserID];
-//            
-//            NSArray *customInfoArray = [customInfo componentsSeparatedByString:@"\n"];
-//            NSString *sex = nil;
-//            
-//            if ([customInfoArray count] > 0) {
-//                sex = [customInfoArray objectAtIndex:0];
-//            }
-//            
-//            if ([sex isEqualToString:@"女"]) {
-//                [_headView setImage:[UIImage imageNamed:@"IM_head_female.png"]];
-//            } else {
-//                [_headView setImage:[UIImage imageNamed:@"IM_head_male.png"]];
-//            }
-//            
-//        }
-//    }
     }
     
     if (textField == _passField) {

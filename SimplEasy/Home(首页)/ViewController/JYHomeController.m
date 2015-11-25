@@ -221,7 +221,8 @@ typedef NS_ENUM(NSInteger, cellType) {
 - (IBAction)positionButton:(id)sender {
     JYLoginViewController *vc = [[JYLoginViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
-    [self presentViewController:vc animated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
+//    [self presentViewController:vc animated:YES completion:nil];
 }
 
 

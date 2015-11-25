@@ -11,7 +11,7 @@
 #import "UIView+IM.h"
 #import "JYRootViewController.h"
 #import "UIImage+Circle.h"
-#import "JYRegisterViewController.h"
+#import "JYPhoneNumViewController.h"
 
 //third-party
 #import "SFCountdownView.h"
@@ -96,7 +96,7 @@ static CGFloat textFieldH = 44;
     if (!_loginButton) {
         self.loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _loginButton.frame = CGRectMake(30, kWindowH/2, kWindowW-60, textFieldH);
-        _loginButton.backgroundColor = JYHexColor(0x263554);
+        _loginButton.backgroundColor = JYButtonColor;
         [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
 //        _loginButton.titleLabel.textColor = JYWhite;
         [_loginButton addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
@@ -153,24 +153,33 @@ static CGFloat textFieldH = 44;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-       
+        
         self.view.backgroundColor = kRGBColor(239, 239, 239);
         [self.view addSubview:self.tableView];
         [self.view addSubview:self.loginButton];
         [self.view addSubview:self.userImageView];
+        //注册按钮
         [self.registerButton bk_addEventHandler:^(id sender) {
-            JYRegisterViewController *vc = [[JYRegisterViewController alloc]init];
-            [self presentViewController:vc animated:YES completion:nil];
+            [self.navigationController pushViewController:[[JYPhoneNumViewController alloc]init] animated:YES];
         } forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.registerButton];
         [self.view addSubview:self.touristButton];
     }
     return self;
 }
-
+#warning  正式程序 可以去掉
+-(void)viewWillAppear:(BOOL)animated{
+    //隐藏导航栏
+    self.navigationController.navigationBarHidden = YES;
+    //隐藏导航栏之后，修改默认视图不下移
+    self.automaticallyAdjustsScrollViewInsets = NO;// 自动滚动调整，默认为YES
+    self.view.frame = CGRectMake(0, 0, kWindowW, kWindowH);
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //游客按
     [self.touristButton bk_addEventHandler:^(id sender) {
         JYRootViewController *vc = [[JYRootViewController alloc] init];
         [self addChildViewController:vc];
@@ -349,7 +358,7 @@ kRemoveCellSeparator
     if (indexPath.row == 0) {
         [cell addSubview:self.userNameField];
         
-    } else if (indexPath.row == 1) {
+    } else {
         [cell addSubview:self.passwordField];
     }
     

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface JYRegisterViewController : UIViewController
-
+//接受手机号
+@property(strong,nonatomic)NSString *phoneNum;
 @end

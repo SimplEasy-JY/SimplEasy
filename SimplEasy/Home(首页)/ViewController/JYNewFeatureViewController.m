@@ -40,6 +40,11 @@
         [self.icView scrollToItemAtIndex:self.icView.currentItemIndex+1 animated:YES];
     } repeats:YES];
 }
+-(void)viewWillAppear:(BOOL)animated{
+    //隐藏导航栏
+    self.navigationController.navigationBarHidden = YES;
+
+}
 
 #pragma mark *** iCarouselDataSource ***
 
@@ -91,7 +96,7 @@
         /** 重新设置根视图，防止调用根视图的时候程序崩溃（加号） */
 //        kAppDelegate.window.rootViewController = rootVC.sideMenu;
 //        rootVC.sideMenu.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [self presentViewController:[[JYLoginViewController alloc]init] animated:YES completion:nil];
+        [self.navigationController pushViewController:[[JYLoginViewController alloc]init] animated:YES];
     }
 }
 
