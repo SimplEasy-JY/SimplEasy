@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *rightLabel;
 @property (weak, nonatomic) IBOutlet UILabel *leftPlaceNow;
 @property (weak, nonatomic) IBOutlet UILabel *rightPlaceNow;
-
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet UIView *leftBgView;
 @property (weak, nonatomic) IBOutlet UIView *rightBgView;
 
@@ -36,6 +36,8 @@
     self.rightShopButton.backgroundColor = kRGBColor(75, 190, 44);
     self.leftLabel.textColor = kRGBColor(102, 102, 102);
     self.rightLabel.textColor = kRGBColor(102, 102, 102);
+    self.bgView.backgroundColor = kRGBColor(240, 240, 240);
+    
 
 }
 

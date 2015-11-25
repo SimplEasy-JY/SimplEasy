@@ -27,7 +27,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="￥35" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EI-b0-zZ1">
-                        <rect key="frame" x="131" y="58" width="38" height="21"/>
+                        <rect key="frame" x="131" y="60" width="37.5" height="21"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="37.5" id="EAf-Ak-SwX"/>
@@ -43,7 +43,7 @@
                         </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIh-3b-xwO">
-                        <rect key="frame" x="172" y="62" width="30" height="16"/>
+                        <rect key="frame" x="171.5" y="62" width="30" height="16"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="3e4-Ch-NHd"/>
@@ -61,16 +61,16 @@
                             </mask>
                         </variation>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="middleicon_32" translatesAutoresizingMaskIntoConstraints="NO" id="wxh-y4-XeV">
-                        <rect key="frame" x="130" y="81" width="12" height="16"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="middleicon_32" translatesAutoresizingMaskIntoConstraints="NO" id="wxh-y4-XeV">
+                        <rect key="frame" x="130" y="83" width="10" height="14"/>
                         <animations/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="16" id="oWn-Ez-tSj"/>
-                            <constraint firstAttribute="width" constant="12" id="zhA-tP-T8N"/>
+                            <constraint firstAttribute="height" constant="14" id="oWn-Ez-tSj"/>
+                            <constraint firstAttribute="width" constant="10" id="zhA-tP-T8N"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="杭州电子科技大学" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vi-gD-xR0">
-                        <rect key="frame" x="147" y="82" width="96" height="15"/>
+                        <rect key="frame" x="145" y="82" width="96" height="15"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="OkY-5P-oeS"/>

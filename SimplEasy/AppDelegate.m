@@ -16,7 +16,7 @@
 #import "JYNewFeatureViewController.h"
 #import "JYRootViewController.h"
 
-
+#import <SMS_SDK/SMSSDK.h>
 #import "JYLoginViewController.h"
 #import "IMDefine.h"
 //#import "JYUserDialogViewController.h"
@@ -42,6 +42,8 @@
     [self initializeWithApplication:application];
 
     [self configNewFeatureViewController];
+    
+    [SMSSDK registerApp:AppKey withSecret:AppSecret];
     
     
     
@@ -113,85 +115,4 @@
     [g_pIMSDK applicationWillEnterForeground];
 }
 
-
-/**
- * 设置VC
- //- (void)setupViewControllers {
- //
- //    UINavigationController *homeNavc = [[UINavigationController alloc]
- //                                        initWithRootViewController:kVCFromSb(@"JYHomeController", @"Main")];
- //
- //    JYFindController *shopVC = [[JYFindController alloc] init];
- //    UINavigationController *shopNavc = [[UINavigationController alloc]
- //                                        initWithRootViewController:shopVC];
- //
- //    JYMessageController *messageVC = [[JYMessageController alloc] init];
- //    UINavigationController *messageNavc = [[UINavigationController alloc]
- //                                           initWithRootViewController:messageVC];
- //
- //    JYMineController *profileVC = [[JYMineController alloc] init];
- //    UINavigationController *profileNavc = [[UINavigationController alloc]
- //                                           initWithRootViewController:profileVC];
- //
- //
- //    CYLTabBarController *tabBarController = [[CYLTabBarController alloc] init];
- //
- //    [self customizeTabBarForController:tabBarController];
- //
- //    [tabBarController setViewControllers:@[
- //                                           homeNavc,
- //                                           shopNavc,
- //                                           messageNavc,
- //                                           profileNavc
- //                                           ]];
- //    tabBarController.tabBar.selectedImageTintColor = JYGlobalBg;
- //    self.tabBarController = tabBarController;
- //}
- //
- * 设置tabBar
- //- (void)customizeTabBarForController:(CYLTabBarController *)tabBarController {
- //
- //    NSDictionary *dict1 = @{
- //                            CYLTabBarItemTitle : @"首页",
- //                            CYLTabBarItemImage : @"bottom_1",
- //                            CYLTabBarItemSelectedImage : @"bottom_1_h",
- //                            };
- //    NSDictionary *dict2 = @{
- //                            CYLTabBarItemTitle : @"发现",
- //                            CYLTabBarItemImage : @"bottom_2",
- //                            CYLTabBarItemSelectedImage : @"bottom_2_h",
- //                            };
- //    NSDictionary *dict3 = @{
- //                            CYLTabBarItemTitle : @"消息",
- //                            CYLTabBarItemImage : @"bottom_3",
- //                            CYLTabBarItemSelectedImage : @"bottom_3_h",
- //                            };
- //
- //    NSDictionary *dict4 = @{
- //                            CYLTabBarItemTitle : @"我的",
- //                            CYLTabBarItemImage : @"bottom_4",
- //                            CYLTabBarItemSelectedImage : @"bottom_4_h",
- //                            };
- //
- //
- //    NSArray *tabBarItemsAttributes = @[ dict1, dict2 ,dict3,dict4 ];
- //    tabBarController.tabBarItemsAttributes = tabBarItemsAttributes;
- //}
- //
- * 设置侧拉框
- //- (RESideMenu *)sideMenu{
- //    if (!_sideMenu) {
- //        _sideMenu=[[RESideMenu alloc]initWithContentViewController:self.tabBarController leftMenuViewController:[JYClassifyViewController new] rightMenuViewController:nil];
- * 让侧拉框不能通过手势调出，解决每个tabBar都会调出侧拉框的问题
- //        _sideMenu.panGestureEnabled = NO;
- * 可以让出现菜单时不显示状态栏
- //        _sideMenu.menuPrefersStatusBarHidden = YES;
- * 关闭透视，视差效果
- //        _sideMenu.parallaxEnabled = NO;
- //        _sideMenu.contentViewInPortraitOffsetCenterX = 80;
- //        _sideMenu.contentViewScaleValue = 1.0f;
- //    }
- //    return _sideMenu;
- //}
- */
 @end

@@ -97,7 +97,7 @@
                         </variation>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="浙江传媒学院214324242432432432" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4eT-WG-uSR">
-                        <rect key="frame" x="30" y="263" width="204" height="20"/>
+                        <rect key="frame" x="28" y="263" width="204" height="20"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="2JI-Ps-7Yr"/>
@@ -219,13 +219,19 @@
                             <constraint firstAttribute="width" constant="55" id="zST-ho-D66"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="middleicon_32" translatesAutoresizingMaskIntoConstraints="NO" id="pEE-cl-C1n">
-                        <rect key="frame" x="10" y="265" width="12" height="16"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="middleicon_32" translatesAutoresizingMaskIntoConstraints="NO" id="pEE-cl-C1n">
+                        <rect key="frame" x="10" y="267" width="10" height="14"/>
                         <animations/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="12" id="D0k-z5-78d"/>
-                            <constraint firstAttribute="height" constant="16" id="H9v-ak-vLu"/>
+                            <constraint firstAttribute="width" constant="10" id="D0k-z5-78d"/>
+                            <constraint firstAttribute="height" constant="14" id="H9v-ak-vLu"/>
+                            <constraint firstAttribute="width" constant="10" id="oZF-Ui-EwY"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="D0k-z5-78d"/>
+                            </mask>
+                        </variation>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NKb-gG-qi3">
                         <rect key="frame" x="10" y="68" width="244" height="160"/>
@@ -376,6 +382,7 @@
                     <constraint firstItem="55J-41-HiI" firstAttribute="trailing" secondItem="901-Ga-QV7" secondAttribute="trailing" id="lim-KP-pFN"/>
                     <constraint firstAttribute="trailing" secondItem="pHE-qM-Gkx" secondAttribute="trailing" id="m2E-K4-vO6"/>
                     <constraint firstAttribute="bottomMargin" secondItem="MDz-qU-M0V" secondAttribute="bottom" constant="6" id="m5j-dl-jEl"/>
+                    <constraint firstItem="pEE-cl-C1n" firstAttribute="leading" secondItem="55J-41-HiI" secondAttribute="leading" id="mkF-XA-qL0"/>
                     <constraint firstItem="55J-41-HiI" firstAttribute="leading" secondItem="NKb-gG-qi3" secondAttribute="leading" id="ml6-o6-OhK"/>
                     <constraint firstItem="MDz-qU-M0V" firstAttribute="leading" secondItem="bBa-tE-Zyg" secondAttribute="trailing" id="nSE-bH-Lbi"/>
                     <constraint firstItem="pHE-qM-Gkx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="320" id="pJu-ii-Fzh"/>
@@ -422,13 +429,16 @@
                         <exclude reference="lim-KP-pFN"/>
                         <exclude reference="ml6-o6-OhK"/>
                         <exclude reference="01e-pH-RsI"/>
+                        <exclude reference="AIc-hs-BnK"/>
                         <exclude reference="BJH-h8-Yzf"/>
+                        <exclude reference="IWA-Cq-61b"/>
                         <exclude reference="QJO-h1-B9Q"/>
                         <exclude reference="XsC-Ma-t5t"/>
                         <exclude reference="djl-DE-BCh"/>
                         <exclude reference="qID-hc-rbf"/>
                         <exclude reference="t1B-iw-nOC"/>
                         <exclude reference="xtk-nW-VmQ"/>
+                        <exclude reference="Niw-L4-1W1"/>
                         <exclude reference="iEO-rv-kKG"/>
                         <exclude reference="Qo8-Cs-U6O"/>
                         <exclude reference="esg-rf-aFR"/>

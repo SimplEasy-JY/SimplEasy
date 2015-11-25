@@ -92,4 +92,6 @@ static const int ddLogLevel = DDLogLevelError;
 
 #import "iCarousel.h"
 
+#import "TPKeyboardAvoidingTableView.h"
+
 #endif /* PrefixHeader_pch */

@@ -221,7 +221,7 @@ typedef NS_ENUM(NSInteger, cellType) {
 - (IBAction)positionButton:(id)sender {
     JYLoginViewController *vc = [[JYLoginViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 
@@ -410,7 +410,7 @@ typedef NS_ENUM(NSInteger, cellType) {
 
 }
 
-
+kRemoveCellSeparator
 
 #pragma mark - UITableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

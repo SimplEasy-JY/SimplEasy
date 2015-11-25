@@ -23,8 +23,9 @@
 //第二个轮播图的高
 #define secondLVH 30
 
-
-
+//sms
+#define AppKey @"bbc760582274"
+#define AppSecret @"b002c0ee5b25871d4b6e619a947fdb31"
 
 
 /**  nslog */
@@ -34,10 +35,11 @@
 //背景颜色 首页 webview
 #define YSHGlobalBg kRGBColor(230, 230, 230)
 //绿色
-#define JYGlobalBg kRGBColor(72, 171, 108)
+#define JYGlobalBg kRGBColor(71, 163, 105)
+
 //略白
 #define JYWhite kRGBColor(250, 250, 250)
-//线条颜色
+//线条颜色 灰色
 #define JYLineColor kRGBColor(217, 217, 217)
 
 /** 十六进制转换颜色,需要写0x前缀 */
