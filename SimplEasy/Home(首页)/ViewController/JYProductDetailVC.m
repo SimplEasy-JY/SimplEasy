@@ -14,10 +14,11 @@
 #import "JYProductDetailViewModel.h"
 #import "UILabel+Line.h"
 #import "UIImage+Circle.h"
+
 static CGFloat bottomBtnWidth = 40;
 static CGFloat bottomBtnHeight = 50;
 
-@interface JYProductDetailVC ()<UITableViewDelegate,UITableViewDataSource,iCarouselDelegate,iCarouselDataSource>
+@interface JYProductDetailVC ()<UITableViewDelegate,UITableViewDataSource,iCarouselDelegate,iCarouselDataSource,MWPhotoBrowserDelegate>
 /** tableView */
 //@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UITableView *tableView;
@@ -37,6 +38,8 @@ static CGFloat bottomBtnHeight = 50;
 - (void)viewDidLoad {
     [super viewDidLoad];
     JYLog(@"\n\n******************** 进入详情页面 ********************\n\n");
+    [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
+    
     //获取数据
     [self.pdVM getDataFromNetCompleteHandle:^(NSError *error) {
         if (error) {
@@ -45,17 +48,9 @@ static CGFloat bottomBtnHeight = 50;
         JYLog(@"得到数据");
         [self configTableViewHeader];
         [self.tableView reloadData];
+        [MBProgressHUD hideHUDForView:self.tableView animated:YES];
     }];
-    
-    //    UIBarButtonItem *leftBBI = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"back_btn"] style:UIBarButtonItemStyleDone handler:^(id sender) {
-    //        [self.navigationController popViewControllerAnimated:YES];
-    //    }];
-    //    self.navigationItem.leftBarButtonItem = leftBBI;
-    
-    //注册cell
-    [self.tableView registerClass:[JYProductDetailCell class] forCellReuseIdentifier:@"JYProductDetailCell"];
-    [self.tableView registerClass:[JYSellerCell class] forCellReuseIdentifier:@"JYSellerCell"];
-    [self.tableView registerClass:[JYCommentCell class] forCellReuseIdentifier:@"JYCommentCell"];
+
 }
 
 #pragma mark *** 私有方法 ***
@@ -281,6 +276,31 @@ static CGFloat bottomBtnHeight = 50;
     [self.timer invalidate];
 }
 
+- (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index{
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    [browser setCurrentPhotoIndex:index];
+    browser.displayActionButton = YES; // Show action button to allow sharing, copying, etc (defaults to YES)
+    browser.displayNavArrows = NO; // Whether to display left and right nav arrows on toolbar (defaults to NO)
+    browser.displaySelectionButtons = NO; // Whether selection buttons are shown on each image (defaults to NO)
+    browser.zoomPhotosToFill = YES; // Images that almost fill the screen will be initially zoomed to fill (defaults to YES)
+    browser.alwaysShowControls = NO; // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to NO)
+    browser.enableGrid = YES; // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to YES)
+    browser.startOnGrid = NO; // Whether to start on the grid of thumbnails instead of the first photo (defaults to NO)
+    browser.autoPlayOnAppear = NO; // Auto-play first video
+    [self.navigationController pushViewController:browser animated:YES];
+}
+
+#pragma mark *** MWPhotoBrowserDelegate ***
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser{
+    return [self.pdVM picArrForProduct].count;
+}
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index{
+    if (index < [self.pdVM picArrForProduct].count) {
+        return [MWPhoto photoWithURL:[self.pdVM picArrForProduct][index]];
+    }
+    return nil;
+}
 #pragma mark *** 懒加载 ***
 
 - (iCarousel *)icView {
@@ -311,6 +331,10 @@ static CGFloat bottomBtnHeight = 50;
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.showsVerticalScrollIndicator = NO;
+        //注册cell
+        [_tableView registerClass:[JYProductDetailCell class] forCellReuseIdentifier:@"JYProductDetailCell"];
+        [_tableView registerClass:[JYSellerCell class] forCellReuseIdentifier:@"JYSellerCell"];
+        [_tableView registerClass:[JYCommentCell class] forCellReuseIdentifier:@"JYCommentCell"];
         [self.view addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, bottomBtnHeight, 0));
