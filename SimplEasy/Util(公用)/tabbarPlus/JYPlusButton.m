@@ -7,7 +7,7 @@
 //
 
 #import "JYPlusButton.h"
-
+#import "JYRootViewController.h"
 
 @interface JYPlusButton ()
 

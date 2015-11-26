@@ -15,6 +15,8 @@
 #import "JYClassifyViewController.h"
 #import "JYNewFeatureViewController.h"
 #import "JYRootViewController.h"
+#import "JYLoginViewController.h"
+#import "JYUserPassModel.h"
 
 #import <SMS_SDK/SMSSDK.h>
 #import "JYLoginViewController.h"
@@ -90,7 +92,18 @@
     
     //版本号相同：这次打开和上次打开的是同一个版本,根控制器就是sideMenu
     if ([currentVersion isEqualToString:lastVersion]) {
-        self.window.rootViewController = rootVC;
+//        UINavigationController *nav = nil;
+        JYLoginViewController *vc = vc =  [[JYLoginViewController alloc]init];
+        if ([g_pIMMyself loginStatus] != IMMyselfLoginStatusNone ) {
+            JYUserPassModel *userPass = [JYUserPassModel shareInstance];
+                    userPass.userName = [[NSUserDefaults standardUserDefaults] objectForKey:IMLoginCustomUserID];
+                    userPass.password = [[NSUserDefaults standardUserDefaults] objectForKey:IMLoginPassword];
+            JYRootViewController *childVC =[[JYRootViewController alloc]init];
+            [vc addChildViewController:childVC];
+             [vc.view addSubview:childVC.view];
+            }
+            UINavigationController  *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+        self.window.rootViewController = nav;
     }else{ //这次打开的版本和上一次不一样，显示新特性
         UINavigationController *naiVC = [[UINavigationController alloc]initWithRootViewController:[[JYNewFeatureViewController alloc] init]];
         self.window.rootViewController = naiVC;

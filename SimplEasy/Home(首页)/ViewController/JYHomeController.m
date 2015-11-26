@@ -219,10 +219,6 @@ typedef NS_ENUM(NSInteger, cellType) {
 }
 /**  定位按钮 */
 - (IBAction)positionButton:(id)sender {
-    JYLoginViewController *vc = [[JYLoginViewController alloc]init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
-//    [self presentViewController:vc animated:YES completion:nil];
 }
 
 
@@ -295,10 +291,6 @@ typedef NS_ENUM(NSInteger, cellType) {
             [self.thirdLoopView reloadData];
         }];
     }];
-    
-    //加载数据
-    [self isRefresh:YES];
-    
     //下拉刷新
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self isRefresh:YES];
@@ -452,6 +444,9 @@ kRemoveCellSeparator
     if (indexPath.section == 0) {
         return (indexPath.row == 0 ? 116:30);
     }
+//    if (indexPath.section == 2 && _cellType == homeProduct) {
+//        return 330;
+//    }
     return UITableViewAutomaticDimension;
 
 }
@@ -585,14 +580,14 @@ kRemoveCellSeparator
         switch (_cellType) {
             case homeProduct: {
                 JYHomeProductCell *cell = [tableView dequeueReusableCellWithIdentifier:JYHomeProductCellIndentifier];
-                if (self.goodsVM.dataArr.count != 0) {
+//                if (self.goodsVM.dataArr.count != 0) {
                     if (!_firstGoodsArray) {
                         _firstGoodsArray = self.goodsVM.dataArr;
                         
                     }
                     cell.goodsItems = _firstGoodsArray[indexPath.row];
                     [cell setAttribute];
-                }
+//                }
                 return cell;
             }
                 break;

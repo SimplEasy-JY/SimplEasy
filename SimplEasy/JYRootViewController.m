@@ -72,29 +72,29 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
 }
 
 #pragma mark - 单例
-// 重写alloc 方法封堵创建方法(调用alloc方法时 默认会走allocWithZone这个方法 所以只需封堵allocWithZone 方法即可)
-+ (id)allocWithZone:(struct _NSZone *)zone
-{
-    if (!rootViewC) {
-        rootViewC = [super allocWithZone:zone];//如果没有实例让父类去创建一个
-        return rootViewC;
-    }
-    return nil;
-}
-+ (JYRootViewController *)shareRootVC  //定义一个类方法进行访问(便利构造)
-{
-    if (!rootViewC) {
-        rootViewC = [[JYRootViewController alloc]init];// 如果实例不存在进行创建
-    }
-    return rootViewC;
-  
-}
-
-// 封堵深复制 （copy 和 mutablecopy 都可以实现深复制 但他们最终都需要调用copyWithZone方法所以直接封堵它）
-- (id)copyWithZone:(struct _NSZone *)zone
-{
-    return self;
-}
+//// 重写alloc 方法封堵创建方法(调用alloc方法时 默认会走allocWithZone这个方法 所以只需封堵allocWithZone 方法即可)
+//+ (id)allocWithZone:(struct _NSZone *)zone
+//{
+//    if (!rootViewC) {
+//        rootViewC = [super allocWithZone:zone];//如果没有实例让父类去创建一个
+//        return rootViewC;
+//    }
+//    return nil;
+//}
+//+ (JYRootViewController *)shareRootVC  //定义一个类方法进行访问(便利构造)
+//{
+//    if (!rootViewC) {
+//        rootViewC = [[JYRootViewController alloc]init];// 如果实例不存在进行创建
+//    }
+//    return rootViewC;
+//  
+//}
+//
+//// 封堵深复制 （copy 和 mutablecopy 都可以实现深复制 但他们最终都需要调用copyWithZone方法所以直接封堵它）
+//- (id)copyWithZone:(struct _NSZone *)zone
+//{
+//    return self;
+//}
 
 - (void)dealloc
 {
@@ -194,9 +194,9 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:IMLoginCustomUserID];
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:IMLoginPassword];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
     [self removeFromParentViewController];
     [[self view] removeFromSuperview];
+//    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)receiveNewUserMessage:(NSString *)customUserID {

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "JYBaseViewController.h"
 @interface JYSettingViewController : UIViewController
 
 @end

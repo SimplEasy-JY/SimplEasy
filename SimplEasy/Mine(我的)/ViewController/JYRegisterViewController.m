@@ -155,7 +155,6 @@ static CGFloat space = 30;
                     [[NSUserDefaults standardUserDefaults] synchronize];
                     //应用角标清零
                     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-                    
                     [_passField setText:nil];
                     [[self view] endEditing:YES];
                 } failure:^(NSString *error) {
@@ -188,7 +187,7 @@ static CGFloat space = 30;
                     [self performSelector:@selector(loginError:) withObject:error afterDelay:0.5];
                 }];
             }
-            } else {
+        } else {
         _notifyText = @"请输入用户名";
         _notifyImage = [UIImage imageNamed:@"IM_alert_image.png"];
         [self displayNotifyHUD];

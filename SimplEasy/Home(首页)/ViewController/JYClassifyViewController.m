@@ -7,6 +7,7 @@
 //
 
 #import "JYClassifyViewController.h"
+#import "JYRootViewController.h"
 #import "JYSellerCell.h"
 #import "JYClassifyModel.h"
 #import "JYClassifyContentVC.h"

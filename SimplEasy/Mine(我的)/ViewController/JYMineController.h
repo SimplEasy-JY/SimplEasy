@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface JYMineController : UIViewController
+#import "JYBaseViewController.h"
+@interface JYMineController : JYBaseViewController
 
 @end

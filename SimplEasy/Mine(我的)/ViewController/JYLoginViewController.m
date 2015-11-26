@@ -12,6 +12,7 @@
 #import "JYRootViewController.h"
 #import "UIImage+Circle.h"
 #import "JYPhoneNumViewController.h"
+#import "JYUserPassModel.h"
 
 //third-party
 #import "SFCountdownView.h"
@@ -22,6 +23,7 @@
 #import "IMSDK+MainPhoto.h"
 #import "IMLoginView.h"
 #import "IMSDK+CustomUserInfo.h"
+#import "IMMyself+CustomUserInfo.h"
 
 static CGFloat bottomBtnH = 30;
 static CGFloat bottomBtnW = 80;
@@ -30,7 +32,7 @@ static CGFloat imgviewH = 80;
 static CGFloat textFieldH = 44;
 
 
-@interface JYLoginViewController ()<UITableViewDataSource, UITableViewDelegate ,UITextFieldDelegate>
+@interface JYLoginViewController ()<UITableViewDataSource, UITableViewDelegate ,UITextFieldDelegate,IMLoginViewDelegate>
 
 @property(strong,nonatomic)UITableView *tableView;
 @property(strong,nonatomic)UITextField *userNameField;
@@ -39,6 +41,10 @@ static CGFloat textFieldH = 44;
 @property(strong,nonatomic)UIImageView *userImageView;
 @property(strong,nonatomic)UIButton *registerButton;
 @property(strong,nonatomic)UIButton *touristButton;
+
+@property(strong,nonatomic)JYUserPassModel *userPass;
+@property(strong,nonatomic)NSString *userName;
+@property(strong,nonatomic)NSString *password;
 @end
 
 @implementation JYLoginViewController {
@@ -136,7 +142,6 @@ static CGFloat textFieldH = 44;
         [rightButton addTarget:self action:@selector(historyLogin:) forControlEvents:UIControlEventTouchUpInside];
         _userNameField.rightView = rightButton;
         _userNameField.rightViewMode = UITextFieldViewModeUnlessEditing;
-
     }
     return _userNameField;
 }
@@ -167,34 +172,43 @@ static CGFloat textFieldH = 44;
     }
     return self;
 }
-#warning  正式程序 可以去掉
 -(void)viewWillAppear:(BOOL)animated{
     //隐藏导航栏
     self.navigationController.navigationBarHidden = YES;
     //隐藏导航栏之后，修改默认视图不下移
     self.automaticallyAdjustsScrollViewInsets = NO;// 自动滚动调整，默认为YES
-    self.view.frame = CGRectMake(0, 0, kWindowW, kWindowH);
+   
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.userName = [[NSUserDefaults standardUserDefaults] objectForKey:IMLoginCustomUserID];
+    self.password = [[NSUserDefaults standardUserDefaults] objectForKey:IMLoginPassword];
     //游客按
     [self.touristButton bk_addEventHandler:^(id sender) {
         JYRootViewController *vc = [[JYRootViewController alloc] init];
+        JYUserPassModel *userPass = [JYUserPassModel shareInstance];
+        userPass.userName = nil;
+        userPass.password = nil;
+//        [self.navigationController pushViewController:vc animated:YES];
         [self addChildViewController:vc];
-        [[self view] addSubview:vc.view];
+        [self.view addSubview:vc.view];
     } forControlEvents:UIControlEventTouchUpInside];
+//    if ([g_pIMMyself loginStatus] != IMMyselfLoginStatusNone) {
+//        JYRootViewController *vc = [[JYRootViewController alloc] init];
+//         JYUserPassModel *userPass = [JYUserPassModel shareInstance];
+//        NSLog(@"%@+++++++++++++",vc);
+//        userPass.userName = self.userName;
+//        userPass.password = self.password;
+////        [self.navigationController pushViewController:vc animated:YES];
+//        [self addChildViewController:vc];
+//        [self.view addSubview:vc.view];
+//    }
     
-    if ([g_pIMMyself loginStatus] != IMMyselfLoginStatusNone) {
-        JYRootViewController *controller = [[JYRootViewController alloc] init];
-        [self addChildViewController:controller];
-        [[self view] addSubview:controller.view];
-    }
+  
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logout) name:IMLogoutNotification object:nil];
     
 }
-
 
 
     
@@ -237,11 +251,12 @@ static CGFloat textFieldH = 44;
     }
     [[self view] endEditing:YES];
     
-    NSString *customUserID = self.userNameField.text;
-    NSString *password = self.passwordField.text;
     
-    if ([customUserID length] > 0) {
-        if ([password length] == 0) {
+    self.userName = self.userNameField.text;
+    self.password = self.passwordField.text;
+    
+    if ([self.userName length] > 0) {
+        if ([self.password length] == 0) {
             _notifyText = @"请输入密码";
             _notifyImage = [UIImage imageNamed:@"IM_alert_image.png"];
             [self displayNotifyHUD];
@@ -252,54 +267,61 @@ static CGFloat textFieldH = 44;
             [self startAnimation];
         }
         sender.tag +=1;
-            [g_pIMMyself setCustomUserID:customUserID];
-            [g_pIMMyself setPassword:password];
-            [g_pIMMyself loginWithTimeoutInterval:5 success:^{
-                _isStop = YES;
-                JYRootViewController *controller = [[JYRootViewController alloc] init];
-                
-                [self addChildViewController:controller];
-                [[self view] addSubview:controller.view];
-                [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:IMLastLoginTime];
-                [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself customUserID] forKey:IMLoginCustomUserID];
-                [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself password] forKey:IMLoginPassword];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-                //应用角标清零
-                [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-               
-                [_passwordField setText:nil];
-                [[self view] endEditing:YES];
-            } failure:^(NSString *error) {
-                if ([error isEqualToString:@"customUserID只能由2 ～32位字母、数字、下划线、点或@符组成"]) {
-                    error = @"账号只能由2 ～32位字母、数字、下划线、点或@符组成";
+        [g_pIMMyself setDelegate:self];
+        [g_pIMMyself setCustomUserID:self.userName];
+        [g_pIMMyself setPassword:self.password];
+        [g_pIMMyself setAutoLogin:YES];
+        [g_pIMMyself loginWithTimeoutInterval:5 success:^{
+            _isStop = YES;
+            JYRootViewController *vc = [[JYRootViewController alloc]init];
+            JYUserPassModel *userPass = [JYUserPassModel shareInstance];
+            userPass.userName = self.userName;
+            userPass.password = self.password;
+            [self addChildViewController:vc];
+            [self.view addSubview:vc.view];
+//            [self.navigationController pushViewController:vc animated:YES];
+            [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:IMLastLoginTime];
+            [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself customUserID] forKey:IMLoginCustomUserID];
+            [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself password] forKey:IMLoginPassword];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            //应用角标清零
+            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+            
+            [self.passwordField setText:nil];
+            [[self view] endEditing:YES];
+        } failure:^(NSString *error) {
+            
+            if ([error isEqualToString:@"customUserID只能由2 ～32位字母、数字、下划线、点或@符组成"]) {
+                error = @"账号只能由2 ～32位字母、数字、下划线、点或@符组成";
+            }
+            if ([error isEqualToString:@"Wrong Password"]) {
+                error = @"密码错误,请重新输入";
+            } else if ([error isEqualToString:@"customUserID should be only built by letters, Numbers, underscores, or '@''.',and the length between 2 to 32 characters"]){
+                error = @"用户名只能由字母、数字、下划线、@符或点组成,长度不能超过32位，也不能少于2位";
+            } else if ([error isEqualToString:@"Password length should between 2 to 32 characters"]) {
+                error = @"密码长度不能超过32位，也不能少于2位";
+            } else if ([error isEqualToString:@"password不能为空字符串"] || [error isEqualToString:@"password不能为nil"]) {
+                error = @"密码不能为空";
+            } else if ([error isEqualToString:@"customUserID不能为null"] || [error isEqualToString:@"customUserID不能为空字符串"]){
+                error = @"账号不能为空";
+            } else if ([error isEqualToString:@"Time out"]) {
+                error = @"登录超时";
+            } else if ([error isEqualToString:@"CustomUserID Already Exist"]) {
+                error = @"用户已经存在";
+            } else if ([error isEqualToString:@"CustomUserID is not exist"]) {
+                error = @"用户不存在";
+            } else if ([error isEqualToString:@"The passwords input twice are inconsistent"]) {
+                error = @"两次输入密码不一致";
+            } else {
+                if (!error) {
+                    error = @"登录失败";
                 }
-                if ([error isEqualToString:@"Wrong Password"]) {
-                    error = @"密码错误,请重新输入";
-                } else if ([error isEqualToString:@"customUserID should be only built by letters, Numbers, underscores, or '@''.',and the length between 2 to 32 characters"]){
-                    error = @"用户名只能由字母、数字、下划线、@符或点组成,长度不能超过32位，也不能少于2位";
-                } else if ([error isEqualToString:@"Password length should between 2 to 32 characters"]) {
-                    error = @"密码长度不能超过32位，也不能少于2位";
-                } else if ([error isEqualToString:@"password不能为空字符串"] || [error isEqualToString:@"password不能为nil"]) {
-                    error = @"密码不能为空";
-                } else if ([error isEqualToString:@"customUserID不能为null"] || [error isEqualToString:@"customUserID不能为空字符串"]){
-                    error = @"账号不能为空";
-                } else if ([error isEqualToString:@"Time out"]) {
-                    error = @"登录超时";
-                } else if ([error isEqualToString:@"CustomUserID Already Exist"]) {
-                    error = @"用户已经存在";
-                } else if ([error isEqualToString:@"CustomUserID is not exist"]) {
-                    error = @"用户不存在";
-                } else if ([error isEqualToString:@"The passwords input twice are inconsistent"]) {
-                    error = @"两次输入密码不一致";
-                } else {
-                    if (!error) {
-                        error = @"登录失败";
-                    }
-                }
-                
-                [self performSelector:@selector(loginError:) withObject:error afterDelay:0.5];
-                
-            }];
+            }
+            
+            [self performSelector:@selector(loginError:) withObject:error afterDelay:0.5];
+            
+        }];
+
     } else {
         _notifyText = @"请输入用户名";
         _notifyImage = [UIImage imageNamed:@"IM_alert_image.png"];
@@ -320,9 +342,20 @@ static CGFloat textFieldH = 44;
     }];
     
 }
+//登陆成功回调
+- (void)didLogin:(BOOL)autoLogin{
 
+    NSString *myInfo = [g_pIMMyself customUserInfo];
+    NSLog(@"====================== %@",myInfo);
+
+}
+//登陆失败回调
+- (void)loginFailedWithError:(NSString *)error{
+    NSLog(@"========================%@",error);
+}
 - (void)logout {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+
     
 //    [_loginView viewWillAppear];
 }
@@ -534,6 +567,8 @@ kRemoveCellSeparator
         [[self notify] removeFromSuperview];
     }];
 }
-
+-(void)loginIMSDK{
+    NSLog(@"****************%ld",[g_pIMMyself loginStatus]);
+   }
 
 @end

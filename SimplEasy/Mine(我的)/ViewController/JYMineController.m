@@ -10,10 +10,32 @@
 #import "JYSellerCell.h"
 #import "JYUserInfoViewController.h"
 #import "JYSettingViewController.h"
+#import "UIImage+Circle.h"
 
-@interface JYMineController ()<UITableViewDelegate,UITableViewDataSource>
+#import "IMDefine.h"
+//#import "IMMyselfInfoViewController.h"
+//#import "IMSettingTableViewCell.h"
+//#import "IMModifyPasswordViewController.h"
+//#import "IMBlackListViewController.h"
+//#import "IMVersionInformationViewController.h"
+//#import "IMUserDialogViewController.h"
+
+#import "MBProgressHUD.h"
+
+//IMSDK Headers
+#import "IMMyself.h"
+#import "IMSDK+MainPhoto.h"
+#import "IMMyself+CustomUserInfo.h"
+#import "IMSDK+CustomUserInfo.h"
+#import "IMSDK+Nickname.h"
+
+@interface JYMineController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArr;
+@property(nonatomic,getter=isLogouting)BOOL isLogouting;
+
+@property(strong,nonatomic) MBProgressHUD *hud;
+
 @end
 
 @implementation JYMineController
@@ -25,6 +47,7 @@
     UIBarButtonItem *rightBBI = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:self action:@selector(jumpToSetting)];
     self.navigationItem.rightBarButtonItem = rightBBI;
     [self.tableView registerClass:[JYSellerCell class] forCellReuseIdentifier:@"JYSellerCell"];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout) name:IMLogoutNotification object:nil];
 }
 
 #pragma mark *** 私有方法 ***
@@ -68,6 +91,8 @@
     setVC.title = @"设置";
     setVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:setVC animated:YES];
+    
+
 }
 #pragma mark *** <UITableViewDataSource> ***
 
@@ -83,8 +108,38 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         JYSellerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYSellerCell"];
-        cell.headIV.image = [UIImage imageNamed:@"picture_46"];
-        cell.nickNameLb.text = @"完美无瑕";
+        
+        //头像
+        UIImage *headPhoto = [g_pIMSDK mainPhotoOfUser:[g_pIMMyself customUserID]];
+        
+        if (headPhoto == nil) {
+            NSString *customInfo = [g_pIMSDK customUserInfoWithCustomUserID:[g_pIMMyself customUserID]];
+            
+            NSArray *customInfoArray = [customInfo componentsSeparatedByString:@"\n"];
+            NSString *sex = nil;
+            
+            if ([customInfoArray count] > 0) {
+                sex = [customInfoArray objectAtIndex:0];
+            }
+            
+            if ([sex isEqualToString:@"女"]) {
+                headPhoto = [UIImage imageNamed:@"IM_head_female.png"];
+            } else {
+                headPhoto = [UIImage imageNamed:@"IM_head_male.png"];
+            }
+            
+        }
+        headPhoto = [UIImage scaleToSize:headPhoto size:CGSizeMake(60, 60)];
+        headPhoto = [UIImage circleImageWithImage:headPhoto borderWidth:0.5 borderColor:[UIColor whiteColor]];
+
+        cell.headIV.image =headPhoto;
+        //昵称
+        NSString *nickname = [g_pIMSDK nicknameOfUser:[g_pIMMyself customUserID]];
+        
+        if ([nickname length] == 0) {
+            nickname = [g_pIMMyself customUserID];
+        }
+        cell.nickNameLb.text = nickname;
         cell.schoolLb.text = @"简介：我是收藏的好玩家";
         cell.schoolLb.textColor = [UIColor darkGrayColor];
         cell.rankIV.image = [UIImage imageNamed:@"grade"];
@@ -178,5 +233,7 @@ kRemoveCellSeparator
 	}
 	return _dataArr;
 }
+
+
 
 @end

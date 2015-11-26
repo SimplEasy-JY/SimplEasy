@@ -7,10 +7,18 @@
 //
 
 #import "JYSettingViewController.h"
+#import "JYLoginViewController.h"
 
-
-@interface JYSettingViewController () <UITableViewDelegate,UITableViewDataSource>
+//IMSDK Headers
+#import "IMMyself.h"
+#import "IMSDK+MainPhoto.h"
+#import "IMMyself+CustomUserInfo.h"
+#import "IMSDK+CustomUserInfo.h"
+#import "IMSDK+Nickname.h"
+@interface JYSettingViewController () <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>
 @property (nonatomic, strong) UITableView *tableView;
+@property(nonatomic,getter=isLogouting)BOOL isLogouting;
+@property(strong,nonatomic) MBProgressHUD *hud;
 @end
 
 @implementation JYSettingViewController
@@ -19,6 +27,7 @@
     [super viewDidLoad];
     self.tableView.tableFooterView = [UIView new];
     [self configBottomBtn];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout) name:IMLogoutNotification object:nil];
     // Do any additional setup after loading the view.
 }
 
@@ -33,6 +42,7 @@
         make.left.mas_equalTo(10);
         make.height.mas_equalTo(45);
     }];
+    [logOutBtn addTarget:self action:@selector(loginOut:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark *** <UITableViewDataSource> ***
@@ -113,5 +123,52 @@ kRemoveCellSeparator
 	}
 	return _tableView;
 }
+#pragma mark -响应方法
+-(void)loginOut:(UIButton *)sender{
+    if (self.isLogouting) {
+        return;
+    }
+    
+    self.isLogouting = YES;
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"退出后不会删除任何历史数据，也不会收到任何推送消息" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"退出登录" otherButtonTitles:nil];
+    
+    [actionSheet setActionSheetStyle:UIActionSheetStyleAutomatic];
+    [actionSheet showFromTabBar:[self tabBarController].tabBar];
 
+    
+}
+#pragma mark - actionSheet delegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    if (buttonIndex == 0) {
+        
+        if (self.hud) {
+            [self.hud hide:YES];
+            [self.hud removeFromSuperview];
+            self.hud = nil;
+        }
+        self.hud = [[MBProgressHUD alloc] initWithView:[[self tabBarController] view]];
+        
+        [[[self tabBarController] view] addSubview:self.hud];
+        [self.hud setLabelText:@"正在注销..."];
+        [self.hud show:YES];
+        
+        [g_pIMMyself logout];
+        //注册注销通知
+        [[NSNotificationCenter defaultCenter] postNotificationName:IMLogoutNotification object:nil];
+        
+            
+    } else {
+        self.isLogouting = NO;
+    }
+}
+
+- (void)didLogout {
+    [_hud hide:YES];
+    [_hud removeFromSuperview];
+    _hud = nil;
+}
 @end

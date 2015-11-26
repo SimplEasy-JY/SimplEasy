@@ -176,7 +176,9 @@ static CGFloat space = 30;
             [self presentViewController:alert animated:YES completion:nil];
            
         }else {
-            [self.navigationController pushViewController:[[JYRegisterViewController alloc]init] animated:YES];
+            JYRegisterViewController *vc =  [[JYRegisterViewController alloc]init];
+            vc.phoneNum = self.phoneNumField.text;
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }];
     

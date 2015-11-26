@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface JYUserInfoViewController : UIViewController
+#import "JYBaseViewController.h"
+@interface JYUserInfoViewController : JYBaseViewController
 
 @end

@@ -63,7 +63,6 @@
     NSArray *strTime = [self.goodsItems.time componentsSeparatedByString:@" "];
     NSString *time = [strTime[0] substringFromIndex:5];
     /**  属性设置 */
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:self.goodsItems.headImg]placeholderImage:nil];
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:self.goodsItems.headImg] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         self.userImageView.image = [UIImage circleImageWithImage:self.userImageView.image borderWidth:0.5 borderColor:[UIColor whiteColor]];
     }];
