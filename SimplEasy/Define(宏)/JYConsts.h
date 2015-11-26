@@ -24,9 +24,11 @@
 #define secondLVH 30
 
 //sms
-#define AppKey @"bbc760582274"
-#define AppSecret @"b002c0ee5b25871d4b6e619a947fdb31"
+#define AppKey @"cbdfe5047f95"
+#define AppSecret @"c286cc3b00b6b7d29a53fc571e704036"
 
+//友盟分享唯一appKey
+#define UmengAppKey @"5656f05d67e58ea1f0001977"
 
 /**  nslog */
 #define YSHLog(...) NSLog(__VA_ARGS__)
