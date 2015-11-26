@@ -18,6 +18,7 @@
 #import "JYLoginViewController.h"
 #import "JYUserPassModel.h"
 
+#import <MobClick.h>
 #import <SMS_SDK/SMSSDK.h>
 #import "JYLoginViewController.h"
 #import "IMDefine.h"
@@ -39,6 +40,8 @@
     [self configGlobalUIStyle];
     
     [g_pIMSDK initWithAppKey:IMDeveloper_APPKey];
+    /** 注册友盟分析 */
+    [MobClick startWithAppkey:UmengAppKey reportPolicy:BATCH channelId:nil];
     
     /** 网络状态检测 */
     [self initializeWithApplication:application];

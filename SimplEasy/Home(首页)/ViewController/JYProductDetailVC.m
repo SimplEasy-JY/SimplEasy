@@ -164,7 +164,9 @@ static CGFloat bottomBtnHeight = 50;
                 [cell.originPriceLb addMidLine];//加入删除线
             }
             /** 需要先设置地点再设置时间，否则约束会乱，如果没有地点就不用设置 */
+        if (self.schoolName && self.schoolName.length>0) {
             cell.placeLb.text = self.schoolName;//学校名称
+        }
             cell.publishTimeLb.text = [self.pdVM publishTimeForProduct];//发布时间
             return cell;
         }
@@ -176,7 +178,9 @@ static CGFloat bottomBtnHeight = 50;
             cell.headIV.image = image;
         }];//设置头像
         cell.nickNameLb.text = [self.pdVM nameForSeller];// 设置昵称
-        cell.schoolLb.text = self.schoolName;// 设置学校
+        if (self.schoolName && self.schoolName.length>0) {
+            cell.schoolLb.text = self.schoolName;// 设置学校
+        }
         return cell;
     }
     /** 如果是第二个分区，则配置评论cell */
@@ -309,7 +313,7 @@ static CGFloat bottomBtnHeight = 50;
         _icView.delegate = self;
         _icView.dataSource = self;
         _icView.pagingEnabled = YES;
-        _icView.type = iCarouselTypeLinear;
+        _icView.type = iCarouselTypeCoverFlow;
     }
     return _icView;
 }

@@ -10,8 +10,9 @@
 
 @interface JYProductDetailVC : UIViewController
 
+/** 商品ID */
 @property(strong,nonatomic)NSString *goodsID;
-/** 学校 */
+/** 学校名称 */
 @property (nonatomic, strong) NSString *schoolName;
 
 @end

@@ -188,6 +188,7 @@ static CGFloat margin = 5;
 		_tableView = [[UITableView alloc] init];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.scrollEnabled = NO;
 	}
 	return _tableView;
 }

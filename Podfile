@@ -29,6 +29,7 @@ pod 'AsyncDisplayKit'
 pod 'RESideMenu'
 pod 'SWTableViewCell'
 pod 'MWPhotoBrowser'
+pod 'UMengAnalytics'
 
 end
 
