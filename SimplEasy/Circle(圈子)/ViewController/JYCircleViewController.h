@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JYFindController : UIViewController
+@interface JYCircleViewController : UIViewController
 
 @end

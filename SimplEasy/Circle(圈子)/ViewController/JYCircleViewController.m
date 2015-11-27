@@ -6,13 +6,13 @@
 //  Copyright © 2015年 SimplEasy. All rights reserved.
 //
 
-#import "JYFindController.h"
+#import "JYCircleViewController.h"
 
-@interface JYFindController ()<UITableViewDataSource,UITableViewDelegate>
+@interface JYCircleViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
 
-@implementation JYFindController
+@implementation JYCircleViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

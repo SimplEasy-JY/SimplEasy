@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "AppDelegate+Category.h"
-#import "JYFindController.h"
+#import "JYCircleViewController.h"
 #import "JYHomeController.h"
 #import "JYMessageController.h"
 #import "JYMineController.h"

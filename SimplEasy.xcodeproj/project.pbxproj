@@ -61,6 +61,7 @@
 		8370869B1C081CDF0003F347 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8370869A1C081CDF0003F347 /* Security.framework */; };
 		8370869D1C081CF70003F347 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8370869C1C081CF70003F347 /* libiconv.tbd */; };
 		8370869F1C081D170003F347 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8370869E1C081D170003F347 /* libsqlite3.tbd */; };
+		837086A81C0862B20003F347 /* JYCircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 837086A61C0862B20003F347 /* JYCircleViewController.m */; };
 		8385E8581C02E5AE0026604A /* JYProductInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8385E8571C02E5AE0026604A /* JYProductInfoViewModel.m */; };
 		838D14AC1BFA00C6003C4F87 /* UIButton+VerticalBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 838D14AB1BFA00C6003C4F87 /* UIButton+VerticalBtn.m */; };
 		838D15511BFA0314003C4F87 /* dt_ain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 838D14E61BFA0314003C4F87 /* dt_ain@2x.png */; };
@@ -178,7 +179,6 @@
 		B02A70071BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A70021BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift */; };
 		B02A70081BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A70031BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingViewCircle.swift */; };
 		B02A70091BE85E4F00B8B05F /* DGElasticPullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A70041BE85E4F00B8B05F /* DGElasticPullToRefreshView.swift */; };
-		B02A700D1BE8604100B8B05F /* JYFindController.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A700C1BE8604100B8B05F /* JYFindController.m */; };
 		B02A70101BE8609600B8B05F /* JYMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A700F1BE8609600B8B05F /* JYMessageController.m */; };
 		B02A70131BE860C600B8B05F /* JYMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70121BE860C600B8B05F /* JYMineController.m */; };
 		B02A70171BE8638A00B8B05F /* JYPlusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70161BE8638A00B8B05F /* JYPlusButton.m */; };
@@ -471,6 +471,8 @@
 		8370869A1C081CDF0003F347 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8370869C1C081CF70003F347 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		8370869E1C081D170003F347 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		837086A51C0862B20003F347 /* JYCircleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYCircleViewController.h; sourceTree = "<group>"; };
+		837086A61C0862B20003F347 /* JYCircleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYCircleViewController.m; sourceTree = "<group>"; };
 		8385E8561C02E5AE0026604A /* JYProductInfoViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYProductInfoViewModel.h; sourceTree = "<group>"; };
 		8385E8571C02E5AE0026604A /* JYProductInfoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYProductInfoViewModel.m; sourceTree = "<group>"; };
 		838D14AA1BFA00C6003C4F87 /* UIButton+VerticalBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+VerticalBtn.h"; sourceTree = "<group>"; };
@@ -641,8 +643,6 @@
 		B02A70031BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingViewCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshLoadingViewCircle.swift; sourceTree = "<group>"; };
 		B02A70041BE85E4F00B8B05F /* DGElasticPullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshView.swift; sourceTree = "<group>"; };
 		B02A700A1BE85E6D00B8B05F /* SimplEasy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimplEasy-Bridging-Header.h"; sourceTree = "<group>"; };
-		B02A700B1BE8604100B8B05F /* JYFindController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYFindController.h; sourceTree = "<group>"; };
-		B02A700C1BE8604100B8B05F /* JYFindController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYFindController.m; sourceTree = "<group>"; };
 		B02A700E1BE8609600B8B05F /* JYMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYMessageController.h; sourceTree = "<group>"; };
 		B02A700F1BE8609600B8B05F /* JYMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYMessageController.m; sourceTree = "<group>"; };
 		B02A70111BE860C600B8B05F /* JYMineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYMineController.h; sourceTree = "<group>"; };
@@ -924,8 +924,8 @@
 			children = (
 				8328A4761BE849800021767D /* Base(基类) */,
 				8328A4771BE849800021767D /* Define(宏) */,
-				8328A4781BE849800021767D /* Find(发现) */,
 				8328A47E1BE849800021767D /* Home(首页) */,
+				837086A01C0862B20003F347 /* Circle(圈子) */,
 				8328A4861BE849800021767D /* Message(消息) */,
 				8328A48C1BE849800021767D /* Mine(我的) */,
 				8328A4921BE849800021767D /* Resource(资源) */,
@@ -987,55 +987,6 @@
 				8328A4AC1BE84CCC0021767D /* JYConsts.h */,
 			);
 			path = "Define(宏)";
-			sourceTree = "<group>";
-		};
-		8328A4781BE849800021767D /* Find(发现) */ = {
-			isa = PBXGroup;
-			children = (
-				8328A4791BE849800021767D /* Model */,
-				8328A47A1BE849800021767D /* NetManager */,
-				8328A47B1BE849800021767D /* View */,
-				8328A47C1BE849800021767D /* ViewController */,
-				8328A47D1BE849800021767D /* ViewModel */,
-			);
-			path = "Find(发现)";
-			sourceTree = "<group>";
-		};
-		8328A4791BE849800021767D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		8328A47A1BE849800021767D /* NetManager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NetManager;
-			sourceTree = "<group>";
-		};
-		8328A47B1BE849800021767D /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		8328A47C1BE849800021767D /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				B02A700B1BE8604100B8B05F /* JYFindController.h */,
-				B02A700C1BE8604100B8B05F /* JYFindController.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		8328A47D1BE849800021767D /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		8328A47E1BE849800021767D /* Home(首页) */ = {
@@ -1422,6 +1373,55 @@
 				837086771C07EC5B0003F347 /* WXApiObject.h */,
 			);
 			path = Wechat;
+			sourceTree = "<group>";
+		};
+		837086A01C0862B20003F347 /* Circle(圈子) */ = {
+			isa = PBXGroup;
+			children = (
+				837086A11C0862B20003F347 /* Model */,
+				837086A21C0862B20003F347 /* NetManager */,
+				837086A31C0862B20003F347 /* View */,
+				837086A41C0862B20003F347 /* ViewController */,
+				837086A71C0862B20003F347 /* ViewModel */,
+			);
+			path = "Circle(圈子)";
+			sourceTree = "<group>";
+		};
+		837086A11C0862B20003F347 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		837086A21C0862B20003F347 /* NetManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetManager;
+			sourceTree = "<group>";
+		};
+		837086A31C0862B20003F347 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		837086A41C0862B20003F347 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				837086A51C0862B20003F347 /* JYCircleViewController.h */,
+				837086A61C0862B20003F347 /* JYCircleViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		837086A71C0862B20003F347 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		838D14AD1BFA0314003C4F87 /* IMSDK-Lib */ = {
@@ -2573,6 +2573,7 @@
 				B03FD5761C0568F60031A18C /* JYRegisterViewController.m in Sources */,
 				B0800A2C1C05DFE70096F90B /* JYPhoneNumViewController.m in Sources */,
 				B048007E1BF489DD007D39F4 /* JYGoodsNetManager.m in Sources */,
+				837086A81C0862B20003F347 /* JYCircleViewController.m in Sources */,
 				B0AFA39F1BFB213E00F795F9 /* RecordAudio.m in Sources */,
 				B0CC9A8E1BF0A9F500FCC177 /* JYFreeChargeCell.m in Sources */,
 				B0AFA3B21BFB226E00F795F9 /* UIView+IM.m in Sources */,
@@ -2594,7 +2595,6 @@
 				B0AEC8911BEC86540045F08F /* JYHomeProductCell.m in Sources */,
 				B02A70051BE85E4F00B8B05F /* DGElasticPullToRefreshConstants.swift in Sources */,
 				838D14AC1BFA00C6003C4F87 /* UIButton+VerticalBtn.m in Sources */,
-				B02A700D1BE8604100B8B05F /* JYFindController.m in Sources */,
 				83EEDF471C0015C400016E02 /* JYClassifyContentVC.m in Sources */,
 				83E75EC61BEA45C70020D54D /* JYSellerCell.m in Sources */,
 				83987DF11BFEF71E007C9CE4 /* JYUserInfoModel.m in Sources */,

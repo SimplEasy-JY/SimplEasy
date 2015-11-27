@@ -7,7 +7,7 @@
 //
 
 #import "JYRootViewController.h"
-#import "JYFindController.h"
+#import "JYCircleViewController.h"
 #import "JYHomeController.h"
 #import "JYMessageController.h"
 #import "JYMineController.h"
@@ -467,7 +467,7 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
     UINavigationController *homeNavc = [[UINavigationController alloc]
                                         initWithRootViewController:kVCFromSb(@"JYHomeController", @"Main")];
     
-    JYFindController *shopVC = [[JYFindController alloc] init];
+    JYCircleViewController *shopVC = [[JYCircleViewController alloc] init];
     UINavigationController *shopNavc = [[UINavigationController alloc]
                                         initWithRootViewController:shopVC];
     
