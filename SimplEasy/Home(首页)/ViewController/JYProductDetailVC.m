@@ -14,11 +14,12 @@
 #import "JYProductDetailViewModel.h"
 #import "UILabel+Line.h"
 #import "UIImage+Circle.h"
+#import "UMSocial.h"//导入友盟分享，用于分享按钮
 
 static CGFloat bottomBtnWidth = 40;
 static CGFloat bottomBtnHeight = 50;
 
-@interface JYProductDetailVC ()<UITableViewDelegate,UITableViewDataSource,iCarouselDelegate,iCarouselDataSource,MWPhotoBrowserDelegate>
+@interface JYProductDetailVC ()<UITableViewDelegate,UITableViewDataSource,iCarouselDelegate,iCarouselDataSource,MWPhotoBrowserDelegate,UMSocialUIDelegate>
 /** tableView */
 //@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UITableView *tableView;
@@ -142,6 +143,16 @@ static CGFloat bottomBtnHeight = 50;
     }
 }
 
+/** 分享按钮点击操作 */
+- (void)share{
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:UmengAppKey
+                                      shareText:@"你要分享的文字"
+                                     shareImage:[UIImage imageNamed:@"icon.png"]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatTimeline,UMShareToWechatSession,nil]
+                                       delegate:self];
+}
+
 #pragma mark *** <UITableViewDataSource> ***
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -157,21 +168,24 @@ static CGFloat bottomBtnHeight = 50;
         if (indexPath.row == 0) {
             /** 商品详情cell */
             JYProductDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYProductDetailCell"];
+            if (cell == nil) {
+                cell = [[JYProductDetailCell alloc] init];
+            }
             cell.productDescLb.text = [self.pdVM descForProduct];//商品描述
             cell.currentPriceLb.text = [self.pdVM currentPriceForProduct];//当前价格
             cell.originPriceLb.text = [self.pdVM originPriceForProduct];//原始价格
-            if (cell.originPriceLb.text) {
-                [cell.originPriceLb addMidLine];//加入删除线
-            }
+            cell.originPriceLb.text?[cell.originPriceLb addMidLine]:nil;//如果有原始价格，则加入删除线
+            [cell addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside]; //添加点击事件
             /** 需要先设置地点再设置时间，否则约束会乱，如果没有地点就不用设置 */
-        if (self.schoolName && self.schoolName.length>0) {
-            cell.placeLb.text = self.schoolName;//学校名称
-        }
+            (self.schoolName && self.schoolName.length>0)?cell.placeLb.text = self.schoolName:nil;//学校名称
             cell.publishTimeLb.text = [self.pdVM publishTimeForProduct];//发布时间
             return cell;
         }
         /** 商家信息cell */
         JYSellerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYSellerCell"];
+        if (cell == nil) {
+            cell = [[JYSellerCell alloc] init];
+        }
         [cell.headIV sd_setImageWithURL:[self.pdVM headImageForSeller] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             image = [UIImage scaleToSize:image size:CGSizeMake(60, 60)];
             image = [UIImage circleImageWithImage:image borderWidth:0 borderColor:JYGlobalBg];
@@ -196,6 +210,9 @@ static CGFloat bottomBtnHeight = 50;
             return cell;
         }
         JYCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYCommentCell"];
+        if (cell == nil) {
+            cell = [[JYCommentCell alloc] init];
+        }
         cell.headIV.image = [UIImage imageNamed:@"picture_46"];
         cell.nickNameLb.text = @"评论人";
         cell.timeLb.text = @"11-5 13:28";
@@ -299,12 +316,14 @@ static CGFloat bottomBtnHeight = 50;
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser{
     return [self.pdVM picArrForProduct].count;
 }
+
 - (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index{
     if (index < [self.pdVM picArrForProduct].count) {
         return [MWPhoto photoWithURL:[self.pdVM picArrForProduct][index]];
     }
     return nil;
 }
+
 #pragma mark *** 懒加载 ***
 
 - (iCarousel *)icView {
@@ -335,10 +354,6 @@ static CGFloat bottomBtnHeight = 50;
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.showsVerticalScrollIndicator = NO;
-        //注册cell
-        [_tableView registerClass:[JYProductDetailCell class] forCellReuseIdentifier:@"JYProductDetailCell"];
-        [_tableView registerClass:[JYSellerCell class] forCellReuseIdentifier:@"JYSellerCell"];
-        [_tableView registerClass:[JYCommentCell class] forCellReuseIdentifier:@"JYCommentCell"];
         [self.view addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, bottomBtnHeight, 0));

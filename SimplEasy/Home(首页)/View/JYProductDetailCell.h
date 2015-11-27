@@ -24,8 +24,6 @@
 /** 分享按钮 */
 @property (nonatomic, strong) UIButton *shareBtn;
 
-
-
-
+- (void)addTarget: (id)target action:(nonnull SEL)action forControlEvents: (UIControlEvents)controlEvents;
 
 @end

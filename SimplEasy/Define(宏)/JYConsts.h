@@ -24,11 +24,17 @@
 #define secondLVH 30
 
 //sms
-#define AppKey @"cbdfe5047f95"
-#define AppSecret @"c286cc3b00b6b7d29a53fc571e704036"
+#define SMSAppKey @"cbdfe5047f95"
+#define SMSAppSecret @"c286cc3b00b6b7d29a53fc571e704036"
 
 //友盟分享唯一appKey
 #define UmengAppKey @"5656f05d67e58ea1f0001977"
+
+#define WXAppKey @"wxf130f68d1a77dc4d"
+#define WXAppSecret @"d4624c36b6795d1d99dcf0547af5443d"
+
+#define QQAppID @"1104918521"
+#define QQAppKey @"3UIjffKw1QNpnbfh"
 
 /**  nslog */
 #define YSHLog(...) NSLog(__VA_ARGS__)

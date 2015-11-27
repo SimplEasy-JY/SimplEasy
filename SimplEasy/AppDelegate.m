@@ -17,6 +17,10 @@
 #import "JYRootViewController.h"
 #import "JYLoginViewController.h"
 
+#import "UMSocial.h"//友盟分享
+#import "UMSocialWechatHandler.h"
+#import "UMSocialQQHandler.h"
+
 #import <MobClick.h>
 #import <SMS_SDK/SMSSDK.h>
 #import "JYLoginViewController.h"
@@ -38,16 +42,25 @@
 
     [self configGlobalUIStyle];
     
+    /** 注册IMSDK */
     [g_pIMSDK initWithAppKey:IMDeveloper_APPKey];
+    
     /** 注册友盟分析 */
     [MobClick startWithAppkey:UmengAppKey reportPolicy:BATCH channelId:nil];
+    [UMSocialWechatHandler setWXAppId:WXAppKey appSecret:WXAppSecret url:@"http://www.umeng.com/social"];
+    [UMSocialQQHandler setQQWithAppId:QQAppID appKey:QQAppKey url:@"http://www.umeng.com/social"];
+    
+    /** 注册友盟分享 */
+    [UMSocialData setAppKey:UmengAppKey];
+    
+    
+    /** 注册短信验证SDK */
+    [SMSSDK registerApp:SMSAppKey withSecret:SMSAppSecret];
     
     /** 网络状态检测 */
     [self initializeWithApplication:application];
 
     [self configNewFeatureViewController];
-    
-    [SMSSDK registerApp:AppKey withSecret:AppSecret];
     
     
     

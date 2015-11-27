@@ -9,6 +9,7 @@
 #import "JYProductDetailCell.h"
 #import "UILabel+Line.h"
 #import "UIButton+VerticalBtn.h"
+#import "UMSocial.h"
 
 static CGFloat verticalMargin = 6.0f;
 
@@ -24,7 +25,9 @@ static CGFloat verticalMargin = 6.0f;
 
 @implementation JYProductDetailCell
 
-
+- (void)addTarget: (id)target action:(nonnull SEL)action forControlEvents: (UIControlEvents)controlEvents{
+    [_shareBtn addTarget:target action:action forControlEvents:controlEvents];
+}
 - (UILabel *)productDescLb {
     if(_productDescLb == nil) {
         _productDescLb = [[UILabel alloc] init];
@@ -47,6 +50,7 @@ static CGFloat verticalMargin = 6.0f;
         [_shareBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         [_shareBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
         _shareBtn.titleLabel.font = [UIFont systemFontOfSize:8];
+        
         [self.contentView addSubview:_shareBtn];
         [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.productDescLb);
