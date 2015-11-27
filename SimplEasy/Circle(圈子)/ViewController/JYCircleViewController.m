@@ -10,6 +10,8 @@
 
 @interface JYCircleViewController ()<UITableViewDataSource,UITableViewDelegate>
 
+/** tableView */
+@property (nonatomic, strong) UITableView *tableView;
 @end
 
 @implementation JYCircleViewController
@@ -25,5 +27,12 @@
 }
 
 
+
+- (UITableView *)tableView {
+	if(_tableView == nil) {
+		_tableView = [[UITableView alloc] init];
+	}
+	return _tableView;
+}
 
 @end
