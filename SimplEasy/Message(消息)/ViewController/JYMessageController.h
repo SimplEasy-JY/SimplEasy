@@ -6,8 +6,8 @@
 //  Copyright © 2015年 SimplEasy. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "JYBaseViewController.h"
 
-@interface JYMessageController : UIViewController
+@interface JYMessageController : JYBaseViewController
 
 @end

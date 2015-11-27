@@ -83,7 +83,7 @@
         default:
             break;
     }
-
+    
     [_tableView setTableFooterView:[[UIView alloc] init]];
 }
 
@@ -149,7 +149,7 @@
                 }
             }else {
                 [cell setAccessoryType:UITableViewCellAccessoryNone];
-
+                
             }
         }
     }
@@ -171,10 +171,10 @@
 }
 
 
-#pragma mark - textview delegate 
+#pragma mark - textview delegate
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-
+    
     
     if (_type == 5) {
         if ([[textView text] length] + [text length] > 20 ) {
@@ -204,14 +204,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

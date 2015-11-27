@@ -12,6 +12,7 @@
 #import "JYMessageController.h"
 #import "JYMineController.h"
 #import "JYClassifyViewController.h"
+#import "JYAroundViewController.h"
 
 //#import "IMConversationViewController.h"
 //#import "IMContactViewController.h"
@@ -467,7 +468,7 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
     UINavigationController *homeNavc = [[UINavigationController alloc]
                                         initWithRootViewController:kVCFromSb(@"JYHomeController", @"Main")];
     
-    JYCircleViewController *shopVC = [[JYCircleViewController alloc] init];
+    JYAroundViewController *shopVC = [[JYAroundViewController alloc] init];
     UINavigationController *shopNavc = [[UINavigationController alloc]
                                         initWithRootViewController:shopVC];
     
@@ -504,7 +505,7 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
                             CYLTabBarItemSelectedImage : @"bottom_1_h",
                             };
     NSDictionary *dict2 = @{
-                            CYLTabBarItemTitle : @"发现",
+                            CYLTabBarItemTitle : @"圈子",
                             CYLTabBarItemImage : @"bottom_2",
                             CYLTabBarItemSelectedImage : @"bottom_2_h",
                             };

@@ -11,6 +11,7 @@
 #import "JYUserInfoViewController.h"
 #import "JYSettingViewController.h"
 #import "UIImage+Circle.h"
+#import "IMContactViewController.h"
 
 #import "IMDefine.h"
 //#import "IMMyselfInfoViewController.h"
@@ -43,6 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的";
+    _titleLabel.text = @"我的";
     /** 添加naviRightItem */
     UIBarButtonItem *rightBBI = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:self action:@selector(jumpToSetting)];
     self.navigationItem.rightBarButtonItem = rightBBI;
@@ -99,7 +101,7 @@
     setVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:setVC animated:YES];
     
-
+    
 }
 #pragma mark *** <UITableViewDataSource> ***
 
@@ -138,7 +140,7 @@
         }
         headPhoto = [UIImage scaleToSize:headPhoto size:CGSizeMake(60, 60)];
         headPhoto = [UIImage circleImageWithImage:headPhoto borderWidth:0.5 borderColor:[UIColor whiteColor]];
-
+        
         cell.headIV.image =headPhoto;
         //昵称
         NSString *nickname = [g_pIMSDK nicknameOfUser:[g_pIMMyself customUserID]];
@@ -146,8 +148,15 @@
         if ([nickname length] == 0) {
             nickname = [g_pIMMyself customUserID];
         }
+        //获取个性签名
+        NSString *customUserInfo = [g_pIMMyself customUserInfo];
+        NSArray *customInfoArray = [customUserInfo componentsSeparatedByString:@"\n"];
+        NSString *signature = nil;
+        if ([customInfoArray count] > 1) {
+            signature = [customInfoArray objectAtIndex:0];
+        }
         cell.nickNameLb.text = nickname;
-        cell.schoolLb.text = @"简介：我是收藏的好玩家";
+        cell.schoolLb.text = [NSString stringWithFormat:@"简介:%@",signature];
         cell.schoolLb.textColor = [UIColor darkGrayColor];
         cell.rankIV.image = [UIImage imageNamed:@"grade"];
         cell.followBtn.hidden = YES;
@@ -169,7 +178,7 @@
                 }];
                 cell.detailTextLabel.textAlignment = NSTextAlignmentLeft;
             }
-            cell.textLabel.text = @[@"新的易友",@"简易等级"][indexPath.row];
+            cell.textLabel.text = @[@"我的易友",@"简易等级"][indexPath.row];
             cell.imageView.image = @[[UIImage imageNamed:@"newfriend"],[UIImage imageNamed:@"grade2"]][indexPath.row];
             cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"point"]];
         }
@@ -213,6 +222,10 @@ kRemoveCellSeparator
         userInfoVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:userInfoVC animated:YES];
     }
+    if (indexPath.section == 1 && indexPath.row == 0){
+        IMContactViewController *contactVC = [[IMContactViewController alloc]init];
+        [self.navigationController pushViewController:contactVC animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -221,8 +234,8 @@ kRemoveCellSeparator
 }
 
 - (UITableView *)tableView {
-	if(_tableView == nil) {
-		_tableView = [[UITableView alloc] init];
+    if(_tableView == nil) {
+        _tableView = [[UITableView alloc] init];
         [self.view addSubview:_tableView];
         _tableView.tableFooterView = [UIView new];
         _tableView.delegate = self;
@@ -230,15 +243,15 @@ kRemoveCellSeparator
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(0);
         }];
-	}
-	return _tableView;
+    }
+    return _tableView;
 }
 
 - (NSArray *)dataArr {
-	if(_dataArr == nil) {
-		_dataArr = [[NSArray alloc] init];
-	}
-	return _dataArr;
+    if(_dataArr == nil) {
+        _dataArr = [[NSArray alloc] init];
+    }
+    return _dataArr;
 }
 
 

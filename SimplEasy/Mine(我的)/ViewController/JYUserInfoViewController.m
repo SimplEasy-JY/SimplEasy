@@ -56,7 +56,7 @@
     [g_pIMMyself setCustomUserInfoDelegate:self];
     self.tableView.tableFooterView = [UIView new];
     [self loadData];
-
+    
 }
 #pragma mark *** <UITableViewDataSource> ***
 
@@ -107,7 +107,7 @@
             } else {
                 cell.detailTextLabel.text = @"未设置";
             }
-
+            
         }else if (indexPath.row == 2){
             cell.textLabel.text = @"简易号";
             cell.detailTextLabel.text = [g_pIMMyself customUserID];
@@ -139,13 +139,13 @@
         }
         if (indexPath.row == 2) {
             cell.textLabel.text = @"学校";
-            if (_location.length > 0) {
+            if (_school.length > 0) {
                 cell.detailTextLabel.text = _school;
             } else {
                 cell.detailTextLabel.text = @"未填写";
             }
         }
-    
+        
     }
     cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
     
@@ -160,47 +160,49 @@ kRemoveCellSeparator
 
 
 - (UITableView *)tableView {
-	if(_tableView == nil) {
-		_tableView = [[UITableView alloc] init];
+    if(_tableView == nil) {
+        _tableView = [[UITableView alloc] init];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         [self.view addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(0);
         }];
-	}
-	return _tableView;
+    }
+    return _tableView;
 }
 #pragma mark - tableview delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        if (indexPath.row == 0 && indexPath.section == 0) {
-            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"从手机相册选择",nil];
-            
-            [actionSheet setActionSheetStyle:UIActionSheetStyleAutomatic];
-            [actionSheet showFromTabBar:[self tabBarController].tabBar];
-            return;
+    if (indexPath.row == 0 && indexPath.section == 0) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"从手机相册选择",nil];
+        
+        [actionSheet setActionSheetStyle:UIActionSheetStyleAutomatic];
+        [actionSheet showFromTabBar:[self tabBarController].tabBar];
+        return;
+    }
+    if (indexPath.row == 2 && indexPath.section == 0) {
+        return;
+    }
+    if (indexPath.section == 1 && indexPath.row == 2) {
+        return;
+    }
+    IMMyselfInfoEditViewController *controller = [[IMMyselfInfoEditViewController alloc] init];
+    NSString *content = nil;
+    if ([indexPath row] == 1 && indexPath.section == 0) {
+        content = [g_pIMMyself nickname];
+    } else if (indexPath.row == 3 && indexPath.section == 0){
+        content = [_customInfoArray objectAtIndex:0];
+    }else {
+        if (_customInfoArray.count > (indexPath.row+1)) {
+            content = [_customInfoArray objectAtIndex:(indexPath.row+1)];
         }
-        if (indexPath.row == 2 && indexPath.section == 0) {
-            return;
-        }
-        if (indexPath.section == 1 && indexPath.row == 2) {
-            return;
-        }
-        IMMyselfInfoEditViewController *controller = [[IMMyselfInfoEditViewController alloc] init];
-        NSString *content = nil;
-        if ([indexPath row] == 1) {
-            content = [g_pIMMyself nickname];
-        } else {
-            if ([_customInfoArray count] >= [indexPath row] - 1) {
-                content = [_customInfoArray objectAtIndex:[indexPath row] - 2];
-            }
-        }
-        [controller setDelegate:self];
-        [controller setContent:content];
-        [controller setType:indexPath.section == 0? indexPath.row:(indexPath.row+4)];
-        [[self navigationController] pushViewController:controller animated:YES];
+    }
+    [controller setDelegate:self];
+    [controller setContent:content];
+    [controller setType:indexPath.section == 0? indexPath.row:(indexPath.row+4)];
+    [[self navigationController] pushViewController:controller animated:YES];
     
 }
 
@@ -242,7 +244,7 @@ kRemoveCellSeparator
     UIImage *image = nil;
     
     image = [info valueForKey:UIImagePickerControllerEditedImage];
- 
+    
     
     if (image) {
         image = [UIImage scaleToSize:image size:CGSizeMake(60, 60)];
@@ -254,7 +256,7 @@ kRemoveCellSeparator
             
             UITableViewCell *cell = [[_tableView visibleCells] objectAtIndex:0];
             
-             cell.accessoryView = [[UIImageView alloc] initWithImage:image];
+            cell.accessoryView = [[UIImageView alloc] initWithImage:image];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:IMReloadMainPhotoNotification object:[g_pIMMyself customUserID]];
             
@@ -302,7 +304,7 @@ kRemoveCellSeparator
             break;
         case 4:
         {
-           _sex = content;
+            _sex = content;
         }
             break;
         case 5:

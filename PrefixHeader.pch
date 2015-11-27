@@ -8,7 +8,7 @@
 
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
-
+#ifdef __OBJC__
 /*Xcode7以下版本需要添加下方宏定义 支持AF*/
 #ifdef TARGET_OS_IOS
 
@@ -31,10 +31,6 @@
 #import "JYConsts.h"
 #import "IMDefine.h"
 
-#import "ScrollDisplayViewController.h"
-
-//loopView
-#import "ImageScrollCell.h"
 
 #import <AFNetworking.h>        //Github排名第一的第三方网络请求类库，封装了系统的NSURLSession+NSOperation
 #import <UIKit+AFNetworking.h>      //对UIKit类添加类拓展，让诸如UIButton, UIImageView等拥有了网络加载图片的功能
@@ -49,8 +45,6 @@
 #import <MJRefresh.h>    //优秀的滚动视图头部和脚步刷新效果
 #import <MJExtension.h>     //优秀的Json解析类库
 
-/**  swift下拉刷新头文件 混编 */
-#import <SimplEasy-Swift.h>
 
 
 #import <FMDB/FMDB.h>       //第三方对数据库的操作类库，是对系统Sqlite3的封装。 使用SQL语句操作数据库
@@ -93,5 +87,5 @@ static const int ddLogLevel = DDLogLevelError;
 #import "iCarousel.h"
 
 #import "TPKeyboardAvoidingTableView.h"
-
+#endif
 #endif /* PrefixHeader_pch */

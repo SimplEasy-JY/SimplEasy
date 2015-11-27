@@ -80,7 +80,7 @@
             cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
             cell.detailTextLabel.layer.cornerRadius = 7.5;
             cell.detailTextLabel.textColor = JYGlobalBg;
-//            [cell.detailTextLabel setValue:[UIColor redColor] forKey:@"backgroundColor"];
+            //            [cell.detailTextLabel setValue:[UIColor redColor] forKey:@"backgroundColor"];
             [cell setValue:[UIColor redColor] forKeyPath:@"detailTextLabel.backgroundColor"];
             [cell.detailTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.mas_equalTo(cell.textLabel.mas_centerY);
@@ -112,16 +112,16 @@ kRemoveCellSeparator
 
 
 - (UITableView *)tableView {
-	if(_tableView == nil) {
-		_tableView = [[UITableView alloc] init];
+    if(_tableView == nil) {
+        _tableView = [[UITableView alloc] init];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         [self.view addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(0);
         }];
-	}
-	return _tableView;
+    }
+    return _tableView;
 }
 #pragma mark -响应方法
 -(void)loginOut:(UIButton *)sender{
@@ -135,7 +135,7 @@ kRemoveCellSeparator
     
     [actionSheet setActionSheetStyle:UIActionSheetStyleAutomatic];
     [actionSheet showFromTabBar:[self tabBarController].tabBar];
-
+    
     
 }
 #pragma mark - actionSheet delegate
@@ -158,9 +158,9 @@ kRemoveCellSeparator
         
         [g_pIMMyself logout];
         //注册注销通知
-//        [[NSNotificationCenter defaultCenter] postNotificationName:IMLogoutNotification object:nil];
+        //        [[NSNotificationCenter defaultCenter] postNotificationName:IMLogoutNotification object:nil];
         
-            
+        
     } else {
         self.isLogouting = NO;
     }
