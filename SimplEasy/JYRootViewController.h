@@ -11,4 +11,5 @@
 
 @interface JYRootViewController : UIViewController
 @property (nonatomic,strong) RESideMenu *sideMenu;
++ (JYRootViewController *)shareRootVC;
 @end

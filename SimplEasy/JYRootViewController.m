@@ -72,29 +72,29 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
 }
 
 #pragma mark - 单例
-//// 重写alloc 方法封堵创建方法(调用alloc方法时 默认会走allocWithZone这个方法 所以只需封堵allocWithZone 方法即可)
-//+ (id)allocWithZone:(struct _NSZone *)zone
-//{
-//    if (!rootViewC) {
-//        rootViewC = [super allocWithZone:zone];//如果没有实例让父类去创建一个
-//        return rootViewC;
-//    }
-//    return nil;
-//}
-//+ (JYRootViewController *)shareRootVC  //定义一个类方法进行访问(便利构造)
-//{
-//    if (!rootViewC) {
-//        rootViewC = [[JYRootViewController alloc]init];// 如果实例不存在进行创建
-//    }
-//    return rootViewC;
-//  
-//}
-//
-//// 封堵深复制 （copy 和 mutablecopy 都可以实现深复制 但他们最终都需要调用copyWithZone方法所以直接封堵它）
-//- (id)copyWithZone:(struct _NSZone *)zone
-//{
-//    return self;
-//}
+// 重写alloc 方法封堵创建方法(调用alloc方法时 默认会走allocWithZone这个方法 所以只需封堵allocWithZone 方法即可)
++ (id)allocWithZone:(struct _NSZone *)zone
+{
+    if (!rootViewC) {
+        rootViewC = [super allocWithZone:zone];//如果没有实例让父类去创建一个
+        return rootViewC;
+    }
+    return nil;
+}
++ (JYRootViewController *)shareRootVC  //定义一个类方法进行访问(便利构造)
+{
+    if (!rootViewC) {
+        rootViewC = [[JYRootViewController alloc]init];// 如果实例不存在进行创建
+    }
+    return rootViewC;
+  
+}
+
+// 封堵深复制 （copy 和 mutablecopy 都可以实现深复制 但他们最终都需要调用copyWithZone方法所以直接封堵它）
+- (id)copyWithZone:(struct _NSZone *)zone
+{
+    return self;
+}
 
 - (void)dealloc
 {
@@ -111,7 +111,6 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
     if (self) {
         // Custom initialization
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logout) name:IMLogoutNotification object:nil];
-        
     }
     return self;
 }
@@ -122,51 +121,21 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
     // Do any additional setup after loading the view.
     [[self view] setBackgroundColor:[UIColor whiteColor]];
     [[self navigationController] setNavigationBarHidden:YES];
-   
-//    [self.view addSubview:self.sideMenu];
-//    _tabBarController = [[UITabBarController alloc] init];
-//    
-//    [self addChildViewController:_tabBarController];
-//    [[_tabBarController view] setFrame:[[self view] bounds]];
-//    [[_tabBarController view] setAutoresizingMask: UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-//    _tabBarController.delegate = self;
-//    
-//    [self.view addSubview:_tabBarController.view];
-//    
-//    IMConversationViewController *coversationCtrl = [[IMConversationViewController alloc] init];
-//    _conversationNav = [[UINavigationController alloc] initWithRootViewController:coversationCtrl];
-//    
-//    [[_conversationNav tabBarItem] setTag:IM_CONVERSATION_TAG];
-//    
-//    IMContactViewController *contactCtrl = [[IMContactViewController alloc] init];
-//    _contactNav = [[UINavigationController alloc] initWithRootViewController:contactCtrl];
-//    
-//    [[_contactNav tabBarItem] setTag:IM_CONTACT_TAG];
-//    
-//    IMAroundViewController *aroundCtrl = [[IMAroundViewController alloc] init];
-//    _aroundNav = [[UINavigationController alloc] initWithRootViewController:aroundCtrl];
-//    
-//    [[_aroundNav tabBarItem] setTag:IM_AROUND_TAG];
-//    
-//    IMSettingViewController *settingCtrl = [[IMSettingViewController alloc] init];
-//    _settingNav = [[UINavigationController alloc] initWithRootViewController:settingCtrl];
-//    
-//    [[_settingNav tabBarItem] setTag:IM_SETTING_TAG];
-//    
-//    NSArray *navArray = [NSArray arrayWithObjects:_conversationNav,_contactNav,_aroundNav,_settingNav, nil];
-//    
-//    [_tabBarController setViewControllers:navArray];
+
     
     //设置IMMyself 代理
     [g_pIMMyself setDelegate:self];
     [g_pIMMyself setRelationshipDelegate:self];
     [g_pIMMyself setGroupDelegate:self];
     [g_pIMMyself setCustomUserInfoDelegate:self];
+    [self setupViewControllers];
     [self addChildViewController:self.sideMenu];
     [self.view addSubview:self.sideMenu.view];
 
     
 }
+
+
 
 /** 设置侧拉框 */
 - (RESideMenu *)sideMenu{
@@ -194,8 +163,11 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:IMLoginCustomUserID];
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:IMLoginPassword];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [self removeFromParentViewController];
-    [[self view] removeFromSuperview];
+    JYLoginViewController *vc = [[JYLoginViewController alloc]init];
+    [self addChildViewController:vc];
+    [self.view addSubview:vc.view];
+//    [self removeFromParentViewController];
+//    [[self view] removeFromSuperview];
 //    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -256,18 +228,12 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
         if ([shake boolValue]) {
             AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
         }
-        
         [[NSNotificationCenter defaultCenter] postNotificationName:IMReceiveUserMessageNotification object:nil];
     }
 }
 
 
 #pragma mark - IMMyself delegate
-
-- (void)didLogin:(BOOL)autoLogin {
-    
-}
-
 - (void)loginFailedWithError:(NSString *)error {
     if ([[error uppercaseString] isEqualToString:@"LOGIN CONFLICT"] || [[error uppercaseString] isEqualToString:@"WRONG PASSWORD"]){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"你的帐号在别处登陆,请确认是否本人操作" message:nil delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil];
@@ -290,7 +256,11 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
     }
     
 }
-
+- (void)didLogin:(BOOL)autoLogin {
+   
+    NSLog(@"登录成功了可以刷新界面了============~~~");
+    
+}
 - (void)logoutFailedWithError:(NSString *)error {
     //注销deviceToken 失败也要退回到登陆界面
     [[NSNotificationCenter defaultCenter] postNotificationName:IMLogoutNotification object:nil];
@@ -491,16 +461,6 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
     }];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 /** 设置VC */
 - (void)setupViewControllers {
 

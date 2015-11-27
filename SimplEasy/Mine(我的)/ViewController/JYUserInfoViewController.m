@@ -242,9 +242,11 @@ kRemoveCellSeparator
     UIImage *image = nil;
     
     image = [info valueForKey:UIImagePickerControllerEditedImage];
+ 
     
     if (image) {
-        
+        image = [UIImage scaleToSize:image size:CGSizeMake(60, 60)];
+        image = [UIImage circleImageWithImage:image borderWidth:0.5 borderColor:[UIColor whiteColor]];
         [g_pIMMyself uploadMainPhoto:image success:^{
             _notifyText = @"上传头像成功";
             _notifyImage = [UIImage imageNamed:@"IM_success_image.png"];

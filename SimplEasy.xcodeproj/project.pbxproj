@@ -157,7 +157,6 @@
 		B02A701A1BE863AE00B8B05F /* JYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70191BE863AE00B8B05F /* JYTabBar.m */; };
 		B02A701C1BE86AA000B8B05F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B02A701B1BE86AA000B8B05F /* Assets.xcassets */; };
 		B02DE3891BFC8DEC0035C135 /* JYProductDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8345CDB21BFB406A002A5910 /* JYProductDetailModel.m */; };
-		B038584A1C06B4C70053D0B0 /* JYUserPassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B03858491C06B4C70053D0B0 /* JYUserPassModel.m */; };
 		B038598B1C06FC600053D0B0 /* arrow_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B03859201C06FC600053D0B0 /* arrow_right@2x.png */; };
 		B038598C1C06FC600053D0B0 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B03859211C06FC600053D0B0 /* back@2x.png */; };
 		B038598D1C06FC600053D0B0 /* bubble_my@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B03859221C06FC600053D0B0 /* bubble_my@2x.png */; };
@@ -567,8 +566,6 @@
 		B02A70181BE863AE00B8B05F /* JYTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYTabBar.h; sourceTree = "<group>"; };
 		B02A70191BE863AE00B8B05F /* JYTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYTabBar.m; sourceTree = "<group>"; };
 		B02A701B1BE86AA000B8B05F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B03858481C06B4C70053D0B0 /* JYUserPassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYUserPassModel.h; sourceTree = "<group>"; };
-		B03858491C06B4C70053D0B0 /* JYUserPassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYUserPassModel.m; sourceTree = "<group>"; };
 		B03859201C06FC600053D0B0 /* arrow_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_right@2x.png"; sourceTree = "<group>"; };
 		B03859211C06FC600053D0B0 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		B03859221C06FC600053D0B0 /* bubble_my@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_my@2x.png"; sourceTree = "<group>"; };
@@ -1543,8 +1540,6 @@
 			children = (
 				83987DEF1BFEF71E007C9CE4 /* JYUserInfoModel.h */,
 				83987DF01BFEF71E007C9CE4 /* JYUserInfoModel.m */,
-				B03858481C06B4C70053D0B0 /* JYUserPassModel.h */,
-				B03858491C06B4C70053D0B0 /* JYUserPassModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2359,7 +2354,6 @@
 				83F4EC331BFC120800D6A3D7 /* JYProductDetailViewModel.m in Sources */,
 				B03FD56F1C0553BC0031A18C /* JYBaseViewController.m in Sources */,
 				B0CC9A891BF07E3800FCC177 /* JYRecommendCell.m in Sources */,
-				B038584A1C06B4C70053D0B0 /* JYUserPassModel.m in Sources */,
 				B04800811BF48A65007D39F4 /* JYGoodsModel.m in Sources */,
 				B02A70071BE85E4F00B8B05F /* DGElasticPullToRefreshLoadingView.swift in Sources */,
 				8328A4A91BE849800021767D /* UIBarButtonItem+Extension.m in Sources */,

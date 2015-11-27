@@ -7,7 +7,7 @@
 //
 
 #import "JYBaseNetManager.h"
-#import "JYUserPassModel.h"
+
 static AFHTTPSessionManager *manager = nil;
 
 @implementation JYBaseNetManager
@@ -18,21 +18,9 @@ static AFHTTPSessionManager *manager = nil;
     dispatch_once(&onceToken, ^{
         manager = [AFHTTPSessionManager manager];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", @"text/json", @"text/javascript", nil];
-        JYUserPassModel *userPass = [JYUserPassModel shareInstance];
-        
-        if (userPass.userName == nil && userPass.password == nil) {
-            NSLog(@"++++++++++++++++++%@,pass %@",userPass.userName,userPass.password);
-
             [manager.requestSerializer
-                      setAuthorizationHeaderFieldWithUsername:@"15757161281"
-                      password:@"aaa"];
-        }else {
-        NSLog(@"------------------%@,pass %@",userPass.userName,userPass.password);
-        [manager.requestSerializer
-         setAuthorizationHeaderFieldWithUsername:userPass.userName
-         password:userPass.password];
-        }
-        
+             setAuthorizationHeaderFieldWithUsername:@"15757161281"
+             password:@"aaa"];
     });
     return manager;
 }

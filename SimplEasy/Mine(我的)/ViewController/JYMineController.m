@@ -47,11 +47,18 @@
     UIBarButtonItem *rightBBI = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:self action:@selector(jumpToSetting)];
     self.navigationItem.rightBarButtonItem = rightBBI;
     [self.tableView registerClass:[JYSellerCell class] forCellReuseIdentifier:@"JYSellerCell"];
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout) name:IMLogoutNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData:) name:IMCustomUserInfoDidInitializeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData:) name:IMReloadMainPhotoNotification object:nil];
+    //监听登录通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(login) name:IMLoginNotification object:nil];
 }
 
 #pragma mark *** 私有方法 ***
-
+//登录刷新
+-(void)login{
+    [self.tableView reloadData];
+}
 /** 配置sectionFooterView，第一个section */
 - (UIView *)sectionFooterView{
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWindowW, 50)];
@@ -235,5 +242,14 @@ kRemoveCellSeparator
 }
 
 
+#pragma mark - notification
+
+- (void)reloadData:(NSNotification *)notification {
+    if (![notification.object isEqual:[g_pIMMyself customUserID]]) {
+        return;
+    }
+    
+    [_tableView reloadData];
+}
 
 @end

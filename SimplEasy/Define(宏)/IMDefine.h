@@ -20,6 +20,7 @@
 
 #define IMLoginStatusChangedNotification @"IMLoginStatusChangedNotification"
 #define IMLogoutNotification @"IMLogoutNotification"
+#define IMLoginNotification @"IMLoginNotification"
 #define IMGroupListDidInitializeNotification @"IMGroupListDidInitializeNotification"
 #define IMRelationshipDidInitializeNotification @"IMRelationshipDidInitializeNotification"
 #define IMCustomUserInfoDidInitializeNotification @"IMCustomUserInfoDidInitializeNotification"

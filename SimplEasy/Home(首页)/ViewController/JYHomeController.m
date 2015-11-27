@@ -68,16 +68,6 @@ static NSString *JYChargeCellIndentifier = @"freeChargeCell";
 @property(strong,nonatomic)NSArray *segmentItemsArray;
 
 @property(strong,nonatomic)NSArray *goodsTitleArray;
-
-
-
-
-
-
-
-
-
-
 @end
 
 @implementation JYHomeController
@@ -99,7 +89,6 @@ typedef NS_ENUM(NSInteger, cellType) {
         self.reloadArray = [[NSMutableArray  alloc]init];
     }
     return _reloadArray;
-    
 }
 
 
@@ -108,14 +97,12 @@ typedef NS_ENUM(NSInteger, cellType) {
         self.goodsTitleArray = [[NSArray  alloc]initWithObjects:@"all",@"hot",@"free",nil];
     }
     return _goodsTitleArray;
-    
 }
 -(NSArray *)segmentItemsArray{
     if (!_segmentItemsArray) {
         self.segmentItemsArray = [[NSArray  alloc]initWithObjects:@"今日上新",@"精选推荐",@"免费易货",nil];
     }
     return _segmentItemsArray;
-    
 }
 
 -(iCarousel *)firstLoopView{
@@ -132,8 +119,6 @@ typedef NS_ENUM(NSInteger, cellType) {
         _firstLoopView.vertical = NO;
         //改为翻页模式
         _firstLoopView.pagingEnabled = YES;
-        //滚动速度
-        _firstLoopView.scrollSpeed = 2;
         
     }
     return _firstLoopView;
@@ -219,15 +204,21 @@ typedef NS_ENUM(NSInteger, cellType) {
 }
 /**  定位按钮 */
 - (IBAction)positionButton:(id)sender {
+    
 }
 
-
+//通知方法
+-(void)login{
+    //刷新
+    [self.tableView.header beginRefreshing];
+}
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     [self setNav];
     [self setupTableView];
+    
     
     /**  轮播定时滚动 */
     [NSTimer bk_scheduledTimerWithTimeInterval:2 block:^(NSTimer *timer) {
@@ -243,7 +234,9 @@ typedef NS_ENUM(NSInteger, cellType) {
     [self.tableView registerNib:[UINib nibWithNibName:@"JYRecommendCell" bundle:nil] forCellReuseIdentifier:JYRecommendCellIndentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"JYFreeChargeCell" bundle:nil] forCellReuseIdentifier:JYChargeCellIndentifier];
     
-    //刷新
+    //监听登录通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(login) name:IMLoginNotification object:nil];
+    
     [self.tableView.header beginRefreshing];
 
 }
@@ -274,7 +267,7 @@ typedef NS_ENUM(NSInteger, cellType) {
     
     
 #warning 后台数据替换
-    searchBar.placeholder = @"简易破蛋人大酬宾~";
+    searchBar.placeholder = @"简易破蛋日大酬宾~";
     searchBar.delegate = self;
     [titleView addSubview:searchBar];
     self.navigationItem.titleView = titleView;
@@ -299,12 +292,6 @@ typedef NS_ENUM(NSInteger, cellType) {
     self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [self isRefresh:NO];
     }];
-    
-    //cell的分割线
-//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    
-    
 }
 #pragma mark *** iCarouselDatasource & iCarouseDelegate ***
 
@@ -320,7 +307,7 @@ typedef NS_ENUM(NSInteger, cellType) {
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view{
-    if (carousel == _firstLoopView){
+    if (carousel == self.firstLoopView){
         if (!view) {
             view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWindowW, firstLVH)];
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kWindowW, firstLVH)];
@@ -333,31 +320,31 @@ typedef NS_ENUM(NSInteger, cellType) {
         UIImageView *imageView = (UIImageView *)[view viewWithTag:100];
         [imageView sd_setImageWithURL:[NSURL URLWithString:self.loopVM.loopImageUrlArray[index]] placeholderImage:nil];
         return view;
-    }else if (carousel == _secondLoopView){
+    }else if (carousel == self.secondLoopView){
         if (!view) {
             view = [[UIView alloc]initWithFrame:CGRectMake(0, firstLVH, kWindowW, secondLVH)];
             UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 20, 20)];
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(30, 0, kWindowW-30, 30)];
-            imageView.tag = 100;
+            imageView.tag = 1;
             label.tag = 101;
             [view addSubview:imageView];
             [view addSubview:label];
         }
-        UIImageView *imageView = (UIImageView *)[view viewWithTag:100];
+        UIImageView *imageView = (UIImageView *)[view viewWithTag:1];
         imageView.image = [UIImage imageNamed:@"middleicon_15"];
         UILabel *label = (UILabel *)[view viewWithTag:101];
         label.text =  @"【急需】求购二手小电驴，价格1500左右 ";
         label.font = [UIFont systemFontOfSize:13];
         return  view;
-    }else if (carousel == _thirdLoopView) {
+    }else if (carousel == self.thirdLoopView) {
         if (!view) {
             view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, (kWindowW-20)/2, 100)];
             UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, (kWindowW-20)/2, 100 )];
-            imageView.tag = 100;
+            imageView.tag = 10;
             imageView.backgroundColor = [UIColor yellowColor];
             [view addSubview:imageView];
         }
-        UIImageView *imageView = (UIImageView *)[view viewWithTag:100];
+        UIImageView *imageView = (UIImageView *)[view viewWithTag:10];
         [imageView sd_setImageWithURL:[NSURL URLWithString:self.loopVM.loopImageUrlArray[index]] placeholderImage:nil];
         return  view;
 
@@ -503,12 +490,11 @@ kRemoveCellSeparator
             if (cell == nil ) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JYLoopCellIndentifier];
                 /**  加入滚动视图 */
-                self.firstLoopView.frame = CGRectMake(0, 0, kWindowW, firstLVH);
+//                self.firstLoopView.frame = CGRectMake(0, 0, kWindowW, firstLVH);
                 [cell addSubview:self.firstLoopView];
                 [self.firstLoopView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.edges.mas_equalTo(cell).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
                 }];
-                
                 /**  加入pageview */
             self.firstLoopPage.numberOfPages = self.firstLoopView.numberOfItems;
                 [cell addSubview:self.firstLoopPage];
@@ -537,7 +523,6 @@ kRemoveCellSeparator
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JYLoopCellThirdIndentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//            NSLog(@"%@",NSStringFromCGRect(self.firstLoopView.frame));
             NSLog(@"%@",NSStringFromCGRect(cell.frame));
             //添加最新活动label
             UILabel *label = [UILabel new];
@@ -583,7 +568,6 @@ kRemoveCellSeparator
 //                if (self.goodsVM.dataArr.count != 0) {
                     if (!_firstGoodsArray) {
                         _firstGoodsArray = self.goodsVM.dataArr;
-                        
                     }
                     cell.goodsItems = _firstGoodsArray[indexPath.row];
                     [cell setAttribute];

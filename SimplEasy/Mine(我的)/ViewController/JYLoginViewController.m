@@ -12,7 +12,6 @@
 #import "JYRootViewController.h"
 #import "UIImage+Circle.h"
 #import "JYPhoneNumViewController.h"
-#import "JYUserPassModel.h"
 
 //third-party
 #import "SFCountdownView.h"
@@ -42,7 +41,6 @@ static CGFloat textFieldH = 44;
 @property(strong,nonatomic)UIButton *registerButton;
 @property(strong,nonatomic)UIButton *touristButton;
 
-@property(strong,nonatomic)JYUserPassModel *userPass;
 @property(strong,nonatomic)NSString *userName;
 @property(strong,nonatomic)NSString *password;
 @end
@@ -186,13 +184,9 @@ static CGFloat textFieldH = 44;
     self.password = [[NSUserDefaults standardUserDefaults] objectForKey:IMLoginPassword];
     //游客按
     [self.touristButton bk_addEventHandler:^(id sender) {
-        JYRootViewController *vc = [[JYRootViewController alloc] init];
-        JYUserPassModel *userPass = [JYUserPassModel shareInstance];
-        userPass.userName = nil;
-        userPass.password = nil;
-//        [self.navigationController pushViewController:vc animated:YES];
-        [self addChildViewController:vc];
-        [self.view addSubview:vc.view];
+        [self removeFromParentViewController];
+        [[self view] removeFromSuperview];
+        [[NSNotificationCenter defaultCenter] postNotificationName:IMLoginNotification object:nil];
     } forControlEvents:UIControlEventTouchUpInside];
 //    if ([g_pIMMyself loginStatus] != IMMyselfLoginStatusNone) {
 //        JYRootViewController *vc = [[JYRootViewController alloc] init];
@@ -211,26 +205,7 @@ static CGFloat textFieldH = 44;
 }
 
 
-    
 
-
-
-//- (void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    
-////    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-////    
-////    NSMutableString *customUserID = [[NSMutableString alloc] initWithFormat:@"%@",[_userNameField text]];
-////    
-////    UIImage *image = [g_pIMSDK mainPhotoOfUser:customUserID];
-////    
-////    if (image) {
-////        [_headView setImage:image];
-////    } else {
-////        [_headView setImage:[UIImage imageNamed:@"IM_head_default.png"]];
-////    }
-////    [_loginView viewWillAppear];
-//}
 
 
 - (void)didReceiveMemoryWarning
@@ -267,19 +242,14 @@ static CGFloat textFieldH = 44;
             [self startAnimation];
         }
         sender.tag +=1;
-        [g_pIMMyself setDelegate:self];
+//        [g_pIMMyself setDelegate:self];
         [g_pIMMyself setCustomUserID:self.userName];
         [g_pIMMyself setPassword:self.password];
         [g_pIMMyself setAutoLogin:YES];
         [g_pIMMyself loginWithTimeoutInterval:5 success:^{
             _isStop = YES;
-            JYRootViewController *vc = [[JYRootViewController alloc]init];
-            JYUserPassModel *userPass = [JYUserPassModel shareInstance];
-            userPass.userName = self.userName;
-            userPass.password = self.password;
-            [self addChildViewController:vc];
-            [self.view addSubview:vc.view];
-//            [self.navigationController pushViewController:vc animated:YES];
+            [self removeFromParentViewController];
+            [[self view] removeFromSuperview];
             [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:IMLastLoginTime];
             [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself customUserID] forKey:IMLoginCustomUserID];
             [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself password] forKey:IMLoginPassword];
@@ -289,6 +259,7 @@ static CGFloat textFieldH = 44;
             
             [self.passwordField setText:nil];
             [[self view] endEditing:YES];
+            [[NSNotificationCenter defaultCenter] postNotificationName:IMLoginNotification object:nil];
         } failure:^(NSString *error) {
             
             if ([error isEqualToString:@"customUserID只能由2 ～32位字母、数字、下划线、点或@符组成"]) {
@@ -342,20 +313,11 @@ static CGFloat textFieldH = 44;
     }];
     
 }
-//登陆成功回调
-- (void)didLogin:(BOOL)autoLogin{
 
-    NSString *myInfo = [g_pIMMyself customUserInfo];
-    NSLog(@"====================== %@",myInfo);
-
-}
-//登陆失败回调
-- (void)loginFailedWithError:(NSString *)error{
-    NSLog(@"========================%@",error);
-}
 - (void)logout {
 //    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 
+    
     
 //    [_loginView viewWillAppear];
 }
