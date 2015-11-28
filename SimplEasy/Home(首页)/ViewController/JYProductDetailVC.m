@@ -31,6 +31,8 @@ static CGFloat bottomBtnHeight = 50;
 @property (nonatomic, strong) JYProductDetailViewModel *pdVM;
 /** 定时器 */
 @property (nonatomic, strong) NSTimer *timer;
+/** 存放图片的数组 */
+@property (nonatomic, strong) NSMutableArray *imageArr;
 
 @end
 
@@ -143,14 +145,47 @@ static CGFloat bottomBtnHeight = 50;
     }
 }
 
+#pragma mark *** 友盟分享 ***
+
 /** 分享按钮点击操作 */
 - (void)share{
+    
+    /** 
+     //使用UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite分别代表微信好友、微信朋友圈、微信收藏
+     //    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:@"分享内嵌文字" image:nil location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+     //        if (response.responseCode == UMSResponseCodeSuccess) {
+     //            NSLog(@"分享成功！");
+     //        }
+     //    }];
+     */
+    //当分享消息类型为图文时，点击分享内容会跳转到预设的链接
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = [self.pdVM urlStrForProduct];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [self.pdVM urlStrForProduct];
+    //设置微信好友title方法为
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = @"简易一周年！ 送货上门，限时抢购！";
+    //设置微信朋友圈title方法替换平台参数名即可
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"简易一周年！ 送货上门，限时抢购！";
+    
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:UmengAppKey
-                                      shareText:@"你要分享的文字"
-                                     shareImage:[UIImage imageNamed:@"icon.png"]
+                                      shareText:[self.pdVM nameForProduct]
+                                     shareImage:self.imageArr.firstObject
                                 shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatTimeline,UMShareToWechatSession,nil]
                                        delegate:self];
+}
+
+/** 友盟分享实现回调方法（可选）： */
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    //根据`responseCode`得到发送结果,如果分享成功
+    if(response.responseCode == UMSResponseCodeSuccess)
+    {
+        //得到分享到的微博平台名
+        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"分享成功" message:@"已分享至某个地方" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 #pragma mark *** <UITableViewDataSource> ***
@@ -273,7 +308,10 @@ static CGFloat bottomBtnHeight = 50;
     }];
     UIImageView *imageView = (UIImageView *)[view viewWithTag:100];
     NSURL *url = [self.pdVM picArrForProduct][index];
-    [bgImageView sd_setImageWithURL:url];
+    [bgImageView sd_setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        //将图片存到图片数组，分享时使用
+        [self.imageArr addObject:image];
+    }];
     [imageView sd_setImageWithURL:url];
     
     
@@ -368,6 +406,13 @@ static CGFloat bottomBtnHeight = 50;
         _pdVM = [[JYProductDetailViewModel alloc] initWithID:[self.goodsID integerValue]];
     }
     return _pdVM;
+}
+
+- (NSMutableArray *)imageArr {
+	if(_imageArr == nil) {
+		_imageArr = [[NSMutableArray alloc] init];
+	}
+	return _imageArr;
 }
 
 @end

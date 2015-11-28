@@ -39,5 +39,9 @@
 /** 卖家的学校 */
 - (NSString *)schoolNameForSeller;
 
+/** 商品的名字 */
+- (NSString *)nameForProduct;
 
+/** 商品URL */
+- (NSString *)urlStrForProduct;
 @end

@@ -53,7 +53,6 @@
     /** 注册友盟分享 */
     [UMSocialData setAppKey:UmengAppKey];
     
-    
     /** 注册短信验证SDK */
     [SMSSDK registerApp:SMSAppKey withSecret:SMSAppSecret];
     
@@ -92,7 +91,14 @@
     return _window;
 }
 
-
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    BOOL result = [UMSocialSnsService handleOpenURL:url];
+    if (result == FALSE) {
+        //调用其他SDK，例如支付宝SDK等
+    }
+    return result;
+}
 
 /** 配置新特性（或欢迎界面） */
 - (void)configNewFeatureViewController{

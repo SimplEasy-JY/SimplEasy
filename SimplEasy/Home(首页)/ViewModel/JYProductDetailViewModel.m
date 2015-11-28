@@ -55,6 +55,13 @@
     return self.dataArr.firstObject;
 }
 
+- (NSString *)urlStrForProduct{
+    return @"http://baidu.com";
+}
+- (NSString *)nameForProduct{
+    return [self model].name;
+}
+
 - (NSString *)descForProduct{
     return [NSString stringWithFormat:@"[%@]\n%@",[self model].name,[self model].detail];
 }
