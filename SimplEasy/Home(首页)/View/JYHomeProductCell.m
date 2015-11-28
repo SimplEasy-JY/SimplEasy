@@ -35,8 +35,6 @@
 
 - (void)awakeFromNib {
     /**  颜色 边框 设置 */
-    //先隐藏图片，防止加载成圆形前出现方形图
-    self.userImageView.hidden = YES;
     [self.lineOne.layer setBorderWidth:0.5];
     [self.lineOne.layer setBorderColor:JYLineColor.CGColor];
     [self.lineTwo.layer setBorderWidth:0.5];
@@ -58,6 +56,8 @@
 }
 
 -(void)setAttribute{
+    //先隐藏图片，防止加载成圆形前出现方形图
+    self.userImageView.hidden = YES;
     //图片
     NSString *imageURL = [NSString stringWithFormat:@"http://www.i-jianyi.com%@",self.goodsItems.pic];
 
