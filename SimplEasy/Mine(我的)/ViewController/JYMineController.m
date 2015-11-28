@@ -224,6 +224,7 @@ kRemoveCellSeparator
     }
     if (indexPath.section == 1 && indexPath.row == 0){
         IMContactViewController *contactVC = [[IMContactViewController alloc]init];
+        contactVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:contactVC animated:YES];
     }
 }

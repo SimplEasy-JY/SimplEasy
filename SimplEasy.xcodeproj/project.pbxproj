@@ -75,6 +75,7 @@
 		83EEDF441C000C9300016E02 /* JYClassifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EEDF431C000C9300016E02 /* JYClassifyCell.m */; };
 		83EEDF471C0015C400016E02 /* JYClassifyContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EEDF461C0015C400016E02 /* JYClassifyContentVC.m */; };
 		83F4EC331BFC120800D6A3D7 /* JYProductDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F4EC321BFC120800D6A3D7 /* JYProductDetailViewModel.m */; };
+		B003E7F31C089FDE00703A90 /* JYBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B003E7F21C089FDE00703A90 /* JYBaseViewController.m */; };
 		B02A70131BE860C600B8B05F /* JYMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70121BE860C600B8B05F /* JYMineController.m */; };
 		B02A70171BE8638A00B8B05F /* JYPlusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70161BE8638A00B8B05F /* JYPlusButton.m */; };
 		B02A701A1BE863AE00B8B05F /* JYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70191BE863AE00B8B05F /* JYTabBar.m */; };
@@ -184,7 +185,6 @@
 		B03859F01C06FC600053D0B0 /* loding_750.1334.png in Resources */ = {isa = PBXBuildFile; fileRef = B038598A1C06FC600053D0B0 /* loding_750.1334.png */; };
 		B03859F31C0703410053D0B0 /* IMMyselfInfoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03859F21C0703410053D0B0 /* IMMyselfInfoEditViewController.m */; };
 		B03FD5641C0553400031A18C /* JYSDKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B03FD5631C0553400031A18C /* JYSDKManager.m */; };
-		B03FD56F1C0553BC0031A18C /* JYBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03FD56C1C0553BC0031A18C /* JYBaseViewController.m */; };
 		B03FD5701C0553BC0031A18C /* JYLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03FD56E1C0553BC0031A18C /* JYLoginViewController.m */; };
 		B03FD5731C0553CD0031A18C /* JYRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03FD5721C0553CD0031A18C /* JYRootViewController.m */; };
 		B03FD5761C0568F60031A18C /* JYRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03FD5751C0568F60031A18C /* JYRegisterViewController.m */; };
@@ -569,6 +569,8 @@
 		83EEDF461C0015C400016E02 /* JYClassifyContentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYClassifyContentVC.m; sourceTree = "<group>"; };
 		83F4EC311BFC120800D6A3D7 /* JYProductDetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYProductDetailViewModel.h; sourceTree = "<group>"; };
 		83F4EC321BFC120800D6A3D7 /* JYProductDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYProductDetailViewModel.m; sourceTree = "<group>"; };
+		B003E7F11C089FDE00703A90 /* JYBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBaseViewController.h; sourceTree = "<group>"; };
+		B003E7F21C089FDE00703A90 /* JYBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBaseViewController.m; sourceTree = "<group>"; };
 		B02A70111BE860C600B8B05F /* JYMineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYMineController.h; sourceTree = "<group>"; };
 		B02A70121BE860C600B8B05F /* JYMineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYMineController.m; sourceTree = "<group>"; };
 		B02A70151BE8638A00B8B05F /* JYPlusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYPlusButton.h; sourceTree = "<group>"; };
@@ -682,8 +684,6 @@
 		B03859F21C0703410053D0B0 /* IMMyselfInfoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMMyselfInfoEditViewController.m; sourceTree = "<group>"; };
 		B03FD5621C0553400031A18C /* JYSDKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYSDKManager.h; sourceTree = "<group>"; };
 		B03FD5631C0553400031A18C /* JYSDKManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYSDKManager.m; sourceTree = "<group>"; };
-		B03FD56B1C0553BC0031A18C /* JYBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBaseViewController.h; sourceTree = "<group>"; };
-		B03FD56C1C0553BC0031A18C /* JYBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBaseViewController.m; sourceTree = "<group>"; };
 		B03FD56D1C0553BC0031A18C /* JYLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLoginViewController.h; sourceTree = "<group>"; };
 		B03FD56E1C0553BC0031A18C /* JYLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLoginViewController.m; sourceTree = "<group>"; };
 		B03FD5711C0553CD0031A18C /* JYRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYRootViewController.h; sourceTree = "<group>"; };
@@ -1143,6 +1143,8 @@
 				8328A4B11BE84E1F0021767D /* JYBaseNetManager.m */,
 				8328A4B31BE84E6E0021767D /* JYBaseViewModel.h */,
 				8328A4B41BE84E6E0021767D /* JYBaseViewModel.m */,
+				B003E7F11C089FDE00703A90 /* JYBaseViewController.h */,
+				B003E7F21C089FDE00703A90 /* JYBaseViewController.m */,
 			);
 			path = "Base(基类)";
 			sourceTree = "<group>";
@@ -1299,8 +1301,6 @@
 			children = (
 				B03FD56D1C0553BC0031A18C /* JYLoginViewController.h */,
 				B03FD56E1C0553BC0031A18C /* JYLoginViewController.m */,
-				B03FD56B1C0553BC0031A18C /* JYBaseViewController.h */,
-				B03FD56C1C0553BC0031A18C /* JYBaseViewController.m */,
 				B03FD5741C0568F60031A18C /* JYRegisterViewController.h */,
 				B03FD5751C0568F60031A18C /* JYRegisterViewController.m */,
 				B03FD58A1C05BA2F0031A18C /* JYUserProtocolViewController.h */,
@@ -2505,7 +2505,7 @@
 				TargetAttributes = {
 					8328A4361BE8478B0021767D = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = N27SETL2A3;
+						DevelopmentTeam = G7YYV9K7LC;
 					};
 					8328A44F1BE8478C0021767D = {
 						CreatedOnToolsVersion = 7.1;
@@ -2953,10 +2953,10 @@
 				B06FDC711C08847C0076E4DC /* IMContactTableViewCell.m in Sources */,
 				B06FDC791C08847C0076E4DC /* IMGroupInfoEditViewController.m in Sources */,
 				8328A4A61BE849800021767D /* NSObject+Common.m in Sources */,
+				B003E7F31C089FDE00703A90 /* JYBaseViewController.m in Sources */,
 				8333E08C1BF4A5E4005CE5B4 /* UILabel+Line.m in Sources */,
 				8328A4A81BE849800021767D /* NSString+QRCode.m in Sources */,
 				83F4EC331BFC120800D6A3D7 /* JYProductDetailViewModel.m in Sources */,
-				B03FD56F1C0553BC0031A18C /* JYBaseViewController.m in Sources */,
 				B0CC9A891BF07E3800FCC177 /* JYRecommendCell.m in Sources */,
 				B04800811BF48A65007D39F4 /* JYGoodsModel.m in Sources */,
 				8328A4A91BE849800021767D /* UIBarButtonItem+Extension.m in Sources */,
@@ -3236,7 +3236,7 @@
 					"\"Photos\"",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy.SimplEasy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy1.SimplEasy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -3344,7 +3344,7 @@
 					"\"Photos\"",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy.SimplEasy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy1.SimplEasy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

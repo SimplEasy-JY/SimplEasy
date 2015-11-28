@@ -48,7 +48,7 @@ static CGFloat space = 30;
 }
 -(TPKeyboardAvoidingTableView *)tableView{
     if (!_tableView) {
-        self.tableView = [[TPKeyboardAvoidingTableView  alloc]initWithFrame:CGRectMake(0, kWindowH/2-textFieldH*4, kWindowW, textFieldH*3)];
+        self.tableView = [[TPKeyboardAvoidingTableView  alloc]initWithFrame:CGRectMake(0, kWindowH/2-textFieldH*3.5, kWindowW, textFieldH*3)];
         _tableView.backgroundColor = JYWhite;
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -86,10 +86,11 @@ static CGFloat space = 30;
     return _confirmPassField;
 }
 
+
 -(UIButton *)registerButton{
     if (!_registerButton) {
         self.registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _registerButton.frame = CGRectMake(space, kWindowH/2+15-textFieldH, kWindowW-space*2, textFieldH);
+        _registerButton.frame = CGRectMake(space, kWindowH/2+15+textFieldH, kWindowW-space*2, textFieldH);
         _registerButton.backgroundColor = JYButtonColor;
         [_registerButton setTitle:@"注册" forState:UIControlStateNormal];
         [_registerButton addTarget:self action:@selector(registerClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -102,7 +103,17 @@ static CGFloat space = 30;
 #pragma mark - viewDidLoad
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"用户注册";
+    //取消按钮
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(5, 25, 60, 30);
+    button.titleLabel.font = [UIFont systemFontOfSize:18];
+    [button setTitle:@"上一步" forState:UIControlStateNormal];
+    [button setTitleColor:JYGlobalBg forState:UIControlStateNormal];
+    [button setTitleColor:kRGBColor(200, 200, 200) forState:UIControlStateHighlighted];
+    [button bk_addEventHandler:^(id sender) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
     
 }
 
@@ -119,6 +130,10 @@ static CGFloat space = 30;
         
     }
     return self;
+}
+/**  点击空白回收键盘 */
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [[self view] endEditing:YES];
 }
 #pragma mark - 响应方法
 -(void)registerClick:(UIButton *)sender{
@@ -203,10 +218,6 @@ static CGFloat space = 30;
     [self displayNotifyHUD];
     
     
-}
-/**  点击空白回收键盘 */
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [[self view] endEditing:YES];
 }
 
 kRemoveCellSeparator

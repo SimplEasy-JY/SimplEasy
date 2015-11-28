@@ -18,10 +18,10 @@
     self.view.backgroundColor = JYWhite;
     //取消按钮
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(0, 15, 40, 30);
-    button.titleLabel.font = [UIFont systemFontOfSize:13];
+    button.frame = CGRectMake(5, 25, 50, 30);
+    button.titleLabel.font = [UIFont systemFontOfSize:18];
     [button setTitle:@"取消" forState:UIControlStateNormal];
-    [button setTitleColor:JYHexColor(0x49e046) forState:UIControlStateNormal];
+    [button setTitleColor:JYGlobalBg forState:UIControlStateNormal];
     [button setTitleColor:kRGBColor(200, 200, 200) forState:UIControlStateHighlighted];
     [button bk_addEventHandler:^(id sender) {
         [self dismissViewControllerAnimated:YES completion:nil];

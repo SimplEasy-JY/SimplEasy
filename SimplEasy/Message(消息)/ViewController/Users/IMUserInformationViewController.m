@@ -117,7 +117,7 @@
     [_customUserIDLabel setBackgroundColor:[UIColor clearColor]];
     [_customUserIDLabel setTextColor:[UIColor grayColor]];
     [_customUserIDLabel setFont:[UIFont systemFontOfSize:15]];
-    [_customUserIDLabel setText:[NSString stringWithFormat:@"简易账号：%@",_customUserID]];
+    [_customUserIDLabel setText:[NSString stringWithFormat:@"简易号：%@",_customUserID]];
     [_tableHeaderView addSubview:_customUserIDLabel];
     
     _sexImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_userNameLabel.right + 10, _userNameLabel.top + 5, 20, 20)];

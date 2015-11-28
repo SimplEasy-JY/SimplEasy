@@ -163,20 +163,21 @@ static CGFloat textFieldH = 44;
         [self.view addSubview:self.userImageView];
         //注册按钮
         [self.registerButton bk_addEventHandler:^(id sender) {
-            [self.navigationController pushViewController:[[JYPhoneNumViewController alloc]init] animated:YES];
+            JYPhoneNumViewController *phoneNumVC = [[JYPhoneNumViewController alloc]init];
+            [self presentViewController:phoneNumVC animated:YES completion:nil];
         } forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.registerButton];
         [self.view addSubview:self.touristButton];
     }
     return self;
 }
--(void)viewWillAppear:(BOOL)animated{
-    //隐藏导航栏
-    self.navigationController.navigationBarHidden = YES;
-    //隐藏导航栏之后，修改默认视图不下移
-    self.automaticallyAdjustsScrollViewInsets = NO;// 自动滚动调整，默认为YES
-   
-}
+//-(void)viewWillAppear:(BOOL)animated{
+//    //隐藏导航栏
+//    self.navigationController.navigationBarHidden = YES;
+//    //隐藏导航栏之后，修改默认视图不下移
+//    self.automaticallyAdjustsScrollViewInsets = NO;// 自动滚动调整，默认为YES
+//   
+//}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -188,18 +189,6 @@ static CGFloat textFieldH = 44;
         [[self view] removeFromSuperview];
         [[NSNotificationCenter defaultCenter] postNotificationName:IMLoginNotification object:nil];
     } forControlEvents:UIControlEventTouchUpInside];
-//    if ([g_pIMMyself loginStatus] != IMMyselfLoginStatusNone) {
-//        JYRootViewController *vc = [[JYRootViewController alloc] init];
-//         JYUserPassModel *userPass = [JYUserPassModel shareInstance];
-//        NSLog(@"%@+++++++++++++",vc);
-//        userPass.userName = self.userName;
-//        userPass.password = self.password;
-////        [self.navigationController pushViewController:vc animated:YES];
-//        [self addChildViewController:vc];
-//        [self.view addSubview:vc.view];
-//    }
-    
-  
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logout) name:IMLogoutNotification object:nil];
     
 }

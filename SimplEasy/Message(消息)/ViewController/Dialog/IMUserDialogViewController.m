@@ -105,6 +105,10 @@
     [view setMicNormalImage:[UIImage imageNamed:@"IM_mic_normal.png"]];
     [view setInputViewTintColor:RGB(245, 245, 245)];
     [view setBackgroundColor:RGB(237, 237, 237)];
+//    //设置发送聊天气泡的填充色
+//    [view setSenderTintColor:JYGlobalBg];
+//    //设置接收聊天气泡的填充色
+//    [view setReceiverTintColor:[UIColor lightGrayColor]];
     [view setParentController:self];
     [view setDelegate:self];
     [view setDataSource:self];

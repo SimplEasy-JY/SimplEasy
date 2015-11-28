@@ -39,7 +39,7 @@ static CGFloat space = 30;
 
 -(UITableView *)tableView{
     if (!_tableView) {
-        self.tableView = [[UITableView  alloc]initWithFrame:CGRectMake(0, kWindowH/2-textFieldH*4, kWindowW, textFieldH*2)];
+        self.tableView = [[UITableView  alloc]initWithFrame:CGRectMake(0, kWindowH/2-textFieldH*3, kWindowW, textFieldH*2)];
         _tableView.backgroundColor = JYWhite;
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -52,7 +52,9 @@ static CGFloat space = 30;
         _phoneNumField.placeholder = @"请输入手机号";
         _phoneNumField.delegate = self;
         UILabel *leftLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, leftTextFieldW , leftTextFieldH)];
+        
         leftLabel.text = @"   中国 +86";
+        leftLabel.font = [UIFont systemFontOfSize:18];
         leftLabel.textColor = JYGlobalBg;
         _phoneNumField.leftView = leftLabel;
         _phoneNumField.leftViewMode = UITextFieldViewModeAlways;
@@ -70,6 +72,7 @@ static CGFloat space = 30;
         //右边按钮
         UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, leftTextFieldW , leftTextFieldH)];
         [leftButton setTitle:@"发送验证码" forState:UIControlStateNormal];
+        leftButton.titleLabel.font = [UIFont systemFontOfSize:18];
         [leftButton setTitleColor:JYWhite forState:UIControlStateNormal];
         [leftButton setTitleColor:kRGBColor(146, 146, 146) forState:UIControlStateSelected];
         [leftButton setBackgroundImage:[UIImage imageWithColor:JYGlobalBg cornerRadius:0] forState:UIControlStateNormal];
@@ -89,7 +92,7 @@ static CGFloat space = 30;
 -(UIButton *)nextButton{
     if (!_nextButton) {
         self.nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _nextButton.frame = CGRectMake(space, kWindowH/2-textFieldH*2+15, kWindowW-space*2, textFieldH);
+        _nextButton.frame = CGRectMake(space, kWindowH/2+15+textFieldH  , kWindowW-space*2, textFieldH);
         _nextButton.backgroundColor = JYButtonColor;
         [_nextButton setTitle:@"下一步" forState:UIControlStateNormal];
         [_nextButton addTarget:self action:@selector(nextClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -98,7 +101,7 @@ static CGFloat space = 30;
 }
 -(UILabel *)bottomLabel{
     if (!_bottomLabel) {
-        self.bottomLabel = [[UILabel  alloc]initWithFrame:CGRectMake(bottomLR, kWindowH-bottomLabelH-20-bottomLR, bottomLabelW, bottomLabelH)];
+        self.bottomLabel = [[UILabel  alloc]initWithFrame:CGRectMake(bottomLR, kWindowH-bottomLabelH-20, bottomLabelW, bottomLabelH)];
         _bottomLabel.text = @"点击下一步表示同意";
         _bottomLabel.font = [UIFont systemFontOfSize:15];
         _bottomLabel.textColor = kRGBColor(108, 106, 105);
@@ -109,7 +112,7 @@ static CGFloat space = 30;
     
     if (!_bottomButton) {
         self.bottomButton = [UIButton  buttonWithType:UIButtonTypeCustom];
-        _bottomButton.frame = CGRectMake(bottomLR+bottomLabelW, kWindowH-bottomLabelH-20-bottomLR, bottomButtomW, bottomLabelH);
+        _bottomButton.frame = CGRectMake(bottomLR+bottomLabelW, kWindowH-bottomLabelH-20, bottomButtomW, bottomLabelH);
         NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:@"用户协议"];
         NSRange titleRange = {0,[title length]};
         [title addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:titleRange];
@@ -133,24 +136,35 @@ static CGFloat space = 30;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"手机验证";
     //设置不能滚动
     self.tableView.scrollEnabled = NO;
     [self.bottomButton bk_addEventHandler:^(id sender) {
         JYUserProtocolViewController *vc = [[JYUserProtocolViewController alloc]init];
         [self presentViewController:vc animated:YES completion:nil];
     } forControlEvents:UIControlEventTouchUpInside];
+    //取消按钮
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(5, 25, 50, 30);
+    button.titleLabel.font = [UIFont systemFontOfSize:18];
+    [button setTitle:@"取消" forState:UIControlStateNormal];
+    [button setTitleColor:JYGlobalBg forState:UIControlStateNormal];
+    [button setTitleColor:kRGBColor(200, 200, 200) forState:UIControlStateHighlighted];
+    [button bk_addEventHandler:^(id sender) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
 
 }
--(void)viewWillAppear:(BOOL)animated{
-    //显示导航栏
-    self.navigationController.navigationBarHidden = NO;
-}
+
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+/**  点击空白回收键盘 */
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [[self view] endEditing:YES];
 }
 
 #pragma mark -响应方法
@@ -178,7 +192,7 @@ static CGFloat space = 30;
         }else {
             JYRegisterViewController *vc =  [[JYRegisterViewController alloc]init];
             vc.phoneNum = self.phoneNumField.text;
-            [self.navigationController pushViewController:vc animated:YES];
+            [self presentViewController:vc animated:YES completion:nil];
         }
     }];
     

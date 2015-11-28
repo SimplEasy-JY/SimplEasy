@@ -326,10 +326,10 @@ kRemoveCellSeparator
     return nil;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 1) {
-        return 70.f;
+    if (indexPath.section == 0) {
+        return 44.f;
     }
-    return 44.f;
+    return 70.f;
     
 }
 

@@ -107,28 +107,15 @@
     
     //版本号相同：这次打开和上次打开的是同一个版本,根控制器就是sideMenu
     if ([currentVersion isEqualToString:lastVersion]) {
-//        UINavigationController *nav = nil;
-//        JYLoginViewController *vc = vc =  [[JYLoginViewController alloc]init];
-//        if ([g_pIMMyself loginStatus] != IMMyselfLoginStatusNone ) {
-//            JYUserPassModel *userPass = [JYUserPassModel shareInstance];
-//                    userPass.userName = [[NSUserDefaults standardUserDefaults] objectForKey:IMLoginCustomUserID];
-//                    userPass.password = [[NSUserDefaults standardUserDefaults] objectForKey:IMLoginPassword];
-//            JYRootViewController *childVC =[[JYRootViewController alloc]init];
-//            [vc addChildViewController:childVC];
-//             [vc.view addSubview:childVC.view];
-//            }
-//            UINavigationController  *nav = [[UINavigationController alloc]initWithRootViewController:vc];
-//        self.window.rootViewController = nav;
-        JYRootViewController *vc =[[JYRootViewController alloc]init];
         if ([g_pIMMyself loginStatus] == IMMyselfLoginStatusNone) {
             JYLoginViewController *childVC = [[JYLoginViewController alloc]init];
-            [vc addChildViewController:childVC];
-            [vc.view addSubview:childVC.view];
+            [rootVC addChildViewController:childVC];
+            [rootVC.view addSubview:childVC.view];
         }
-            self.window.rootViewController = vc;
+            self.window.rootViewController = rootVC;
     }else{ //这次打开的版本和上一次不一样，显示新特性
-        UINavigationController *naiVC = [[UINavigationController alloc]initWithRootViewController:[[JYNewFeatureViewController alloc] init]];
-        self.window.rootViewController = naiVC;
+        JYNewFeatureViewController *newfeatureVC = [[JYNewFeatureViewController alloc] init];
+        self.window.rootViewController = newfeatureVC;
         [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:key];//将当前的版本号存进沙盒
         [[NSUserDefaults standardUserDefaults] synchronize];
     }

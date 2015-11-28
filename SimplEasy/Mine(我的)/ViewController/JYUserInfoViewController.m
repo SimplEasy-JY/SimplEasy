@@ -283,12 +283,11 @@ kRemoveCellSeparator
                 _notifyText = @"修改成功";
                 _notifyImage = [UIImage imageNamed:@"IM_success_image.png"];
                 [self displayNotifyHUD];
-                
+            [[NSNotificationCenter defaultCenter] postNotificationName:IMCustomUserInfoDidInitializeNotification object:[g_pIMMyself customUserID]];
             } failure:^(NSString *error) {
                 _notifyText = @"修改信息失败";
                 _notifyImage = [UIImage imageNamed:@"IM_failed_image.png"];
                 [self displayNotifyHUD];
-                
                 [_tableView reloadData];
             }];
             return;
@@ -328,6 +327,10 @@ kRemoveCellSeparator
         _notifyText = @"修改成功";
         _notifyImage = [UIImage imageNamed:@"IM_success_image.png"];
         [self displayNotifyHUD];
+        if (type == 3) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:IMCustomUserInfoDidInitializeNotification object:[g_pIMMyself customUserID]];
+        }
+        
     } failure:^(NSString *error) {
         
         _notifyText = @"修改信息失败";
