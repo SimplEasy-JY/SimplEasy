@@ -266,4 +266,6 @@ kRemoveCellSeparator
     [_tableView reloadData];
 }
 
+#pragma mark -kvo
+
 @end

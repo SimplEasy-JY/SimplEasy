@@ -12,8 +12,13 @@
 
 - (void)addMidLine{
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName : [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-    NSMutableAttributedString *attributStr = [[NSMutableAttributedString alloc] initWithString:self.text attributes:attribtDic];
-    self.attributedText = attributStr;
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSMutableAttributedString *attributStr = [[NSMutableAttributedString alloc] initWithString:self.text attributes:attribtDic];
+        self.attributedText = attributStr;
+    });
+
+    
+    
 }
 
 - (void)addBottomLine{

@@ -35,6 +35,8 @@
 
 - (void)awakeFromNib {
     /**  颜色 边框 设置 */
+    //先隐藏图片，防止加载成圆形前出现方形图
+    self.userImageView.hidden = YES;
     [self.lineOne.layer setBorderWidth:0.5];
     [self.lineOne.layer setBorderColor:JYLineColor.CGColor];
     [self.lineTwo.layer setBorderWidth:0.5];
@@ -52,7 +54,7 @@
     [self.userButton bk_addEventHandler:^(id sender) {
         YSHLog(@"点击了用户头像");
     } forControlEvents:UIControlEventTouchUpInside];
-    [self.originalPrice addMidLine];
+   
 }
 
 -(void)setAttribute{
@@ -64,7 +66,13 @@
     NSString *time = [strTime[0] substringFromIndex:5];
     /**  属性设置 */
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:self.goodsItems.headImg] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        self.userImageView.image = [UIImage circleImageWithImage:self.userImageView.image borderWidth:0.5 borderColor:[UIColor whiteColor]];
+         dispatch_async(dispatch_get_global_queue(0, 0), ^{
+             UIImage *image = [UIImage circleImageWithImage:self.userImageView.image borderWidth:0.5 borderColor:[UIColor whiteColor]];
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 self.userImageView.image = image;
+                 self.userImageView.hidden = NO;
+             });
+         });
     }];
     self.shopImage.contentMode = 2;
     self.shopImage.clipsToBounds = YES;
@@ -75,6 +83,10 @@
     self.currentPrice.text = [NSString stringWithFormat:@"￥%@ ",self.goodsItems.price];
     self.time.text = time;
     self.placeNow.text = self.goodsItems.schoolname ;
+    if (!self.originalPrice) {
+        [self.originalPrice addMidLine];
+    }
+   
     
 }
 
