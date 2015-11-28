@@ -1011,6 +1011,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0C10F6E1BF63D0C004CEA49 /* ImageIO.framework in Frameworks */,
 				B03FD5871C05916E0031A18C /* libz.tbd in Frameworks */,
 				B03FD5811C05914C0031A18C /* libstdc++.tbd in Frameworks */,
 				B0C10F741BF63D35004CEA49 /* CoreTelephony.framework in Frameworks */,
@@ -1036,7 +1037,6 @@
 				837086951C07EC5B0003F347 /* libUMSocial_Sdk_Shake_1.0.a in Frameworks */,
 				B0AFA39D1BFB213E00F795F9 /* libopencore-amrnb.a in Frameworks */,
 				B0AFA39E1BFB213E00F795F9 /* libopencore-amrwb.a in Frameworks */,
-				B0C10F6E1BF63D0C004CEA49 /* ImageIO.framework in Frameworks */,
 				837086801C07EC5B0003F347 /* libUMSocial_Sdk_Comment_4.3.a in Frameworks */,
 				8370868B1C07EC5B0003F347 /* libSocialSina.a in Frameworks */,
 				B03FD57F1C05910F0031A18C /* SMS_SDK.framework in Frameworks */,
@@ -2505,7 +2505,7 @@
 				TargetAttributes = {
 					8328A4361BE8478B0021767D = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = G7YYV9K7LC;
+						DevelopmentTeam = N27SETL2A3;
 					};
 					8328A44F1BE8478C0021767D = {
 						CreatedOnToolsVersion = 7.1;
@@ -3236,7 +3236,7 @@
 					"\"Photos\"",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy1.SimplEasy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy.SimplEasy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -3344,7 +3344,7 @@
 					"\"Photos\"",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy1.SimplEasy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy.SimplEasy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

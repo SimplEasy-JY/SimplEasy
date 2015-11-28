@@ -44,4 +44,6 @@
 
 /** 商品URL */
 - (NSString *)urlStrForProduct;
+/** 分享标题 */
+- (NSString *)shareTitle;
 @end

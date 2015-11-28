@@ -150,27 +150,22 @@ static CGFloat bottomBtnHeight = 50;
 /** 分享按钮点击操作 */
 - (void)share{
     
-    /** 
-     //使用UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite分别代表微信好友、微信朋友圈、微信收藏
-     //    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:@"分享内嵌文字" image:nil location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
-     //        if (response.responseCode == UMSResponseCodeSuccess) {
-     //            NSLog(@"分享成功！");
-     //        }
-     //    }];
-     */
     //当分享消息类型为图文时，点击分享内容会跳转到预设的链接
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [self.pdVM urlStrForProduct];
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = [self.pdVM urlStrForProduct];
-    //设置微信好友title方法为
-    [UMSocialData defaultData].extConfig.wechatSessionData.title = @"简易一周年！ 送货上门，限时抢购！";
-    //设置微信朋友圈title方法替换平台参数名即可
-    [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"简易一周年！ 送货上门，限时抢购！";
+    [UMSocialData defaultData].extConfig.qqData.url = [self.pdVM urlStrForProduct];
+    [UMSocialData defaultData].extConfig.qzoneData.url = [self.pdVM urlStrForProduct];
+    //设置分享的title
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = [self.pdVM shareTitle];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = [self.pdVM shareTitle];
+    [UMSocialData defaultData].extConfig.qqData.title = [self.pdVM shareTitle];
+    [UMSocialData defaultData].extConfig.qzoneData.title = [self.pdVM shareTitle];
     
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:UmengAppKey
                                       shareText:[self.pdVM nameForProduct]
                                      shareImage:self.imageArr.firstObject
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatTimeline,UMShareToWechatSession,nil]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatTimeline,UMShareToWechatSession,UMShareToQQ,UMShareToQzone,nil]
                                        delegate:self];
 }
 

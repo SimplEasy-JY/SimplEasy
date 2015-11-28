@@ -10,7 +10,7 @@
 #import "JYProductDetailNetManager.h"
 #import "JYUserInfoNetManager.h"
 #import "JYUserInfoModel.h"
-
+#define PRODUCT_DETAIL @"http://www.i-jianyi.com/frontend/goods/detail/"//后面接上商品id
 
 @interface JYProductDetailViewModel ()
 
@@ -56,7 +56,10 @@
 }
 
 - (NSString *)urlStrForProduct{
-    return @"http://baidu.com";
+    return [PRODUCT_DETAIL stringByAppendingString:[NSString stringWithFormat:@"%ld",self.ID]];
+}
+- (NSString *)shareTitle{
+    return @"简易一周年！ 送货上门，限时抢购！";
 }
 - (NSString *)nameForProduct{
     return [self model].name;
@@ -90,6 +93,7 @@
 - (NSURL *)headImageForSeller{
     return [NSURL URLWithString:[self userDataModel].headImg];
 }
+
 #warning 暂时弃用这个学校名
 - (NSString *)schoolNameForSeller{
     return [self userDataModel].school;

@@ -20,6 +20,7 @@
 #import "UMSocial.h"//友盟分享
 #import "UMSocialWechatHandler.h"
 #import "UMSocialQQHandler.h"
+#import "UMSocialSinaSSOHandler.h"
 
 #import <MobClick.h>
 #import <SMS_SDK/SMSSDK.h>
@@ -49,6 +50,7 @@
     [MobClick startWithAppkey:UmengAppKey reportPolicy:BATCH channelId:nil];
     [UMSocialWechatHandler setWXAppId:WXAppKey appSecret:WXAppSecret url:@"http://www.umeng.com/social"];
     [UMSocialQQHandler setQQWithAppId:QQAppID appKey:QQAppKey url:@"http://www.umeng.com/social"];
+    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:WBAppKey RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     
     /** 注册友盟分享 */
     [UMSocialData setAppKey:UmengAppKey];
@@ -91,6 +93,7 @@
     return _window;
 }
 
+/** 友盟系统回调 */
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     BOOL result = [UMSocialSnsService handleOpenURL:url];

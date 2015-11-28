@@ -36,6 +36,9 @@
 #define QQAppID @"1104918521"
 #define QQAppKey @"3UIjffKw1QNpnbfh"
 
+#define WBAppKey @"1321061525"
+#define WBAppSecret @"009a3587486610af8430e71a767234f4"
+
 /**  nslog */
 #define YSHLog(...) NSLog(__VA_ARGS__)
 /** 通过RGB设置颜色 */
