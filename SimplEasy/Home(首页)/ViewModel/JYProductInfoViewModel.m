@@ -76,6 +76,7 @@
 - (NSString *)productDescForRow: (NSInteger)row{
     return [self modelForRow:row].name;
 }
+
 /** 商品现在的价格 */
 - (NSString *)currentPriceForRow: (NSInteger)row{
     return [self modelForRow:row].price;

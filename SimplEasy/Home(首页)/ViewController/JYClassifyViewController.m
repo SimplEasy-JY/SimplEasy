@@ -173,9 +173,8 @@ static CGFloat margin = 5;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     JYClassifyContentVC *vc = [[JYClassifyContentVC alloc] init];
     JYClassifyModel *model = self.classArr[indexPath.row];
-    vc.title = model.name;
     if (self.backBlock) {
-        self.backBlock(vc,model.name);//实现block
+        self.backBlock(vc,model);//实现block
     }
     /** 回到contentView */
     [self.sideMenuViewController hideMenuViewController];

@@ -12,6 +12,7 @@
 #import "JYWebViewController.h"
 #import "JYClassifyViewController.h"
 #import "JYClassifyContentVC.h"
+#import "JYClassifyModel.h"
 
 #import "JYLoopViewModel.h"
 #import "JYGoodsViewModel.h"
@@ -193,9 +194,9 @@ typedef NS_ENUM(NSInteger, cellType) {
 - (IBAction)categoryButton:(id)sender {
     JYClassifyViewController *classifyVC = (JYClassifyViewController *)self.sideMenuViewController.leftMenuViewController;
     
-    [classifyVC didSelectTypeWithBlock:^(JYClassifyContentVC *viewController, NSString *selectedType) {
-        viewController.title = selectedType;
-        viewController.type = selectedType;
+    [classifyVC didSelectTypeWithBlock:^(JYClassifyContentVC *viewController, JYClassifyModel *model) {
+        viewController.title = model.name;
+        viewController.model = model;
         viewController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:viewController animated:YES];
     }];

@@ -10,4 +10,6 @@
 
 @implementation JYClassifyModel
 
+
+
 @end

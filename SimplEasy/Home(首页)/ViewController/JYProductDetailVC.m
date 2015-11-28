@@ -262,7 +262,6 @@ static CGFloat bottomBtnHeight = 50;
     return section == 0?0:20;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];//取消cell的选中状态
 }
 
 #pragma mark *** iCarouselDatasource & iCarouseDelegate ***
@@ -387,6 +386,7 @@ static CGFloat bottomBtnHeight = 50;
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.allowsSelection = NO;
         [self.view addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, bottomBtnHeight, 0));

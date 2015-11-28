@@ -43,17 +43,17 @@
 
     [self configGlobalUIStyle];
     
+    /** 注册友盟分享 */
+    [UMSocialData setAppKey:UmengAppKey];
+    
     /** 注册IMSDK */
     [g_pIMSDK initWithAppKey:IMDeveloper_APPKey];
-    
+
     /** 注册友盟分析 */
     [MobClick startWithAppkey:UmengAppKey reportPolicy:BATCH channelId:nil];
     [UMSocialWechatHandler setWXAppId:WXAppKey appSecret:WXAppSecret url:@"http://www.umeng.com/social"];
     [UMSocialQQHandler setQQWithAppId:QQAppID appKey:QQAppKey url:@"http://www.umeng.com/social"];
     [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:WBAppKey RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
-    
-    /** 注册友盟分享 */
-    [UMSocialData setAppKey:UmengAppKey];
     
     /** 注册短信验证SDK */
     [SMSSDK registerApp:SMSAppKey withSecret:SMSAppSecret];

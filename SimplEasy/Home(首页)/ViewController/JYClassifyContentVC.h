@@ -7,9 +7,10 @@
 //  从侧拉框选中后推出的视图
 
 #import <UIKit/UIKit.h>
+#import "JYClassifyModel.h"
 
 @interface JYClassifyContentVC : UIViewController
 /** 类型 */
-@property (nonatomic, strong) NSString *type;
+@property (nonatomic, strong) JYClassifyModel *model;
 
 @end

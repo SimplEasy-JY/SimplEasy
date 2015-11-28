@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "JYClassifyContentVC.h"
+#import "JYClassifyModel.h"
 
-typedef void(^ReturnBlock)(JYClassifyContentVC *viewController,NSString *selectedType);
+typedef void(^ReturnBlock)(JYClassifyContentVC *viewController,JYClassifyModel *model);
 
 @interface JYClassifyViewController : UIViewController
 
