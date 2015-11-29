@@ -421,7 +421,8 @@ kRemoveCellSeparator
         return 1;
     } else {
         if (_cellType == 2) {
-            return (self.goodsVM.dataArr.count / 2 + (self.goodsVM.dataArr.count%2 == 0 ?0:1));
+            //如果是奇数，少一个数据，
+            return (self.goodsVM.dataArr.count / 2 );
             
         }
         return self.goodsVM.dataArr.count;
