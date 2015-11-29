@@ -3236,7 +3236,7 @@
 					"\"Photos\"",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy1.SimplEasy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy.SimplEasy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -3344,7 +3344,7 @@
 					"\"Photos\"",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy1.SimplEasy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy.SimplEasy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
