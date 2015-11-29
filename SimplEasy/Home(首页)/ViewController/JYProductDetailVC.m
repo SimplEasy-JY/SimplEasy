@@ -31,8 +31,6 @@ static CGFloat bottomBtnHeight = 50;
 @property (nonatomic, strong) JYProductDetailViewModel *pdVM;
 /** 定时器 */
 @property (nonatomic, strong) NSTimer *timer;
-/** 存放图片的数组 */
-@property (nonatomic, strong) NSMutableArray *imageArr;
 
 @end
 
@@ -84,6 +82,10 @@ static CGFloat bottomBtnHeight = 50;
             [self.icView scrollToItemAtIndex:self.icView.currentItemIndex+1 animated:YES];
         } repeats:YES];
     }
+    /** 如果只有一张图，则不允许滚动 */
+    if ([self.pdVM picArrForProduct].count == 1) {
+        self.icView.scrollEnabled = NO;
+    }
     /** 如果没有图片，加入一个label，提示没有图片 */
     if ([self.pdVM picArrForProduct].count == 0) {
         UILabel *label = [[UILabel alloc] init];
@@ -95,7 +97,6 @@ static CGFloat bottomBtnHeight = 50;
             make.edges.mas_equalTo(0);
         }];
     }
-    
     self.tableView.tableHeaderView = headerView;
     self.tableView.tableHeaderView.backgroundColor = JYHexColor(0x272C35);
 }
@@ -161,10 +162,13 @@ static CGFloat bottomBtnHeight = 50;
     [UMSocialData defaultData].extConfig.qqData.title = [self.pdVM shareTitle];
     [UMSocialData defaultData].extConfig.qzoneData.title = [self.pdVM shareTitle];
     
+    //获取SDWebImage缓存的图片
+    UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:[self.pdVM picArrForProduct].firstObject]];
+    
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:UmengAppKey
                                       shareText:[self.pdVM nameForProduct]
-                                     shareImage:self.imageArr.firstObject
+                                     shareImage:cacheImage
                                 shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatTimeline,UMShareToWechatSession,UMShareToQQ,UMShareToQzone,nil]
                                        delegate:self];
 }
@@ -175,11 +179,8 @@ static CGFloat bottomBtnHeight = 50;
     //根据`responseCode`得到发送结果,如果分享成功
     if(response.responseCode == UMSResponseCodeSuccess)
     {
-        //得到分享到的微博平台名
+        //得到分享到的平台名
         NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"分享成功" message:@"已分享至某个地方" preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil]];
-        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
@@ -302,13 +303,9 @@ static CGFloat bottomBtnHeight = 50;
     }];
     UIImageView *imageView = (UIImageView *)[view viewWithTag:100];
     NSURL *url = [self.pdVM picArrForProduct][index];
-    [bgImageView sd_setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        //将图片存到图片数组，分享时使用
-        [self.imageArr addObject:image];
-    }];
+    
+    [bgImageView sd_setImageWithURL:url];
     [imageView sd_setImageWithURL:url];
-    
-    
     
     return view;
 }
@@ -403,11 +400,5 @@ static CGFloat bottomBtnHeight = 50;
     return _pdVM;
 }
 
-- (NSMutableArray *)imageArr {
-	if(_imageArr == nil) {
-		_imageArr = [[NSMutableArray alloc] init];
-	}
-	return _imageArr;
-}
 
 @end

@@ -42,4 +42,5 @@
 /** 商品ID */
 - (NSString *)productIDForRow: (NSInteger)row;
 
+- (BOOL)isLastPage;
 @end

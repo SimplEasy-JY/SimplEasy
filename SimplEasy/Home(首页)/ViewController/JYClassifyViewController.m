@@ -46,7 +46,7 @@
 #pragma mark *** 控制器 ***
 
 static CGFloat rightViewWidth = 120;
-static CGFloat headerViewHeight = 120;
+static CGFloat headerViewHeight = 100;
 /** 右边图标和签名离父视图的间隙 */
 static CGFloat margin = 5;
 /** 内容视图缩放后的宽度（竖屏） */
@@ -187,7 +187,6 @@ static CGFloat margin = 5;
 		_tableView = [[UITableView alloc] init];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.scrollEnabled = NO;
 	}
 	return _tableView;
 }

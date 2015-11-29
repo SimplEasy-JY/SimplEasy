@@ -64,6 +64,7 @@
 			<string>全部</string>
 			<string>床上用品</string>
 			<string>家居电器</string>
+			<string>餐饮用品</string>
 			<string>医药用品</string>
 			<string>居家日用</string>
 			<string>整理收纳</string>
@@ -71,7 +72,7 @@
 	</dict>
 	<dict>
 		<key>name</key>
-		<string>运动户外</string>
+		<string>体育用品</string>
 		<key>icon</key>
 		<string>typeicon04</string>
 		<key>selectedIcon</key>
@@ -190,6 +191,45 @@
 		<key>subClass</key>
 		<array>
 			<string>休闲零食</string>
+		</array>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>代步工具</string>
+		<key>icon</key>
+		<string>typeicon09</string>
+		<key>selectedIcon</key>
+		<string>typeicon09_selected</string>
+		<key>selected</key>
+		<false/>
+		<key>index</key>
+		<integer>9</integer>
+		<key>subClass</key>
+		<array>
+			<string>全部</string>
+			<string>自行车</string>
+			<string>轮滑/滑板</string>
+			<string>电瓶车</string>
+		</array>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>文具娱乐</string>
+		<key>icon</key>
+		<string>typeicon09</string>
+		<key>selectedIcon</key>
+		<string>typeicon09_selected</string>
+		<key>selected</key>
+		<false/>
+		<key>index</key>
+		<integer>10</integer>
+		<key>subClass</key>
+		<array>
+			<string>全部</string>
+			<string>文具</string>
+			<string>乐器</string>
+			<string>玩具</string>
+			<string>办公</string>
 		</array>
 	</dict>
 </array>
