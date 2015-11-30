@@ -197,9 +197,9 @@
 		<key>name</key>
 		<string>代步工具</string>
 		<key>icon</key>
-		<string>typeicon09</string>
+		<string>typeicon10</string>
 		<key>selectedIcon</key>
-		<string>typeicon09_selected</string>
+		<string>typeicon10</string>
 		<key>selected</key>
 		<false/>
 		<key>index</key>
@@ -216,9 +216,9 @@
 		<key>name</key>
 		<string>文具娱乐</string>
 		<key>icon</key>
-		<string>typeicon09</string>
+		<string>typeicon11</string>
 		<key>selectedIcon</key>
-		<string>typeicon09_selected</string>
+		<string>typeicon11</string>
 		<key>selected</key>
 		<false/>
 		<key>index</key>

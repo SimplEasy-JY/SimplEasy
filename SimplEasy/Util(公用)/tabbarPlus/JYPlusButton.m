@@ -6,8 +6,16 @@
 //  Copyright © 2015年 SimplEasy. All rights reserved.
 //
 
+#import "JYMineController.h"
+#import "JYCircleViewController.h"
+#import "JYMessageController.h"
+#import "JYHomeController.h"
+#import "JYPublishIdleViewController.h"
+
 #import "JYPlusButton.h"
 #import "JYRootViewController.h"
+
+
 
 @interface JYPlusButton ()
 
@@ -84,33 +92,37 @@
 #pragma mark - Event Response
 
 - (void)clickPublish {
+    
     RESideMenu *menu = rootVC.sideMenu;
     UITabBarController *tabBarController = (UITabBarController *)menu.contentViewController;
-//    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
-    UIViewController *viewController = tabBarController.selectedViewController;
+    
+    /** 获取当前选中的vc的naviVC */
+    UINavigationController *viewController = tabBarController.selectedViewController;
+    
+    /** 创建actionSheet，并添加事件 */
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    //    UIAlertAction
-    
-    //    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil
-    //                                                            delegate:nil
-    //                                                   cancelButtonTitle:@"取消"
-    //                                              destructiveButtonTitle:nil
-    //                                                   otherButtonTitles:@"发布闲置", @"随便说说", @"活动求组", nil];
-    //    [actionSheet showInView:viewController.view];
-    
-    [actionSheet addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"000000000");
-    }]];
-    
+    //取消
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    //发布闲置
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"发布闲置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"11111111111");
+        JYPublishIdleViewController *vc = [[JYPublishIdleViewController alloc] init];//发布的界面
+        vc.title = action.title;
+        vc.hidesBottomBarWhenPushed = YES;//推出隐藏TabBar
+        [viewController pushViewController:vc animated:YES];
     }]];
+    //发布需求
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"发布需求" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        JYLog(@"4444444");
+    }]];
+    //随便说说
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"随便说说" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"2222222");
     }]];
+    //活动求组
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"活动求组" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"33333333");
     }]];
+    
     
     [viewController presentViewController:actionSheet animated:YES completion:nil];
 }

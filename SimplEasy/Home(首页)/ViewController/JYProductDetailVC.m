@@ -303,8 +303,9 @@ static CGFloat bottomBtnHeight = 50;
         [imageView addSubview:roundView];
         roundView.tag = 300;
         roundView.progressTintColor = JYGlobalBg;
-        roundView.backgroundTintColor = [UIColor clearColor];
+        roundView.backgroundTintColor = [UIColor whiteColor];
         roundView.annular = YES;
+        roundView.hidden = YES;
         [roundView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.mas_equalTo(0);
             make.size.mas_equalTo(CGSizeMake(50, 50));
