@@ -31,6 +31,7 @@
 //IMSDK Headers
 #import "IMSDK.h"
 #import "IMMyself.h"
+
 @interface AppDelegate ()
 
 
@@ -62,9 +63,7 @@
     [self initializeWithApplication:application];
 
     [self configNewFeatureViewController];
-    
-    
-    
+
     return YES;
 }
 

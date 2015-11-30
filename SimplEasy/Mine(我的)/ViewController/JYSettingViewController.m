@@ -8,6 +8,7 @@
 
 #import "JYSettingViewController.h"
 #import "JYLoginViewController.h"
+#import "JYFileManager.h"
 
 //IMSDK Headers
 #import "IMMyself.h"
@@ -15,6 +16,8 @@
 #import "IMMyself+CustomUserInfo.h"
 #import "IMSDK+CustomUserInfo.h"
 #import "IMSDK+Nickname.h"
+
+#define cachePath [kLibraryPath stringByAppendingPathComponent:@"Caches"]
 @interface JYSettingViewController () <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property(nonatomic,getter=isLogouting)BOOL isLogouting;
@@ -74,7 +77,8 @@
     }
     if (indexPath.section == 2) {
         if (indexPath.row == 0) {
-            cell.detailTextLabel.text = @"10M";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2fM",[[JYFileManager defaultManager] folderSizeAtPath:cachePath]];
+            
         }else if(indexPath.row == 2){
             cell.detailTextLabel.text = @"New";
             cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
@@ -102,6 +106,23 @@ kRemoveCellSeparator
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    //清除缓存操作
+    if (indexPath.section == 2) {
+        if (indexPath.row == 0) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"确认要清楚缓存么？" preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+            [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                NSString *successNotice = [NSString stringWithFormat:@"清除了%.2fM的缓存",[[JYFileManager defaultManager] folderSizeAtPath:cachePath]];
+                [[JYFileManager defaultManager] clearCacheAtPath:cachePath];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"清除成功" message:successNotice preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                }]];
+                [self presentViewController:alert animated:YES completion:nil];
+            }]];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }
     
 }
 

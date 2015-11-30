@@ -280,6 +280,9 @@ static CGFloat bottomBtnHeight = 50;
         bgImageView.clipsToBounds = YES;
         bgImageView.tag = 200;
         [view addSubview: bgImageView];
+        [bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(view);
+        }];
         
         /** 加入毛玻璃效果 */
         UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
@@ -296,16 +299,36 @@ static CGFloat bottomBtnHeight = 50;
             make.edges.mas_equalTo(view);
         }];
         
+        MBRoundProgressView *roundView = [[MBRoundProgressView alloc] init];
+        [imageView addSubview:roundView];
+        roundView.tag = 300;
+        roundView.progressTintColor = JYGlobalBg;
+        roundView.backgroundTintColor = [UIColor clearColor];
+        roundView.annular = YES;
+        [roundView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.mas_equalTo(0);
+            make.size.mas_equalTo(CGSizeMake(50, 50));
+        }];
+        
     }
+    //根据tag取出View
     UIImageView *bgImageView = (UIImageView *)[view viewWithTag:200];
-    [bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(view);
-    }];
     UIImageView *imageView = (UIImageView *)[view viewWithTag:100];
+    MBRoundProgressView *roundView = (MBRoundProgressView *)[view viewWithTag:300];
+    
     NSURL *url = [self.pdVM picArrForProduct][index];
     
-    [bgImageView sd_setImageWithURL:url];
-    [imageView sd_setImageWithURL:url];
+    [imageView sd_setImageWithURL:url placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+            roundView.progress = receivedSize*1.0/expectedSize;
+            JYLog(@"进度是%f",roundView.progress);
+            roundView.hidden = receivedSize == expectedSize;
+    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (error) {
+            JYLog(@"加载图片出错: %@",error.description);
+        }
+        imageView.image = image;
+        bgImageView.image = image;
+    }];
     
     return view;
 }

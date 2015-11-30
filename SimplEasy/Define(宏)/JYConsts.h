@@ -84,5 +84,6 @@ cell.preservesSuperviewLayoutMargins = NO; \
 
 /** Docment文件夹目录 */
 #define kDocumentPath NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject
+#define kLibraryPath NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject
 
 #endif /* JYConsts_h */
