@@ -192,7 +192,9 @@ static CGFloat space = 30;
         }else {
             JYRegisterViewController *vc =  [[JYRegisterViewController alloc]init];
             vc.phoneNum = self.phoneNumField.text;
-            [self presentViewController:vc animated:YES completion:nil];
+            vc.lvc = self.lvc;
+            [self presentViewController:vc animated:YES completion:
+             nil];
         }
     }];
     

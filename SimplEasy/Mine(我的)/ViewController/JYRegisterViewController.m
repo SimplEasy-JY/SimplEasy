@@ -13,6 +13,7 @@
 #import "UIImage+Circle.h"
 #import "JYRegisterViewController.h"
 #import "JYUserProtocolViewController.h"
+#import "JYLoginStatus.h"
 
 //third-party
 #import "SFCountdownView.h"
@@ -115,6 +116,8 @@ static CGFloat space = 30;
     } forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     
+    [loginVC addObserver:self.lvc forKeyPath:@"isLogin" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -161,9 +164,10 @@ static CGFloat space = 30;
                 [g_pIMMyself setCustomUserID:customUserID];
                 [g_pIMMyself setPassword:password];
                 [g_pIMMyself registerWithTimeoutInterval:5 success:^{
-                    JYRootViewController *controller = [[JYRootViewController alloc] init];
-                    [self addChildViewController:controller];
-                    [[self view] addSubview:controller.view];
+//                    [self removeFromParentViewController];
+//                    [[self view] removeFromSuperview];
+                    loginVC.isLogin = YES;
+                    [self dismissViewControllerAnimated:YES completion:nil];
                     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:IMLastLoginTime];
                     [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself customUserID] forKey:IMLoginCustomUserID];
                     [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself password] forKey:IMLoginPassword];

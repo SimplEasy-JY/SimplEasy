@@ -12,6 +12,7 @@
 #import "JYRootViewController.h"
 #import "UIImage+Circle.h"
 #import "JYPhoneNumViewController.h"
+#import "JYLoginStatus.h"
 
 //third-party
 #import "SFCountdownView.h"
@@ -40,7 +41,6 @@ static CGFloat textFieldH = 44;
 @property(strong,nonatomic)UIImageView *userImageView;
 @property(strong,nonatomic)UIButton *registerButton;
 @property(strong,nonatomic)UIButton *touristButton;
-
 @property(strong,nonatomic)NSString *userName;
 @property(strong,nonatomic)NSString *password;
 @end
@@ -164,6 +164,7 @@ static CGFloat textFieldH = 44;
         //注册按钮
         [self.registerButton bk_addEventHandler:^(id sender) {
             JYPhoneNumViewController *phoneNumVC = [[JYPhoneNumViewController alloc]init];
+            phoneNumVC.lvc = self;
             [self presentViewController:phoneNumVC animated:YES completion:nil];
         } forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.registerButton];
@@ -237,8 +238,7 @@ static CGFloat textFieldH = 44;
         [g_pIMMyself setAutoLogin:YES];
         [g_pIMMyself loginWithTimeoutInterval:5 success:^{
             _isStop = YES;
-            [self removeFromParentViewController];
-            [[self view] removeFromSuperview];
+           
             [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:IMLastLoginTime];
             [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself customUserID] forKey:IMLoginCustomUserID];
             [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself password] forKey:IMLoginPassword];
@@ -248,6 +248,8 @@ static CGFloat textFieldH = 44;
             
             [self.passwordField setText:nil];
             [[self view] endEditing:YES];
+            [self removeFromParentViewController];
+            [[self view] removeFromSuperview];
             [[NSNotificationCenter defaultCenter] postNotificationName:IMLoginNotification object:nil];
         } failure:^(NSString *error) {
             
@@ -522,4 +524,13 @@ kRemoveCellSeparator
     NSLog(@"****************%ld",[g_pIMMyself loginStatus]);
    }
 
+
+#pragma mark -kvo
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
+    if ([keyPath isEqualToString:@"isLogin"]) {
+        [self removeFromParentViewController];
+        [[self view] removeFromSuperview];
+    }
+    
+}
 @end

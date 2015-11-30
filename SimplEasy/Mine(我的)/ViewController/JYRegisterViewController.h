@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "JYLoginViewController.h"
 @interface JYRegisterViewController : UIViewController
 //接受手机号
 @property(strong,nonatomic)NSString *phoneNum;
+@property(strong,nonatomic)JYLoginViewController *lvc;
 @end

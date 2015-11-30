@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "JYLoginViewController.h"
 @interface JYPhoneNumViewController : UIViewController
-
+@property(strong,nonatomic) JYLoginViewController *lvc;
 @end
