@@ -10,6 +10,7 @@
 		831A04C71BF5CAFC00F78986 /* JYMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70121BE860C600B8B05F /* JYMineController.m */; };
 		831A04CA1BF5CCCA00F78986 /* JYUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831A04C91BF5CCCA00F78986 /* JYUserInfoViewController.m */; };
 		831A04CD1BF5D08300F78986 /* JYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831A04CC1BF5D08300F78986 /* JYSettingViewController.m */; };
+		831F77561C0D4B1F0058059C /* JYPublishIdleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 831F77551C0D4B1F0058059C /* JYPublishIdleView.m */; };
 		8328A43C1BE8478B0021767D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A43B1BE8478B0021767D /* main.m */; };
 		8328A43F1BE8478B0021767D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A43E1BE8478B0021767D /* AppDelegate.m */; };
 		8328A4451BE8478B0021767D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8328A4431BE8478B0021767D /* Main.storyboard */; };
@@ -75,6 +76,8 @@
 		83EEDF441C000C9300016E02 /* JYClassifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EEDF431C000C9300016E02 /* JYClassifyCell.m */; };
 		83EEDF471C0015C400016E02 /* JYClassifyContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EEDF461C0015C400016E02 /* JYClassifyContentVC.m */; };
 		83F4EC331BFC120800D6A3D7 /* JYProductDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F4EC321BFC120800D6A3D7 /* JYProductDetailViewModel.m */; };
+		83F9D8121C0C6EFF002687F7 /* JYPublishIdleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D8111C0C6EFF002687F7 /* JYPublishIdleViewController.m */; };
+		83F9D8161C0C6F0C002687F7 /* JYFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D8151C0C6F0C002687F7 /* JYFileManager.m */; };
 		B003E7F31C089FDE00703A90 /* JYBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B003E7F21C089FDE00703A90 /* JYBaseViewController.m */; };
 		B02A70131BE860C600B8B05F /* JYMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70121BE860C600B8B05F /* JYMineController.m */; };
 		B02A70171BE8638A00B8B05F /* JYPlusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70161BE8638A00B8B05F /* JYPlusButton.m */; };
@@ -435,6 +438,8 @@
 		831A04C91BF5CCCA00F78986 /* JYUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYUserInfoViewController.m; sourceTree = "<group>"; };
 		831A04CB1BF5D08300F78986 /* JYSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYSettingViewController.h; sourceTree = "<group>"; };
 		831A04CC1BF5D08300F78986 /* JYSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYSettingViewController.m; sourceTree = "<group>"; };
+		831F77541C0D4B1F0058059C /* JYPublishIdleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYPublishIdleView.h; sourceTree = "<group>"; };
+		831F77551C0D4B1F0058059C /* JYPublishIdleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYPublishIdleView.m; sourceTree = "<group>"; };
 		8328A4371BE8478B0021767D /* SimplEasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimplEasy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8328A43B1BE8478B0021767D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8328A43D1BE8478B0021767D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -570,6 +575,10 @@
 		83EEDF461C0015C400016E02 /* JYClassifyContentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYClassifyContentVC.m; sourceTree = "<group>"; };
 		83F4EC311BFC120800D6A3D7 /* JYProductDetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYProductDetailViewModel.h; sourceTree = "<group>"; };
 		83F4EC321BFC120800D6A3D7 /* JYProductDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYProductDetailViewModel.m; sourceTree = "<group>"; };
+		83F9D8101C0C6EFF002687F7 /* JYPublishIdleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYPublishIdleViewController.h; sourceTree = "<group>"; };
+		83F9D8111C0C6EFF002687F7 /* JYPublishIdleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYPublishIdleViewController.m; sourceTree = "<group>"; };
+		83F9D8141C0C6F0C002687F7 /* JYFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYFileManager.h; sourceTree = "<group>"; };
+		83F9D8151C0C6F0C002687F7 /* JYFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYFileManager.m; sourceTree = "<group>"; };
 		B003E7F11C089FDE00703A90 /* JYBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYBaseViewController.h; sourceTree = "<group>"; };
 		B003E7F21C089FDE00703A90 /* JYBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYBaseViewController.m; sourceTree = "<group>"; };
 		B02A70111BE860C600B8B05F /* JYMineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYMineController.h; sourceTree = "<group>"; };
@@ -1065,6 +1074,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		831F77531C0D4B010058059C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				831F77541C0D4B1F0058059C /* JYPublishIdleView.h */,
+				831F77551C0D4B1F0058059C /* JYPublishIdleView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		8328A42E1BE8478B0021767D = {
 			isa = PBXGroup;
 			children = (
@@ -1094,6 +1112,7 @@
 				8328A4771BE849800021767D /* Define(宏) */,
 				8328A47E1BE849800021767D /* Home(首页) */,
 				837086A01C0862B20003F347 /* Circle(圈子) */,
+				83F9D80E1C0C6EFF002687F7 /* Publish(发布) */,
 				8328A4861BE849800021767D /* Message(消息) */,
 				8328A48C1BE849800021767D /* Mine(我的) */,
 				8328A4921BE849800021767D /* Resource(资源) */,
@@ -1345,6 +1364,7 @@
 		8328A4931BE849800021767D /* Util(公用) */ = {
 			isa = PBXGroup;
 			children = (
+				83F9D8131C0C6F0C002687F7 /* tools */,
 				B0AFA3731BFB213D00F795F9 /* IMThirdParty */,
 				B02A70141BE8637000B8B05F /* tabbarPlus */,
 				8328A4941BE849800021767D /* Category */,
@@ -1642,6 +1662,33 @@
 				B0CC9A8D1BF0A9F500FCC177 /* JYFreeChargeCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		83F9D80E1C0C6EFF002687F7 /* Publish(发布) */ = {
+			isa = PBXGroup;
+			children = (
+				831F77531C0D4B010058059C /* View */,
+				83F9D80F1C0C6EFF002687F7 /* ViewController */,
+			);
+			path = "Publish(发布)";
+			sourceTree = "<group>";
+		};
+		83F9D80F1C0C6EFF002687F7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				83F9D8101C0C6EFF002687F7 /* JYPublishIdleViewController.h */,
+				83F9D8111C0C6EFF002687F7 /* JYPublishIdleViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		83F9D8131C0C6F0C002687F7 /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				83F9D8141C0C6F0C002687F7 /* JYFileManager.h */,
+				83F9D8151C0C6F0C002687F7 /* JYFileManager.m */,
+			);
+			path = tools;
 			sourceTree = "<group>";
 		};
 		AF77D64987B760B66986F80A /* Pods */ = {
@@ -2510,7 +2557,7 @@
 				TargetAttributes = {
 					8328A4361BE8478B0021767D = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = G7YYV9K7LC;
+						DevelopmentTeam = N27SETL2A3;
 					};
 					8328A44F1BE8478C0021767D = {
 						CreatedOnToolsVersion = 7.1;
@@ -2914,6 +2961,8 @@
 				831A04CD1BF5D08300F78986 /* JYSettingViewController.m in Sources */,
 				B04758D61BEB92D100C645EE /* JYWebViewController.m in Sources */,
 				B03859F31C0703410053D0B0 /* IMMyselfInfoEditViewController.m in Sources */,
+				83F9D8161C0C6F0C002687F7 /* JYFileManager.m in Sources */,
+				83F9D8121C0C6EFF002687F7 /* JYPublishIdleViewController.m in Sources */,
 				B06FDC701C08847C0076E4DC /* IMContactFriendsCell.m in Sources */,
 				8328A4A51BE849800021767D /* Foundation+Log.m in Sources */,
 				8328A4AF1BE84E050021767D /* JYBaseModel.m in Sources */,
@@ -2936,6 +2985,7 @@
 				B02A70171BE8638A00B8B05F /* JYPlusButton.m in Sources */,
 				B06FDC7C1C08847C0076E4DC /* IMGroupMemberHeadersView.m in Sources */,
 				83DECFB71BF1C28900A1FE7C /* JYClassifyModel.m in Sources */,
+				831F77561C0D4B1F0058059C /* JYPublishIdleView.m in Sources */,
 				8394B2621BEDB18700D3F66F /* JYNewFeatureViewController.m in Sources */,
 				B06FDC811C08847C0076E4DC /* IMUserInformationViewController.m in Sources */,
 				8328A43F1BE8478B0021767D /* AppDelegate.m in Sources */,
@@ -3158,7 +3208,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INFOPLIST_FILE = SimplEasy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3242,7 +3292,7 @@
 					"\"Photos\"",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy2.SimplEasy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy.SimplEasy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -3266,7 +3316,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INFOPLIST_FILE = SimplEasy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3350,7 +3400,7 @@
 					"\"Photos\"",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy2.SimplEasy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy.SimplEasy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

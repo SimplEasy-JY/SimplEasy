@@ -60,7 +60,7 @@
 }
 
 - (JYGoodsItems *)modelForRow: (NSInteger)row{
-    return self.dataArr[row];
+     return self.dataArr[row];
 }
 
 #pragma mark *** 用户 ***

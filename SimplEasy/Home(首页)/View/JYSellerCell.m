@@ -78,7 +78,7 @@
         _followBtn.titleLabel.font = [UIFont systemFontOfSize:8];
         [_followBtn setTitle:@"加关注" forState:UIControlStateNormal];
         [_followBtn setTitleColor:kRGBColor(255, 177, 0) forState:UIControlStateNormal];
-        [_followBtn setImage:[UIImage imageNamed:@"middleicon_03"] forState:UIControlStateNormal];
+        [_followBtn setImage:[UIImage imageNamed:@"pd_follow"] forState:UIControlStateNormal];
         [self.contentView addSubview:_followBtn];
         [_followBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.headIV);

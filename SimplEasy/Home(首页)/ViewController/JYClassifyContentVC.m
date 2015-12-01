@@ -43,6 +43,7 @@ static CGFloat sectionHeaderH = 30.0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    JYLog(@"\n\n******************** 进入分类内容界面 ********************\n\n");
     self.sort = @"all";
     [self tableView];
     [self choiceTableView];

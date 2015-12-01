@@ -10,6 +10,16 @@
 
 @implementation JYClassifyModel
 
-
++ (NSArray *)classModels{
+    NSArray *classArr = [NSArray objectArrayWithFilename:@"Classify.plist"];
+    NSMutableArray *mutableArr = [NSMutableArray new];
+    for (NSDictionary *dict in classArr) {
+        JYClassifyModel *model = [JYClassifyModel new];
+        [model setValuesForKeysWithDictionary:dict];
+        [mutableArr addObject:model];
+    }
+    classArr = [mutableArr copy];
+    return classArr;
+}
 
 @end

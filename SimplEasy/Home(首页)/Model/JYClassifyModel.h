@@ -17,6 +17,7 @@
 @property (nonatomic, assign) NSNumber *index;
 @property (nonatomic, strong) NSArray *subClass;
 
-
+/** 获取分类模型数组 */
++ (NSArray *)classModels;
 
 @end

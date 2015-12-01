@@ -111,18 +111,20 @@ static CGFloat bottomBtnHeight = 50;
     }];
     
     NSArray *btnNames = @[@"浏览",@"评论",@"收藏",@"联系卖家",@"立即易货"];
-    NSArray *btnImages = @[[UIImage imageNamed:@"eye"],[UIImage imageNamed:@"bottomicon2_05"],[UIImage imageNamed:@"bottomicon2_03"]];
-    NSArray *btnHighlightedImages = @[[UIImage imageNamed:@"eye"],[UIImage imageNamed:@"bottomicon2_05"],[UIImage imageNamed:@"bottomicon_03"]];
+    NSArray *btnImages = @[@"pd_eye.jpg",@"pd_comment",@"pd_heart"];
+    NSArray *btnHighlightedImages = @[@"pd_eye.jpg",@"pd_comment",@"pd_heart_highlighted"];
     NSArray *btnBgColors = @[kRGBColor(60, 183, 21),kRGBColor(55, 150, 84),kRGBColor(245, 245, 245)];
     
     for (int i = 0; i < btnImages.count; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [bottomView addSubview:btn];
+        //text
         [btn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [btn setTitle:btnNames[i] forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:10];
-        [btn setImage:btnImages[i] forState:UIControlStateNormal];
-        [btn setImage:btnHighlightedImages[i] forState:UIControlStateHighlighted];
+        //image
+        [btn setImage:[UIImage imageNamed:btnImages[i]] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:btnHighlightedImages[i]] forState:UIControlStateHighlighted];
         [btn setBackgroundColor:btnBgColors[2]];
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(i*bottomBtnWidth);

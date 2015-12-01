@@ -45,7 +45,7 @@ static CGFloat verticalMargin = 6.0f;
 - (UIButton *)shareBtn {
     if(_shareBtn == nil) {
         _shareBtn = [[UIButton alloc] init];
-        [_shareBtn setImage:[UIImage imageNamed:@"middleicon_16"] forState:UIControlStateNormal];
+        [_shareBtn setImage:[UIImage imageNamed:@"pd_share"] forState:UIControlStateNormal];
         [_shareBtn setTitle:@"分享" forState:UIControlStateNormal];
         [_shareBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         [_shareBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
@@ -141,7 +141,7 @@ static CGFloat verticalMargin = 6.0f;
     if(_locationIV == nil) {
         _locationIV = [[UIImageView alloc] init];
         _locationIV.contentMode = UIViewContentModeScaleAspectFit;
-        _locationIV.image = [UIImage imageNamed:@"middleicon_20"];
+        _locationIV.image = [UIImage imageNamed:@"pd_location"];
         [self.timeAndPlaceView addSubview:_locationIV];
         [_locationIV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.publishTimeLb.mas_right).mas_equalTo(10);

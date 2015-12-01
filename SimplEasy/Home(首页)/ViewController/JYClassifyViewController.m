@@ -70,6 +70,7 @@ static CGFloat margin = 5;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    JYLog(@"\n\n******************** 进入侧拉框界面 ********************\n\n");
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
     _tableView.showsVerticalScrollIndicator = NO;
@@ -193,14 +194,7 @@ static CGFloat margin = 5;
 
 - (NSArray *)classArr {
 	if(_classArr == nil) {
-		_classArr = [NSArray objectArrayWithFilename:@"Classify.plist"];
-        NSMutableArray *mutableArr = [NSMutableArray new];
-        for (NSDictionary *dict in _classArr) {
-            JYClassifyModel *model = [JYClassifyModel new];
-            [model setValuesForKeysWithDictionary:dict];
-            [mutableArr addObject:model];
-        }
-        _classArr = [mutableArr copy];
+        _classArr = [JYClassifyModel classModels];
 	}
 	return _classArr;
 }

@@ -7,8 +7,12 @@
 //
 
 #import "JYPublishIdleViewController.h"
+#import "JYPublishIdleView.h"
 
-@interface JYPublishIdleViewController ()
+@interface JYPublishIdleViewController ()<UIScrollViewDelegate>
+
+/** 发布视图 */
+@property (nonatomic, strong) JYPublishIdleView *idleView;
 
 @end
 
@@ -16,23 +20,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor yellowColor];
-    // Do any additional setup after loading the view.
+    JYLog(@"\n\n******************** 进入 发布闲置 视图 ********************\n\n");
+    [self idleView];
+
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark *** Lazy Loading ***
+
+- (JYPublishIdleView *)idleView {
+	if(_idleView == nil) {
+		_idleView = [[JYPublishIdleView alloc] init];
+        [self.view addSubview:_idleView];
+        _idleView.frame = [UIScreen mainScreen].bounds;
+	}
+	return _idleView;
 }
-*/
 
 @end
