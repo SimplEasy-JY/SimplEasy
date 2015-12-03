@@ -10,7 +10,6 @@
 		831A04C71BF5CAFC00F78986 /* JYMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70121BE860C600B8B05F /* JYMineController.m */; };
 		831A04CA1BF5CCCA00F78986 /* JYUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831A04C91BF5CCCA00F78986 /* JYUserInfoViewController.m */; };
 		831A04CD1BF5D08300F78986 /* JYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831A04CC1BF5D08300F78986 /* JYSettingViewController.m */; };
-		831F77561C0D4B1F0058059C /* JYPublishIdleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 831F77551C0D4B1F0058059C /* JYPublishIdleView.m */; };
 		8328A43C1BE8478B0021767D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A43B1BE8478B0021767D /* main.m */; };
 		8328A43F1BE8478B0021767D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A43E1BE8478B0021767D /* AppDelegate.m */; };
 		8328A4451BE8478B0021767D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8328A4431BE8478B0021767D /* Main.storyboard */; };
@@ -438,8 +437,6 @@
 		831A04C91BF5CCCA00F78986 /* JYUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYUserInfoViewController.m; sourceTree = "<group>"; };
 		831A04CB1BF5D08300F78986 /* JYSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYSettingViewController.h; sourceTree = "<group>"; };
 		831A04CC1BF5D08300F78986 /* JYSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYSettingViewController.m; sourceTree = "<group>"; };
-		831F77541C0D4B1F0058059C /* JYPublishIdleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYPublishIdleView.h; sourceTree = "<group>"; };
-		831F77551C0D4B1F0058059C /* JYPublishIdleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYPublishIdleView.m; sourceTree = "<group>"; };
 		8328A4371BE8478B0021767D /* SimplEasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimplEasy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8328A43B1BE8478B0021767D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8328A43D1BE8478B0021767D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1077,8 +1074,6 @@
 		831F77531C0D4B010058059C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				831F77541C0D4B1F0058059C /* JYPublishIdleView.h */,
-				831F77551C0D4B1F0058059C /* JYPublishIdleView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2985,7 +2980,6 @@
 				B02A70171BE8638A00B8B05F /* JYPlusButton.m in Sources */,
 				B06FDC7C1C08847C0076E4DC /* IMGroupMemberHeadersView.m in Sources */,
 				83DECFB71BF1C28900A1FE7C /* JYClassifyModel.m in Sources */,
-				831F77561C0D4B1F0058059C /* JYPublishIdleView.m in Sources */,
 				8394B2621BEDB18700D3F66F /* JYNewFeatureViewController.m in Sources */,
 				B06FDC811C08847C0076E4DC /* IMUserInformationViewController.m in Sources */,
 				8328A43F1BE8478B0021767D /* AppDelegate.m in Sources */,
