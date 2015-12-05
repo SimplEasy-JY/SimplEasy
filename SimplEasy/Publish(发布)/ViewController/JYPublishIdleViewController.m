@@ -8,26 +8,21 @@
 
 #import "JYPublishIdleViewController.h"
 #import "JYClassifyModel.h"
+#import "JYTitleCell.h"
+#import "JYProductDescCell.h"
+#import "JYPriceCell.h"
+#import "JYClassSelectCell.h"
+#import "JYPublishCell.h"
 
 /** 间隔 */
 static CGFloat MARGIN = 10;
-/** 商品描述的TEXTVIEW的高 */
-static CGFloat DESCTV_H = 130;
-/** 商品描述字数限制 */
-static NSInteger LIMIT_DESC_NUM = 999;
-/** 商品描述提示 */
-static NSString *DESC_PLACEHOLDER = @"描述一下您的物品...";
-/** 图片提示 */
-static NSString *IMAGE_NOTICE = @"请上传主图和细节图，更好促进易货哦！";
 /** 删除按钮的宽 */
 static NSUInteger DELETE_BTN_W = 20;
 /** 最多上传的图片数 */
 static NSUInteger MAX_IMAGE_COUNT = 5;
 static NSUInteger IMAGE_W = 100;
-//#define imageWidth (kWindowW-20)/3
 
-
-@interface JYPublishIdleViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+@interface JYPublishIdleViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITableViewDelegate,UITableViewDataSource>
 
 /** TableView */
 @property (nonatomic, strong) TPKeyboardAvoidingTableView *tableView;
@@ -56,12 +51,7 @@ static NSUInteger IMAGE_W = 100;
 @property (nonatomic, strong) UITextField *originPriceTF;
 /** 分类TF */
 @property (nonatomic, strong) UITextField *classTF;
-/** 分类选择 */
-@property (nonatomic, strong) UIPickerView *classPicker;
-/** 模型数组 */
-@property (nonatomic, strong) NSArray *classArr;
-/** 选中的分类 */
-@property (nonatomic, strong) NSString *selectedClass;
+
 @end
 
 @implementation JYPublishIdleViewController
@@ -127,7 +117,23 @@ static NSUInteger IMAGE_W = 100;
     }
     return YES;
 }
-
+/** 发布 */
+- (void)publish{
+    [self.classTF resignFirstResponder];
+    if ([self isLegal:self.priceTF.text] && [self isLegal:self.originPriceTF.text]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"发布成功" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }else{
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请输入正确的价格" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self.priceTF becomeFirstResponder];
+        }]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
 #pragma mark *** <UITableViewDataSource> ***
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -139,117 +145,43 @@ static NSUInteger IMAGE_W = 100;
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellIdentifier = @"idleCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            UITextField *titleTF = [[UITextField alloc] initWithFrame:CGRectMake(MARGIN, 0, cell.contentView.width - 2 * MARGIN, cell.contentView.height)];
-            titleTF.placeholder = @"标题";
-            titleTF.clearButtonMode = UITextFieldViewModeWhileEditing;
-            [cell.contentView addSubview:titleTF];
-            self.titleTF = titleTF;
+            JYTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TitleCell"];
+            self.titleTF = cell.titleTF;
+            return cell;
         }else if (indexPath.row == 1){
-        //商品描述的textView
-            self.descTV = [[UITextView alloc] init];
-            _descTV.text = DESC_PLACEHOLDER;
-            _descTV.frame = CGRectMake(MARGIN, MARGIN, cell.width-2*MARGIN, DESCTV_H);
-            _descTV.textColor = [UIColor lightGrayColor];
-            _descTV.font = [UIFont systemFontOfSize:14];
-            _descTV.delegate = self;
-            [cell.contentView addSubview:_descTV];
-            
-            /** 为TExtView加一个手势，下滑回收键盘 */
-            UISwipeGestureRecognizer *swipeGR = [[UISwipeGestureRecognizer alloc] bk_initWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
-                [_descTV resignFirstResponder];
-            }];
-            swipeGR.direction = UISwipeGestureRecognizerDirectionLeft;
-            [_descTV addGestureRecognizer:swipeGR];
-        //加入滚动视图，放置图片
-            UIScrollView *imageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 2*MARGIN + DESCTV_H, cell.width, IMAGE_W)];
-            self.imageScrollView = imageScrollView;
-            [cell.contentView addSubview:imageScrollView];
-            
-            imageScrollView.showsHorizontalScrollIndicator = NO;
-            imageScrollView.alwaysBounceHorizontal = YES;
-            
-
+            JYProductDescCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProductDescCell"];
+            self.descTV  = cell.descTV;
+            self.imageScrollView = cell.imageScrollView;
             [self configScrollView];
-            
-            UILabel *noticeLb = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN/2, 2*MARGIN+DESCTV_H+IMAGE_W+MARGIN/2, cell.width, MARGIN)];
-            noticeLb.text = IMAGE_NOTICE;
-            noticeLb.font = [UIFont systemFontOfSize:10];
-            noticeLb.textColor = [UIColor lightGrayColor];
-            [cell.contentView addSubview:noticeLb];
+            return cell;
         }else {
         //定位按钮
-            UIButton *locationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            locationBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-            locationBtn.frame = CGRectMake(MARGIN, 0, cell.contentView.width-MARGIN, cell.contentView.height);
-            [locationBtn setImage:[UIImage imageNamed:@"location_07"] forState:UIControlStateNormal];
-            [locationBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            locationBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-            [locationBtn setTitle:@"浙江传媒学院" forState:UIControlStateNormal];
-            [cell.contentView addSubview: locationBtn];
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+            cell.imageView.image = [UIImage imageNamed:@"location_07"];
+            cell.textLabel.text = @"浙江传媒学院";
+            cell.textLabel.font = [UIFont systemFontOfSize:12];
+            return cell;
         }
     }
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
-        //价格原价cell
-            UILabel *priceLb = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN, 0, kWindowW/4-MARGIN, cell.contentView.height)];
-            priceLb.text = @"价格";
-            [cell.contentView addSubview:priceLb];
-            UITextField *priceTF = [[UITextField alloc] initWithFrame:CGRectMake(kWindowW/4, 0, kWindowW/4, cell.contentView.height)];
-            priceTF.placeholder = @"¥0.00";
-            [cell.contentView addSubview:priceTF];
-            self.priceTF = priceTF;
-            UILabel *originPriceLb = [[UILabel alloc] initWithFrame:CGRectMake(kWindowW/2, 0, kWindowW/4, cell.contentView.height)];
-            originPriceLb.text = @"原价";
-            [cell.contentView addSubview:originPriceLb];
-            UITextField *originPriceTF = [[UITextField alloc] initWithFrame:CGRectMake(kWindowW/4*3, 0, kWindowW/4, cell.contentView.height)];
-            originPriceTF.placeholder = @"¥0.00";
-            [cell.contentView addSubview:originPriceTF];
-            self.originPriceTF = originPriceTF;
+            JYPriceCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PriceCell"];
+            self.priceTF = cell.priceTF;
+            self.originPriceTF = cell.originPriceTF;
+            return cell;
         }else if(indexPath.row == 1){
-        //分类cell
-            UILabel *classLb = [[UILabel alloc] initWithFrame:CGRectMake(MARGIN, 0, kWindowW/4-MARGIN, cell.contentView.height)];
-            classLb.text = @"分类";
-            [cell.contentView addSubview:classLb];
-            UITextField *classTF = [[UITextField alloc] initWithFrame:CGRectMake(kWindowW/4-MARGIN, 0, cell.contentView.width-(kWindowW/4-MARGIN), cell.contentView.height)];
-            classTF.placeholder = @"请选择分类";
-            self.classTF = classTF;
-            classTF.inputView = self.classPicker;
-            [cell.contentView addSubview:classTF];
+            JYClassSelectCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ClassSelectCell"];
+            self.classTF = cell.classTF;
+            return cell;
         }else{
-        //发布cell
-            cell.height = 50;
-            UIButton *publishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            publishBtn.frame = CGRectMake(MARGIN/2, MARGIN/2, cell.contentView.width-MARGIN, cell.height-MARGIN);
-            [publishBtn setBackgroundColor:JYGlobalBg];
-            [publishBtn setTitle:@"确认发布" forState:UIControlStateNormal];
-            [publishBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [cell.contentView addSubview:publishBtn];
-            [publishBtn bk_addEventHandler:^(id sender) {
-                [self.classTF resignFirstResponder];
-                if ([self isLegal:self.priceTF.text] && [self isLegal:self.originPriceTF.text]) {
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"发布成功" preferredStyle:UIAlertControllerStyleAlert];
-                    [alert addAction:[UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                        [self.navigationController popViewControllerAnimated:YES];
-                    }]];
-                    [self presentViewController:alert animated:YES completion:nil];
-                }else{
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请输入正确的价格" preferredStyle:UIAlertControllerStyleAlert];
-                    [alert addAction:[UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                        [self.priceTF becomeFirstResponder];
-                    }]];
-                    [self presentViewController:alert animated:YES completion:nil];
-                }
-            } forControlEvents:UIControlEventTouchUpInside];
+            JYPublishCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PublishCell"];
+            [cell.publishBtn addTarget:self action:@selector(publish) forControlEvents:UIControlEventTouchUpInside];
+            return cell;
         }
     }
-    return cell;
+    return nil;
     
 }
 
@@ -257,90 +189,18 @@ static NSUInteger IMAGE_W = 100;
 
 kRemoveCellSeparator
 
-/** 各种高 */
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 1 && indexPath.row == 2) {
-        return 50;
-    }
-    if (indexPath.section == 0 && indexPath.row == 1) {
-        return 4*MARGIN + DESCTV_H + IMAGE_W+MARGIN/2;
-    }
-    return 44;
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewAutomaticDimension;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return section==1?10:0;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return section==0?10:0;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark *** UITextViewDelegate ***
-
-- (void)textViewDidChange:(UITextView *)textView{
-    if (textView.text.length>LIMIT_DESC_NUM) {
-        textView.text = [textView.text substringToIndex:LIMIT_DESC_NUM];
-    }
-}
-- (void)textViewDidBeginEditing:(UITextView *)textView{
-    if ([textView.text isEqualToString:DESC_PLACEHOLDER]) {
-        textView.text = @"";
-    }
-    self.descTV.textColor = [UIColor darkTextColor];
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView{
-    [textView resignFirstResponder];
-    if (self.descTV.text.length == 0) {
-        self.descTV.text = DESC_PLACEHOLDER;
-        self.descTV.textColor = [UIColor lightGrayColor];
-    }
-}
-
-#pragma mark *** <UIPickerViewDataSource> ***
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    return 2;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    if (component == 0) {
-        return self.classArr.count;
-    }
-    NSInteger index = [pickerView selectedRowInComponent:0];
-    JYClassifyModel *model = self.classArr[index];
-    return model.subClass.count;
-}
-
-#pragma mark *** <UIPickerViewDelegate> ***
-
-- (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    if (component == 0) {
-        JYClassifyModel *model = self.classArr[row];
-        return model.name;
-    }else{
-        NSInteger index = [pickerView selectedRowInComponent:0];
-        JYClassifyModel *model = self.classArr[index];
-        return row<model.subClass.count?model.subClass[row]:nil;
-    }
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    if (component == 0) {
-        [self.classPicker reloadComponent:1];
-        [pickerView selectRow:0 inComponent:1 animated:YES];
-    }else{
-        NSInteger index = [pickerView selectedRowInComponent:0];
-        JYClassifyModel *model = self.classArr[index];
-        self.selectedClass = [[model.name stringByAppendingString:@"-"] stringByAppendingString:model.subClass[row]];
-        self.classTF.text = self.selectedClass;
-    }
-}
 
 #pragma mark *** UIImagePickerControllerDelegate ***
 
@@ -356,7 +216,6 @@ kRemoveCellSeparator
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
 #pragma mark *** Lazy Loading ***
 
 - (UITableView *)tableView {
@@ -371,25 +230,16 @@ kRemoveCellSeparator
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(0);
         }];
+        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+        [_tableView registerClass:[JYTitleCell class] forCellReuseIdentifier:@"TitleCell"];
+        [_tableView registerClass:[JYProductDescCell class] forCellReuseIdentifier:@"ProductDescCell"];
+        [_tableView registerClass:[JYPriceCell class] forCellReuseIdentifier:@"PriceCell"];
+        [_tableView registerClass:[JYClassSelectCell class] forCellReuseIdentifier:@"ClassSelectCell"];
+        [_tableView registerClass:[JYPublishCell class] forCellReuseIdentifier:@"PublishCell"];
     }
 	return _tableView;
 }
 
-- (UIPickerView *)classPicker {
-	if(_classPicker == nil) {
-		_classPicker = [[UIPickerView alloc] init];
-        _classPicker.delegate = self;
-        _classPicker.dataSource = self;
-	}
-	return _classPicker;
-}
-
-- (NSArray *)classArr {
-	if(_classArr == nil) {
-		_classArr = [JYClassifyModel classModels];
-	}
-	return _classArr;
-}
 
 - (UIImagePickerController *)imagePicker {
 	if(_imagePicker == nil) {
