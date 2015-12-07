@@ -65,7 +65,7 @@
 /** 应用程序的屏幕宽度 */
 #define kWindowW    [UIScreen mainScreen].bounds.size.width
 
-#define loginVC [JYLoginStatus loginStatus]
+#define loginVC [JYLoginViewController shareLoginVC]
 
 #define rootVC [JYRootViewController shareRootVC]
 

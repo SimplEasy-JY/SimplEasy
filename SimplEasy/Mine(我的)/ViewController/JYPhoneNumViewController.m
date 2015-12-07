@@ -9,7 +9,7 @@
 #import "JYPhoneNumViewController.h"
 #import "JYRegisterViewController.h"
 #import "JYUserProtocolViewController.h"
-
+#import "JYRootViewController.h"
 
 #import <SMS_SDK/SMSSDK.h>
 
@@ -150,7 +150,11 @@ static CGFloat space = 30;
     [button setTitleColor:JYGlobalBg forState:UIControlStateNormal];
     [button setTitleColor:kRGBColor(200, 200, 200) forState:UIControlStateHighlighted];
     [button bk_addEventHandler:^(id sender) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        JYLoginViewController *childVC = [[JYLoginViewController alloc]init];
+        [rootVC addChildViewController:childVC];
+        [rootVC.view addSubview:childVC.view];
+        [self removeFromParentViewController];
+        [self.view removeFromSuperview];
     } forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
 
@@ -193,9 +197,24 @@ static CGFloat space = 30;
             JYRegisterViewController *vc =  [[JYRegisterViewController alloc]init];
             vc.phoneNum = self.phoneNumField.text;
             vc.lvc = self.lvc;
-            [self presentViewController:vc animated:YES completion:
-             nil];
+//            [self presentViewController:vc animated:YES completion:
+//             nil];
+            
+            [rootVC addChildViewController:vc];
+            [rootVC.view addSubview:vc.view];
+            [self.view removeFromSuperview];
+            [self removeFromParentViewController];
         }
+        JYRegisterViewController *vc =  [[JYRegisterViewController alloc]init];
+        vc.phoneNum = self.phoneNumField.text;
+        vc.lvc = self.lvc;
+        //            [self presentViewController:vc animated:YES completion:
+        //             nil];
+        
+        [rootVC addChildViewController:vc];
+        [rootVC.view addSubview:vc.view];
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
     }];
     
 }

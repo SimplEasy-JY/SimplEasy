@@ -116,9 +116,8 @@
     //版本号相同：这次打开和上次打开的是同一个版本,根控制器就是sideMenu
     if ([currentVersion isEqualToString:lastVersion]) {
         if ([g_pIMMyself loginStatus] == IMMyselfLoginStatusNone) {
-            JYLoginViewController *childVC = [[JYLoginViewController alloc]init];
-            [rootVC addChildViewController:childVC];
-            [rootVC.view addSubview:childVC.view];
+            [rootVC addChildViewController:loginVC];
+            [rootVC.view addSubview:loginVC.view];
         }
             self.window.rootViewController = rootVC;
     }else{ //这次打开的版本和上一次不一样，显示新特性

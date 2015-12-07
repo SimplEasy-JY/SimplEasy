@@ -192,6 +192,7 @@
 		B03859EF1C06FC600053D0B0 /* loding_480.800.png in Resources */ = {isa = PBXBuildFile; fileRef = B03859891C06FC600053D0B0 /* loding_480.800.png */; };
 		B03859F01C06FC600053D0B0 /* loding_750.1334.png in Resources */ = {isa = PBXBuildFile; fileRef = B038598A1C06FC600053D0B0 /* loding_750.1334.png */; };
 		B03859F31C0703410053D0B0 /* IMMyselfInfoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03859F21C0703410053D0B0 /* IMMyselfInfoEditViewController.m */; };
+		B03889E51C15AA560031DDC8 /* JYLoginRegisterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B03889E41C15AA560031DDC8 /* JYLoginRegisterModel.m */; };
 		B03FD5641C0553400031A18C /* JYSDKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B03FD5631C0553400031A18C /* JYSDKManager.m */; };
 		B03FD5701C0553BC0031A18C /* JYLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03FD56E1C0553BC0031A18C /* JYLoginViewController.m */; };
 		B03FD5731C0553CD0031A18C /* JYRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03FD5721C0553CD0031A18C /* JYRootViewController.m */; };
@@ -392,7 +393,7 @@
 		B089AA981BE9D09400E5D2CC /* JYLoopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AA971BE9D09400E5D2CC /* JYLoopModel.m */; };
 		B089AA9E1BE9D50700E5D2CC /* JYLoopViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AA9D1BE9D50700E5D2CC /* JYLoopViewModel.m */; };
 		B089AAA11BE9D70800E5D2CC /* JYLoopNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AAA01BE9D70800E5D2CC /* JYLoopNetManager.m */; };
-		B09AF0F11C0BF56500B75174 /* JYLoginStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = B09AF0F01C0BF56500B75174 /* JYLoginStatus.m */; };
+		B09AF0FD1C1179E100B75174 /* JYLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B09AF0FC1C1179E100B75174 /* JYLoginManager.m */; };
 		B0AEC8911BEC86540045F08F /* JYHomeProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AEC88F1BEC86540045F08F /* JYHomeProductCell.m */; };
 		B0AEC8921BEC86540045F08F /* JYHomeProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0AEC8901BEC86540045F08F /* JYHomeProductCell.xib */; };
 		B0AFA39C1BFB213E00F795F9 /* amrFileCodec.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AFA3761BFB213D00F795F9 /* amrFileCodec.m */; };
@@ -707,6 +708,8 @@
 		B038598A1C06FC600053D0B0 /* loding_750.1334.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loding_750.1334.png; sourceTree = "<group>"; };
 		B03859F11C0703410053D0B0 /* IMMyselfInfoEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMMyselfInfoEditViewController.h; sourceTree = "<group>"; };
 		B03859F21C0703410053D0B0 /* IMMyselfInfoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMMyselfInfoEditViewController.m; sourceTree = "<group>"; };
+		B03889E31C15AA560031DDC8 /* JYLoginRegisterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLoginRegisterModel.h; sourceTree = "<group>"; };
+		B03889E41C15AA560031DDC8 /* JYLoginRegisterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLoginRegisterModel.m; sourceTree = "<group>"; };
 		B03FD5621C0553400031A18C /* JYSDKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYSDKManager.h; sourceTree = "<group>"; };
 		B03FD5631C0553400031A18C /* JYSDKManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYSDKManager.m; sourceTree = "<group>"; };
 		B03FD56D1C0553BC0031A18C /* JYLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLoginViewController.h; sourceTree = "<group>"; };
@@ -987,8 +990,8 @@
 		B089AA9D1BE9D50700E5D2CC /* JYLoopViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLoopViewModel.m; sourceTree = "<group>"; };
 		B089AA9F1BE9D70800E5D2CC /* JYLoopNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLoopNetManager.h; sourceTree = "<group>"; };
 		B089AAA01BE9D70800E5D2CC /* JYLoopNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLoopNetManager.m; sourceTree = "<group>"; };
-		B09AF0EF1C0BF56500B75174 /* JYLoginStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLoginStatus.h; sourceTree = "<group>"; };
-		B09AF0F01C0BF56500B75174 /* JYLoginStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLoginStatus.m; sourceTree = "<group>"; };
+		B09AF0FB1C1179E100B75174 /* JYLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLoginManager.h; sourceTree = "<group>"; };
+		B09AF0FC1C1179E100B75174 /* JYLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLoginManager.m; sourceTree = "<group>"; };
 		B0AEC88E1BEC86540045F08F /* JYHomeProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYHomeProductCell.h; sourceTree = "<group>"; };
 		B0AEC88F1BEC86540045F08F /* JYHomeProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYHomeProductCell.m; sourceTree = "<group>"; };
 		B0AEC8901BEC86540045F08F /* JYHomeProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JYHomeProductCell.xib; sourceTree = "<group>"; };
@@ -1391,8 +1394,6 @@
 				B0AFA3731BFB213D00F795F9 /* IMThirdParty */,
 				B02A70141BE8637000B8B05F /* tabbarPlus */,
 				8328A4941BE849800021767D /* Category */,
-				B09AF0EF1C0BF56500B75174 /* JYLoginStatus.h */,
-				B09AF0F01C0BF56500B75174 /* JYLoginStatus.m */,
 			);
 			path = "Util(公用)";
 			sourceTree = "<group>";
@@ -1640,6 +1641,8 @@
 			children = (
 				83987DEF1BFEF71E007C9CE4 /* JYUserInfoModel.h */,
 				83987DF01BFEF71E007C9CE4 /* JYUserInfoModel.m */,
+				B03889E31C15AA560031DDC8 /* JYLoginRegisterModel.h */,
+				B03889E41C15AA560031DDC8 /* JYLoginRegisterModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1651,6 +1654,8 @@
 				B03FD5631C0553400031A18C /* JYSDKManager.m */,
 				83987DF31BFEFADF007C9CE4 /* JYUserInfoNetManager.h */,
 				83987DF41BFEFADF007C9CE4 /* JYUserInfoNetManager.m */,
+				B09AF0FB1C1179E100B75174 /* JYLoginManager.h */,
+				B09AF0FC1C1179E100B75174 /* JYLoginManager.m */,
 			);
 			path = NetManager;
 			sourceTree = "<group>";
@@ -3037,6 +3042,7 @@
 				B06FDC711C08847C0076E4DC /* IMContactTableViewCell.m in Sources */,
 				B06FDC791C08847C0076E4DC /* IMGroupInfoEditViewController.m in Sources */,
 				8328A4A61BE849800021767D /* NSObject+Common.m in Sources */,
+				B03889E51C15AA560031DDC8 /* JYLoginRegisterModel.m in Sources */,
 				B003E7F31C089FDE00703A90 /* JYBaseViewController.m in Sources */,
 				8333E08C1BF4A5E4005CE5B4 /* UILabel+Line.m in Sources */,
 				8328A4A81BE849800021767D /* NSString+QRCode.m in Sources */,
@@ -3044,12 +3050,12 @@
 				B0CC9A891BF07E3800FCC177 /* JYRecommendCell.m in Sources */,
 				8396B81B1C12CBAC007E09C5 /* JYPublishCell.m in Sources */,
 				B04800811BF48A65007D39F4 /* JYGoodsModel.m in Sources */,
+				B09AF0FD1C1179E100B75174 /* JYLoginManager.m in Sources */,
 				8328A4A91BE849800021767D /* UIBarButtonItem+Extension.m in Sources */,
 				8328A4B21BE84E1F0021767D /* JYBaseNetManager.m in Sources */,
 				B089AAA11BE9D70800E5D2CC /* JYLoopNetManager.m in Sources */,
 				B06FDC801C08847C0076E4DC /* IMFriendRequestViewController.m in Sources */,
 				B03FD58C1C05BA2F0031A18C /* JYUserProtocolViewController.m in Sources */,
-				B09AF0F11C0BF56500B75174 /* JYLoginStatus.m in Sources */,
 				831A04CA1BF5CCCA00F78986 /* JYUserInfoViewController.m in Sources */,
 				B02A701A1BE863AE00B8B05F /* JYTabBar.m in Sources */,
 				B06FDC771C08847C0076E4DC /* IMAddGroupMemberViewController.m in Sources */,

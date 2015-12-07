@@ -13,7 +13,10 @@
 #import "UIImage+Circle.h"
 #import "JYRegisterViewController.h"
 #import "JYUserProtocolViewController.h"
-#import "JYLoginStatus.h"
+#import "JYRootViewController.h"
+#import "JYPhoneNumViewController.h"
+#import "JYLoginRegisterModel.h"
+#import "JYLoginManager.h"
 
 //third-party
 #import "SFCountdownView.h"
@@ -104,7 +107,7 @@ static CGFloat space = 30;
 #pragma mark - viewDidLoad
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //取消按钮
+    //上一步按钮
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(5, 25, 60, 30);
     button.titleLabel.font = [UIFont systemFontOfSize:18];
@@ -112,11 +115,16 @@ static CGFloat space = 30;
     [button setTitleColor:JYGlobalBg forState:UIControlStateNormal];
     [button setTitleColor:kRGBColor(200, 200, 200) forState:UIControlStateHighlighted];
     [button bk_addEventHandler:^(id sender) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+//        [self dismissViewControllerAnimated:YES completion:nil];
+        JYPhoneNumViewController *vc = [[JYPhoneNumViewController alloc]init];
+        [rootVC addChildViewController:vc];
+        [rootVC.view addSubview:vc.view];
+        [self removeFromParentViewController];
+        [self.view removeFromSuperview];
     } forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     
-    [loginVC addObserver:self.lvc forKeyPath:@"isLogin" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+//    [loginVC addObserver:rootVC forKeyPath:@"isLogin" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     
 }
 
@@ -161,13 +169,18 @@ static CGFloat space = 30;
             return;
         }
         else {
-                [g_pIMMyself setCustomUserID:customUserID];
+            NSDictionary *params = [[NSDictionary alloc]initWithObjectsAndKeys:@"tel",self.phoneNum,@"password",password,@"name",customUserID, nil];
+            [JYLoginManager loginOrRegisterWith:params Login:NO completionHandle:^(JYLoginRegisterModel *model, NSError *error) {
+                if (model.error_msg ) {
+                    _notifyText = model.error_msg;
+                    _notifyImage = [UIImage imageNamed:@"IM_alert_image.png"];
+                    [self displayNotifyHUD];
+                    return ;
+                }
+                [g_pIMMyself setCustomUserID:self.phoneNum];
                 [g_pIMMyself setPassword:password];
                 [g_pIMMyself registerWithTimeoutInterval:5 success:^{
-//                    [self removeFromParentViewController];
-//                    [[self view] removeFromSuperview];
-                    loginVC.isLogin = YES;
-                    [self dismissViewControllerAnimated:YES completion:nil];
+                    
                     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:IMLastLoginTime];
                     [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself customUserID] forKey:IMLoginCustomUserID];
                     [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself password] forKey:IMLoginPassword];
@@ -176,6 +189,9 @@ static CGFloat space = 30;
                     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
                     [_passField setText:nil];
                     [[self view] endEditing:YES];
+                    [self removeFromParentViewController];
+                    [[self view] removeFromSuperview];
+                    rootVC.tabBarController.selectedIndex = 0;
                 } failure:^(NSString *error) {
                     if ([error isEqualToString:@"customUserID只能由2 ～32位字母、数字、下划线、点或@符组成"]) {
                         error = @"账号只能由2 ～32位字母、数字、下划线、点或@符组成";
@@ -205,12 +221,14 @@ static CGFloat space = 30;
                     }
                     [self performSelector:@selector(loginError:) withObject:error afterDelay:0.5];
                 }];
+            }];
             }
         } else {
         _notifyText = @"请输入用户名";
         _notifyImage = [UIImage imageNamed:@"IM_alert_image.png"];
         [self displayNotifyHUD];
     }
+            
 
 
 
@@ -321,6 +339,7 @@ kRemoveCellSeparator
         [[self notify] removeFromSuperview];
     }];
 }
+
 
 
 @end

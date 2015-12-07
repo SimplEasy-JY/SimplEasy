@@ -12,7 +12,8 @@
 #import "JYRootViewController.h"
 #import "UIImage+Circle.h"
 #import "JYPhoneNumViewController.h"
-#import "JYLoginStatus.h"
+#import "JYLoginManager.h"
+#import "JYLoginRegisterModel.h"
 
 //third-party
 #import "SFCountdownView.h"
@@ -31,6 +32,7 @@ static CGFloat tabviewH = 88;
 static CGFloat imgviewH = 80;
 static CGFloat textFieldH = 44;
 
+static JYLoginViewController *loginViewC = nil;// 定义全局静态变量
 
 @interface JYLoginViewController ()<UITableViewDataSource, UITableViewDelegate ,UITextFieldDelegate,IMLoginViewDelegate>
 
@@ -65,6 +67,30 @@ static CGFloat textFieldH = 44;
     NSString *_notifyText;
     UIImage *_notifyImage;
 }
++ (id)allocWithZone:(struct _NSZone *)zone
+{
+    if (!loginViewC) {
+        loginViewC = [super allocWithZone:zone];//如果没有实例让父类去创建一个
+        return loginViewC;
+    }
+    return nil;
+}
++ (JYLoginViewController *)shareLoginVC  //定义一个类方法进行访问(便利构造)
+{
+    if (!loginViewC) {
+        loginViewC = [[JYLoginViewController alloc]init];// 如果实例不存在进行创建
+    }
+    return loginViewC;
+    
+}
+
+// 封堵深复制 （copy 和 mutablecopy 都可以实现深复制 但他们最终都需要调用copyWithZone方法所以直接封堵它）
+- (id)copyWithZone:(struct _NSZone *)zone
+{
+    return self;
+}
+
+
 #pragma mark - 懒加载
 -(UIButton *)touristButton{
     if (!_touristButton) {
@@ -165,7 +191,11 @@ static CGFloat textFieldH = 44;
         [self.registerButton bk_addEventHandler:^(id sender) {
             JYPhoneNumViewController *phoneNumVC = [[JYPhoneNumViewController alloc]init];
             phoneNumVC.lvc = self;
-            [self presentViewController:phoneNumVC animated:YES completion:nil];
+//            [self presentViewController:phoneNumVC animated:YES completion:nil];
+            [rootVC addChildViewController:phoneNumVC];
+            [rootVC.view addSubview:phoneNumVC.view];
+            [self removeFromParentViewController];
+            [self.view removeFromSuperview];
         } forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.registerButton];
         [self.view addSubview:self.touristButton];
@@ -188,7 +218,7 @@ static CGFloat textFieldH = 44;
     [self.touristButton bk_addEventHandler:^(id sender) {
         [self removeFromParentViewController];
         [[self view] removeFromSuperview];
-        [[NSNotificationCenter defaultCenter] postNotificationName:IMLoginNotification object:nil];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:IMLoginNotification object:nil];
     } forControlEvents:UIControlEventTouchUpInside];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logout) name:IMLogoutNotification object:nil];
     
@@ -231,60 +261,69 @@ static CGFloat textFieldH = 44;
         if (sender.tag == 100) {
             [self startAnimation];
         }
-        sender.tag +=1;
-//        [g_pIMMyself setDelegate:self];
-        [g_pIMMyself setCustomUserID:self.userName];
-        [g_pIMMyself setPassword:self.password];
-        [g_pIMMyself setAutoLogin:YES];
-        [g_pIMMyself loginWithTimeoutInterval:5 success:^{
-            _isStop = YES;
-           
-            [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:IMLastLoginTime];
-            [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself customUserID] forKey:IMLoginCustomUserID];
-            [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself password] forKey:IMLoginPassword];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            //应用角标清零
-            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-            
-            [self.passwordField setText:nil];
-            [[self view] endEditing:YES];
-            [self removeFromParentViewController];
-            [[self view] removeFromSuperview];
-            [[NSNotificationCenter defaultCenter] postNotificationName:IMLoginNotification object:nil];
-        } failure:^(NSString *error) {
-            
-            if ([error isEqualToString:@"customUserID只能由2 ～32位字母、数字、下划线、点或@符组成"]) {
-                error = @"账号只能由2 ～32位字母、数字、下划线、点或@符组成";
+        NSDictionary *params = [[NSDictionary alloc]initWithObjectsAndKeys:@"tel",self.userName,@"password",self.password, nil];
+        [JYLoginManager loginOrRegisterWith:params Login:YES completionHandle:^(JYLoginRegisterModel *model, NSError *error) {
+            if (model.error_msg ) {
+                _notifyText = model.error_msg;
+                _notifyImage = [UIImage imageNamed:@"IM_alert_image.png"];
+                [self displayNotifyHUD];
+                return ;
             }
-            if ([error isEqualToString:@"Wrong Password"]) {
-                error = @"密码错误,请重新输入";
-            } else if ([error isEqualToString:@"customUserID should be only built by letters, Numbers, underscores, or '@''.',and the length between 2 to 32 characters"]){
-                error = @"用户名只能由字母、数字、下划线、@符或点组成,长度不能超过32位，也不能少于2位";
-            } else if ([error isEqualToString:@"Password length should between 2 to 32 characters"]) {
-                error = @"密码长度不能超过32位，也不能少于2位";
-            } else if ([error isEqualToString:@"password不能为空字符串"] || [error isEqualToString:@"password不能为nil"]) {
-                error = @"密码不能为空";
-            } else if ([error isEqualToString:@"customUserID不能为null"] || [error isEqualToString:@"customUserID不能为空字符串"]){
-                error = @"账号不能为空";
-            } else if ([error isEqualToString:@"Time out"]) {
-                error = @"登录超时";
-            } else if ([error isEqualToString:@"CustomUserID Already Exist"]) {
-                error = @"用户已经存在";
-            } else if ([error isEqualToString:@"CustomUserID is not exist"]) {
-                error = @"用户不存在";
-            } else if ([error isEqualToString:@"The passwords input twice are inconsistent"]) {
-                error = @"两次输入密码不一致";
-            } else {
-                if (!error) {
-                    error = @"登录失败";
+            sender.tag +=1;
+            //        [g_pIMMyself setDelegate:self];
+            [g_pIMMyself setCustomUserID:self.userName];
+            [g_pIMMyself setPassword:self.password];
+            [g_pIMMyself setAutoLogin:YES];
+            [g_pIMMyself loginWithTimeoutInterval:5 success:^{
+                _isStop = YES;
+                
+                [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:IMLastLoginTime];
+                [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself customUserID] forKey:IMLoginCustomUserID];
+                [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself password] forKey:IMLoginPassword];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                //应用角标清零
+                [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+                
+                [self.passwordField setText:nil];
+                [[self view] endEditing:YES];
+                [self removeFromParentViewController];
+                [[self view] removeFromSuperview];
+                rootVC.tabBarController.selectedIndex = 0;
+                [[NSNotificationCenter defaultCenter] postNotificationName:IMLoginNotification object:nil];
+            } failure:^(NSString *error) {
+                
+                if ([error isEqualToString:@"customUserID只能由2 ～32位字母、数字、下划线、点或@符组成"]) {
+                    error = @"账号只能由2 ～32位字母、数字、下划线、点或@符组成";
                 }
-            }
-            
-            [self performSelector:@selector(loginError:) withObject:error afterDelay:0.5];
+                if ([error isEqualToString:@"Wrong Password"]) {
+                    error = @"密码错误,请重新输入";
+                } else if ([error isEqualToString:@"customUserID should be only built by letters, Numbers, underscores, or '@''.',and the length between 2 to 32 characters"]){
+                    error = @"用户名只能由字母、数字、下划线、@符或点组成,长度不能超过32位，也不能少于2位";
+                } else if ([error isEqualToString:@"Password length should between 2 to 32 characters"]) {
+                    error = @"密码长度不能超过32位，也不能少于2位";
+                } else if ([error isEqualToString:@"password不能为空字符串"] || [error isEqualToString:@"password不能为nil"]) {
+                    error = @"密码不能为空";
+                } else if ([error isEqualToString:@"customUserID不能为null"] || [error isEqualToString:@"customUserID不能为空字符串"]){
+                    error = @"账号不能为空";
+                } else if ([error isEqualToString:@"Time out"]) {
+                    error = @"登录超时";
+                } else if ([error isEqualToString:@"CustomUserID Already Exist"]) {
+                    error = @"用户已经存在";
+                } else if ([error isEqualToString:@"CustomUserID is not exist"]) {
+                    error = @"用户不存在";
+                } else if ([error isEqualToString:@"The passwords input twice are inconsistent"]) {
+                    error = @"两次输入密码不一致";
+                } else {
+                    if (!error) {
+                        error = @"登录失败";
+                    }
+                }
+                [self performSelector:@selector(loginError:) withObject:error afterDelay:0.5];
+            }];
+
             
         }];
-
-    } else {
+            } else {
         _notifyText = @"请输入用户名";
         _notifyImage = [UIImage imageNamed:@"IM_alert_image.png"];
         [self displayNotifyHUD];

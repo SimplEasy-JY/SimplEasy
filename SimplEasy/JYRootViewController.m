@@ -105,16 +105,16 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
     [g_pIMMyself setGroupDelegate:nil];
     [g_pIMMyself setCustomUserInfoDelegate:nil];
 }
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logout) name:IMLogoutNotification object:nil];
-    }
-    return self;
-}
+//
+//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+//{
+//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+//    if (self) {
+//        // Custom initialization
+//       
+//    }
+//    return self;
+//}
 
 - (void)viewDidLoad
 {
@@ -122,6 +122,7 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
     // Do any additional setup after loading the view.
     [[self view] setBackgroundColor:[UIColor whiteColor]];
     [[self navigationController] setNavigationBarHidden:YES];
+    
 
     
     //设置IMMyself 代理
@@ -129,9 +130,10 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
     [g_pIMMyself setRelationshipDelegate:self];
     [g_pIMMyself setGroupDelegate:self];
     [g_pIMMyself setCustomUserInfoDelegate:self];
-    [self setupViewControllers];
+//    [self setupViewControllers];
     [self addChildViewController:self.sideMenu];
     [self.view addSubview:self.sideMenu.view];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logout) name:IMLogoutNotification object:nil];
 
     
 }
@@ -160,13 +162,11 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
 }
 
 - (void)logout {
-    [self.tabBarController setSelectedIndex:0];
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:IMLoginCustomUserID];
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:IMLoginPassword];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    JYLoginViewController *vc = [[JYLoginViewController alloc]init];
-    [self addChildViewController:vc];
-    [self.view addSubview:vc.view];
+    [self addChildViewController:loginVC];
+    [self.view addSubview:loginVC.view];
 //    [self removeFromParentViewController];
 //    [[self view] removeFromSuperview];
 //    [self.navigationController popToRootViewControllerAnimated:YES];

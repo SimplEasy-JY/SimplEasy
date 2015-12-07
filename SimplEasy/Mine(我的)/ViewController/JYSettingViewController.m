@@ -179,7 +179,7 @@ kRemoveCellSeparator
         
         [g_pIMMyself logout];
         //注册注销通知
-        //        [[NSNotificationCenter defaultCenter] postNotificationName:IMLogoutNotification object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:IMLogoutNotification object:nil];
         
         
     } else {

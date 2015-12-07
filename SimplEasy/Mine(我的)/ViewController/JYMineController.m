@@ -54,12 +54,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData:) name:IMReloadMainPhotoNotification object:nil];
     //监听登录通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(login) name:IMLoginNotification object:nil];
+    
 }
 
 #pragma mark *** 私有方法 ***
 //登录刷新
 -(void)login{
-    [self.tableView reloadData];
+   [self.tableView reloadData];
 }
 /** 配置sectionFooterView，第一个section */
 - (UIView *)sectionFooterView{

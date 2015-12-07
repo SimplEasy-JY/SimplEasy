@@ -11,5 +11,7 @@
 
 @interface JYRootViewController : UIViewController
 @property (nonatomic,strong) RESideMenu *sideMenu;
+//记录登陆状态
+@property(nonatomic,getter=isLogin)BOOL isLogin;
 + (JYRootViewController *)shareRootVC;
 @end

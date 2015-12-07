@@ -9,5 +9,5 @@
 #import "JYBaseViewController.h"
 
 @interface JYLoginViewController : UIViewController
-
++ (JYLoginViewController *)shareLoginVC;
 @end
