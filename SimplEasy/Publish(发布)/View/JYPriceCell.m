@@ -37,7 +37,7 @@ static CGFloat MARGIN = 10;
 - (UILabel *)priceLb {
     if(_priceLb == nil) {
         _priceLb = [[UILabel alloc] init];
-        _priceLb.text = @"原价";
+        _priceLb.text = @"价格";
         [self.contentView addSubview:_priceLb];
         [_priceLb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(MARGIN);

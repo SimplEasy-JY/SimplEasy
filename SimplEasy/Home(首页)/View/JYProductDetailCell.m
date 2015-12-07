@@ -31,7 +31,7 @@ static CGFloat verticalMargin = 6.0f;
 - (UILabel *)productDescLb {
     if(_productDescLb == nil) {
         _productDescLb = [[UILabel alloc] init];
-        _productDescLb.font = [UIFont systemFontOfSize:12];
+        _productDescLb.font = [UIFont systemFontOfSize:14];
         _productDescLb.numberOfLines = 0;
         [self.contentView addSubview:_productDescLb];
         [_productDescLb mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -53,7 +53,7 @@ static CGFloat verticalMargin = 6.0f;
         
         [self.contentView addSubview:_shareBtn];
         [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.mas_equalTo(self.productDescLb);
+            make.top.mas_equalTo(self.productDescLb);
             make.right.mas_equalTo(-5);
             make.width.height.mas_equalTo(40);
         }];
@@ -68,7 +68,7 @@ static CGFloat verticalMargin = 6.0f;
         _lineView.alpha = 0.5;
         [self.contentView addSubview:_lineView];
         [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.mas_equalTo(self.productDescLb);
+            make.centerY.mas_equalTo(self.shareBtn);
             make.right.mas_equalTo(self.shareBtn.mas_left).mas_equalTo(-3);
             make.width.mas_equalTo(1);
             make.height.mas_equalTo(24);

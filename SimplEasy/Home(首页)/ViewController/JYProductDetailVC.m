@@ -193,18 +193,19 @@ static CGFloat bottomBtnHeight = 50;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [@[@2,@3][section] integerValue];
+    return [@[@3,@3][section] integerValue];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {/** 如果是第一个cell分区，那么只需要配置商品详情cell和商家信息cell */
         if (indexPath.row == 0) {
+
             /** 商品详情cell */
             JYProductDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYProductDetailCell"];
             if (cell == nil) {
                 cell = [[JYProductDetailCell alloc] init];
             }
-            cell.productDescLb.text = [self.pdVM descForProduct];//商品描述
+            cell.productDescLb.text = [self.pdVM nameForProduct];//商品描述
             cell.currentPriceLb.text = [self.pdVM currentPriceForProduct];//当前价格
             cell.originPriceLb.text = [self.pdVM originPriceForProduct];//原始价格
             cell.originPriceLb.text?[cell.originPriceLb addMidLine]:nil;//如果有原始价格，则加入删除线
@@ -213,22 +214,34 @@ static CGFloat bottomBtnHeight = 50;
             (self.schoolName && self.schoolName.length>0)?cell.placeLb.text = self.schoolName:nil;//学校名称
             cell.publishTimeLb.text = [self.pdVM publishTimeForProduct];//发布时间
             return cell;
+        }else if(indexPath.row == 1){
+            
+            /** 商家信息cell */
+            JYSellerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYSellerCell"];
+            if (cell == nil) {
+                cell = [[JYSellerCell alloc] init];
+            }
+            [cell.headIV sd_setImageWithURL:[self.pdVM headImageForSeller] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                image = [UIImage scaleToSize:image size:CGSizeMake(60, 60)];
+                image = [UIImage circleImageWithImage:image borderWidth:0 borderColor:JYGlobalBg];
+                cell.headIV.image = image;
+            }];//设置头像
+            cell.nickNameLb.text = [self.pdVM nameForSeller];// 设置昵称
+            if (self.schoolName && self.schoolName.length>0) {
+                cell.schoolLb.text = self.schoolName;// 设置学校
+            }
+            return cell;
+        }else{
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+            }
+            cell.textLabel.text = [self.pdVM descForProduct];
+            cell.textLabel.numberOfLines = 0;
+            cell.font = [UIFont systemFontOfSize:12];
+            return cell;
         }
-        /** 商家信息cell */
-        JYSellerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYSellerCell"];
-        if (cell == nil) {
-            cell = [[JYSellerCell alloc] init];
-        }
-        [cell.headIV sd_setImageWithURL:[self.pdVM headImageForSeller] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            image = [UIImage scaleToSize:image size:CGSizeMake(60, 60)];
-            image = [UIImage circleImageWithImage:image borderWidth:0 borderColor:JYGlobalBg];
-            cell.headIV.image = image;
-        }];//设置头像
-        cell.nickNameLb.text = [self.pdVM nameForSeller];// 设置昵称
-        if (self.schoolName && self.schoolName.length>0) {
-            cell.schoolLb.text = self.schoolName;// 设置学校
-        }
-        return cell;
+        
     }
     /** 如果是第二个分区，则配置评论cell */
     else{
@@ -253,6 +266,7 @@ static CGFloat bottomBtnHeight = 50;
         cell.commentLb.text = @"我最近正想买个洗脸仪呢，这个真的好用么？味全丹麦活性菌，源自丹麦©SINCE1916.";
         return cell;
     }
+    return nil;
 }
 
 #pragma mark *** <UITableViewDelegate> ***

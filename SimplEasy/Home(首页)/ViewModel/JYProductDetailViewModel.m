@@ -66,7 +66,8 @@
 }
 
 - (NSString *)descForProduct{
-    return [NSString stringWithFormat:@"[%@]\n%@",[self model].name,[self model].detail];
+//    return [NSString stringWithFormat:@"[%@]\n%@",[self model].name,[self model].detail];
+    return [self model].detail;
 }
 
 - (NSArray *)picArrForProduct{

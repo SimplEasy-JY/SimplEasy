@@ -106,16 +106,9 @@ static NSUInteger IMAGE_W = 100;
 
 /** 判断输入的价格是否合法 */
 - (BOOL)isLegal: (NSString *)price{
-    NSArray *arr = [price componentsSeparatedByString:@"."];
-    for (NSString *priceStr in arr) {
-        for (int i = 0; i < priceStr.length; i++) {
-            char a =[priceStr characterAtIndex:i];
-            if (!(a >= '0' && a <= '9')) {
-                return NO;
-            }
-        }
-    }
-    return YES;
+    NSString *regex = @"^(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*))$";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    return [predicate evaluateWithObject:price];
 }
 
 /** 发布 */

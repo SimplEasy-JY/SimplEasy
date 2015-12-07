@@ -117,14 +117,14 @@
         vc.hidesBottomBarWhenPushed = YES;
         [viewController pushViewController:vc animated:YES];
     }]];
-    //随便说说
-    [actionSheet addAction:[UIAlertAction actionWithTitle:@"随便说说" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"2222222");
-    }]];
-    //活动求组
-    [actionSheet addAction:[UIAlertAction actionWithTitle:@"活动求组" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"33333333");
-    }]];
+//    //随便说说
+//    [actionSheet addAction:[UIAlertAction actionWithTitle:@"随便说说" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        NSLog(@"2222222");
+//    }]];
+//    //活动求组
+//    [actionSheet addAction:[UIAlertAction actionWithTitle:@"活动求组" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        NSLog(@"33333333");
+//    }]];
     
     
     [viewController presentViewController:actionSheet animated:YES completion:nil];
