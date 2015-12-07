@@ -11,7 +11,7 @@
 #import "JYMessageController.h"
 #import "JYHomeController.h"
 #import "JYPublishIdleViewController.h"
-
+#import "JYPublishNeedsVC.h"
 #import "JYPlusButton.h"
 #import "JYRootViewController.h"
 
@@ -112,7 +112,10 @@
     }]];
     //发布需求
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"发布需求" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        JYLog(@"4444444");
+        JYPublishNeedsVC *vc = [[JYPublishNeedsVC alloc] init];
+        vc.title = action.title;
+        vc.hidesBottomBarWhenPushed = YES;
+        [viewController pushViewController:vc animated:YES];
     }]];
     //随便说说
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"随便说说" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

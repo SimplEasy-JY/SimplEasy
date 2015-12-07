@@ -117,6 +117,7 @@ static NSUInteger IMAGE_W = 100;
     }
     return YES;
 }
+
 /** 发布 */
 - (void)publish{
     [self.classTF resignFirstResponder];
@@ -134,6 +135,7 @@ static NSUInteger IMAGE_W = 100;
         [self presentViewController:alert animated:YES completion:nil];
     }
 }
+
 #pragma mark *** <UITableViewDataSource> ***
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -205,7 +207,7 @@ kRemoveCellSeparator
 #pragma mark *** UIImagePickerControllerDelegate ***
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissViewControllerAnimated:YES completion:nil];
     JYLog(@"选择了图片");
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     [self.imageArr addObject:image];
@@ -213,7 +215,7 @@ kRemoveCellSeparator
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark *** Lazy Loading ***

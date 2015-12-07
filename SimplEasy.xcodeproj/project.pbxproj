@@ -72,6 +72,7 @@
 		8396B81B1C12CBAC007E09C5 /* JYPublishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8396B81A1C12CBAC007E09C5 /* JYPublishCell.m */; };
 		83987DF11BFEF71E007C9CE4 /* JYUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83987DF01BFEF71E007C9CE4 /* JYUserInfoModel.m */; };
 		83987DF51BFEFADF007C9CE4 /* JYUserInfoNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83987DF41BFEFADF007C9CE4 /* JYUserInfoNetManager.m */; };
+		83CED5B71C15769F006C9869 /* JYPublishNeedsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CED5B61C15769F006C9869 /* JYPublishNeedsVC.m */; };
 		83DECFB41BF197D300A1FE7C /* Classify.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83DECFB31BF197D300A1FE7C /* Classify.plist */; };
 		83DECFB71BF1C28900A1FE7C /* JYClassifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DECFB61BF1C28900A1FE7C /* JYClassifyModel.m */; };
 		83E75EC21BEA45C70020D54D /* JYCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E75EBA1BEA45C70020D54D /* JYCommentCell.m */; };
@@ -572,6 +573,8 @@
 		83987DF01BFEF71E007C9CE4 /* JYUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYUserInfoModel.m; sourceTree = "<group>"; };
 		83987DF31BFEFADF007C9CE4 /* JYUserInfoNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYUserInfoNetManager.h; sourceTree = "<group>"; };
 		83987DF41BFEFADF007C9CE4 /* JYUserInfoNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYUserInfoNetManager.m; sourceTree = "<group>"; };
+		83CED5B51C15769F006C9869 /* JYPublishNeedsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYPublishNeedsVC.h; sourceTree = "<group>"; };
+		83CED5B61C15769F006C9869 /* JYPublishNeedsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYPublishNeedsVC.m; sourceTree = "<group>"; };
 		83DECFB31BF197D300A1FE7C /* Classify.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Classify.plist; sourceTree = "<group>"; };
 		83DECFB51BF1C28900A1FE7C /* JYClassifyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYClassifyModel.h; sourceTree = "<group>"; };
 		83DECFB61BF1C28900A1FE7C /* JYClassifyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYClassifyModel.m; sourceTree = "<group>"; };
@@ -1698,6 +1701,8 @@
 			children = (
 				83F9D8101C0C6EFF002687F7 /* JYPublishIdleViewController.h */,
 				83F9D8111C0C6EFF002687F7 /* JYPublishIdleViewController.m */,
+				83CED5B51C15769F006C9869 /* JYPublishNeedsVC.h */,
+				83CED5B61C15769F006C9869 /* JYPublishNeedsVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -3022,6 +3027,7 @@
 				8396B8121C12BEC9007E09C5 /* JYProductDescCell.m in Sources */,
 				B089AA981BE9D09400E5D2CC /* JYLoopModel.m in Sources */,
 				B0AFA3A51BFB213E00F795F9 /* SFCountdownView.m in Sources */,
+				83CED5B71C15769F006C9869 /* JYPublishNeedsVC.m in Sources */,
 				B0AEC8911BEC86540045F08F /* JYHomeProductCell.m in Sources */,
 				838D14AC1BFA00C6003C4F87 /* UIButton+VerticalBtn.m in Sources */,
 				83EEDF471C0015C400016E02 /* JYClassifyContentVC.m in Sources */,

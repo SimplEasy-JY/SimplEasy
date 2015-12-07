@@ -45,7 +45,7 @@ static NSUInteger SCROLLVIEW_H = 100;
         _descTV.font = [UIFont systemFontOfSize:14];
         _descTV.delegate = self;
         
-        /** 为TExtView加一个手势，下滑回收键盘 */
+        /** 为TExtView加一个手势，左滑回收键盘 */
         UISwipeGestureRecognizer *swipeGR = [[UISwipeGestureRecognizer alloc] bk_initWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
             [_descTV resignFirstResponder];
         }];

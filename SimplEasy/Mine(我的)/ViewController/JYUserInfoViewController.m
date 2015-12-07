@@ -266,6 +266,9 @@ kRemoveCellSeparator
     }
 }
 
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark - IMMyselfInfoEdit delegate
 
