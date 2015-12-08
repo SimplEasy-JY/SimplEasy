@@ -9,5 +9,5 @@
 #import "JYBaseNetManager.h"
 
 @interface JYLoginManager : JYBaseNetManager
-+(id)loginOrRegisterWith:(NSDictionary *)parms Login:(BOOL)isLogin kCompletionHandle;
++(id)loginOrRegisterWith:(NSDictionary *)params Login:(BOOL)isLogin kCompletionHandle;
 @end

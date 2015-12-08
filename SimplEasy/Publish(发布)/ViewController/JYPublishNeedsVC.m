@@ -8,11 +8,11 @@
 
 #import "JYPublishNeedsVC.h"
 
-static CGFloat MARGIN = 10;
-static CGFloat NORMAL_H = 45;
-static CGFloat SECOND_ROW_H = 174;
-static CGFloat BTN_W = 45;
-static NSUInteger LIMIT_DESC_NUM = 20;
+static const CGFloat MARGIN = 10;
+static const CGFloat NORMAL_H = 45;
+static const CGFloat SECOND_ROW_H = 174;
+static const CGFloat BTN_W = 45;
+static const NSUInteger LIMIT_DESC_NUM = 20;
 static NSString *DESC_PLACEHOLDER = @"描述一下您的需求...(限20字)";
 @interface JYPublishNeedsVC () <UITextViewDelegate>
 

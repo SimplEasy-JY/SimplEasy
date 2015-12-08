@@ -9,17 +9,17 @@
 #import "JYProductDescCell.h"
 
 /** 间隔 */
-static CGFloat MARGIN = 10;
+static const CGFloat MARGIN = 10;
 /** 商品描述的TEXTVIEW的高 */
-static CGFloat DESCTV_H = 130;
+static const CGFloat DESCTV_H = 130;
 /** 商品描述字数限制 */
-static NSInteger LIMIT_DESC_NUM = 999;
+static const NSInteger LIMIT_DESC_NUM = 999;
 /** 商品描述提示 */
 static NSString *DESC_PLACEHOLDER = @"描述一下您的物品...";
 /** 图片提示 */
 static NSString *IMAGE_NOTICE = @"请上传主图和细节图，更好促进易货哦！";
 /** 滚动视图的高 */
-static NSUInteger SCROLLVIEW_H = 100;
+static const NSUInteger SCROLLVIEW_H = 100;
 
 @implementation JYProductDescCell
 

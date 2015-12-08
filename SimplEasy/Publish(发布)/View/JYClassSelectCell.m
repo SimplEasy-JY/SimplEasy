@@ -11,7 +11,7 @@
 
 
 /** 间隔 */
-static CGFloat MARGIN = 10;
+static const CGFloat MARGIN = 10;
 
 @interface JYClassSelectCell () <UIPickerViewDelegate,UIPickerViewDataSource>
 /** 分类 */

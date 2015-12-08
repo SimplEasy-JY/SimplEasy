@@ -8,7 +8,7 @@
 
 #import "JYTitleCell.h"
 /** 间隔 */
-static CGFloat MARGIN = 10;
+static const CGFloat MARGIN = 10;
 
 @implementation JYTitleCell
 

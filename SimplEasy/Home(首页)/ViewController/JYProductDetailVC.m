@@ -221,11 +221,7 @@ static CGFloat bottomBtnHeight = 50;
             if (cell == nil) {
                 cell = [[JYSellerCell alloc] init];
             }
-            [cell.headIV sd_setImageWithURL:[self.pdVM headImageForSeller] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                image = [UIImage scaleToSize:image size:CGSizeMake(60, 60)];
-                image = [UIImage circleImageWithImage:image borderWidth:0 borderColor:JYGlobalBg];
-                cell.headIV.image = image;
-            }];//设置头像
+            [cell.headIV sd_setImageWithURL:[self.pdVM headImageForSeller]];
             cell.nickNameLb.text = [self.pdVM nameForSeller];// 设置昵称
             if (self.schoolName && self.schoolName.length>0) {
                 cell.schoolLb.text = self.schoolName;// 设置学校
@@ -337,7 +333,6 @@ static CGFloat bottomBtnHeight = 50;
     
     [imageView sd_setImageWithURL:url placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize) {
             roundView.progress = receivedSize*1.0/expectedSize;
-            JYLog(@"进度是%f",roundView.progress);
             roundView.hidden = receivedSize == expectedSize;
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (error) {

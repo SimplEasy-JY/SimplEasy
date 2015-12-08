@@ -24,9 +24,11 @@
         [_headIV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.mas_equalTo(10);
             make.bottom.mas_equalTo(-10);
-//            make.height.mas_equalTo(60);
-            make.width.mas_equalTo(_headIV.mas_height);
+            make.height.mas_equalTo(60);
+            make.width.mas_equalTo(60);
         }];
+        _headIV.layer.cornerRadius = 30;
+        _headIV.clipsToBounds = YES;
     }
     return _headIV;
 }

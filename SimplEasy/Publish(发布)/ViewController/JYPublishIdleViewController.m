@@ -15,12 +15,12 @@
 #import "JYPublishCell.h"
 
 /** 间隔 */
-static CGFloat MARGIN = 10;
+static const CGFloat MARGIN = 10;
 /** 删除按钮的宽 */
-static NSUInteger DELETE_BTN_W = 20;
+static const NSUInteger DELETE_BTN_W = 13;
 /** 最多上传的图片数 */
-static NSUInteger MAX_IMAGE_COUNT = 5;
-static NSUInteger IMAGE_W = 100;
+static const NSUInteger MAX_IMAGE_COUNT = 5;
+static const NSUInteger IMAGE_W = 100;
 
 @interface JYPublishIdleViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITableViewDelegate,UITableViewDataSource>
 
@@ -79,12 +79,9 @@ static NSUInteger IMAGE_W = 100;
         _containerView.width += (MARGIN + IMAGE_W);
         //加入删除按钮
         UIButton *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        deleteBtn.layer.cornerRadius = DELETE_BTN_W/2;
-        [deleteBtn setBackgroundColor:JYGlobalBg];
         [deleteBtn setImage:[UIImage imageNamed:@"removeImageButton"] forState:UIControlStateNormal];
         deleteBtn.tag = i * 100;
         deleteBtn.frame = CGRectMake(IMAGE_W - DELETE_BTN_W, 0, DELETE_BTN_W, DELETE_BTN_W);
-        deleteBtn.transform = CGAffineTransformRotate(deleteBtn.transform, M_PI_2/2);
         [deleteBtn bk_addEventHandler:^(UIButton *sender) {
             [self.imageArr removeObjectAtIndex:sender.tag/100];
             [self configScrollView];

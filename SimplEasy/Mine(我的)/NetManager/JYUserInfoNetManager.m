@@ -12,7 +12,7 @@
 
 + (id)getUserInfoWithUserID:(NSInteger)uid completionHandle:(void (^)(id, NSError *))completionHandle{
     NSString *path = [JYURL stringByAppendingPathComponent:[NSString stringWithFormat:@"port/user/show/%lu",uid]];
-    JYLog(@"用户信息url——%@",path);
+    JYLog(@"用户信息URL————%@",path);
     return [self GET:path parameters:nil completionHandle:^(id responseObj, NSError *error) {
         completionHandle([JYUserInfoModel objectWithKeyValues:responseObj],error);
     }];
