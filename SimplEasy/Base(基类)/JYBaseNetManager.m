@@ -11,8 +11,6 @@
 static AFHTTPSessionManager *manager = nil;
 
 @implementation JYBaseNetManager
-
-
 + (AFHTTPSessionManager *)sharedAFManager{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -21,6 +19,7 @@ static AFHTTPSessionManager *manager = nil;
             [manager.requestSerializer
              setAuthorizationHeaderFieldWithUsername:@"15757161281"
              password:@"aaa"];
+        
     });
     return manager;
 }
@@ -37,6 +36,7 @@ static AFHTTPSessionManager *manager = nil;
         
          YSHLog(@"请求失败%@",error);
     }];
+    
 }
 
 + (id)POST:(NSString *)path parameters:(NSDictionary *)params completionHandle:(void(^)(id responseObj, NSError *error))complete{
@@ -46,7 +46,8 @@ static AFHTTPSessionManager *manager = nil;
         [self handleError:error];
         complete(nil, error);
     }];
-    
+
+
 }
 
 + (NSString *)percentPathWithPath:(NSString *)path params:(NSDictionary *)params{

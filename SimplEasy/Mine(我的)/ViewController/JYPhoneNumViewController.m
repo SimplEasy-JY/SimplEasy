@@ -150,9 +150,8 @@ static CGFloat space = 30;
     [button setTitleColor:JYGlobalBg forState:UIControlStateNormal];
     [button setTitleColor:kRGBColor(200, 200, 200) forState:UIControlStateHighlighted];
     [button bk_addEventHandler:^(id sender) {
-        JYLoginViewController *childVC = [[JYLoginViewController alloc]init];
-        [rootVC addChildViewController:childVC];
-        [rootVC.view addSubview:childVC.view];
+        [rootVC addChildViewController:loginVC];
+        [rootVC.view addSubview:loginVC.view];
         [self removeFromParentViewController];
         [self.view removeFromSuperview];
     } forControlEvents:UIControlEventTouchUpInside];

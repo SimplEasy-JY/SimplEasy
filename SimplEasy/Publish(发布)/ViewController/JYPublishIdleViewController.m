@@ -81,7 +81,7 @@ static NSUInteger IMAGE_W = 100;
         UIButton *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         deleteBtn.layer.cornerRadius = DELETE_BTN_W/2;
         [deleteBtn setBackgroundColor:JYGlobalBg];
-        [deleteBtn setImage:[UIImage imageNamed:@"bottom_plus"] forState:UIControlStateNormal];
+        [deleteBtn setImage:[UIImage imageNamed:@"removeImageButton"] forState:UIControlStateNormal];
         deleteBtn.tag = i * 100;
         deleteBtn.frame = CGRectMake(IMAGE_W - DELETE_BTN_W, 0, DELETE_BTN_W, DELETE_BTN_W);
         deleteBtn.transform = CGAffineTransformRotate(deleteBtn.transform, M_PI_2/2);

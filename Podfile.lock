@@ -20,9 +20,9 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - AsyncDisplayKit (1.9.1):
-    - AsyncDisplayKit/ASDealloc2MainObject (= 1.9.1)
-  - AsyncDisplayKit/ASDealloc2MainObject (1.9.1)
+  - AsyncDisplayKit (1.9.3):
+    - AsyncDisplayKit/ASDealloc2MainObject (= 1.9.3)
+  - AsyncDisplayKit/ASDealloc2MainObject (1.9.3)
   - AwesomeMenu (1.0.0)
   - BlocksKit (2.2.5):
     - BlocksKit/All (= 2.2.5)
@@ -60,7 +60,7 @@ PODS:
   - Masonry (0.6.3)
   - MBProgressHUD (0.9.1)
   - MJExtension (3.0.7)
-  - MJRefresh (3.0.6)
+  - MJRefresh (3.0.7)
   - MLTransition (2.0.1)
   - MWPhotoBrowser (2.1.1):
     - DACircularProgress (~> 2.3)
@@ -103,7 +103,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  AsyncDisplayKit: 7bf2b3fa444284f80fd0c1e36655e324549f79d2
+  AsyncDisplayKit: 87d340329280dba0363da3587a43f9d1bbe62aac
   AwesomeMenu: 34bad7f873e4b3cfaa6651fabbb96607d0e8f2b3
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   BmobSDK: 9928a9135a3a7823c6d8bd2bcd9baffeb8e6289a
@@ -116,7 +116,7 @@ SPEC CHECKSUMS:
   Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MJExtension: 290cc966f0f849b12b6391a38e296e0004ae8e5e
-  MJRefresh: df419e2393f9020bcd340c552e8f0cf700073f32
+  MJRefresh: f3e1228ec3d38c7ba5208d58032631a52f39f495
   MLTransition: 47b87b8bc6077540919dcfc3e0adcc0b4a589910
   MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
   RESideMenu: f24c508404b49c667344c54aba7e590883533958

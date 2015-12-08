@@ -16,6 +16,7 @@
 #import "JYNewFeatureViewController.h"
 #import "JYRootViewController.h"
 #import "JYLoginViewController.h"
+#import "JYBaseNetManager.h"
 
 #import "UMSocial.h"//友盟分享
 #import "UMSocialWechatHandler.h"
@@ -63,7 +64,6 @@
     [self initializeWithApplication:application];
 
     [self configNewFeatureViewController];
-
     return YES;
 }
 

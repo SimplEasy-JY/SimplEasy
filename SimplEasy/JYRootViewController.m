@@ -136,6 +136,7 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logout) name:IMLogoutNotification object:nil];
 
     
+
 }
 
 

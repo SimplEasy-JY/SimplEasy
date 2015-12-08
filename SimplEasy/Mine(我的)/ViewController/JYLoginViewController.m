@@ -240,6 +240,7 @@ static JYLoginViewController *loginViewC = nil;// 定义全局静态变量
 }
 
 - (void)login:(UIButton *)sender {
+    //是否停止旋转logo
     _isStop = NO;
     if (sender != self.loginButton) {
         return;
@@ -261,16 +262,19 @@ static JYLoginViewController *loginViewC = nil;// 定义全局静态变量
         if (sender.tag == 100) {
             [self startAnimation];
         }
-        NSDictionary *params = [[NSDictionary alloc]initWithObjectsAndKeys:@"tel",self.userName,@"password",self.password, nil];
-        [JYLoginManager loginOrRegisterWith:params Login:YES completionHandle:^(JYLoginRegisterModel *model, NSError *error) {
-            if (model.error_msg ) {
+        sender.tag +=1;
+        NSDictionary *parms = @{@"tel":self.userName,@"password":self.password};
+        [JYLoginManager loginOrRegisterWith:parms Login:YES completionHandle:^(JYLoginRegisterModel *model, NSError *error) {
+            if ([model.status isEqualToString:@"0"]) {
                 _notifyText = model.error_msg;
                 _notifyImage = [UIImage imageNamed:@"IM_alert_image.png"];
                 [self displayNotifyHUD];
                 return ;
             }
-            sender.tag +=1;
-            //        [g_pIMMyself setDelegate:self];
+            //获取登录成功返回的用户数据
+//            userData *data = model.data;
+            //[g_pIMMyself setDelegate:self];
+//            [g_pIMMyself setCustomUserID:data.name];
             [g_pIMMyself setCustomUserID:self.userName];
             [g_pIMMyself setPassword:self.password];
             [g_pIMMyself setAutoLogin:YES];
@@ -561,15 +565,8 @@ kRemoveCellSeparator
 }
 -(void)loginIMSDK{
     NSLog(@"****************%ld",[g_pIMMyself loginStatus]);
-   }
-
-
-#pragma mark -kvo
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
-    if ([keyPath isEqualToString:@"isLogin"]) {
-        [self removeFromParentViewController];
-        [[self view] removeFromSuperview];
-    }
-    
 }
+
+
+
 @end

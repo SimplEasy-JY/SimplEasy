@@ -33,6 +33,7 @@
 @interface JYMineController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArr;
+@property(strong,nonatomic)UIImage *headPhoto;
 @property(nonatomic,getter=isLogouting)BOOL isLogouting;
 
 @property(strong,nonatomic) MBProgressHUD *hud;
@@ -43,6 +44,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.tableView reloadData];
     self.title = @"我的";
     _titleLabel.text = @"我的";
     /** 添加naviRightItem */
@@ -120,9 +122,17 @@
         JYSellerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYSellerCell"];
         
         //头像
-        UIImage *headPhoto = [g_pIMSDK mainPhotoOfUser:[g_pIMMyself customUserID]];
-        
-        if (headPhoto == nil) {
+        self.headPhoto = [g_pIMSDK mainPhotoOfUser:[g_pIMMyself customUserID]];
+        if (!self.headPhoto) {
+            [g_pIMSDK requestMainPhotoOfUser:[g_pIMMyself customUserID]
+                                     success:^(UIImage *mainPhoto) {
+                                         NSLog(@"request main photo success: %@",mainPhoto);
+                                     }
+                                     failure:^(NSString *error) {
+                                         NSLog(@"request main photo failed for %@",error);
+                                     }];
+        }
+        if (self.headPhoto == nil) {
             NSString *customInfo = [g_pIMSDK customUserInfoWithCustomUserID:[g_pIMMyself customUserID]];
             
             NSArray *customInfoArray = [customInfo componentsSeparatedByString:@"\n"];
@@ -133,16 +143,15 @@
             }
             
             if ([sex isEqualToString:@"女"]) {
-                headPhoto = [UIImage imageNamed:@"IM_head_female.png"];
+                self.headPhoto = [UIImage imageNamed:@"IM_head_female.png"];
             } else {
-                headPhoto = [UIImage imageNamed:@"IM_head_male.png"];
+                self.headPhoto = [UIImage imageNamed:@"IM_head_male.png"];
             }
-            
         }
-        headPhoto = [UIImage scaleToSize:headPhoto size:CGSizeMake(60, 60)];
-        headPhoto = [UIImage circleImageWithImage:headPhoto borderWidth:0.5 borderColor:[UIColor whiteColor]];
+        self.headPhoto = [UIImage scaleToSize:self.headPhoto size:CGSizeMake(60, 60)];
+        self.headPhoto = [UIImage circleImageWithImage:self.headPhoto borderWidth:0.5 borderColor:[UIColor whiteColor]];
         
-        cell.headIV.image =headPhoto;
+        cell.headIV.image =self.headPhoto;
         //昵称
         NSString *nickname = [g_pIMSDK nicknameOfUser:[g_pIMMyself customUserID]];
         

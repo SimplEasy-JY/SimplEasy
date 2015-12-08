@@ -169,15 +169,16 @@ static CGFloat space = 30;
             return;
         }
         else {
-            NSDictionary *params = [[NSDictionary alloc]initWithObjectsAndKeys:@"tel",self.phoneNum,@"password",password,@"name",customUserID, nil];
-            [JYLoginManager loginOrRegisterWith:params Login:NO completionHandle:^(JYLoginRegisterModel *model, NSError *error) {
+            JYLog(@"+++++++++++++++%@ phonenum",self.phoneNum);
+            NSDictionary *parms = @{@"tel":self.phoneNum,@"password":password,@"name":customUserID};
+            [JYLoginManager loginOrRegisterWith:parms Login:NO completionHandle:^(JYLoginRegisterModel *model, NSError *error) {
                 if (model.error_msg ) {
                     _notifyText = model.error_msg;
                     _notifyImage = [UIImage imageNamed:@"IM_alert_image.png"];
                     [self displayNotifyHUD];
                     return ;
                 }
-                [g_pIMMyself setCustomUserID:self.phoneNum];
+                [g_pIMMyself setCustomUserID:customUserID];
                 [g_pIMMyself setPassword:password];
                 [g_pIMMyself registerWithTimeoutInterval:5 success:^{
                     
