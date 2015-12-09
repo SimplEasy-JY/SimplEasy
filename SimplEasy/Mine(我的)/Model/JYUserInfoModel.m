@@ -21,6 +21,7 @@
 
 + (NSDictionary *)replacedKeyFromPropertyName{
     return @{@"eduId":@"edu_id",
+             @"ID":@"id",
              @"openId":@"openid",
              @"selfIntroduction":@"self_introduction",
              @"lastY":@"last_y",

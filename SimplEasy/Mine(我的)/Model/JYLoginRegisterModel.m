@@ -11,7 +11,7 @@
 @implementation JYLoginRegisterModel
 
 @end
-@implementation userData
+@implementation UserData
 
 @end
 

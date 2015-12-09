@@ -1134,6 +1134,8 @@
 		8328A4391BE8478B0021767D /* SimplEasy */ = {
 			isa = PBXGroup;
 			children = (
+				8328A43D1BE8478B0021767D /* AppDelegate.h */,
+				8328A43E1BE8478B0021767D /* AppDelegate.m */,
 				8328A4761BE849800021767D /* Base(基类) */,
 				8328A4771BE849800021767D /* Define(宏) */,
 				8328A47E1BE849800021767D /* Home(首页) */,
@@ -1155,8 +1157,6 @@
 				8328A44B1BE8478C0021767D /* Info.plist */,
 				B03FD5711C0553CD0031A18C /* JYRootViewController.h */,
 				B03FD5721C0553CD0031A18C /* JYRootViewController.m */,
-				8328A43D1BE8478B0021767D /* AppDelegate.h */,
-				8328A43E1BE8478B0021767D /* AppDelegate.m */,
 				8328A43B1BE8478B0021767D /* main.m */,
 			);
 			name = "Supporting Files";

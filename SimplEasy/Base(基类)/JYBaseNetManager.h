@@ -11,14 +11,17 @@
 #define kCompletionHandle completionHandle:(void(^)(id model, NSError *error))completionHandle
 
 @interface JYBaseNetManager : NSObject
-
++ (AFHTTPSessionManager *)sharedAFManager;
 /** 对AFHTTPSessionManager的GET请求方法进行了封装 */
 + (id)GET:(NSString *)path parameters:(NSDictionary *)params completionHandle:(void(^)(id responseObj, NSError *error))complete;
 
 /** 对AFHTTPSessionManager的POST请求方法进行了封装 */
 + (id)POST:(NSString *)path parameters:(NSDictionary *)params completionHandle:(void(^)(id responseObj, NSError *error))complete;
 
+/** DELETE请求 */
++ (id)DELETE: (NSString *)path parameters: (NSDictionary *)params completionHandle: (void(^)(id responseObj, NSError *error))complete;
 
+//+ (id)UploadImageWithPath: (NSString *)path parameters: (NSDictionary *)params
 /**
  *  为了应付某些服务器对于中文字符串不支持的情况，需要转化字符串为带有%号形势
  *

@@ -8,27 +8,29 @@
 
 #import "JYBaseModel.h"
 
-@class userData;
+@class UserData;
+
 @interface JYLoginRegisterModel : JYBaseModel
 
-
+/** 状态 */
 @property (nonatomic, copy) NSString *status;
-
-@property (nonatomic, strong) userData *data;
-
+/** 数据 */
+@property (nonatomic, strong) UserData *data;
+/** 代码 */
 @property (nonatomic, copy) NSString *code;
-
+/** 错误代码 */
 @property (nonatomic, copy) NSString *error_code;
-
+/** 错误信息 */
 @property (nonatomic, copy) NSString *error_msg;
 
 @end
-@interface userData : NSObject
 
+@interface UserData : JYBaseModel
+/** 用户ID */
 @property (nonatomic, copy) NSString *ID;
-
+/** 用户名字 */
 @property (nonatomic, copy) NSString *name;
-
+/** 用户电话号码 */
 @property (nonatomic, copy) NSString *tel;
 
 @end

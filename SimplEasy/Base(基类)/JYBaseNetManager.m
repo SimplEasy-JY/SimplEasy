@@ -16,10 +16,7 @@ static AFHTTPSessionManager *manager = nil;
     dispatch_once(&onceToken, ^{
         manager = [AFHTTPSessionManager manager];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", @"text/json", @"text/javascript", nil];
-            [manager.requestSerializer
-             setAuthorizationHeaderFieldWithUsername:@"15757161281"
-             password:@"aaa"];
-        
+        [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:@"15757161281" password:@"aaa"];
     });
     return manager;
 }
@@ -48,6 +45,15 @@ static AFHTTPSessionManager *manager = nil;
     }];
 
 
+}
+
++ (id)DELETE: (NSString *)path parameters: (NSDictionary *)params completionHandle: (void(^)(id responseObj, NSError *error))complete{
+    return [[self sharedAFManager] DELETE:path parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        complete(responseObject,nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [self handleError:error];
+        complete(nil,error);
+    }];
 }
 
 + (NSString *)percentPathWithPath:(NSString *)path params:(NSDictionary *)params{

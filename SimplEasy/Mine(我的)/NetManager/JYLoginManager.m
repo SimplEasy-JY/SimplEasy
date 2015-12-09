@@ -18,7 +18,7 @@
     }
     return [self POST:path parameters:params completionHandle:^(id responseObj, NSError *error) {
         completionHandle([JYLoginRegisterModel objectWithKeyValues:responseObj], error);
-        NSLog(@"%@++++",responseObj);
+        JYLog(@"%@++++",responseObj);
     }];
 }
 @end

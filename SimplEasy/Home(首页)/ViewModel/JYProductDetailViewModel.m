@@ -42,7 +42,7 @@
         
         completionHandle(error);
         
-        self.userDataTask = [JYUserInfoNetManager getUserInfoWithUserID:[dataModel.uid integerValue] completionHandle:^(JYUserInfoModel *model, NSError *error) {
+        self.userDataTask = [JYUserInfoNetManager getUserInfoWithUserID:dataModel.uid completionHandle:^(JYUserInfoModel *model, NSError *error) {
             self.userDataArr = [NSMutableArray array];
             [self.userDataArr addObject:model.data];
             completionHandle(error);

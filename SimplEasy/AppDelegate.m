@@ -28,10 +28,23 @@
 #import "JYLoginViewController.h"
 #import "IMDefine.h"
 //#import "JYUserDialogViewController.h"
-
 //IMSDK Headers
 #import "IMSDK.h"
 #import "IMMyself.h"
+
+//测试用》》》》》》》》》》》》》》》》》》》》》》》》》
+#import "JYUserInfoNetManager.h"
+#import "JYLoginManager.h"
+
+#define JYSetTel(string,dic)            [dic setObject:string forKey:@"tel"]
+#define JYSetName(string,dic)           [dic setObject:string forKey:@"name"]
+#define JYSetPassword(string,dic)       [dic setObject:string forKey:@"password"]
+#define JYSetTitle(string, dic)         [dic setObject:string forKey:@"title"]
+#define JYSetSort(string, dic)          [dic setObject:string forKey:@"sort"]
+#define JYSetDetail(string, dic)        [dic setObject:string forKey:@"detail"]
+#define JYSetPrice(string, dic)         [dic setObject:string forKey:@"price"]
+#define JYSetPic(string, dic)           [dic setObject:string forKey:@"pic"]
+//《《《《《《《《《《《《《《《《《《《《《《《《《《《《《
 
 @interface AppDelegate ()
 
@@ -42,7 +55,7 @@
 
 /** 应用程序入口 */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+//    [self test];
     [self configGlobalUIStyle];
     
     /** 注册友盟分享 */
@@ -67,6 +80,40 @@
     return YES;
 }
 
+- (void)test{
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//
+//    NSString *path = @"http://www.i-jianyi.com/port/resource/imgUpload";
+//
+//    [[JYUserInfoNetManager sharedAFManager] POST:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        NSString *file = [[NSBundle mainBundle] pathForResource:@"LOGO.png" ofType:nil];
+//        NSData *data = [NSData dataWithContentsOfFile:file];
+//        [formData appendPartWithFileData:data name:@"file" fileName:@"LOGO.png" mimeType:@"png"];
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//        JYLog(@"%@",responseObject);
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        JYLog(@"%@",error.description);
+//    }];
+//    [params setObject:@"evenlam@icloud.com" forKey:@"email"];
+//    [JYUserInfoNetManager updateUserInfoWithUserID:@"754" params:params completionHandle:^(id model, NSError *error) {
+//        NSLog(@"\n\n******************** %@ ********************\n\n",model);
+//    }];
+    
+//    JYSetTel(@"18768102901", params);
+//    JYSetPassword(@"123456", params);
+//    JYSetName(@"EvenLam", params);
+//    [JYLoginManager loginOrRegisterWith:params Login:YES completionHandle:^(id model, NSError *error) {
+//        NSLog(@"\n\n******************** %@ ********************\n\n",model);
+//    }];
+//
+//    [JYUserInfoNetManager getUserListWithPage:@"1" completionHandle:^(id model, NSError *error) {
+//    }];
+//    
+//    [JYUserInfoNetManager getCurrentSchoolCompletionHandle:^(id model, NSError *error) {
+//        NSLog(@"\n\n******************** %@ ********************\n\n",model);
+//    }];
+    
+}
 /** 配置全局的UI样式 */
 - (void)configGlobalUIStyle{
     /** 去除 TabBar 自带的顶部阴影 */
