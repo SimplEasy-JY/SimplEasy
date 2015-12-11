@@ -54,8 +54,8 @@
 
 + (id)updateUserInfoWithUserID:(NSString *)ID params:(NSDictionary *)params completionHandle:(void (^)(id, NSError *))completionHandle {
   
-    //如果更新信息参数没有tel和password，让程序崩溃
-    NSAssert([params.allKeys containsObject:@"tel"]&&[params.allKeys containsObject:@"password"], @"必须包含tel和password！");
+    //如果更新信息参数没有username和password，让程序崩溃
+    NSAssert([params.allKeys containsObject:@"username"]&&[params.allKeys containsObject:@"password"], @"必须包含tel和password！");
     
     NSString *path = JYSetUserPort(@"update");
     path = JYSetID(path, ID);
@@ -103,7 +103,7 @@
 
 + (id)publishIdleWithParams:(NSDictionary *)params completionHandle:(void (^)(id, NSError *))completionHandle {
     //没有包括必须发布的信息则程序崩溃
-    NSAssert([params.allKeys containsObject:@"tel"]&&[params.allKeys containsObject:@"password"]&&[params.allKeys containsObject:@"title"]&&[params.allKeys containsObject:@"sort"]&&[params.allKeys containsObject:@"name"]&&[params.allKeys containsObject:@"detail"]&&[params.allKeys containsObject:@"price"]&&[params.allKeys containsObject:@"pic"], @"发布的信息必须包括tel/password/title/sort/name/detail/price/图片数组pic");
+    NSAssert([params.allKeys containsObject:@"tel"]&&[params.allKeys containsObject:@"username"]&&[params.allKeys containsObject:@"password"]&&[params.allKeys containsObject:@"title"]&&[params.allKeys containsObject:@"sort"]&&[params.allKeys containsObject:@"name"]&&[params.allKeys containsObject:@"detail"]&&[params.allKeys containsObject:@"price"]&&[params.allKeys containsObject:@"pic"], @"发布的信息必须包括tel/password/title/sort/name/detail/price/图片数组pic");
     
     NSString *path = @"http://www.i-jianyi.com/port/goods/create";
     
@@ -127,7 +127,7 @@
 
 + (id)publishNeedsWithParams:(NSDictionary *)params completionHandle:(void (^)(id, NSError *))completionHandle {
    
-    NSAssert([params.allKeys containsObject:@"tel"]&&[params.allKeys containsObject:@"password"]&&[params.allKeys containsObject:@"detail"]&&[params.allKeys containsObject:@"price"], @"发布需求的信息必须包括tel／password／detail／price!!!");
+    NSAssert([params.allKeys containsObject:@"tel"]&&[params.allKeys containsObject:@"username"]&&[params.allKeys containsObject:@"password"]&&[params.allKeys containsObject:@"detail"]&&[params.allKeys containsObject:@"price"], @"发布需求的信息必须包括tel／password／detail／price!!!");
     
     NSString *path = @"http://www.i-jianyi.com/port/needs/create";
     

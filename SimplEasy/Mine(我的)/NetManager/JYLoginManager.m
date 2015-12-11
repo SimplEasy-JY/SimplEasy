@@ -9,6 +9,7 @@
 #import "JYLoginManager.h"
 #import "JYLoginRegisterModel.h"
 @implementation JYLoginManager
+
 +(id)loginOrRegisterWith:(NSDictionary *)params Login:(BOOL)isLogin completionHandle:(void (^)(id, NSError *))completionHandle{
     NSString *path = nil;
     if (isLogin) {
@@ -21,4 +22,5 @@
         JYLog(@"%@++++",responseObj);
     }];
 }
+
 @end

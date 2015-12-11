@@ -10,4 +10,10 @@
 
 @implementation JYNormalModel
 
+
++ (NSDictionary *)mj_replacedKeyFromPropertyName{
+    return @{@"errorCode":@"error_code",
+             @"errorMsg":@"error_msg"};
+}
+
 @end

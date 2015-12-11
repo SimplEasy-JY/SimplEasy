@@ -55,7 +55,7 @@
 
 /** 应用程序入口 */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self test];
+
     [self configGlobalUIStyle];
     
     /** 注册友盟分享 */
@@ -77,6 +77,7 @@
     [self initializeWithApplication:application];
 
     [self configNewFeatureViewController];
+//    [self test];
     return YES;
 }
 
@@ -84,18 +85,21 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
 //
-    /** 图片上传测试 */
-//    NSString *path = @"http://www.i-jianyi.com/port/resource/imgUpload";
-//
-//    [[JYUserInfoNetManager sharedAFManager] POST:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-//        NSString *file = [[NSBundle mainBundle] pathForResource:@"LOGO.png" ofType:nil];
-//        NSData *data = [NSData dataWithContentsOfFile:file];
-//        [formData appendPartWithFileData:data name:@"file" fileName:@"LOGO.png" mimeType:@"png"];
-//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-//        JYLog(@"%@",responseObject);
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        JYLog(@"%@",error.description);
-//    }];
+//    * 图片上传测试 
+    NSString *path = @"http://www.i-jianyi.com/port/resource/imgUpload";
+
+    [[JYUserInfoNetManager sharedAFManager] POST:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        NSString *file = [[NSBundle mainBundle] pathForResource:@"LOGO.png" ofType:nil];
+        NSData *data = [NSData dataWithContentsOfFile:file];
+//        NSInputStream *stream = [NSInputStream inputStreamWithData:data];
+//        [formData appendPartWithInputStream:stream name:@"file" fileName:@"LOGO.png" length:nil mimeType:@"image/png"];
+        
+        [formData appendPartWithFileData:data name:@"file" fileName:@"LOGO.png" mimeType:@"image/png"];
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        JYLog(@"%@",responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        JYLog(@"%@",error.description);
+    }];
     
     /** 更新信息测试 */
 //    [params setObject:@"evenlam@icloud.com" forKey:@"email"];

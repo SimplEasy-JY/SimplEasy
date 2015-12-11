@@ -16,6 +16,13 @@ static const CGFloat SECOND_ROW_H = 174;
 static const CGFloat BTN_W = 45;
 static const NSUInteger LIMIT_DESC_NUM = 20;
 static NSString *DESC_PLACEHOLDER = @"描述一下您的需求...(限20字)";
+
+
+#define JYSetUserName(string,dic)       [dic setObject:string forKey:@"username"]
+#define JYSetPassword(string,dic)       [dic setObject:string forKey:@"password"]
+#define JYSetDetail(string, dic)        [dic setObject:string forKey:@"detail"]
+#define JYSetPrice(string, dic)         [dic setObject:string forKey:@"price"]
+
 @interface JYPublishNeedsVC () <UITextViewDelegate>
 
 /** 急需 按钮 */
@@ -221,7 +228,35 @@ static NSString *DESC_PLACEHOLDER = @"描述一下您的需求...(限20字)";
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [JYUserInfoNetManager publishNeedsWithParams:[self params] completionHandle:^(JYNormalModel *model, NSError *error) {
+        if (model.status.integerValue == 1) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"发布成功" preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }]];
+            [self presentViewController:alert animated:YES completion:nil];
+        }else{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:model.errorMsg preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:nil]];
+            [self presentViewController:alert animated:YES completion:nil];
+
+        }
+    }];
     
+}
+
+- (NSDictionary *)params{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+#warning 用户名电话密码用登陆用户的
+    JYSetUserName(@"18768102901", params);
+    [params setObject:@"18768102901" forKey:@"tel"];
+    JYSetPassword(@"123456", params);
+    JYSetDetail(self.descTV.text, params);
+    JYSetPrice(self.priceTF.text, params);
+    return [params copy];
 }
 
 #pragma mark *** UITextViewDelegate ***

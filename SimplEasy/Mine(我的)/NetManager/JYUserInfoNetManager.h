@@ -20,7 +20,7 @@
  *  （POST）根据用户ID 更新用户信息
  *
  *  @param ID     用户ID
- *  @param params 修改的信息，必须包含tel和password
+ *  @param params 修改的信息，必须包含username和password
  *
  *  @return 返回更新信息
  */
@@ -39,7 +39,7 @@
 /**
  *  (POST)发布闲置
  *
- *  @param params 商品参数:需要包括（tel/password/title/sort/name/detail/price/图片数组pic）
+ *  @param params 商品参数:需要包括（tel/username/password/title/sort/name/detail/price/图片数组pic）
  *
  *  @return 返回发布状态
  */
@@ -57,7 +57,7 @@
 /**
  *  （POST）发布需求
  *
- *  @param params 需求参数：需要包括（tel/password/detail/price）
+ *  @param params 需求参数：需要包括（tel/username/password/detail/price）
  *
  *  @return 返回发布状态
  */

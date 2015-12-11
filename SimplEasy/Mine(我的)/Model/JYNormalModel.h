@@ -16,6 +16,8 @@
 @property (nonatomic, copy) NSString *data;
 /** 代码 */
 @property (nonatomic, copy) NSString *code;
-
-
+/** 错误代码 */
+@property (nonatomic, copy) NSString *errorCode;
+/** 错误信息 */
+@property (nonatomic, copy) NSString *errorMsg;
 @end
