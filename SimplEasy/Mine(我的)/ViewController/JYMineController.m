@@ -168,9 +168,12 @@
         NSString *signature = nil;
         if ([customInfoArray count] > 1) {
             signature = [customInfoArray objectAtIndex:0];
+            cell.schoolLb.text = [NSString stringWithFormat:@"简介:%@",signature];
+        } else {
+            cell.schoolLb.text = @" ";
         }
+        
         cell.nickNameLb.text = nickname;
-        cell.schoolLb.text = [NSString stringWithFormat:@"简介:%@",signature];
         cell.schoolLb.textColor = [UIColor darkGrayColor];
         cell.rankIV.image = [UIImage imageNamed:@"grade"];
         cell.followBtn.hidden = YES;

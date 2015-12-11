@@ -179,6 +179,7 @@
         [self.hud show:YES];
         
         [g_pIMMyself logout];
+        [[JYFileManager defaultManager] clearCacheAtPath:cachePath];
         //注册注销通知
         [[NSNotificationCenter defaultCenter] postNotificationName:IMLogoutNotification object:nil];
         

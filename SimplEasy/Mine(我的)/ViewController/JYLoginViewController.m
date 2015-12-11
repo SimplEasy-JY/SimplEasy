@@ -263,7 +263,7 @@ static JYLoginViewController *loginViewC = nil;// 定义全局静态变量
             [self startAnimation];
         }
         sender.tag +=1;
-        NSDictionary *parms = @{@"tel":self.userName,@"password":self.password};
+        NSDictionary *parms = @{@"tel":self.userName,@"password":self.password,@"name":self.userName};
         [JYLoginManager loginOrRegisterWith:parms Login:YES completionHandle:^(JYLoginRegisterModel *model, NSError *error) {
             if ([model.status isEqualToString:@"0"]) {
                 _notifyText = model.error_msg;
@@ -272,10 +272,10 @@ static JYLoginViewController *loginViewC = nil;// 定义全局静态变量
                 return ;
             }
             //获取登录成功返回的用户数据
-//            userData *data = model.data;
+            UserData *data = model.data;
             //[g_pIMMyself setDelegate:self];
 //            [g_pIMMyself setCustomUserID:data.name];
-            [g_pIMMyself setCustomUserID:self.userName];
+            [g_pIMMyself setCustomUserID:data.name];
             [g_pIMMyself setPassword:self.password];
             [g_pIMMyself setAutoLogin:YES];
             [g_pIMMyself loginWithTimeoutInterval:5 success:^{
@@ -283,6 +283,7 @@ static JYLoginViewController *loginViewC = nil;// 定义全局静态变量
                 
                 [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:IMLastLoginTime];
                 [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself customUserID] forKey:IMLoginCustomUserID];
+                [[NSUserDefaults standardUserDefaults] setObject:data.tel forKey:IMLoginTEL];
                 [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself password] forKey:IMLoginPassword];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 //应用角标清零
@@ -293,7 +294,7 @@ static JYLoginViewController *loginViewC = nil;// 定义全局静态变量
                 [self removeFromParentViewController];
                 [[self view] removeFromSuperview];
                 rootVC.tabBarController.selectedIndex = 0;
-                [[NSNotificationCenter defaultCenter] postNotificationName:IMLoginNotification object:nil];
+                
             } failure:^(NSString *error) {
                 
                 if ([error isEqualToString:@"customUserID只能由2 ～32位字母、数字、下划线、点或@符组成"]) {

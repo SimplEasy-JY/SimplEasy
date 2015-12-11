@@ -123,7 +123,7 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
     [[self view] setBackgroundColor:[UIColor whiteColor]];
     [[self navigationController] setNavigationBarHidden:YES];
     
-
+    self.isLogin = NO;
     
     //设置IMMyself 代理
     [g_pIMMyself setDelegate:self];
@@ -258,9 +258,11 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
     }
     
 }
+//登录成功回调，包括注册自动登录
 - (void)didLogin:(BOOL)autoLogin {
-   
-    NSLog(@"登录成功了可以刷新界面了============~~~");
+    self.isLogin = YES;
+    //发送登陆成功通知
+    [[NSNotificationCenter defaultCenter] postNotificationName:IMLoginNotification object:nil];
     
 }
 - (void)logoutFailedWithError:(NSString *)error {

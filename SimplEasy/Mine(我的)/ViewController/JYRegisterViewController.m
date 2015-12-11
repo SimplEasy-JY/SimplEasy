@@ -172,7 +172,7 @@ static CGFloat space = 30;
             JYLog(@"+++++++++++++++%@ phonenum",self.phoneNum);
             NSDictionary *parms = @{@"tel":self.phoneNum,@"password":password,@"name":customUserID};
             [JYLoginManager loginOrRegisterWith:parms Login:NO completionHandle:^(JYLoginRegisterModel *model, NSError *error) {
-                if (model.error_msg ) {
+                if ([model.status isEqualToString:@"0"]) {
                     _notifyText = model.error_msg;
                     _notifyImage = [UIImage imageNamed:@"IM_alert_image.png"];
                     [self displayNotifyHUD];
@@ -181,10 +181,11 @@ static CGFloat space = 30;
                 [g_pIMMyself setCustomUserID:customUserID];
                 [g_pIMMyself setPassword:password];
                 [g_pIMMyself registerWithTimeoutInterval:5 success:^{
-                    
+
                     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:IMLastLoginTime];
                     [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself customUserID] forKey:IMLoginCustomUserID];
                     [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself password] forKey:IMLoginPassword];
+                    [[NSUserDefaults standardUserDefaults] setObject:self.phoneNum forKey:IMLoginTEL];
                     [[NSUserDefaults standardUserDefaults] synchronize];
                     //应用角标清零
                     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];

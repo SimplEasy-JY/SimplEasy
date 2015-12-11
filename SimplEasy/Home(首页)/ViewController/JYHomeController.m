@@ -238,7 +238,6 @@ typedef NS_ENUM(NSInteger, cellType) {
     //监听登录通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(login) name:IMLoginNotification object:nil];
     
-    [self.tableView.header beginRefreshing];
     
    
 }
