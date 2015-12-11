@@ -263,7 +263,7 @@ static JYLoginViewController *loginViewC = nil;// 定义全局静态变量
             [self startAnimation];
         }
         sender.tag +=1;
-        NSDictionary *parms = @{@"tel":self.userName,@"password":self.password,@"name":self.userName};
+        NSDictionary *parms = @{@"password":self.password,@"username":self.userName};
         [JYLoginManager loginOrRegisterWith:parms Login:YES completionHandle:^(JYLoginRegisterModel *model, NSError *error) {
             if ([model.status isEqualToString:@"0"]) {
                 _notifyText = model.error_msg;
