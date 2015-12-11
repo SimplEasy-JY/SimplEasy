@@ -251,9 +251,11 @@ static NSString *DESC_PLACEHOLDER = @"描述一下您的需求...(限20字)";
 - (NSDictionary *)params{
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
 #warning 用户名电话密码用登陆用户的
-    JYSetUserName(@"18768102901", params);
+    NSString *tel = [[NSUserDefaults standardUserDefaults] objectForKey:IMLoginTEL];
+    NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:IMLoginPassword];
+    JYSetUserName(tel, params);
     [params setObject:@"18768102901" forKey:@"tel"];
-    JYSetPassword(@"123456", params);
+    JYSetPassword(password, params);
     JYSetDetail(self.descTV.text, params);
     JYSetPrice(self.priceTF.text, params);
     return [params copy];
