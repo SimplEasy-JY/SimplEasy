@@ -11,36 +11,7 @@
 #import "JYSellerCell.h"
 #import "JYClassifyModel.h"
 #import "JYClassifyContentVC.h"
-
-#pragma mark *** 自定义cell ***
-
-
-
-@interface JYClassifyTableViewCell : UITableViewCell
-
-@end
-
-
-
-@implementation JYClassifyTableViewCell
-
-
-- (void)layoutSubviews{
-    [super layoutSubviews];
-    [self.imageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(16);
-        make.height.mas_equalTo(16);
-        make.centerY.mas_equalTo(0);
-        make.left.mas_equalTo(10);
-    }];
-    [self.textLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.imageView.mas_right).mas_equalTo(10);
-        make.centerY.mas_equalTo(0);
-    }];
-}
-
-@end
-
+#import "JYNormalCell.h"
 
 
 #pragma mark *** 控制器 ***
@@ -144,9 +115,9 @@ static CGFloat margin = 5;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"Cell";
-    JYClassifyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    JYNormalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[JYClassifyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[JYNormalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
     /** 颜色 */

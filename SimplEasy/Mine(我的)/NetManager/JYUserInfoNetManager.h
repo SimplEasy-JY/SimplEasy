@@ -16,7 +16,14 @@
 /** （GET）根据用户ID 获取用户信息 */
 + (id)getUserInfoWithUserID: (NSString *)ID kCompletionHandle;
 
-/**（POST）根据用户ID 更新用户信息 */
+/**
+ *  （POST）根据用户ID 更新用户信息
+ *
+ *  @param ID     用户ID
+ *  @param params 修改的信息，必须包含tel和password
+ *
+ *  @return 返回更新信息
+ */
 + (id)updateUserInfoWithUserID: (NSString *)ID params: (NSDictionary *)params kCompletionHandle;
 
 /** （DELETE）根据用户ID 删除用户 */

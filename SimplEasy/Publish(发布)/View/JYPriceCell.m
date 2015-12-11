@@ -53,6 +53,7 @@ static const CGFloat MARGIN = 10;
     if(_priceTF == nil) {
         _priceTF = [[UITextField alloc] init];
         _priceTF.placeholder = @"¥0.00";
+        _priceTF.keyboardType = UIKeyboardTypeDecimalPad;
         [self.contentView addSubview:_priceTF];
         [_priceTF mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.priceLb.mas_right).mas_equalTo(0);
@@ -81,6 +82,7 @@ static const CGFloat MARGIN = 10;
     if(_originPriceTF == nil) {
         _originPriceTF = [[UITextField alloc] init];
         _originPriceTF.placeholder = @"¥0.00";
+        _originPriceTF.keyboardType = UIKeyboardTypeDecimalPad;
         [self.contentView addSubview:_originPriceTF];
         [_originPriceTF mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.originPriceLb.mas_right).mas_equalTo(0);

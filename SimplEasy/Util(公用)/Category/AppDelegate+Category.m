@@ -8,7 +8,7 @@
 
 #import "AppDelegate+Category.h"
 #import <AFNetworkActivityIndicatorManager.h>
-
+#import <MLTransition.h>
 @implementation AppDelegate (Category)
 
 - (void)initializeWithApplication:(UIApplication *)application{
@@ -35,7 +35,7 @@
         }
     }];
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
-    
+    [MLTransition validatePanPackWithMLTransitionGestureRecognizerType:MLTransitionGestureRecognizerTypeScreenEdgePan];
 
 }
 

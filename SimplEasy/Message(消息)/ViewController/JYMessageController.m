@@ -105,7 +105,7 @@ static CGFloat rowHeight = 60;
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow_right"]];
     cell.imageView.image = @[[UIImage imageNamed:@"message_07"],[UIImage imageNamed:@"message_13"],[UIImage imageNamed:@"message_15"]][indexPath.row];
     cell.textLabel.text = @[@"系统消息",@"评论",@"陌生人消息"][indexPath.row];
     return cell;
@@ -131,6 +131,7 @@ kRemoveCellSeparator
 		_tableView = [[UITableView alloc] init];
         _tableView.dataSource = self;
         _tableView.delegate = self;
+        _tableView.tableFooterView = [UIView new];
         [self.view addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(self.view);

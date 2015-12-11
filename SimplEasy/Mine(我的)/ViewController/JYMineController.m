@@ -12,7 +12,7 @@
 #import "JYSettingViewController.h"
 #import "UIImage+Circle.h"
 #import "IMContactViewController.h"
-
+#import "JYNormalCell.h"
 #import "IMDefine.h"
 //#import "IMMyselfInfoViewController.h"
 //#import "IMSettingTableViewCell.h"
@@ -67,22 +67,26 @@
 /** 配置sectionFooterView，第一个section */
 - (UIView *)sectionFooterView{
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWindowW, 50)];
+    footerView.backgroundColor = [UIColor lightGrayColor];
+    footerView.backgroundColor = [UIColor whiteColor];
     NSArray *labelNames = @[@"39",@"12",@"84"];
     NSArray *btnNames = @[@"闲置",@"需求",@"易友"];
     for (int i = 0; i < 3; i++) {
         
         UILabel *label = [UILabel new];
         [footerView addSubview:label];
+        label.font = [UIFont systemFontOfSize:14];
         label.text = labelNames[i];
         label.textAlignment = NSTextAlignmentCenter;
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(i*kWindowW/3);
-            make.top.mas_equalTo(0);
+            make.top.mas_equalTo(1);
             make.bottom.mas_equalTo(footerView.mas_centerY);
             make.width.mas_equalTo(kWindowW/3);
         }];
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.titleLabel.font = [UIFont systemFontOfSize:14];
         [btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         [btn setTitleColor:JYGlobalBg forState:UIControlStateHighlighted];
         [btn setTitle:btnNames[i] forState:UIControlStateNormal];
@@ -113,7 +117,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [@[@1,@2,@2][section] integerValue];
+    return [@[@1,@3,@2][section] integerValue];
 }
 
 
@@ -148,8 +152,8 @@
                 self.headPhoto = [UIImage imageNamed:@"IM_head_male.png"];
             }
         }
-        self.headPhoto = [UIImage scaleToSize:self.headPhoto size:CGSizeMake(60, 60)];
-        self.headPhoto = [UIImage circleImageWithImage:self.headPhoto borderWidth:0.5 borderColor:[UIColor whiteColor]];
+//        self.headPhoto = [UIImage scaleToSize:self.headPhoto size:CGSizeMake(60, 60)];
+//        self.headPhoto = [UIImage circleImageWithImage:self.headPhoto borderWidth:0.5 borderColor:[UIColor whiteColor]];
         
         cell.headIV.image =self.headPhoto;
         //昵称
@@ -170,12 +174,12 @@
         cell.schoolLb.textColor = [UIColor darkGrayColor];
         cell.rankIV.image = [UIImage imageNamed:@"grade"];
         cell.followBtn.hidden = YES;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow_right"]];
         return cell;
     }else{
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MineCell"];
+        JYNormalCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MineCell"];
         if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"MineCell"];
+            cell = [[JYNormalCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"MineCell"];
         }
         cell.textLabel.font = [UIFont systemFontOfSize:16];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
@@ -187,15 +191,18 @@
                     make.centerY.mas_equalTo(cell.textLabel.mas_centerY);
                 }];
                 cell.detailTextLabel.textAlignment = NSTextAlignmentLeft;
+                [cell setBadge:0];
+            }else{
+                [cell setBadge:1];
             }
-            cell.textLabel.text = @[@"我的易友",@"简易等级"][indexPath.row];
-            cell.imageView.image = @[[UIImage imageNamed:@"newfriend"],[UIImage imageNamed:@"grade2"]][indexPath.row];
-            cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"point"]];
+            cell.textLabel.text = @[@"正在交易",@"我的易友",@"简易等级"][indexPath.row];
+            cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+            cell.imageView.image = @[[UIImage imageNamed:@"trading"],[UIImage imageNamed:@"newfriend"],[UIImage imageNamed:@"grade2"]][indexPath.row];
         }
         if (indexPath.section == 2) {
             cell.textLabel.text = @[@"我的收藏",@"草稿箱"][indexPath.row];
             cell.imageView.image = @[[UIImage imageNamed:@"collection"],[UIImage imageNamed:@"draught"]][indexPath.row];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow_right"]];
         }
         return cell;
     }
@@ -216,7 +223,7 @@ kRemoveCellSeparator
     return indexPath.section == 0?80:45;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 10;
+    return section == 0?0:10;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if (section == 0) {
@@ -232,7 +239,7 @@ kRemoveCellSeparator
         userInfoVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:userInfoVC animated:YES];
     }
-    if (indexPath.section == 1 && indexPath.row == 0){
+    if (indexPath.section == 1 && indexPath.row == 1){
         IMContactViewController *contactVC = [[IMContactViewController alloc]init];
         contactVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:contactVC animated:YES];

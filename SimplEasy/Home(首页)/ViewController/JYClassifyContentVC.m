@@ -45,6 +45,7 @@ static CGFloat sectionHeaderH = 30.0;
     [super viewDidLoad];
     JYLog(@"\n\n******************** 进入分类内容界面 ********************\n\n");
     self.sort = @"all";
+    [JYFactory addBackItemToVC:self];
     [self tableView];
     [self choiceTableView];
     [self setMJrefresh];

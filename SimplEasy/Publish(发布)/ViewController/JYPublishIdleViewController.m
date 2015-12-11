@@ -60,6 +60,7 @@ static const NSUInteger IMAGE_W = 100;
     [super viewDidLoad];
     JYLog(@"\n\n******************** 进入 发布闲置 视图 ********************\n\n");
     self.tableView.tableFooterView = [UIView new];
+    [JYFactory addBackItemToVC:self];
     
 }
 

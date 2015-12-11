@@ -30,6 +30,7 @@ static NSString *DESC_PLACEHOLDER = @"描述一下您的需求...(限20字)";
     [super viewDidLoad];
     JYLog(@"\n\n******************** 进入 发布需求 界面 ********************\n\n");
     self.view.backgroundColor = kRGBColor(236, 236, 236);
+    [JYFactory addBackItemToVC:self];
     [self configViews];
 }
 

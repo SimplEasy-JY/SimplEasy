@@ -67,6 +67,7 @@ static const int ddLogLevel = DDLogLevelError;
 //#import <UIImageView+WebCache.h>  //让UIKit框架拥有网络功能，功能与UIKit+AFNetwork一致，效率快0.02秒(据说)。
 #import <Masonry.h>         //超好用的链式书写AutoLayout的第三方类库，好用的根本停不下来
 
+#import "JYFactory.h"
 
 #import "NSObject+Common.h"       //个人添加的在界面上弹出提示的类拓展
 #import "UIView+Extension.h"

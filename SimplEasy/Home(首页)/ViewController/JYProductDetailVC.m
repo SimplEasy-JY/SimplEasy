@@ -39,7 +39,9 @@ static CGFloat bottomBtnHeight = 50;
 - (void)viewDidLoad {
     [super viewDidLoad];
     JYLog(@"\n\n******************** 进入详情页面 ********************\n\n");
+    [JYFactory addBackItemToVC:self];
     [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
+    
     
     //获取数据
     [self.pdVM getDataFromNetCompleteHandle:^(NSError *error) {

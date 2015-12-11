@@ -81,6 +81,7 @@
 }
 
 - (void)test{
+    
 //    NSMutableDictionary *params = [NSMutableDictionary dictionary];
 //
 //    NSString *path = @"http://www.i-jianyi.com/port/resource/imgUpload";

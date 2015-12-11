@@ -56,7 +56,7 @@
     [g_pIMMyself setCustomUserInfoDelegate:self];
     self.tableView.tableFooterView = [UIView new];
     [self loadData];
-    
+    [JYFactory addBackItemToVC:self];
 }
 #pragma mark *** <UITableViewDataSource> ***
 

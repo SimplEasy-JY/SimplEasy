@@ -30,6 +30,7 @@
     [super viewDidLoad];
     self.tableView.tableFooterView = [UIView new];
     [self configBottomBtn];
+    [JYFactory addBackItemToVC:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout) name:IMLogoutNotification object:nil];
     // Do any additional setup after loading the view.
 }
@@ -64,7 +65,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow_right"]];
     cell.textLabel.text = @[@[@"切换学校"],@[@"通知",@"隐私与安全",@"通用设置"],@[@"清理缓存",@"意见反馈",@"关于简易"]][indexPath.section][indexPath.row];
     if (indexPath.section == 0) {
         cell.detailTextLabel.text = @"浙江传媒大学";
@@ -99,7 +100,7 @@
 
 #pragma mark *** <UITableViewDelegate> ***
 
-kRemoveCellSeparator
+//kRemoveCellSeparator
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 10;
 }

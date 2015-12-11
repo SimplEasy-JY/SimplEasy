@@ -22,6 +22,7 @@
     /**  先隐藏webView */
     self.webView.hidden = YES;
 //    self.webView.backgroundColor = [UIColor redColor];
+    [JYFactory addBackItemToVC:self];
 
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.webUrl]]];
    
