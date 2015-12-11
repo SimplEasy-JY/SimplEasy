@@ -13,6 +13,7 @@
 #import "JYPriceCell.h"
 #import "JYClassSelectCell.h"
 #import "JYPublishCell.h"
+#import "JYUserInfoNetManager.h"
 
 /** 间隔 */
 static const CGFloat MARGIN = 10;
@@ -103,7 +104,7 @@ static const NSUInteger IMAGE_W = 100;
 }
 
 /** 判断输入的价格是否合法 */
-- (BOOL)isLegal: (NSString *)price{
+- (BOOL)isLegalPrice: (NSString *)price{
     NSString *regex = @"^(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*))$";
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
     return [predicate evaluateWithObject:price];
@@ -112,7 +113,7 @@ static const NSUInteger IMAGE_W = 100;
 /** 发布 */
 - (void)publish{
     [self.classTF resignFirstResponder];
-    if ([self isLegal:self.priceTF.text] && [self isLegal:self.originPriceTF.text]) {
+    if ([self isLegalPrice:self.priceTF.text] && [self isLegalPrice:self.originPriceTF.text]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"发布成功" preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self.navigationController popViewControllerAnimated:YES];

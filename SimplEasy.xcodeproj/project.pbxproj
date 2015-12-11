@@ -10,6 +10,9 @@
 		8319BE351C1A736300F5DD5B /* JYNormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8319BE341C1A736300F5DD5B /* JYNormalCell.m */; };
 		8319BE381C1AA24F00F5DD5B /* JYFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8319BE371C1AA24F00F5DD5B /* JYFactory.m */; };
 		8319BE3A1C1AA43E00F5DD5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8319BE391C1AA43E00F5DD5B /* Assets.xcassets */; };
+		8319BE3C1C1AC22300F5DD5B /* LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = 8319BE3B1C1AC22300F5DD5B /* LOGO.png */; };
+		8319BE3F1C1ACC0900F5DD5B /* JYNormalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8319BE3E1C1ACC0900F5DD5B /* JYNormalModel.m */; };
+		8319BE421C1ACEA700F5DD5B /* JYNeedsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8319BE411C1ACEA700F5DD5B /* JYNeedsModel.m */; };
 		831A04C71BF5CAFC00F78986 /* JYMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70121BE860C600B8B05F /* JYMineController.m */; };
 		831A04CA1BF5CCCA00F78986 /* JYUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831A04C91BF5CCCA00F78986 /* JYUserInfoViewController.m */; };
 		831A04CD1BF5D08300F78986 /* JYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831A04CC1BF5D08300F78986 /* JYSettingViewController.m */; };
@@ -447,6 +450,11 @@
 		8319BE361C1AA24F00F5DD5B /* JYFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYFactory.h; sourceTree = "<group>"; };
 		8319BE371C1AA24F00F5DD5B /* JYFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYFactory.m; sourceTree = "<group>"; };
 		8319BE391C1AA43E00F5DD5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8319BE3B1C1AC22300F5DD5B /* LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGO.png; sourceTree = "<group>"; };
+		8319BE3D1C1ACC0900F5DD5B /* JYNormalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYNormalModel.h; sourceTree = "<group>"; };
+		8319BE3E1C1ACC0900F5DD5B /* JYNormalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYNormalModel.m; sourceTree = "<group>"; };
+		8319BE401C1ACEA700F5DD5B /* JYNeedsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYNeedsModel.h; sourceTree = "<group>"; };
+		8319BE411C1ACEA700F5DD5B /* JYNeedsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYNeedsModel.m; sourceTree = "<group>"; };
 		831A04C81BF5CCCA00F78986 /* JYUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYUserInfoViewController.h; sourceTree = "<group>"; };
 		831A04C91BF5CCCA00F78986 /* JYUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYUserInfoViewController.m; sourceTree = "<group>"; };
 		831A04CB1BF5D08300F78986 /* JYSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYSettingViewController.h; sourceTree = "<group>"; };
@@ -1140,6 +1148,7 @@
 		8328A4391BE8478B0021767D /* SimplEasy */ = {
 			isa = PBXGroup;
 			children = (
+				8319BE3B1C1AC22300F5DD5B /* LOGO.png */,
 				8328A43D1BE8478B0021767D /* AppDelegate.h */,
 				8328A43E1BE8478B0021767D /* AppDelegate.m */,
 				8328A4761BE849800021767D /* Base(基类) */,
@@ -1648,6 +1657,10 @@
 				83987DF01BFEF71E007C9CE4 /* JYUserInfoModel.m */,
 				B03889E31C15AA560031DDC8 /* JYLoginRegisterModel.h */,
 				B03889E41C15AA560031DDC8 /* JYLoginRegisterModel.m */,
+				8319BE3D1C1ACC0900F5DD5B /* JYNormalModel.h */,
+				8319BE3E1C1ACC0900F5DD5B /* JYNormalModel.m */,
+				8319BE401C1ACEA700F5DD5B /* JYNeedsModel.h */,
+				8319BE411C1ACEA700F5DD5B /* JYNeedsModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2850,6 +2863,7 @@
 				B06FDDC41C0885270076E4DC /* dt_wix.gif in Resources */,
 				B06FDD8B1C0885270076E4DC /* dt_hah.gif in Resources */,
 				B06FDDE91C0885270076E4DC /* amp3.png in Resources */,
+				8319BE3C1C1AC22300F5DD5B /* LOGO.png in Resources */,
 				B03859DA1C06FC600053D0B0 /* chat_voice_play_left_3@3x.png in Resources */,
 				B03859DC1C06FC600053D0B0 /* chat_voice_play_right_2@3x.png in Resources */,
 				B06FDDD61C0885270076E4DC /* dt_zhm.gif in Resources */,
@@ -3076,6 +3090,7 @@
 				B04800841BF48DF0007D39F4 /* JYGoodsViewModel.m in Sources */,
 				8345CDB61BFB4156002A5910 /* JYProductDetailNetManager.m in Sources */,
 				83987DF51BFEFADF007C9CE4 /* JYUserInfoNetManager.m in Sources */,
+				8319BE3F1C1ACC0900F5DD5B /* JYNormalModel.m in Sources */,
 				8328A43C1BE8478B0021767D /* main.m in Sources */,
 				B06FDE0B1C0887CB0076E4DC /* JYAroundViewCell.m in Sources */,
 				B0AFA3A11BFB213E00F795F9 /* JSONKit.m in Sources */,
@@ -3083,6 +3098,7 @@
 				8385E8581C02E5AE0026604A /* JYProductInfoViewModel.m in Sources */,
 				83476B7B1BEB34830061F61E /* JYClassifyViewController.m in Sources */,
 				B06FDE0C1C0887CB0076E4DC /* JYAroundViewController.m in Sources */,
+				8319BE421C1ACEA700F5DD5B /* JYNeedsModel.m in Sources */,
 				B03FD5641C0553400031A18C /* JYSDKManager.m in Sources */,
 				B06FDC781C08847C0076E4DC /* IMCreateGroupViewController.m in Sources */,
 				B03FD5701C0553BC0031A18C /* JYLoginViewController.m in Sources */,

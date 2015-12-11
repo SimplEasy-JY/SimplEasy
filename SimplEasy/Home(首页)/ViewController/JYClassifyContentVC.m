@@ -10,6 +10,7 @@
 #import "JYClassifyCell.h"
 #import "JYProductInfoViewModel.h"
 #import "JYProductDetailVC.h"
+#import "UIButton+VerticalBtn.h"
 
 static NSString *cellIdentifier = @"Cell";
 static CGFloat sectionHeaderH = 30.0;
@@ -87,6 +88,17 @@ static CGFloat sectionHeaderH = 30.0;
     }];
 }
 
+- (UIImage *)arrowImageIsRight: (BOOL)isRight{
+    if (isRight) {
+        UIImage *arrowRight = [UIImage imageNamed:@"arrow_right"];
+        arrowRight = [arrowRight imResizedImage:CGSizeMake(6, 11) interpolationQuality:kCGInterpolationHigh];
+        return arrowRight;
+    }else{
+        UIImage *arrowDown = [UIImage imageNamed:@"arrow_down"];
+        arrowDown = [arrowDown imResizedImage:CGSizeMake(11, 6) interpolationQuality:kCGInterpolationHigh];
+        return arrowDown;
+    }
+}
 /** 数据的刷新 */
 - (void)refreshData{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -257,10 +269,14 @@ kRemoveCellSeparator
     if(_changeSchoolBtn == nil) {
         _changeSchoolBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _changeSchoolBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        _changeSchoolBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        _changeSchoolBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
         [_changeSchoolBtn setTitle:@"切换校区" forState:UIControlStateNormal];
         [_changeSchoolBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [_changeSchoolBtn setTitleColor:JYGlobalBg forState:UIControlStateHighlighted];
         [_changeSchoolBtn setTitleColor:JYGlobalBg forState:UIControlStateSelected];
+        [_changeSchoolBtn setImage:[self arrowImageIsRight:YES] forState:UIControlStateNormal];
+        [_changeSchoolBtn setImage:[self arrowImageIsRight:NO] forState:UIControlStateSelected];
         _changeSchoolBtn.layer.borderWidth = 0.5;
         _changeSchoolBtn.layer.borderColor = [[UIColor lightGrayColor] CGColor];
         //加入点击事件
@@ -290,10 +306,14 @@ kRemoveCellSeparator
 	if(_sortBtn == nil) {
 		_sortBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _sortBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        _sortBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        _sortBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
         [_sortBtn setTitle:@"综合排序" forState:UIControlStateNormal];
         [_sortBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [_sortBtn setTitleColor:JYGlobalBg forState:UIControlStateHighlighted];
         [_sortBtn setTitleColor:JYGlobalBg forState:UIControlStateSelected];
+        [_sortBtn setImage:[self arrowImageIsRight:YES] forState:UIControlStateNormal];
+        [_sortBtn setImage:[self arrowImageIsRight:NO] forState:UIControlStateSelected];
         _sortBtn.layer.borderWidth = 0.5;
         _sortBtn.layer.borderColor = [[UIColor lightGrayColor] CGColor];
         [_sortBtn bk_addEventHandler:^(UIButton *sender) {
@@ -321,10 +341,14 @@ kRemoveCellSeparator
 	if(_subClassBtn == nil) {
 		_subClassBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _subClassBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        _subClassBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+        _subClassBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [_subClassBtn setTitle:@"筛选分类" forState:UIControlStateNormal];
         [_subClassBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [_subClassBtn setTitleColor:JYGlobalBg forState:UIControlStateHighlighted];
         [_subClassBtn setTitleColor:JYGlobalBg forState:UIControlStateSelected];
+        [_subClassBtn setImage:[self arrowImageIsRight:YES] forState:UIControlStateNormal];
+        [_subClassBtn setImage:[self arrowImageIsRight:NO] forState:UIControlStateSelected];
         _subClassBtn.layer.borderWidth = 0.5;
         _subClassBtn.layer.borderColor = [[UIColor lightGrayColor] CGColor];
         [_subClassBtn bk_addEventHandler:^(UIButton *sender) {

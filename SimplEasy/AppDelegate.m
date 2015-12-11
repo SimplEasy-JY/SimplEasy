@@ -55,7 +55,7 @@
 
 /** 应用程序入口 */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    [self test];
+    [self test];
     [self configGlobalUIStyle];
     
     /** 注册友盟分享 */
@@ -82,8 +82,9 @@
 
 - (void)test{
     
-//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
 //
+    /** 图片上传测试 */
 //    NSString *path = @"http://www.i-jianyi.com/port/resource/imgUpload";
 //
 //    [[JYUserInfoNetManager sharedAFManager] POST:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -95,18 +96,20 @@
 //    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
 //        JYLog(@"%@",error.description);
 //    }];
+    
+    /** 更新信息测试 */
 //    [params setObject:@"evenlam@icloud.com" forKey:@"email"];
-//    [JYUserInfoNetManager updateUserInfoWithUserID:@"754" params:params completionHandle:^(id model, NSError *error) {
+//    [JYUserInfoNetManager updateUserInfoWithUserID:@"758" params:params completionHandle:^(id model, NSError *error) {
 //        NSLog(@"\n\n******************** %@ ********************\n\n",model);
 //    }];
     
 //    JYSetTel(@"18768102901", params);
 //    JYSetPassword(@"123456", params);
 //    JYSetName(@"EvenLam", params);
-//    [JYLoginManager loginOrRegisterWith:params Login:YES completionHandle:^(id model, NSError *error) {
+//    [JYLoginManager loginOrRegisterWith:params Login:NO completionHandle:^(id model, NSError *error) {
 //        NSLog(@"\n\n******************** %@ ********************\n\n",model);
 //    }];
-//
+////
 //    [JYUserInfoNetManager getUserListWithPage:@"1" completionHandle:^(id model, NSError *error) {
 //    }];
 //    

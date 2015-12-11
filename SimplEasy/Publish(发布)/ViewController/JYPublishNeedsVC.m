@@ -7,6 +7,8 @@
 //
 
 #import "JYPublishNeedsVC.h"
+#import "JYUserInfoNetManager.h"
+#import "JYNormalModel.h"
 
 static const CGFloat MARGIN = 10;
 static const CGFloat NORMAL_H = 45;
@@ -22,6 +24,8 @@ static NSString *DESC_PLACEHOLDER = @"描述一下您的需求...(限20字)";
 @property (nonatomic, strong) UIButton *QGBtn;
 /** 需求 文本视图 */
 @property (nonatomic, strong) UITextView *descTV;
+/** 价格TF */
+@property (nonatomic, strong) UITextField *priceTF;
 @end
 
 @implementation JYPublishNeedsVC
@@ -34,7 +38,7 @@ static NSString *DESC_PLACEHOLDER = @"描述一下您的需求...(限20字)";
     [self configViews];
 }
 
-/** 配置第一行的界面 */
+/** 配置界面 */
 - (void)configViews{
     UIView *firstRowView = [[UIView alloc] init];
     firstRowView.backgroundColor = [UIColor whiteColor];
@@ -151,9 +155,73 @@ static NSString *DESC_PLACEHOLDER = @"描述一下您的需求...(限20字)";
     [publishBtn setTitle:@"确认发布" forState:UIControlStateNormal];
     [publishBtn setBackgroundColor:JYGlobalBg];
     [publishView addSubview:publishBtn];
+    [publishBtn addTarget:self action:@selector(publishNeeds:) forControlEvents:UIControlEventTouchUpInside];
     [publishBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsMake(MARGIN, MARGIN, MARGIN, MARGIN));
     }];
+    
+    UIView *thirdView = [UIView new];
+    thirdView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:thirdView];
+    [thirdView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.top.mas_equalTo(secondRowView.mas_bottom).mas_equalTo(1);
+        make.height.mas_equalTo(NORMAL_H);
+    }];
+    
+    UILabel *priceLb = [UILabel new];
+    [thirdView addSubview:priceLb];
+    priceLb.text = @"你的心里价位是？";
+    priceLb.font = [UIFont systemFontOfSize:14];
+    priceLb.textColor = [UIColor darkGrayColor];
+    [priceLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(MARGIN);
+        make.top.mas_equalTo(0);
+        make.height.mas_equalTo(NORMAL_H);
+        make.width.mas_equalTo(kWindowW/2 - MARGIN);
+    }];
+    
+    self.priceTF = [[UITextField alloc] init];
+    _priceTF.placeholder = @"¥0.0";
+    _priceTF.keyboardType = UIKeyboardTypeDecimalPad;
+    [thirdView addSubview:_priceTF];
+    [_priceTF mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(priceLb.mas_right).mas_equalTo(0);
+        make.height.mas_equalTo(NORMAL_H);
+        make.centerY.mas_equalTo(priceLb);
+        make.right.mas_equalTo(-MARGIN);
+    }];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
+
+/** 判断输入的价格是否合法 */
+- (BOOL)isLegalPrice: (NSString *)price{
+    NSString *regex = @"^(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*))$";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    return [predicate evaluateWithObject:price];
+}
+/** 发布需求 */
+- (void)publishNeeds: (UIButton *)sender{
+    if ([self.descTV.text isEqualToString:DESC_PLACEHOLDER]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请输入需求内容" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self.descTV becomeFirstResponder];
+        }]];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    if (![self isLegalPrice:self.priceTF.text]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"价格不对哦！" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self.priceTF becomeFirstResponder];
+        }]];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    
 }
 
 #pragma mark *** UITextViewDelegate ***

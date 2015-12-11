@@ -199,7 +199,7 @@
 		<key>icon</key>
 		<string>typeicon10</string>
 		<key>selectedIcon</key>
-		<string>typeicon10</string>
+		<string>typeicon10_selected</string>
 		<key>selected</key>
 		<false/>
 		<key>index</key>
@@ -218,7 +218,7 @@
 		<key>icon</key>
 		<string>typeicon11</string>
 		<key>selectedIcon</key>
-		<string>typeicon11</string>
+		<string>typeicon11_selected</string>
 		<key>selected</key>
 		<false/>
 		<key>index</key>

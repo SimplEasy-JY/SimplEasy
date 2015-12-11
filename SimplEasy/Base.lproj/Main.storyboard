@@ -68,6 +68,37 @@
             </objects>
             <point key="canvasLocation" x="90" y="-63"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="rwU-j4-Dsk">
+            <objects>
+                <viewController id="DzA-rP-aog" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ku6-5d-0q2"/>
+                        <viewControllerLayoutGuide type="bottom" id="7D4-tS-1zd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ev5-hu-R1d">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBs-aK-1I6">
+                                <rect key="frame" x="158" y="231" width="121" height="39"/>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="titleEdgeInsets" minX="-45" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="-110" maxY="0.0"/>
+                                <state key="normal" title="Button" image="arrow_right">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bji-Wx-riD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="837" y="-310"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ytd-gK-LcZ">
             <objects>
@@ -89,6 +120,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow_right" width="6" height="11"/>
         <image name="topicon_1" width="30" height="30"/>
         <image name="topicon_2" width="30" height="30"/>
     </resources>
