@@ -21,6 +21,8 @@
 @property (nonatomic, strong) NSString *sort;
 /** 行数 */
 @property (nonatomic, assign) NSInteger rowNum;
+/** 是否是最后一页 */
+@property (nonatomic, getter=isLastPage) BOOL lastPage;
 
 #pragma mark *** 用户 ***
 /** 用户姓名 */
@@ -42,5 +44,4 @@
 /** 商品ID */
 - (NSString *)productIDForRow: (NSInteger)row;
 
-- (BOOL)isLastPage;
 @end

@@ -7,32 +7,99 @@
 //
 
 #import "JYCircleViewController.h"
+#import "JYNeedsViewModel.h"
 
 @interface JYCircleViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 /** tableView */
 @property (nonatomic, strong) UITableView *tableView;
+
+/** NeedsVM */
+@property (nonatomic, strong) JYNeedsViewModel *needsVM;
+
 @end
 
 @implementation JYCircleViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self.needsVM refreshDataCompletionHandle:^(NSError *error) {
+            if (!error) {
+                [self.tableView reloadData];
+                [self.tableView.mj_header endRefreshing];
+                [self.needsVM isLastPage]?[self.tableView.footer endRefreshingWithNoMoreData]:[self.tableView.footer resetNoMoreData];
+            }else{
+                JYLog(@"刷新出错： %@",error.description);
+                [self.tableView.mj_header endRefreshing];
+            }
+        }];
+    }];
+    
+    [self.tableView.mj_header beginRefreshing];
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self.needsVM getMoreDataCompletionHandle:^(NSError *error) {
+            if (!error) {
+                if ([self.needsVM isLastPage]) {
+                    [self.tableView reloadData];
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                }else{
+                    [self.tableView reloadData];
+                    [self.tableView.mj_footer resetNoMoreData];
+                    [self.tableView.mj_footer endRefreshing];
+                }
+            }else{
+                JYLog(@"%@",error.description);
+                [self.tableView.mj_footer endRefreshing];
+            }
+        }];
+    }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark *** <UITableViewDataSource> ***
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    JYLog(@"++++++++++++");
+    return self.needsVM.rowNum;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+    }
+    cell.textLabel.text = [self.needsVM detailForRow:indexPath.row];
+    cell.detailTextLabel.text = [self.needsVM userNameForRow:indexPath.row];
+    [self.needsVM headImgForRow:indexPath.row]?[cell.imageView sd_setImageWithURL:[self.needsVM headImgForRow:indexPath.row]]:nil;
+    return cell;
+}
 
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 80;
+//}
+
+#pragma mark *** Lazy Loading ***
 
 - (UITableView *)tableView {
 	if(_tableView == nil) {
 		_tableView = [[UITableView alloc] init];
+        _tableView.dataSource = self;
+        _tableView.delegate = self;
+        [self.view addSubview:_tableView];
+        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(0);
+        }];
 	}
 	return _tableView;
+}
+
+- (JYNeedsViewModel *)needsVM {
+	if(_needsVM == nil) {
+		_needsVM = [[JYNeedsViewModel alloc] init];
+	}
+	return _needsVM;
 }
 
 @end

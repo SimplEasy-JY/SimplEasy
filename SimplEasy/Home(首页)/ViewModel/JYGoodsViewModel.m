@@ -12,8 +12,11 @@
 @implementation JYGoodsViewModel
 
 - (void)getDataFromNetCompleteHandle:(CompletionHandle)completionHandle{
+    [self.dataTask cancel];
     self.dataTask = [JYGoodsNetManager getGoodsWithParams:self.params completionHandle:^(JYGoodsModel   *model, NSError *error) {
-        [self.dataArr addObjectsFromArray:model.data.items];
+        if (!error) {
+            [self.dataArr addObjectsFromArray:model.data.items];
+        }
         completionHandle(error);
     }];
 }

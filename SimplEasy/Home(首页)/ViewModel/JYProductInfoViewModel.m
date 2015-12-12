@@ -9,13 +9,6 @@
 #import "JYProductInfoViewModel.h"
 #import "JYGoodsModel.h"
 
-@interface JYProductInfoViewModel ()
-
-/** 最大页数 */
-@property (nonatomic, assign) NSInteger maxPage;
-
-@end
-
 @implementation JYProductInfoViewModel
 
 - (instancetype)initWithType:(NSString *)type sort:(NSString *)sort
@@ -45,12 +38,15 @@
 }
 
 - (void)getDataFromNetCompleteHandle:(CompletionHandle)completionHandle{
+    [self.dataTask cancel];
     self.dataTask = [JYGoodsNetManager getGoodsWithPage:_page title:_type sort:_sort completionHandle:^(JYGoodsModel *model, NSError *error) {
-        if (_page == 1) {
-            [self.dataArr removeAllObjects];
+        if (!error) {
+            _lastPage = [model.data.last isEqualToString:model.data.current];
+            if (_page == 1) {
+                [self.dataArr removeAllObjects];
+            }
+            [self.dataArr addObjectsFromArray:model.data.items];
         }
-        self.maxPage = model.data.total_pages.integerValue;
-        [self.dataArr addObjectsFromArray:model.data.items];
         completionHandle(error);
     }];
 }
@@ -104,10 +100,6 @@
 /** 商品ID */
 - (NSString *)productIDForRow: (NSInteger)row{
     return [self modelForRow:row].ID;
-}
-
-- (BOOL)isLastPage{
-    return self.page >= self.maxPage;
 }
 
 @end

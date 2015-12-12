@@ -36,17 +36,21 @@
 }
 
 - (void)getDataFromNetCompleteHandle:(CompletionHandle)completionHandle{
+    [self.dataTask cancel];
     self.dataTask = [JYProductDetailNetManager getProductDetailInfoWithId:_ID completionHandle:^(JYProductDetailModel *model, NSError *error) {
-        JYProductDetailDataModel *dataModel = model.data;
-        [self.dataArr addObject:model.data];
-        
+        if (!error) {
+            JYProductDetailDataModel *dataModel = model.data;
+            [self.dataArr addObject:model.data];
+            self.userDataTask = [JYUserInfoNetManager getUserInfoWithUserID:dataModel.uid.integerValue completionHandle:^(JYUserInfoModel *model, NSError *error) {
+                if (!error) {
+                    self.userDataArr = [NSMutableArray array];
+                    [self.userDataArr addObject:model.data];
+                }
+                completionHandle(error);
+            }];
+        }
         completionHandle(error);
         
-        self.userDataTask = [JYUserInfoNetManager getUserInfoWithUserID:dataModel.uid completionHandle:^(JYUserInfoModel *model, NSError *error) {
-            self.userDataArr = [NSMutableArray array];
-            [self.userDataArr addObject:model.data];
-            completionHandle(error);
-        }];
     }];
     
 }

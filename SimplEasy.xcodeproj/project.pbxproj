@@ -13,7 +13,7 @@
 		8319BE3C1C1AC22300F5DD5B /* LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = 8319BE3B1C1AC22300F5DD5B /* LOGO.png */; };
 		8319BE3F1C1ACC0900F5DD5B /* JYNormalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8319BE3E1C1ACC0900F5DD5B /* JYNormalModel.m */; };
 		8319BE421C1ACEA700F5DD5B /* JYNeedsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8319BE411C1ACEA700F5DD5B /* JYNeedsModel.m */; };
-		8319BE451C1AF57E00F5DD5B /* JYCircleViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8319BE441C1AF57E00F5DD5B /* JYCircleViewModel.m */; };
+		8319BE451C1AF57E00F5DD5B /* JYNeedsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8319BE441C1AF57E00F5DD5B /* JYNeedsViewModel.m */; };
 		831A04C71BF5CAFC00F78986 /* JYMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70121BE860C600B8B05F /* JYMineController.m */; };
 		831A04CA1BF5CCCA00F78986 /* JYUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831A04C91BF5CCCA00F78986 /* JYUserInfoViewController.m */; };
 		831A04CD1BF5D08300F78986 /* JYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831A04CC1BF5D08300F78986 /* JYSettingViewController.m */; };
@@ -456,8 +456,8 @@
 		8319BE3E1C1ACC0900F5DD5B /* JYNormalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYNormalModel.m; sourceTree = "<group>"; };
 		8319BE401C1ACEA700F5DD5B /* JYNeedsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYNeedsModel.h; sourceTree = "<group>"; };
 		8319BE411C1ACEA700F5DD5B /* JYNeedsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYNeedsModel.m; sourceTree = "<group>"; };
-		8319BE431C1AF57E00F5DD5B /* JYCircleViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JYCircleViewModel.h; path = "SimplEasy/Mine(我的)/Model/JYCircleViewModel.h"; sourceTree = SOURCE_ROOT; };
-		8319BE441C1AF57E00F5DD5B /* JYCircleViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JYCircleViewModel.m; path = "SimplEasy/Mine(我的)/Model/JYCircleViewModel.m"; sourceTree = SOURCE_ROOT; };
+		8319BE431C1AF57E00F5DD5B /* JYNeedsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JYNeedsViewModel.h; path = "SimplEasy/Mine(我的)/Model/JYNeedsViewModel.h"; sourceTree = SOURCE_ROOT; };
+		8319BE441C1AF57E00F5DD5B /* JYNeedsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JYNeedsViewModel.m; path = "SimplEasy/Mine(我的)/Model/JYNeedsViewModel.m"; sourceTree = SOURCE_ROOT; };
 		831A04C81BF5CCCA00F78986 /* JYUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYUserInfoViewController.h; sourceTree = "<group>"; };
 		831A04C91BF5CCCA00F78986 /* JYUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYUserInfoViewController.m; sourceTree = "<group>"; };
 		831A04CB1BF5D08300F78986 /* JYSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYSettingViewController.h; sourceTree = "<group>"; };
@@ -1649,8 +1649,8 @@
 		837086A71C0862B20003F347 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				8319BE431C1AF57E00F5DD5B /* JYCircleViewModel.h */,
-				8319BE441C1AF57E00F5DD5B /* JYCircleViewModel.m */,
+				8319BE431C1AF57E00F5DD5B /* JYNeedsViewModel.h */,
+				8319BE441C1AF57E00F5DD5B /* JYNeedsViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -3059,7 +3059,7 @@
 				B06FDC731C08847C0076E4DC /* IMSearchUserViewController.m in Sources */,
 				B0AFA3B11BFB226E00F795F9 /* UIImage+IM.m in Sources */,
 				8328A4A41BE849800021767D /* AppDelegate+Category.m in Sources */,
-				8319BE451C1AF57E00F5DD5B /* JYCircleViewModel.m in Sources */,
+				8319BE451C1AF57E00F5DD5B /* JYNeedsViewModel.m in Sources */,
 				8396B8121C12BEC9007E09C5 /* JYProductDescCell.m in Sources */,
 				B089AA981BE9D09400E5D2CC /* JYLoopModel.m in Sources */,
 				B0AFA3A51BFB213E00F795F9 /* SFCountdownView.m in Sources */,

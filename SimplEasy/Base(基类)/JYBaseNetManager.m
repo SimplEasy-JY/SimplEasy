@@ -25,13 +25,13 @@ static AFHTTPSessionManager *manager = nil;
     // 打印网络请求， DDLog  与  NSLog 功能一样
 
     return [[self sharedAFManager] GET:path parameters:params success:^void(NSURLSessionDataTask * task, id responseObject) {
-        YSHLog(@"请求成功");
+        JYLog(@"请求成功");
 
         complete(responseObject, nil);
     } failure:^void(NSURLSessionDataTask * task, NSError * error) {
         complete(nil, error);
         
-         YSHLog(@"请求失败%@",error);
+         JYLog(@"请求失败%@",error);
     }];
     
 }

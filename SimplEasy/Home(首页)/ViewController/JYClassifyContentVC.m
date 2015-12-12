@@ -63,9 +63,9 @@ static CGFloat sectionHeaderH = 30.0;
                 JYLog(@"刷新出错: %@",error.description);
                 [self.tableView.header endRefreshing];
             }
+            [self.tableView reloadData];
             [self.tableView.header endRefreshing];
             [self.productInfoVM isLastPage]?[self.tableView.footer endRefreshingWithNoMoreData]:[self.tableView.footer resetNoMoreData];
-            [self.tableView reloadData];
         }];
     }];
     
@@ -78,11 +78,12 @@ static CGFloat sectionHeaderH = 30.0;
                 [self.tableView.footer endRefreshing];
             }
             if ([self.productInfoVM isLastPage]) {
+                [self.tableView reloadData];
                 [self.tableView.footer endRefreshingWithNoMoreData];
             }else{
+                [self.tableView reloadData];
                 [self.tableView.footer resetNoMoreData];
                 [self.tableView.footer endRefreshing];
-                [self.tableView reloadData];
             }
         }];
     }];

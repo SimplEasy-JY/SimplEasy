@@ -11,10 +11,10 @@
 @interface JYUserInfoNetManager : JYBaseNetManager
 
 /** （GET）获取用户列表 */
-+ (id)getUserListWithPage: (NSString *)page kCompletionHandle;
++ (id)getUserListWithPage: (NSInteger)page kCompletionHandle;
 
 /** （GET）根据用户ID 获取用户信息 */
-+ (id)getUserInfoWithUserID: (NSString *)ID kCompletionHandle;
++ (id)getUserInfoWithUserID: (NSInteger)ID kCompletionHandle;
 
 /**
  *  （POST）根据用户ID 更新用户信息
@@ -24,16 +24,16 @@
  *
  *  @return 返回更新信息
  */
-+ (id)updateUserInfoWithUserID: (NSString *)ID params: (NSDictionary *)params kCompletionHandle;
++ (id)updateUserInfoWithUserID: (NSInteger)ID params: (NSDictionary *)params kCompletionHandle;
 
 /** （DELETE）根据用户ID 删除用户 */
-+ (id)deleteUserWithUserID: (NSString *)ID kCompletionHandle;
++ (id)deleteUserWithUserID: (NSInteger)ID kCompletionHandle;
 
 /** （GET）获取用户当前查看的学校 */
 + (id)getCurrentSchoolCompletionHandle:(void(^)(id model, NSError *error))completionHandle;
 
 /** （POST）根据学校代码 更改用户当前查看的学校 EX：param: school=1 */
-+ (id)changeCurrentSchoolWithSchoolID: (NSString *)schoolID kCompletionHandle;
++ (id)changeCurrentSchoolWithSchoolID: (NSInteger)schoolID kCompletionHandle;
 
 
 /**
@@ -53,7 +53,7 @@
  *
  *  @return 返回需求
  */
-+ (id)getNeedsWithPageSize: (NSString *)pageSize userID: (NSString *)userID kCompletionHandle;
++ (id)getNeedsWithPage: (NSInteger)page userID: (NSInteger)userID kCompletionHandle;
 /**
  *  （POST）发布需求
  *

@@ -471,9 +471,9 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
     UINavigationController *homeNavc = [[UINavigationController alloc]
                                         initWithRootViewController:kVCFromSb(@"JYHomeController", @"Main")];
     
-    JYAroundViewController *shopVC = [[JYAroundViewController alloc] init];
-    UINavigationController *shopNavc = [[UINavigationController alloc]
-                                        initWithRootViewController:shopVC];
+    JYCircleViewController *needsVC = [[JYCircleViewController alloc] init];
+    UINavigationController *needsNavc = [[UINavigationController alloc]
+                                        initWithRootViewController:needsVC];
     
     JYMessageController *messageVC = [[JYMessageController alloc] init];
     UINavigationController *messageNavc = [[UINavigationController alloc]
@@ -490,7 +490,7 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
     
     [tabBarController setViewControllers:@[
                                            homeNavc,
-                                           shopNavc,
+                                           needsNavc,
                                            messageNavc,
                                            profileNavc
                                            ]];

@@ -24,7 +24,7 @@
 
 #pragma mark *** 用户相关操作 ***
 
-+ (id)getUserListWithPage:(NSString *)page completionHandle:(void (^)(id, NSError *))completionHandle {
++ (id)getUserListWithPage:(NSInteger)page completionHandle:(void (^)(id, NSError *))completionHandle {
     
     NSString *path = JYSetUserPort(@"index");
     
@@ -35,15 +35,15 @@
     
     return [self GET:path parameters:params completionHandle:^(id responseObj, NSError *error) {
 #warning TODO
-        completionHandle(responseObj,error);
+        completionHandle([JYNormalModel mj_objectWithKeyValues:responseObj],error);
     }];
 }
 
-+ (id)getUserInfoWithUserID:(NSString *)ID completionHandle:(void (^)(id, NSError *))completionHandle {
++ (id)getUserInfoWithUserID:(NSInteger)ID completionHandle:(void (^)(id, NSError *))completionHandle {
 
     NSString *path = JYSetUserPort(@"show");
-
-    path = JYSetID(path, ID);
+    NSString *IDStr = [NSString stringWithFormat:@"%lu",ID];
+    path = JYSetID(path, IDStr);
     JYLog(@"用户信息URL————%@",path);
     
     return [self GET:path parameters:nil completionHandle:^(id responseObj, NSError *error) {
@@ -52,23 +52,25 @@
     
 }
 
-+ (id)updateUserInfoWithUserID:(NSString *)ID params:(NSDictionary *)params completionHandle:(void (^)(id, NSError *))completionHandle {
++ (id)updateUserInfoWithUserID:(NSInteger)ID params:(NSDictionary *)params completionHandle:(void (^)(id, NSError *))completionHandle {
   
     //如果更新信息参数没有username和password，让程序崩溃
     NSAssert([params.allKeys containsObject:@"username"]&&[params.allKeys containsObject:@"password"], @"必须包含tel和password！");
     
     NSString *path = JYSetUserPort(@"update");
-    path = JYSetID(path, ID);
+    NSString *IDStr = [NSString stringWithFormat:@"%lu",ID];
+    path = JYSetID(path, IDStr);
 
     return [self POST:path parameters:params completionHandle:^(id responseObj, NSError *error) {
         completionHandle([JYNormalModel mj_objectWithKeyValues:responseObj] ,error);
     }];
 }
 
-+ (id)deleteUserWithUserID:(NSString *)ID completionHandle:(void (^)(id, NSError *))completionHandle {
++ (id)deleteUserWithUserID:(NSInteger)ID completionHandle:(void (^)(id, NSError *))completionHandle {
  
     NSString *path = JYSetUserPort(@"destory");
-    path = JYSetID(path, ID);
+    NSString *IDStr =[NSString stringWithFormat:@"%lu",ID];
+    path = JYSetID(path, IDStr);
   
     return [self DELETE:path parameters:nil completionHandle:^(id responseObj, NSError *error) {
         completionHandle([JYNormalModel mj_objectWithKeyValues:responseObj],error);
@@ -86,12 +88,13 @@
     }];
 }
 
-+ (id)changeCurrentSchoolWithSchoolID:(NSString *)schoolID completionHandle:(void (^)(id, NSError *))completionHandle {
++ (id)changeCurrentSchoolWithSchoolID:(NSInteger)schoolID completionHandle:(void (^)(id, NSError *))completionHandle {
   
     NSString *path = JYSetUserPort(@"changeCurrentSchool");
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    JYSetSchool(schoolID, params);
+    NSString *schoolIDStr = [NSString stringWithFormat:@"%lu",schoolID];
+    JYSetSchool(schoolIDStr, params);
     
     return [self POST:path parameters:params completionHandle:^(id responseObj, NSError *error) {
         completionHandle([JYNormalModel mj_objectWithKeyValues:responseObj],error);
@@ -112,13 +115,13 @@
     }];
 }
 
-+ (id)getNeedsWithPageSize:(NSString *)pageSize userID:(NSString *)userID completionHandle:(void (^)(id, NSError *))completionHandle {
++ (id)getNeedsWithPage:(NSInteger)page userID:(NSInteger)userID completionHandle:(void (^)(id, NSError *))completionHandle {
 
     NSString *path = @"http://www.i-jianyi.com/port/needs/index";
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:pageSize forKey:@"page_size"];
-    [params setObject:userID forKey:@"user_id"];
+    [params setObject:[NSString stringWithFormat:@"%lu",page] forKey:@"page"];
+    [params setObject:[NSString stringWithFormat:@"%lu",userID] forKey:@"user_id"];
     
     return [self GET:path parameters:params completionHandle:^(id responseObj, NSError *error) {
         completionHandle([JYNeedsModel mj_objectWithKeyValues:responseObj],error);
