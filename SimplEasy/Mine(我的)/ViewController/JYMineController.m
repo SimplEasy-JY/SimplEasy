@@ -13,7 +13,11 @@
 #import "UIImage+Circle.h"
 #import "IMContactViewController.h"
 #import "JYNormalCell.h"
+#import "JYUserPublishItemCell.h"
 #import "IMDefine.h"
+#import "JYRootViewController.h"
+#import "JYUserNeedsVC.h"
+
 //#import "IMMyselfInfoViewController.h"
 //#import "IMSettingTableViewCell.h"
 //#import "IMModifyPasswordViewController.h"
@@ -59,46 +63,14 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
 #pragma mark *** 私有方法 ***
 //登录刷新
 -(void)login{
    [self.tableView reloadData];
-}
-/** 配置sectionFooterView，第一个section */
-- (UIView *)sectionFooterView{
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWindowW, 50)];
-    footerView.backgroundColor = [UIColor lightGrayColor];
-    footerView.backgroundColor = [UIColor whiteColor];
-    NSArray *labelNames = @[@"39",@"12",@"84"];
-    NSArray *btnNames = @[@"闲置",@"需求",@"易友"];
-    for (int i = 0; i < 3; i++) {
-        
-        UILabel *label = [UILabel new];
-        [footerView addSubview:label];
-        label.font = [UIFont systemFontOfSize:14];
-        label.text = labelNames[i];
-        label.textAlignment = NSTextAlignmentCenter;
-        [label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(i*kWindowW/3);
-            make.top.mas_equalTo(1);
-            make.bottom.mas_equalTo(footerView.mas_centerY);
-            make.width.mas_equalTo(kWindowW/3);
-        }];
-        
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.titleLabel.font = [UIFont systemFontOfSize:14];
-        [btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-        [btn setTitleColor:JYGlobalBg forState:UIControlStateHighlighted];
-        [btn setTitle:btnNames[i] forState:UIControlStateNormal];
-        [footerView addSubview:btn];
-        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(i*kWindowW/3);
-            make.top.mas_equalTo(footerView.mas_centerY);
-            make.bottom.mas_equalTo(0);
-            make.width.mas_equalTo(kWindowW/3);
-        }];
-    }
-    return footerView;
 }
 
 /** 跳转到设置界面 */
@@ -110,6 +82,36 @@
     
     
 }
+
+- (void)configHeadPhoto{
+    //头像
+    self.headPhoto = [g_pIMSDK mainPhotoOfUser:[g_pIMMyself customUserID]];
+    if (!self.headPhoto) {
+        [g_pIMSDK requestMainPhotoOfUser:[g_pIMMyself customUserID]
+                                 success:^(UIImage *mainPhoto) {
+                                     NSLog(@"request main photo success: %@",mainPhoto);
+                                 }
+                                 failure:^(NSString *error) {
+                                     NSLog(@"request main photo failed for %@",error);
+                                 }];
+    }
+    if (self.headPhoto == nil) {
+        NSString *customInfo = [g_pIMSDK customUserInfoWithCustomUserID:[g_pIMMyself customUserID]];
+        
+        NSArray *customInfoArray = [customInfo componentsSeparatedByString:@"\n"];
+        NSString *sex = nil;
+        
+        if ([customInfoArray count] > 0) {
+            sex = [customInfoArray objectAtIndex:0];
+        }
+        
+        if ([sex isEqualToString:@"女"]) {
+            self.headPhoto = [UIImage imageNamed:@"IM_head_female.png"];
+        } else {
+            self.headPhoto = [UIImage imageNamed:@"IM_head_male.png"];
+        }
+    }
+}
 #pragma mark *** <UITableViewDataSource> ***
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -117,88 +119,77 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [@[@1,@3,@2][section] integerValue];
+    return [@[@2,@3,@2][section] integerValue];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        JYSellerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYSellerCell"];
-        
-        //头像
-        self.headPhoto = [g_pIMSDK mainPhotoOfUser:[g_pIMMyself customUserID]];
-        if (!self.headPhoto) {
-            [g_pIMSDK requestMainPhotoOfUser:[g_pIMMyself customUserID]
-                                     success:^(UIImage *mainPhoto) {
-                                         NSLog(@"request main photo success: %@",mainPhoto);
-                                     }
-                                     failure:^(NSString *error) {
-                                         NSLog(@"request main photo failed for %@",error);
-                                     }];
-        }
-        if (self.headPhoto == nil) {
-            NSString *customInfo = [g_pIMSDK customUserInfoWithCustomUserID:[g_pIMMyself customUserID]];
-            
-            NSArray *customInfoArray = [customInfo componentsSeparatedByString:@"\n"];
-            NSString *sex = nil;
-            
-            if ([customInfoArray count] > 0) {
-                sex = [customInfoArray objectAtIndex:0];
+        if (indexPath.row == 0) {
+            JYSellerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYSellerCell"];
+            if (![JYRootViewController shareRootVC].isLogin) {
+                cell.headIV.image = [UIImage imageNamed:@"IM_head_male"];
+                cell.schoolLb.text = @"简介:";
+                cell.nickNameLb.text = @"未登录";
+            }else{
+                [self configHeadPhoto];
+                cell.headIV.image =self.headPhoto;
+                //昵称
+                NSString *nickname = [g_pIMSDK nicknameOfUser:[g_pIMMyself customUserID]];
+                
+                if ([nickname length] == 0) {
+                    nickname = [g_pIMMyself customUserID];
+                }
+                //获取个性签名
+                NSString *customUserInfo = [g_pIMMyself customUserInfo];
+                NSArray *customInfoArray = [customUserInfo componentsSeparatedByString:@"\n"];
+                NSString *signature = nil;
+                if ([customInfoArray count] > 1) {
+                    signature = [customInfoArray objectAtIndex:0];
+                    cell.schoolLb.text = [NSString stringWithFormat:@"简介:%@",signature];
+                } else {
+                    cell.schoolLb.text = @" ";
+                }
+                cell.nickNameLb.text = nickname;
             }
+            cell.schoolLb.textColor = [UIColor darkGrayColor];
+            cell.followBtn.hidden = YES;
+            cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow_right"]];
+            return cell;
+        }else {
+            JYUserPublishItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYUserPublishItemCell"];
+            cell.idleNum.text = [JYRootViewController shareRootVC].isLogin?@"18":@"0";
+            cell.needsNum.text = [JYRootViewController shareRootVC].isLogin?@"20":@"0";
             
-            if ([sex isEqualToString:@"女"]) {
-                self.headPhoto = [UIImage imageNamed:@"IM_head_female.png"];
-            } else {
-                self.headPhoto = [UIImage imageNamed:@"IM_head_male.png"];
-            }
+            [cell.needsBtn bk_removeEventHandlersForControlEvents:UIControlEventTouchUpInside];
+            [cell.needsBtn bk_addEventHandler:^(id sender) {
+                JYUserNeedsVC *vc = [JYUserNeedsVC new];
+                vc.title = @"我的需求";
+                [self.navigationController pushViewController:vc animated:YES];
+            } forControlEvents:UIControlEventTouchUpInside];
+            
+            cell.friendNum.text = [JYRootViewController shareRootVC].isLogin?@"88":@"0";
+            return cell;
         }
-//        self.headPhoto = [UIImage scaleToSize:self.headPhoto size:CGSizeMake(60, 60)];
-//        self.headPhoto = [UIImage circleImageWithImage:self.headPhoto borderWidth:0.5 borderColor:[UIColor whiteColor]];
-        
-        cell.headIV.image =self.headPhoto;
-        //昵称
-        NSString *nickname = [g_pIMSDK nicknameOfUser:[g_pIMMyself customUserID]];
-        
-        if ([nickname length] == 0) {
-            nickname = [g_pIMMyself customUserID];
-        }
-        //获取个性签名
-        NSString *customUserInfo = [g_pIMMyself customUserInfo];
-        NSArray *customInfoArray = [customUserInfo componentsSeparatedByString:@"\n"];
-        NSString *signature = nil;
-        if ([customInfoArray count] > 1) {
-            signature = [customInfoArray objectAtIndex:0];
-            cell.schoolLb.text = [NSString stringWithFormat:@"简介:%@",signature];
-        } else {
-            cell.schoolLb.text = @" ";
-        }
-        
-        cell.nickNameLb.text = nickname;
-        cell.schoolLb.textColor = [UIColor darkGrayColor];
-        cell.rankIV.image = [UIImage imageNamed:@"grade"];
-        cell.followBtn.hidden = YES;
-        cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow_right"]];
-        return cell;
     }else{
         JYNormalCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MineCell"];
-        if (!cell) {
-            cell = [[JYNormalCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"MineCell"];
-        }
         cell.textLabel.font = [UIFont systemFontOfSize:16];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
         if (indexPath.section == 1) {
-            if (indexPath.row == 1) {
-                cell.detailTextLabel.text = @"发布30条闲置";
-                [cell.detailTextLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-                    make.left.mas_equalTo(cell.textLabel.mas_right).mas_equalTo(10);
-                    make.centerY.mas_equalTo(cell.textLabel.mas_centerY);
-                }];
-                cell.detailTextLabel.textAlignment = NSTextAlignmentLeft;
-                [cell setBadge:0];
-            }else{
-                [cell setBadge:1];
+            if ([JYRootViewController shareRootVC].isLogin) {
+                if (indexPath.row == 2) {
+                    cell.detailTextLabel.text = @"发布30条闲置";
+                    [cell.detailTextLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                        make.left.mas_equalTo(cell.textLabel.mas_right).mas_equalTo(10);
+                        make.centerY.mas_equalTo(cell.textLabel.mas_centerY);
+                    }];
+                    cell.detailTextLabel.textAlignment = NSTextAlignmentLeft;
+                    [cell setBadge:0];
+                }else{
+                    [cell setBadge:1];
+                }
             }
-            cell.textLabel.text = @[@"正在交易",@"我的易友",@"简易等级"][indexPath.row];
+            cell.textLabel.text = @[@"正在交易",@"新的易友",@"简易等级"][indexPath.row];
             cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
             cell.imageView.image = @[[UIImage imageNamed:@"trading"],[UIImage imageNamed:@"newfriend"],[UIImage imageNamed:@"grade2"]][indexPath.row];
         }
@@ -215,27 +206,25 @@
 
 kRemoveCellSeparator
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    if (section == 0) {
-        return [self sectionFooterView];
-    }
-    return nil;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return (indexPath.section == 0 && indexPath.row == 0)?80:45;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return indexPath.section == 0?80:45;
-}
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return section == 0?0:10;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if (section == 0) {
-        return 50;
-    }
-    return 0;
-}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (![JYRootViewController shareRootVC].isLogin) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请先登录" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+#warning TODO
+        }]];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
     if (indexPath.section == 0 && indexPath.row == 0) {
         JYUserInfoViewController *userInfoVC = [[JYUserInfoViewController alloc] init];
         userInfoVC.title = @"个人信息";
@@ -264,6 +253,9 @@ kRemoveCellSeparator
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(0);
         }];
+        [_tableView registerClass:[JYSellerCell class] forCellReuseIdentifier:@"JYSellerCell"];
+        [_tableView registerClass:[JYNormalCell class] forCellReuseIdentifier:@"MineCell"];
+        [_tableView registerClass:[JYUserPublishItemCell class] forCellReuseIdentifier:@"JYUserPublishItemCell"];
     }
     return _tableView;
 }

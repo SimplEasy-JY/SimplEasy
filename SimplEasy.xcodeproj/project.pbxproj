@@ -39,6 +39,8 @@
 		83476B751BEB1C6C0061F61E /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83476B741BEB1C6C0061F61E /* iCarousel.m */; };
 		83476B781BEB2E9F0061F61E /* UIImage+Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83476B771BEB2E9F0061F61E /* UIImage+Circle.m */; };
 		83476B7B1BEB34830061F61E /* JYClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83476B7A1BEB34830061F61E /* JYClassifyViewController.m */; };
+		83534E831C1E6F4D00CAC273 /* JYUserPublishItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83534E821C1E6F4D00CAC273 /* JYUserPublishItemCell.m */; };
+		83534E861C1E9A6300CAC273 /* JYUserNeedsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83534E851C1E9A6300CAC273 /* JYUserNeedsVC.m */; };
 		8370867E1C07EC5B0003F347 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 837086341C07EC5B0003F347 /* UMSocialLocalizable.strings */; };
 		8370867F1C07EC5B0003F347 /* libUMSocial_Sdk_4.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 837086421C07EC5B0003F347 /* libUMSocial_Sdk_4.3.a */; };
 		837086801C07EC5B0003F347 /* libUMSocial_Sdk_Comment_4.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 837086431C07EC5B0003F347 /* libUMSocial_Sdk_Comment_4.3.a */; };
@@ -511,6 +513,10 @@
 		83476B771BEB2E9F0061F61E /* UIImage+Circle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Circle.m"; sourceTree = "<group>"; };
 		83476B791BEB34830061F61E /* JYClassifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYClassifyViewController.h; sourceTree = "<group>"; };
 		83476B7A1BEB34830061F61E /* JYClassifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYClassifyViewController.m; sourceTree = "<group>"; };
+		83534E811C1E6F4D00CAC273 /* JYUserPublishItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYUserPublishItemCell.h; sourceTree = "<group>"; };
+		83534E821C1E6F4D00CAC273 /* JYUserPublishItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYUserPublishItemCell.m; sourceTree = "<group>"; };
+		83534E841C1E9A6300CAC273 /* JYUserNeedsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYUserNeedsVC.h; sourceTree = "<group>"; };
+		83534E851C1E9A6300CAC273 /* JYUserNeedsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYUserNeedsVC.m; sourceTree = "<group>"; };
 		837086351C07EC5B0003F347 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		837086371C07EC5B0003F347 /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
 		837086381C07EC5B0003F347 /* UMSocialAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialAccountManager.h; sourceTree = "<group>"; };
@@ -1354,6 +1360,7 @@
 		8328A48C1BE849800021767D /* Mine(我的) */ = {
 			isa = PBXGroup;
 			children = (
+				83534E801C1E6EF900CAC273 /* View */,
 				83987DF21BFEFA7E007C9CE4 /* NetManager */,
 				83987DEE1BFEF71E007C9CE4 /* Model */,
 				8328A4901BE849800021767D /* ViewController */,
@@ -1381,6 +1388,8 @@
 				831A04CC1BF5D08300F78986 /* JYSettingViewController.m */,
 				B03859F11C0703410053D0B0 /* IMMyselfInfoEditViewController.h */,
 				B03859F21C0703410053D0B0 /* IMMyselfInfoEditViewController.m */,
+				83534E841C1E9A6300CAC273 /* JYUserNeedsVC.h */,
+				83534E851C1E9A6300CAC273 /* JYUserNeedsVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1466,6 +1475,15 @@
 				83476B741BEB1C6C0061F61E /* iCarousel.m */,
 			);
 			path = iCarousel;
+			sourceTree = "<group>";
+		};
+		83534E801C1E6EF900CAC273 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				83534E811C1E6F4D00CAC273 /* JYUserPublishItemCell.h */,
+				83534E821C1E6F4D00CAC273 /* JYUserPublishItemCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		837086331C07EC5B0003F347 /* UMSocial_Sdk_4.3 */ = {
@@ -3009,11 +3027,13 @@
 			files = (
 				B02DE3891BFC8DEC0035C135 /* JYProductDetailModel.m in Sources */,
 				8396B80F1C12BB56007E09C5 /* JYTitleCell.m in Sources */,
+				83534E831C1E6F4D00CAC273 /* JYUserPublishItemCell.m in Sources */,
 				83E75EC21BEA45C70020D54D /* JYCommentCell.m in Sources */,
 				B06FDC7D1C08847C0076E4DC /* IMHeadIcon.m in Sources */,
 				B0AFA3B01BFB226E00F795F9 /* NSString+IM.m in Sources */,
 				B06FDE061C08855D0076E4DC /* IMSDKManager.m in Sources */,
 				83476B781BEB2E9F0061F61E /* UIImage+Circle.m in Sources */,
+				83534E861C1E9A6300CAC273 /* JYUserNeedsVC.m in Sources */,
 				B06FDC7E1C08847C0076E4DC /* IMSearchMemberViewController.m in Sources */,
 				8328A4AA1BE849800021767D /* UIView+Extension.m in Sources */,
 				B06FDC7A1C08847C0076E4DC /* IMGroupInfoViewController.m in Sources */,

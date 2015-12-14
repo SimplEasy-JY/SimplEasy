@@ -23,12 +23,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setMJRefresh];
+}
+
+/** 设置上下拉刷新 */
+- (void)setMJRefresh{
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self.needsVM refreshDataCompletionHandle:^(NSError *error) {
             if (!error) {
                 [self.tableView reloadData];
                 [self.tableView.mj_header endRefreshing];
-                [self.needsVM isLastPage]?[self.tableView.footer endRefreshingWithNoMoreData]:[self.tableView.footer resetNoMoreData];
+                [self.needsVM isLastPage]?[self.tableView.mj_footer endRefreshingWithNoMoreData]:[self.tableView.mj_footer resetNoMoreData];
             }else{
                 JYLog(@"刷新出错： %@",error.description);
                 [self.tableView.mj_header endRefreshing];
@@ -60,7 +65,6 @@
 #pragma mark *** <UITableViewDataSource> ***
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    JYLog(@"++++++++++++");
     return self.needsVM.rowNum;
 }
 
@@ -72,13 +76,12 @@
     }
     cell.textLabel.text = [self.needsVM detailForRow:indexPath.row];
     cell.detailTextLabel.text = [self.needsVM userNameForRow:indexPath.row];
+    cell.imageView.layer.cornerRadius = cell.contentView.height/2;
+    cell.imageView.clipsToBounds = YES;
     [self.needsVM headImgForRow:indexPath.row]?[cell.imageView sd_setImageWithURL:[self.needsVM headImgForRow:indexPath.row]]:nil;
     return cell;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return 80;
-//}
 
 #pragma mark *** Lazy Loading ***
 
@@ -97,7 +100,7 @@
 
 - (JYNeedsViewModel *)needsVM {
 	if(_needsVM == nil) {
-		_needsVM = [[JYNeedsViewModel alloc] init];
+		_needsVM = [[JYNeedsViewModel alloc] initWithUserID:nil];
 	}
 	return _needsVM;
 }

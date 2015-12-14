@@ -9,6 +9,7 @@
 #import "JYSettingViewController.h"
 #import "JYLoginViewController.h"
 #import "JYFileManager.h"
+#import "JYRootViewController.h"
 
 //IMSDK Headers
 #import "IMMyself.h"
@@ -37,7 +38,7 @@
 
 - (void)configBottomBtn{
     UIButton *logOutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [logOutBtn setTitle:@"退出登陆" forState:UIControlStateNormal];
+    [logOutBtn setTitle:[JYRootViewController shareRootVC].isLogin?@"退出登陆":@"登录" forState:UIControlStateNormal];
     [self.view addSubview:logOutBtn];
     [logOutBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [logOutBtn setBackgroundColor:JYGlobalBg];
@@ -145,7 +146,9 @@
     }
     return _tableView;
 }
+
 #pragma mark -响应方法
+
 -(void)loginOut:(UIButton *)sender{
     if (self.isLogouting) {
         return;

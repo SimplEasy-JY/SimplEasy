@@ -26,6 +26,10 @@ static const CGFloat BADGE_HW = 12;
     }];
 }
 
+- (void)removeBadge{
+    self.accessoryView = nil;
+}
+
 - (void)setBadge: (NSInteger)value{
     self.accessoryView = [UIView new];
     UILabel *label = [[UILabel alloc] init];

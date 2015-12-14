@@ -571,6 +571,7 @@ kRemoveCellSeparator
                     if (!_firstGoodsArray) {
                         _firstGoodsArray = self.goodsVM.dataArr;
                     }
+#warning 可能会崩溃在下一行
                     cell.goodsItems = _firstGoodsArray[indexPath.row];
                     [cell setAttribute];
 //                }

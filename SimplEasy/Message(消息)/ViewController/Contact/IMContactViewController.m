@@ -77,7 +77,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [JYFactory addBackItemToVC:self];
     _rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(addFriends:)];
     
     [_rightBarButtonItem setTitleTextAttributes:[NSDictionary dictionaryWithObject:RGB(6, 191, 4) forKey:NSForegroundColorAttributeName] forState:UIControlStateNormal];

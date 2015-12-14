@@ -10,6 +10,9 @@
 
 @interface JYNeedsViewModel : JYBaseViewModel
 
+- (instancetype)initWithUserID: (NSInteger)userID;
+/** 用户ID */
+@property (nonatomic, assign) NSInteger userID;
 /** 页数 */
 @property (nonatomic, assign) NSInteger page;
 /** 行数 */

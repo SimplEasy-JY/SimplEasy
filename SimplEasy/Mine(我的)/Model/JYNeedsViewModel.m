@@ -12,7 +12,21 @@
 
 @implementation JYNeedsViewModel
 
+- (instancetype)initWithUserID: (NSInteger)userID
+{
+    self = [super init];
+    if (self) {
+        self.userID = userID;
+    }
+    return self;
+}
 
+- (instancetype)init
+{
+    self = [super init];
+    NSAssert(NO, @"%s:必须使用initWithUserID: 初始化",__FUNCTION__);
+    return self;
+}
 - (void)refreshDataCompletionHandle:(CompletionHandle)completionHandle{
     _page = 1;
     [self getDataFromNetCompleteHandle:completionHandle];
@@ -25,7 +39,7 @@
 
 - (void)getDataFromNetCompleteHandle:(CompletionHandle)completionHandle{
     [self.dataTask cancel];
-    self.dataTask = [JYUserInfoNetManager getNeedsWithPage:_page userID:nil completionHandle:^(JYNeedsModel *model, NSError *error) {
+    self.dataTask = [JYUserInfoNetManager getNeedsWithPage:_page userID:_userID completionHandle:^(JYNeedsModel *model, NSError *error) {
         if (!error) {
             _lastPage = [model.data.current isEqualToString:model.data.last];
             if (_page == 1) {

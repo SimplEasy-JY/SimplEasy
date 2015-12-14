@@ -54,6 +54,16 @@
  *  @return 返回需求
  */
 + (id)getNeedsWithPage: (NSInteger)page userID: (NSInteger)userID kCompletionHandle;
+
+/**
+ *  (Delete)根据需求ID删除需求
+ *
+ *  @param needsID 需求的ID
+ *
+ *  @return 返回删除状态
+ */
++ (id)deleteNeedsWithNeedsID: (NSInteger)needsID kCompletionHandle;
+
 /**
  *  （POST）发布需求
  *

@@ -181,7 +181,7 @@ static CGFloat space = 30;
                 [g_pIMMyself setCustomUserID:customUserID];
                 [g_pIMMyself setPassword:password];
                 [g_pIMMyself registerWithTimeoutInterval:5 success:^{
-
+                    [[NSUserDefaults standardUserDefaults] setObject:model.data.ID forKey:@"uid"];
                     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:IMLastLoginTime];
                     [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself customUserID] forKey:IMLoginCustomUserID];
                     [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself password] forKey:IMLoginPassword];

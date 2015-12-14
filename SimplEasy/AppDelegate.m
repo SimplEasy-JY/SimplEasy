@@ -77,6 +77,7 @@
     [self initializeWithApplication:application];
 
     [self configNewFeatureViewController];
+    
 //    [self test];
     return YES;
 }

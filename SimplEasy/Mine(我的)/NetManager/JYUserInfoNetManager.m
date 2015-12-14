@@ -128,6 +128,15 @@
     }];
 }
 
++ (id)deleteNeedsWithNeedsID: (NSInteger)needsID completionHandle:(void (^)(id, NSError *))completionHandle{
+    NSString *path = @"http://www.i-jianyi.com/port/Needs/delete";
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[NSString stringWithFormat:@"%lu",needsID] forKey:@"id"];
+    return [self POST:path parameters:params completionHandle:^(id responseObj, NSError *error) {
+        completionHandle([JYNormalModel mj_objectWithKeyValues:responseObj],error);
+    }];
+}
+
 + (id)publishNeedsWithParams:(NSDictionary *)params completionHandle:(void (^)(id, NSError *))completionHandle {
    
     NSAssert([params.allKeys containsObject:@"tel"]&&[params.allKeys containsObject:@"username"]&&[params.allKeys containsObject:@"password"]&&[params.allKeys containsObject:@"detail"]&&[params.allKeys containsObject:@"price"], @"发布需求的信息必须包括tel／password／detail／price!!!");
