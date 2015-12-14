@@ -24,6 +24,7 @@
     [self configOpinionView];
 }
 
+
 - (void)configOpinionView{
     UITextView *opinionTV = [[UITextView alloc] init];
     self.opinionTV = opinionTV;

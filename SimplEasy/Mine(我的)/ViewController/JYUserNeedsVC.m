@@ -18,6 +18,9 @@
 /** 视图模型 */
 @property (nonatomic, strong) JYNeedsViewModel *userNeedsVM;
 
+/** 删除视图 */
+@property (nonatomic, strong) UIView *deleteView;
+
 @end
 
 @implementation JYUserNeedsVC
@@ -26,7 +29,29 @@
     [super viewDidLoad];
     [self setMJRefresh];
     [JYFactory addBackItemToVC:self];
+    
+    UIBarButtonItem *deleteBBI = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStyleDone target:self action:@selector(deleteNeeds:)];
+    self.navigationItem.rightBarButtonItem = deleteBBI;
 }
+
+- (void)deleteNeeds: (UIBarButtonItem *)item{
+    [self.tableView setEditing:!_tableView.editing animated:YES];
+    [item setTitle:_tableView.editing?@"取消":@"编辑"];
+    
+    if (_tableView.editing) {
+        [UIView animateWithDuration:0.3 animations:^{
+            JYLog(@"**************");
+            self.deleteView.frame = CGRectMake(0, kWindowH-50, kWindowW, 30);
+        }];
+    }else{
+        [UIView animateWithDuration:0.3 animations:^{
+            JYLog(@"++++++++++++++");
+            self.deleteView.frame = CGRectMake(0, kWindowH, kWindowW, 30);
+        }];
+    }
+}
+
+
 
 /** 设置上下拉刷新 */
 - (void)setMJRefresh{
@@ -78,6 +103,7 @@
     }];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
+
 #pragma mark *** <UITableViewDataSource> ***
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -86,7 +112,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.userNeedsVM.rowNum;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"Cell";
@@ -133,6 +158,7 @@
         [self presentViewController:alert animated:YES completion:nil];
     }
 }
+
 #pragma mark *** Lazy Loading ***
 
 - (UITableView *)tableView {
@@ -140,6 +166,9 @@
 		_tableView = [[UITableView alloc] init];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.tableFooterView = [UIView new];
+        _tableView.allowsSelectionDuringEditing = YES;
+        _tableView.allowsMultipleSelectionDuringEditing = YES;
         [self.view addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(0);
@@ -155,6 +184,21 @@
 		_userNeedsVM = [[JYNeedsViewModel alloc] initWithUserID:userId.integerValue];
 	}
 	return _userNeedsVM;
+}
+
+- (UIView *)deleteView {
+	if(_deleteView == nil) {
+		_deleteView = [[UIView alloc] initWithFrame:CGRectMake(0, kWindowH, kWindowW, 30)];
+        _deleteView.backgroundColor = JYGlobalBg;
+        UIButton *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [deleteBtn setTitle:@"删除所选需求" forState:UIControlStateNormal];
+        [deleteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [deleteBtn setBackgroundColor:JYGlobalBg];
+        deleteBtn.frame = CGRectMake(5, 5, kWindowW-10, 20);
+        [_deleteView addSubview:deleteBtn];
+        [self.view addSubview:_deleteView];
+	}
+	return _deleteView;
 }
 
 @end

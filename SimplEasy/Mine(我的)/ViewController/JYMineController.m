@@ -165,6 +165,7 @@
             [cell.needsBtn bk_addEventHandler:^(id sender) {
                 JYUserNeedsVC *vc = [JYUserNeedsVC new];
                 vc.title = @"我的需求";
+                vc.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:vc animated:YES];
             } forControlEvents:UIControlEventTouchUpInside];
             
