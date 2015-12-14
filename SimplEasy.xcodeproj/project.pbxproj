@@ -41,6 +41,9 @@
 		83476B7B1BEB34830061F61E /* JYClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83476B7A1BEB34830061F61E /* JYClassifyViewController.m */; };
 		83534E831C1E6F4D00CAC273 /* JYUserPublishItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83534E821C1E6F4D00CAC273 /* JYUserPublishItemCell.m */; };
 		83534E861C1E9A6300CAC273 /* JYUserNeedsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83534E851C1E9A6300CAC273 /* JYUserNeedsVC.m */; };
+		83534E891C1EB6E400CAC273 /* JYOpinionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83534E881C1EB6E400CAC273 /* JYOpinionVC.m */; };
+		83534E8C1C1EBBDB00CAC273 /* JYTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83534E8B1C1EBBDB00CAC273 /* JYTextView.m */; };
+		83534E8F1C1EC2C800CAC273 /* JYAboutJYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83534E8E1C1EC2C800CAC273 /* JYAboutJYViewController.m */; };
 		8370867E1C07EC5B0003F347 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 837086341C07EC5B0003F347 /* UMSocialLocalizable.strings */; };
 		8370867F1C07EC5B0003F347 /* libUMSocial_Sdk_4.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 837086421C07EC5B0003F347 /* libUMSocial_Sdk_4.3.a */; };
 		837086801C07EC5B0003F347 /* libUMSocial_Sdk_Comment_4.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 837086431C07EC5B0003F347 /* libUMSocial_Sdk_Comment_4.3.a */; };
@@ -517,6 +520,12 @@
 		83534E821C1E6F4D00CAC273 /* JYUserPublishItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYUserPublishItemCell.m; sourceTree = "<group>"; };
 		83534E841C1E9A6300CAC273 /* JYUserNeedsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYUserNeedsVC.h; sourceTree = "<group>"; };
 		83534E851C1E9A6300CAC273 /* JYUserNeedsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYUserNeedsVC.m; sourceTree = "<group>"; };
+		83534E871C1EB6E400CAC273 /* JYOpinionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYOpinionVC.h; sourceTree = "<group>"; };
+		83534E881C1EB6E400CAC273 /* JYOpinionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYOpinionVC.m; sourceTree = "<group>"; };
+		83534E8A1C1EBBDB00CAC273 /* JYTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYTextView.h; sourceTree = "<group>"; };
+		83534E8B1C1EBBDB00CAC273 /* JYTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYTextView.m; sourceTree = "<group>"; };
+		83534E8D1C1EC2C800CAC273 /* JYAboutJYViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYAboutJYViewController.h; sourceTree = "<group>"; };
+		83534E8E1C1EC2C800CAC273 /* JYAboutJYViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYAboutJYViewController.m; sourceTree = "<group>"; };
 		837086351C07EC5B0003F347 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		837086371C07EC5B0003F347 /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
 		837086381C07EC5B0003F347 /* UMSocialAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialAccountManager.h; sourceTree = "<group>"; };
@@ -1390,6 +1399,10 @@
 				B03859F21C0703410053D0B0 /* IMMyselfInfoEditViewController.m */,
 				83534E841C1E9A6300CAC273 /* JYUserNeedsVC.h */,
 				83534E851C1E9A6300CAC273 /* JYUserNeedsVC.m */,
+				83534E871C1EB6E400CAC273 /* JYOpinionVC.h */,
+				83534E881C1EB6E400CAC273 /* JYOpinionVC.m */,
+				83534E8D1C1EC2C800CAC273 /* JYAboutJYViewController.h */,
+				83534E8E1C1EC2C800CAC273 /* JYAboutJYViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1762,6 +1775,8 @@
 				83F9D8151C0C6F0C002687F7 /* JYFileManager.m */,
 				8319BE361C1AA24F00F5DD5B /* JYFactory.h */,
 				8319BE371C1AA24F00F5DD5B /* JYFactory.m */,
+				83534E8A1C1EBBDB00CAC273 /* JYTextView.h */,
+				83534E8B1C1EBBDB00CAC273 /* JYTextView.m */,
 			);
 			path = tools;
 			sourceTree = "<group>";
@@ -3047,6 +3062,7 @@
 				8328A4A51BE849800021767D /* Foundation+Log.m in Sources */,
 				8328A4AF1BE84E050021767D /* JYBaseModel.m in Sources */,
 				83476B751BEB1C6C0061F61E /* iCarousel.m in Sources */,
+				83534E8C1C1EBBDB00CAC273 /* JYTextView.m in Sources */,
 				B03FD5761C0568F60031A18C /* JYRegisterViewController.m in Sources */,
 				B0800A2C1C05DFE70096F90B /* JYPhoneNumViewController.m in Sources */,
 				B048007E1BF489DD007D39F4 /* JYGoodsNetManager.m in Sources */,
@@ -3084,7 +3100,9 @@
 				B089AA981BE9D09400E5D2CC /* JYLoopModel.m in Sources */,
 				B0AFA3A51BFB213E00F795F9 /* SFCountdownView.m in Sources */,
 				83CED5B71C15769F006C9869 /* JYPublishNeedsVC.m in Sources */,
+				83534E8F1C1EC2C800CAC273 /* JYAboutJYViewController.m in Sources */,
 				B0AEC8911BEC86540045F08F /* JYHomeProductCell.m in Sources */,
+				83534E891C1EB6E400CAC273 /* JYOpinionVC.m in Sources */,
 				838D14AC1BFA00C6003C4F87 /* UIButton+VerticalBtn.m in Sources */,
 				83EEDF471C0015C400016E02 /* JYClassifyContentVC.m in Sources */,
 				83E75EC61BEA45C70020D54D /* JYSellerCell.m in Sources */,

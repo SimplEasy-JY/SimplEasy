@@ -10,6 +10,8 @@
 #import "JYLoginViewController.h"
 #import "JYFileManager.h"
 #import "JYRootViewController.h"
+#import "JYOpinionVC.h"
+#import "JYAboutJYViewController.h"
 
 //IMSDK Headers
 #import "IMMyself.h"
@@ -108,9 +110,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //清除缓存操作
+    
     if (indexPath.section == 2) {
-        if (indexPath.row == 0) {
+        if (indexPath.row == 0) {//清除缓存操作
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"确认要清楚缓存么？" preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
             [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -123,9 +125,17 @@
                 [self presentViewController:alert animated:YES completion:nil];
             }]];
             [self presentViewController:alert animated:YES completion:nil];
+        }else if(indexPath.row == 1) {
+            JYOpinionVC *vc = [JYOpinionVC new];
+            vc.title = @"意见反馈";
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            JYAboutJYViewController *vc = [JYAboutJYViewController new];
+            vc.title = @"关于简易";
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }
-    
+
 }
 
 - (void)didReceiveMemoryWarning {

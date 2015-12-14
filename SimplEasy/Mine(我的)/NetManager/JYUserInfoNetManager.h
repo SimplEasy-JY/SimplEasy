@@ -44,6 +44,14 @@
  *  @return 返回发布状态
  */
 + (id)publishIdleWithParams: (NSDictionary *)params kCompletionHandle;
+/**
+ *  (POST)根据闲置id删除闲置
+ *
+ *  @param idleID 闲置id
+ *
+ *  @return 返回删除状态
+ */
++ (id)deleteIdleWithIdleID: (NSInteger)idleID kCompletionHandle;
 
 /**
  *  （GET）获取需求
@@ -56,6 +64,15 @@
 + (id)getNeedsWithPage: (NSInteger)page userID: (NSInteger)userID kCompletionHandle;
 
 /**
+ *  （POST）发布需求
+ *
+ *  @param params 需求参数：需要包括（tel/username/password/detail/price）
+ *
+ *  @return 返回发布状态
+ */
++ (id)publishNeedsWithParams: (NSDictionary *)params kCompletionHandle;
+
+/**
  *  (Delete)根据需求ID删除需求
  *
  *  @param needsID 需求的ID
@@ -65,12 +82,12 @@
 + (id)deleteNeedsWithNeedsID: (NSInteger)needsID kCompletionHandle;
 
 /**
- *  （POST）发布需求
+ *  意见反馈
  *
- *  @param params 需求参数：需要包括（tel/username/password/detail/price）
+ *  @param userID  用户id
+ *  @param opinion 意见内容
  *
- *  @return 返回发布状态
+ *  @return 反馈结果
  */
-+ (id)publishNeedsWithParams: (NSDictionary *)params kCompletionHandle;
-
++ (id)sendOpinionWithUserID: (NSInteger)userID opinionContent: (NSString *)opinion kCompletionHandle;
 @end
