@@ -163,11 +163,16 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
 }
 
 - (void)logout {
+    self.isLogin = NO;
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:IMLoginCustomUserID];
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:IMLoginPassword];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:IMLoginTEL];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:IMLoginUID];
+
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self addChildViewController:loginVC];
     [self.view addSubview:loginVC.view];
+    
 //    [self removeFromParentViewController];
 //    [[self view] removeFromSuperview];
 //    [self.navigationController popToRootViewControllerAnimated:YES];

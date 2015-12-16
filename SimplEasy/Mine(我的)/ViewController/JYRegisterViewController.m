@@ -181,11 +181,11 @@ static CGFloat space = 30;
                 [g_pIMMyself setCustomUserID:customUserID];
                 [g_pIMMyself setPassword:password];
                 [g_pIMMyself registerWithTimeoutInterval:5 success:^{
-                    [[NSUserDefaults standardUserDefaults] setObject:model.data.ID forKey:@"uid"];
+                    [[NSUserDefaults standardUserDefaults] setObject:model.data.ID forKey:IMLoginUID];
                     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:IMLastLoginTime];
                     [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself customUserID] forKey:IMLoginCustomUserID];
-                    [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself password] forKey:IMLoginPassword];
                     [[NSUserDefaults standardUserDefaults] setObject:self.phoneNum forKey:IMLoginTEL];
+                    [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself password] forKey:IMLoginPassword];
                     [[NSUserDefaults standardUserDefaults] synchronize];
                     //应用角标清零
                     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];

@@ -453,10 +453,6 @@ kRemoveCellSeparator
         for (int i=0; i<self.segmentItemsArray.count; i++) {
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             /**  设置button的参数 */
-            if (i == 1) {
-                [[button layer]setBorderWidth:1];
-                [[button layer]setBorderColor:kRGBColor(217, 217, 217).CGColor];
-            }
             [button setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor] cornerRadius:0] forState:UIControlStateNormal];
             [button setBackgroundImage:[UIImage imageWithColor:JYHexColor(0x272C35) cornerRadius:0] forState:UIControlStateSelected];
             button.tag = i;
@@ -465,6 +461,20 @@ kRemoveCellSeparator
             [button setTitleColor:kRGBColor(54, 54, 54) forState:UIControlStateNormal];
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
             button.frame = CGRectMake(0+kWindowW/self.segmentItemsArray.count*i, 0, kWindowW/self.segmentItemsArray.count, 30);
+            if (i == 1) {
+                //                [[button layer]setBorderWidth:1];
+                //                [[button layer]setBorderColor:kRGBColor(217, 217, 217).CGColor];
+                float height = button.frame.size.height;
+                float width = button.frame.size.width-0.5;
+                CALayer *leftBorder = [CALayer layer];
+                CALayer *rightBorder = [CALayer layer];
+                leftBorder.frame = CGRectMake(0, 0, 0.5,height );
+                leftBorder.backgroundColor = kRGBColor(217, 217, 217).CGColor;
+                [button.layer addSublayer:leftBorder];
+                rightBorder.frame = CGRectMake(width, 0, 0.5, height);
+                rightBorder.backgroundColor = kRGBColor(217, 217, 217).CGColor;
+                [button.layer addSublayer:rightBorder];
+            }
             if (i == _cellType) {
                 _currentButton = button;
                 button.selected = YES;

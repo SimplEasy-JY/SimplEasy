@@ -280,7 +280,7 @@ static JYLoginViewController *loginViewC = nil;// 定义全局静态变量
             [g_pIMMyself setAutoLogin:YES];
             [g_pIMMyself loginWithTimeoutInterval:5 success:^{
                 _isStop = YES;
-                [[NSUserDefaults standardUserDefaults] setObject:data.ID forKey:@"uid"];
+                [[NSUserDefaults standardUserDefaults] setObject:data.ID forKey:IMLoginUID];
                 [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:IMLastLoginTime];
                 [[NSUserDefaults standardUserDefaults] setObject:[g_pIMMyself customUserID] forKey:IMLoginCustomUserID];
                 [[NSUserDefaults standardUserDefaults] setObject:data.tel forKey:IMLoginTEL];
