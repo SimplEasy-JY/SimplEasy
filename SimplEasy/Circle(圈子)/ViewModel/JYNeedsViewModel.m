@@ -64,7 +64,10 @@
 }
 
 - (NSString *)timeForRow: (NSInteger)row{
-    return [self modelForRow:row].time;
+    NSString *time = [self modelForRow:row].time;
+    NSString *date = [time componentsSeparatedByString:@" "].firstObject;
+    NSArray *arr = [date componentsSeparatedByString:@"-"];
+    return [NSString stringWithFormat:@"%@月-%@日",arr[1],arr[2]];
 }
 
 - (NSString *)needsIDForRow: (NSInteger)row{

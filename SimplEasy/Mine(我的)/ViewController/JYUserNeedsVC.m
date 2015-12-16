@@ -17,7 +17,6 @@
 @property (nonatomic, strong) UITableView *tableView;
 /** 视图模型 */
 @property (nonatomic, strong) JYNeedsViewModel *userNeedsVM;
-
 /** 删除视图 */
 @property (nonatomic, strong) UIView *deleteView;
 
@@ -30,42 +29,52 @@
     [self setMJRefresh];
     [JYFactory addBackItemToVC:self];
     
-    UIBarButtonItem *deleteBBI = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStyleDone target:self action:@selector(deleteNeeds:)];
+    UIBarButtonItem *deleteBBI = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStyleDone target:self action:@selector(multiSelect:)];
     self.navigationItem.rightBarButtonItem = deleteBBI;
 }
 
-- (void)deleteNeeds: (UIBarButtonItem *)item{
+
+/** 进入多选模式 */
+- (void)multiSelect: (UIBarButtonItem *)item{
     [self.tableView setEditing:!_tableView.editing animated:YES];
     [item setTitle:_tableView.editing?@"取消":@"编辑"];
     
     if (_tableView.editing) {
         [UIView animateWithDuration:0.3 animations:^{
-            JYLog(@"**************");
-            self.deleteView.frame = CGRectMake(0, kWindowH-50, kWindowW, 30);
+            self.deleteView.frame = CGRectMake(0, kWindowH - 64 - 40, kWindowW, 30);
         }];
     }else{
         [UIView animateWithDuration:0.3 animations:^{
-            JYLog(@"++++++++++++++");
             self.deleteView.frame = CGRectMake(0, kWindowH, kWindowW, 30);
         }];
     }
 }
 
+/** 删除选中的需求 */
+- (void)deleteSelectedNeeds: (UIButton *)sender {
+    for (NSIndexPath *indexPath in self.tableView.indexPathsForSelectedRows) {
+        [self deleteNeedsAtIndexPath:indexPath];
+    }
+    [self multiSelect:self.navigationItem.rightBarButtonItem];
+}
 
+/** 根据indexPath删除 */
+- (void)deleteNeedsAtIndexPath: (NSIndexPath *)indexPath {
+    [JYUserInfoNetManager deleteNeedsWithNeedsID:[self.userNeedsVM needsIDForRow:indexPath.section].integerValue completionHandle:^(JYNormalModel *model, NSError *error) {
+        if (model.status.integerValue == 1) {
+            [self refreshData];
+        }else{
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"删除失败，原因是:%@",model.errorMsg] preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:nil]];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }];
+}
 
 /** 设置上下拉刷新 */
-- (void)setMJRefresh{
+- (void)setMJRefresh {
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self.userNeedsVM refreshDataCompletionHandle:^(NSError *error) {
-            if (!error) {
-                [self.tableView reloadData];
-                [self.tableView.mj_header endRefreshing];
-                [self.userNeedsVM isLastPage]?[self.tableView.mj_footer endRefreshingWithNoMoreData]:[self.tableView.mj_footer resetNoMoreData];
-            }else{
-                JYLog(@"刷新出错： %@",error.description);
-                [self.tableView.mj_header endRefreshing];
-            }
-        }];
+        [self refreshData];
     }];
     
     [self.tableView.mj_header beginRefreshing];
@@ -89,7 +98,8 @@
     }];
 }
 
-- (void)refreshData{
+/** 刷新数据 */
+- (void)refreshData {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self.userNeedsVM refreshDataCompletionHandle:^(NSError *error) {
         if (!error) {
@@ -107,10 +117,11 @@
 #pragma mark *** <UITableViewDataSource> ***
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.userNeedsVM.rowNum;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -119,10 +130,13 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = [self.userNeedsVM detailForRow:indexPath.row];
-    cell.detailTextLabel.text = [self.userNeedsVM userNameForRow:indexPath.row];
+    cell.textLabel.text = [self.userNeedsVM detailForRow:indexPath.section];
     return cell;
     
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return [self.userNeedsVM timeForRow:section];
 }
 
 #pragma mark *** TableView的编辑 ***
@@ -141,19 +155,11 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        /** 提示框 */
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定要删除这个需求吗？" preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
         [alert addAction:[UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            JYLog(@"needsID = %@",[self.userNeedsVM needsIDForRow:indexPath.row]);
-            [JYUserInfoNetManager deleteNeedsWithNeedsID:[self.userNeedsVM needsIDForRow:indexPath.row].integerValue completionHandle:^(JYNormalModel *model, NSError *error) {
-                if (model.status.integerValue == 1) {
-                    [self refreshData];
-                }else{
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"删除失败，原因是:%@",model.errorMsg] preferredStyle:UIAlertControllerStyleAlert];
-                    [alert addAction:[UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:nil]];
-                    [self presentViewController:alert animated:YES completion:nil];
-                }
-            }];
+            [self deleteNeedsAtIndexPath:indexPath];
         }]];
         [self presentViewController:alert animated:YES completion:nil];
     }
@@ -188,13 +194,13 @@
 
 - (UIView *)deleteView {
 	if(_deleteView == nil) {
-		_deleteView = [[UIView alloc] initWithFrame:CGRectMake(0, kWindowH, kWindowW, 30)];
-        _deleteView.backgroundColor = JYGlobalBg;
+		_deleteView = [[UIView alloc] initWithFrame:CGRectMake(0, kWindowH, kWindowW, 40)];
         UIButton *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [deleteBtn setTitle:@"删除所选需求" forState:UIControlStateNormal];
         [deleteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [deleteBtn setBackgroundColor:JYGlobalBg];
-        deleteBtn.frame = CGRectMake(5, 5, kWindowW-10, 20);
+        deleteBtn.frame = CGRectMake(5, 5, kWindowW-10, 30);
+        [deleteBtn addTarget:self action:@selector(deleteSelectedNeeds:) forControlEvents:UIControlEventTouchUpInside];
         [_deleteView addSubview:deleteBtn];
         [self.view addSubview:_deleteView];
 	}

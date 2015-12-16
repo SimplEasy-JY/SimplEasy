@@ -104,13 +104,15 @@
 #pragma mark *** <UITableViewDelegate> ***
 
 //kRemoveCellSeparator
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 10;
+    return section == 0? 0 : 10;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+/** 第三个分区 */
     if (indexPath.section == 2) {
         if (indexPath.row == 0) {//清除缓存操作
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"确认要清楚缓存么？" preferredStyle:UIAlertControllerStyleAlert];

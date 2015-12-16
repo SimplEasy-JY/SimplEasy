@@ -27,7 +27,8 @@
 }
 
 /** 设置上下拉刷新 */
-- (void)setMJRefresh{
+- (void)setMJRefresh
+{
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self.needsVM refreshDataCompletionHandle:^(NSError *error) {
             if (!error) {
@@ -63,29 +64,34 @@
 }
 
 #pragma mark *** <UITableViewDataSource> ***
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return self.needsVM.rowNum;
 }
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *cellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = [self.needsVM detailForRow:indexPath.row];
-    cell.detailTextLabel.text = [self.needsVM userNameForRow:indexPath.row];
-    cell.imageView.layer.cornerRadius = cell.contentView.height/2;
-    cell.imageView.clipsToBounds = YES;
-    [self.needsVM headImgForRow:indexPath.row]?[cell.imageView sd_setImageWithURL:[self.needsVM headImgForRow:indexPath.row]]:nil;
+    cell.textLabel.text = [self.needsVM detailForRow:indexPath.section];
     return cell;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return [self.needsVM timeForRow:section];
+}
 
 #pragma mark *** Lazy Loading ***
 
-- (UITableView *)tableView {
+- (UITableView *)tableView
+{
 	if(_tableView == nil) {
 		_tableView = [[UITableView alloc] init];
         _tableView.dataSource = self;
@@ -98,7 +104,8 @@
 	return _tableView;
 }
 
-- (JYNeedsViewModel *)needsVM {
+- (JYNeedsViewModel *)needsVM
+{
 	if(_needsVM == nil) {
 		_needsVM = [[JYNeedsViewModel alloc] initWithUserID:nil];
 	}
