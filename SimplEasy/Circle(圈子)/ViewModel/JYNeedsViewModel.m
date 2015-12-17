@@ -67,7 +67,8 @@
     NSString *time = [self modelForRow:row].time;
     NSString *date = [time componentsSeparatedByString:@" "].firstObject;
     NSArray *arr = [date componentsSeparatedByString:@"-"];
-    return [NSString stringWithFormat:@"%@月-%@日",arr[1],arr[2]];
+    NSString *requiedTime = arr[1]==nil||arr[2]==nil?nil:[NSString stringWithFormat:@"%@月%@日",arr[1],arr[2]];
+    return requiedTime;
 }
 
 - (NSString *)needsIDForRow: (NSInteger)row{
@@ -94,4 +95,7 @@
     return [self modelForRow:row].tel;
 }
 
+- (BOOL)isUrgentForRow: (NSInteger)row{
+    return NO;
+}
 @end

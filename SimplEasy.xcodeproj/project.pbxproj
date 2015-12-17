@@ -87,6 +87,7 @@
 		8396B81B1C12CBAC007E09C5 /* JYPublishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8396B81A1C12CBAC007E09C5 /* JYPublishCell.m */; };
 		83987DF11BFEF71E007C9CE4 /* JYUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83987DF01BFEF71E007C9CE4 /* JYUserInfoModel.m */; };
 		83987DF51BFEFADF007C9CE4 /* JYUserInfoNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83987DF41BFEFADF007C9CE4 /* JYUserInfoNetManager.m */; };
+		83C732231C22AEF4005A7505 /* JYNeedsPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C732221C22AEF4005A7505 /* JYNeedsPopView.m */; };
 		83CED5B71C15769F006C9869 /* JYPublishNeedsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CED5B61C15769F006C9869 /* JYPublishNeedsVC.m */; };
 		83DECFB41BF197D300A1FE7C /* Classify.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83DECFB31BF197D300A1FE7C /* Classify.plist */; };
 		83DECFB71BF1C28900A1FE7C /* JYClassifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DECFB61BF1C28900A1FE7C /* JYClassifyModel.m */; };
@@ -614,6 +615,8 @@
 		83987DF01BFEF71E007C9CE4 /* JYUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYUserInfoModel.m; sourceTree = "<group>"; };
 		83987DF31BFEFADF007C9CE4 /* JYUserInfoNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYUserInfoNetManager.h; sourceTree = "<group>"; };
 		83987DF41BFEFADF007C9CE4 /* JYUserInfoNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYUserInfoNetManager.m; sourceTree = "<group>"; };
+		83C732211C22AEF4005A7505 /* JYNeedsPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYNeedsPopView.h; sourceTree = "<group>"; };
+		83C732221C22AEF4005A7505 /* JYNeedsPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYNeedsPopView.m; sourceTree = "<group>"; };
 		83CED5B51C15769F006C9869 /* JYPublishNeedsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYPublishNeedsVC.h; sourceTree = "<group>"; };
 		83CED5B61C15769F006C9869 /* JYPublishNeedsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYPublishNeedsVC.m; sourceTree = "<group>"; };
 		83DECFB31BF197D300A1FE7C /* Classify.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Classify.plist; sourceTree = "<group>"; };
@@ -1672,6 +1675,8 @@
 			children = (
 				8370969B1C2135FB001931E6 /* JYNeedsCell.h */,
 				8370969C1C2135FB001931E6 /* JYNeedsCell.m */,
+				83C732211C22AEF4005A7505 /* JYNeedsPopView.h */,
+				83C732221C22AEF4005A7505 /* JYNeedsPopView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2644,8 +2649,7 @@
 				ORGANIZATIONNAME = SimplEasy;
 				TargetAttributes = {
 					8328A4361BE8478B0021767D = {
-						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = G7YYV9K7LC;
+						DevelopmentTeam = 677B8XTF4Q;
 					};
 					8328A44F1BE8478C0021767D = {
 						CreatedOnToolsVersion = 7.1;
@@ -3108,6 +3112,7 @@
 				83E75EC61BEA45C70020D54D /* JYSellerCell.m in Sources */,
 				83987DF11BFEF71E007C9CE4 /* JYUserInfoModel.m in Sources */,
 				8344A9961BE8A29400AD007B /* JYProductDetailVC.m in Sources */,
+				83C732231C22AEF4005A7505 /* JYNeedsPopView.m in Sources */,
 				B06FDC711C08847C0076E4DC /* IMContactTableViewCell.m in Sources */,
 				B06FDC791C08847C0076E4DC /* IMGroupInfoEditViewController.m in Sources */,
 				8328A4A61BE849800021767D /* NSObject+Common.m in Sources */,
@@ -3398,7 +3403,7 @@
 					"\"Photos\"",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy1.SimplEasy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasye.SimplEasy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -3506,7 +3511,7 @@
 					"\"Photos\"",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasy1.SimplEasy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simpleasye.SimplEasy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

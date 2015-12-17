@@ -49,7 +49,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView reloadData];
-    self.title = @"我的";
     _titleLabel.text = @"我的";
     /** 添加naviRightItem */
     UIBarButtonItem *rightBBI = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:self action:@selector(jumpToSetting)];
@@ -81,6 +80,15 @@
     [self.navigationController pushViewController:setVC animated:YES];
     
     
+}
+
+- (void)showAlert{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请先登录" preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+#warning TODO --> 跳转到登录界面
+    }]];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)configHeadPhoto{
@@ -164,10 +172,14 @@
             
             [cell.needsBtn bk_removeEventHandlersForControlEvents:UIControlEventTouchUpInside];
             [cell.needsBtn bk_addEventHandler:^(id sender) {
-                JYUserNeedsVC *vc = [JYUserNeedsVC new];
-                vc.title = @"我的需求";
-                vc.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:vc animated:YES];
+                if (![JYRootViewController shareRootVC].isLogin) {
+                    [self showAlert];
+                }else{
+                    JYUserNeedsVC *vc = [JYUserNeedsVC new];
+                    vc.title = @"我的需求";
+                    vc.hidesBottomBarWhenPushed = YES;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
             } forControlEvents:UIControlEventTouchUpInside];
             
             cell.friendNum.text = [JYRootViewController shareRootVC].isLogin?@"88":@"0";
@@ -219,12 +231,7 @@ kRemoveCellSeparator
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (![JYRootViewController shareRootVC].isLogin) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请先登录" preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-#warning TODO
-        }]];
-        [self presentViewController:alert animated:YES completion:nil];
+        [self showAlert];
         return;
     }
     if (indexPath.section == 0 && indexPath.row == 0) {

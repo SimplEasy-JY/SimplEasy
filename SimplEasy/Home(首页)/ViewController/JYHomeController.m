@@ -289,6 +289,7 @@ typedef NS_ENUM(NSInteger, cellType) {
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self isRefresh:YES];
     }];
+    [self.tableView.mj_header beginRefreshing];
     //添加上拉加载
     self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [self isRefresh:NO];

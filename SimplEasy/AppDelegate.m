@@ -82,7 +82,7 @@
     return YES;
 }
 
-- (void)test{
+- (void)test {
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
 //

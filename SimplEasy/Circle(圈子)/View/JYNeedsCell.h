@@ -10,4 +10,9 @@
 
 @interface JYNeedsCell : UITableViewCell
 
+@property (nonatomic, strong) UILabel *needsLb;
+/** 是否是急需 */
+@property (nonatomic, getter=isUrgent) BOOL urgent;
+
+@property (nonatomic, strong) UILabel *timeLb;
 @end

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JYBaseViewController.h"
 
-@interface JYCircleViewController : UIViewController
+@interface JYCircleViewController : JYBaseViewController
 
 @end

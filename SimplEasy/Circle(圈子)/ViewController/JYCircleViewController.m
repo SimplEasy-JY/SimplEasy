@@ -8,6 +8,7 @@
 
 #import "JYCircleViewController.h"
 #import "JYNeedsViewModel.h"
+#import "JYNeedsCell.h"
 
 @interface JYCircleViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -23,12 +24,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _titleLabel.text = @"需求圈";
     [self setMJRefresh];
 }
 
 /** 设置上下拉刷新 */
-- (void)setMJRefresh
-{
+- (void)setMJRefresh {
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self.needsVM refreshDataCompletionHandle:^(NSError *error) {
             if (!error) {
@@ -64,48 +65,48 @@
 }
 
 #pragma mark *** <UITableViewDataSource> ***
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return self.needsVM.rowNum;
-}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return self.needsVM.rowNum;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
-    }
-    cell.textLabel.text = [self.needsVM detailForRow:indexPath.section];
+    JYNeedsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYNeedsCell"];
+    cell.urgent = [self.needsVM isUrgentForRow:indexPath.row];
+    cell.timeLb.text = [self.needsVM timeForRow:indexPath.row];
+    cell.needsLb.text = [self.needsVM detailForRow:indexPath.row];
     return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return [self.needsVM timeForRow:section];
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewAutomaticDimension;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    tableView.editing?nil:[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark *** Lazy Loading ***
 
-- (UITableView *)tableView
-{
+- (UITableView *)tableView {
 	if(_tableView == nil) {
 		_tableView = [[UITableView alloc] init];
         _tableView.dataSource = self;
         _tableView.delegate = self;
+        _tableView.backgroundColor = kRGBColor(236, 236, 236);
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.view addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(0);
         }];
+        [_tableView registerClass:[JYNeedsCell class] forCellReuseIdentifier:@"JYNeedsCell"];
 	}
 	return _tableView;
 }
 
-- (JYNeedsViewModel *)needsVM
-{
+- (JYNeedsViewModel *)needsVM {
 	if(_needsVM == nil) {
 		_needsVM = [[JYNeedsViewModel alloc] initWithUserID:nil];
 	}

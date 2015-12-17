@@ -10,6 +10,7 @@
 #import "JYNeedsViewModel.h"
 #import "JYUserInfoNetManager.h"
 #import "JYNormalModel.h"
+#import "JYNeedsCell.h"
 
 @interface JYUserNeedsVC ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -28,7 +29,7 @@
     [super viewDidLoad];
     [self setMJRefresh];
     [JYFactory addBackItemToVC:self];
-    
+    self.view.backgroundColor = kRGBColor(236, 236, 236);
     UIBarButtonItem *deleteBBI = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStyleDone target:self action:@selector(multiSelect:)];
     self.navigationItem.rightBarButtonItem = deleteBBI;
 }
@@ -116,27 +117,24 @@
 
 #pragma mark *** <UITableViewDataSource> ***
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.userNeedsVM.rowNum;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
-    }
-    cell.textLabel.text = [self.userNeedsVM detailForRow:indexPath.section];
+    JYNeedsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYNeedsCell"];
+    cell.urgent = [self.userNeedsVM isUrgentForRow:indexPath.row];
+    cell.timeLb.text = [self.userNeedsVM timeForRow:indexPath.row];
+    cell.needsLb.text = [self.userNeedsVM detailForRow:indexPath.row];
     return cell;
-    
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return [self.userNeedsVM timeForRow:section];
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewAutomaticDimension;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    tableView.editing?nil:[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark *** TableView的编辑 ***
@@ -172,22 +170,28 @@
 		_tableView = [[UITableView alloc] init];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.tintColor = JYGlobalBg;//多选打勾颜色
+        _tableView.backgroundColor = kRGBColor(236, 236, 236);
         _tableView.tableFooterView = [UIView new];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.allowsSelectionDuringEditing = YES;
         _tableView.allowsMultipleSelectionDuringEditing = YES;
         [self.view addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(0);
         }];
+        [_tableView registerClass:[JYNeedsCell class] forCellReuseIdentifier:@"JYNeedsCell"];
 	}
 	return _tableView;
 }
 
 - (JYNeedsViewModel *)userNeedsVM {
 	if(_userNeedsVM == nil) {
-        NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"uid"];
+        NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:IMLoginUID];
         JYLog(@"userID = %@",userId);
-		_userNeedsVM = [[JYNeedsViewModel alloc] initWithUserID:userId.integerValue];
+        if (userId) {
+            _userNeedsVM = [[JYNeedsViewModel alloc] initWithUserID:userId.integerValue];
+        }
 	}
 	return _userNeedsVM;
 }

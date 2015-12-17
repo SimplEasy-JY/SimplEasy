@@ -35,6 +35,7 @@
 - (NSURL *)headImgForRow: (NSInteger)row;
 /** 电话号码 */
 - (NSString *)telForRow: (NSInteger)row;
-
+/** 是否是急需 */
+- (BOOL)isUrgentForRow: (NSInteger)row;
 
 @end
