@@ -208,7 +208,7 @@ static NSString *DESC_PLACEHOLDER = @"描述一下您的需求...(限20字)";
 - (BOOL)isLegalPrice: (NSString *)price{
     NSString *regex = @"^(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*))$";
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
-    return [predicate evaluateWithObject:price];
+    return [predicate evaluateWithObject:price] || price.floatValue == 0.0;
 }
 /** 发布需求 */
 - (void)publishNeeds: (UIButton *)sender{
@@ -239,7 +239,7 @@ static NSString *DESC_PLACEHOLDER = @"描述一下您的需求...(限20字)";
             [self presentViewController:alert animated:YES completion:nil];
         }else{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:model.errorMsg preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"发布失败" message:model.errorMsg preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:nil]];
             [self presentViewController:alert animated:YES completion:nil];
 
@@ -256,7 +256,7 @@ static NSString *DESC_PLACEHOLDER = @"描述一下您的需求...(限20字)";
     [params setObject:@"18768102901" forKey:@"tel"];
     JYSetPassword(password, params);
     JYSetDetail(self.descTV.text, params);
-    JYSetPrice(self.descTV.text, params);
+    JYSetPrice(self.priceTF.text, params);
     return [params copy];
 }
 

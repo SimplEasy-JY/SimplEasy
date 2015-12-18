@@ -43,8 +43,6 @@ static AFHTTPSessionManager *manager = nil;
         [self handleError:error];
         complete(nil, error);
     }];
-
-
 }
 
 + (id)DELETE: (NSString *)path parameters: (NSDictionary *)params completionHandle: (void(^)(id responseObj, NSError *error))complete{

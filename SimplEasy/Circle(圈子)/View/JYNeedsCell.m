@@ -10,6 +10,10 @@
 #import "JYNeedsPopView.h"
 
 
+static const CGFloat HEAD_WH = 40;
+static const CGFloat PADDING = 5;
+static const CGFloat MARGIN = 10;
+
 @interface JYNeedsCell ()
 
 @property (nonatomic, strong)JYNeedsPopView *popView;
@@ -21,14 +25,14 @@
 - (UIImageView *)headImg{
     if (_headImg == nil) {
         _headImg = [[UIImageView alloc] init];
-        _headImg.layer.cornerRadius = 30;
+        _headImg.layer.cornerRadius = HEAD_WH/2;
         _headImg.clipsToBounds = YES;
         [self.contentView addSubview:_headImg];
         [_headImg mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.timeLb.mas_bottom).mas_equalTo(5);
-            make.left.mas_equalTo(10);
-            make.size.mas_equalTo(CGSizeMake(60, 60));
-            make.bottom.mas_equalTo(-5);
+            make.top.mas_equalTo(self.timeLb.mas_bottom).mas_equalTo(MARGIN);
+            make.left.mas_equalTo(MARGIN);
+            make.size.mas_equalTo(CGSizeMake(HEAD_WH, HEAD_WH));
+            make.bottom.mas_equalTo(-MARGIN);
         }];
     }
     return _headImg;
@@ -42,7 +46,7 @@
         [_popView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.headImg.mas_right).mas_equalTo(0);
             make.centerY.mas_equalTo(self.headImg.mas_centerY);
-            make.right.mas_lessThanOrEqualTo(-10);
+            make.right.mas_lessThanOrEqualTo(-MARGIN);
         }];
     }
     return _popView;
@@ -52,10 +56,11 @@
     if (!_needsLb) {
         _needsLb = [[UILabel alloc] init];
         _needsLb.numberOfLines = 2;
+        _needsLb.font = [UIFont systemFontOfSize:14];
         self.popView.lineColor = self.urgent?[UIColor redColor]:[UIColor lightGrayColor];
         [self.popView addSubview:_needsLb];
         [_needsLb mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(UIEdgeInsetsMake(10, 27, 10, 10));
+            make.edges.mas_equalTo(UIEdgeInsetsMake(MARGIN, 27, MARGIN, MARGIN));
         }];
     }
     return _needsLb;
@@ -68,7 +73,7 @@
         _timeLb.font = [UIFont systemFontOfSize:12];
         [self.contentView addSubview:_timeLb];
         [_timeLb mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(5);
+            make.top.mas_equalTo(PADDING);
             make.left.mas_equalTo(0);
             make.right.mas_equalTo(0);
         }];

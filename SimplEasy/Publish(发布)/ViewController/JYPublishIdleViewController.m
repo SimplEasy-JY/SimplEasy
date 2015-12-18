@@ -107,7 +107,7 @@ static const NSUInteger IMAGE_W = 100;
 - (BOOL)isLegalPrice: (NSString *)price{
     NSString *regex = @"^(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*))$";
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
-    return [predicate evaluateWithObject:price];
+    return [predicate evaluateWithObject:price] || price.floatValue == 0.0;
 }
 
 /** 发布 */
