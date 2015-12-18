@@ -96,6 +96,6 @@
 }
 
 - (BOOL)isUrgentForRow: (NSInteger)row{
-    return NO;
+    return arc4random()%2;
 }
 @end

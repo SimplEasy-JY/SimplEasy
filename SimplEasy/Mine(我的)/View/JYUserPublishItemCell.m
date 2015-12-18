@@ -9,8 +9,9 @@
 #import "JYUserPublishItemCell.h"
 
 static CGFloat MARGIN = 8.0;
-static CGFloat GAP = 2.0;
+static CGFloat GAP = 0.0;
 static CGFloat FONT_SIZE = 14.0;
+
 @implementation JYUserPublishItemCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -24,6 +25,22 @@ static CGFloat FONT_SIZE = 14.0;
     return self;
 }
 
+- (void)addNeedsTarget:(id)target selector:(SEL)selector forControlEvents:(UIControlEvents)event{
+    [self.needsBtn addTarget:target action:selector forControlEvents:event];
+    _needsNum.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:target action:selector];
+    [self.needsNum addGestureRecognizer:tap];
+}
+- (void)addIdleTarget:(id)target selector:(SEL)selector forControlEvents:(UIControlEvents)event{
+    [self.idleBtn addTarget:target action:selector forControlEvents:event];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:target action:selector];
+    [self.idleNum addGestureRecognizer:tap];
+}
+- (void)addFriendTarget:(id)target selector:(SEL)selector forControlEvents:(UIControlEvents)event{
+    [self.friendBtn addTarget:target action:selector forControlEvents:event];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:target action:selector];
+    [self.friendNum addGestureRecognizer:tap];
+}
 - (UILabel *)idleNum {
     if(_idleNum == nil) {
         _idleNum = [[UILabel alloc] init];
@@ -92,6 +109,7 @@ static CGFloat FONT_SIZE = 14.0;
     }
     return _idleBtn;
 }
+
 
 - (UIButton *)needsBtn {
     if(_needsBtn == nil) {

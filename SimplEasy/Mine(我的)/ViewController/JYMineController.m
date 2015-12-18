@@ -91,6 +91,17 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+/** 跳转到用户需求界面 */
+- (void)showUserNeedsVC{
+    if (![JYRootViewController shareRootVC].isLogin) {
+        [self showAlert];
+    }else{
+        JYUserNeedsVC *vc = [JYUserNeedsVC new];
+        vc.title = @"我的需求";
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
 - (void)configHeadPhoto{
     //头像
     self.headPhoto = [g_pIMSDK mainPhotoOfUser:[g_pIMMyself customUserID]];
@@ -169,18 +180,18 @@
             JYUserPublishItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYUserPublishItemCell"];
             cell.idleNum.text = [JYRootViewController shareRootVC].isLogin?@"18":@"0";
             cell.needsNum.text = [JYRootViewController shareRootVC].isLogin?@"20":@"0";
-            
-            [cell.needsBtn bk_removeEventHandlersForControlEvents:UIControlEventTouchUpInside];
-            [cell.needsBtn bk_addEventHandler:^(id sender) {
-                if (![JYRootViewController shareRootVC].isLogin) {
-                    [self showAlert];
-                }else{
-                    JYUserNeedsVC *vc = [JYUserNeedsVC new];
-                    vc.title = @"我的需求";
-                    vc.hidesBottomBarWhenPushed = YES;
-                    [self.navigationController pushViewController:vc animated:YES];
-                }
-            } forControlEvents:UIControlEventTouchUpInside];
+            [cell addNeedsTarget:self selector:@selector(showUserNeedsVC) forControlEvents:UIControlEventTouchUpInside];
+//            [cell.needsBtn bk_removeEventHandlersForControlEvents:UIControlEventTouchUpInside];
+//            [cell.needsBtn bk_addEventHandler:^(id sender) {
+//                if (![JYRootViewController shareRootVC].isLogin) {
+//                    [self showAlert];
+//                }else{
+//                    JYUserNeedsVC *vc = [JYUserNeedsVC new];
+//                    vc.title = @"我的需求";
+//                    vc.hidesBottomBarWhenPushed = YES;
+//                    [self.navigationController pushViewController:vc animated:YES];
+//                }
+//            } forControlEvents:UIControlEventTouchUpInside];
             
             cell.friendNum.text = [JYRootViewController shareRootVC].isLogin?@"88":@"0";
             return cell;

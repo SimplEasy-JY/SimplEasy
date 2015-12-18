@@ -75,7 +75,9 @@
 {
     JYNeedsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYNeedsCell"];
     cell.urgent = [self.needsVM isUrgentForRow:indexPath.row];
-    cell.timeLb.text = [self.needsVM timeForRow:indexPath.row];
+    [cell.headImg sd_setImageWithPreviousCachedImageWithURL:[self.needsVM headImgForRow:indexPath.row] andPlaceholderImage:[UIImage imageNamed:@"IM_head_maile"] options:SDWebImageAvoidAutoSetImage progress:nil completed:nil];
+    BOOL isSameTime = indexPath.row >= 1?[[self.needsVM timeForRow:indexPath.row] isEqualToString:[self.needsVM timeForRow:indexPath.row-1]]:false;
+    cell.timeLb.text = isSameTime?nil:[self.needsVM timeForRow:indexPath.row];
     cell.needsLb.text = [self.needsVM detailForRow:indexPath.row];
     return cell;
 }

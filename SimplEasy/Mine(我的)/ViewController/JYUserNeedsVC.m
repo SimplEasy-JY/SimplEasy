@@ -126,7 +126,9 @@ static const CGFloat DELETE_VIEW_H = 50;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JYNeedsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JYNeedsCell"];
     cell.urgent = [self.userNeedsVM isUrgentForRow:indexPath.row];
-    cell.timeLb.text = [self.userNeedsVM timeForRow:indexPath.row];
+    [cell.headImg sd_setImageWithPreviousCachedImageWithURL:[self.userNeedsVM headImgForRow:indexPath.row] andPlaceholderImage:[UIImage imageNamed:@"IM_head_maile"] options:SDWebImageAvoidAutoSetImage progress:nil completed:nil];
+    BOOL isSameTime = indexPath.row >= 1?[[self.userNeedsVM timeForRow:indexPath.row] isEqualToString:[self.userNeedsVM timeForRow:indexPath.row-1]]:false;
+    cell.timeLb.text = isSameTime?nil:[self.userNeedsVM timeForRow:indexPath.row];
     cell.needsLb.text = [self.userNeedsVM detailForRow:indexPath.row];
     return cell;
 }

@@ -24,6 +24,9 @@
 /** 易友数量 */
 @property (nonatomic, strong) UILabel *friendNum;
 
+- (void)addIdleTarget: (id)target selector: (SEL)selector forControlEvents: (UIControlEvents)event;
+- (void)addNeedsTarget: (id)target selector: (SEL)selector forControlEvents: (UIControlEvents)event;
+- (void)addFriendTarget: (id)target selector: (SEL)selector forControlEvents: (UIControlEvents)event;
 
 
 

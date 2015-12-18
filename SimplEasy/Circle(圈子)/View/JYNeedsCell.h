@@ -15,4 +15,6 @@
 @property (nonatomic, getter=isUrgent) BOOL urgent;
 
 @property (nonatomic, strong) UILabel *timeLb;
+
+@property (nonatomic, strong) UIImageView *headImg;
 @end
