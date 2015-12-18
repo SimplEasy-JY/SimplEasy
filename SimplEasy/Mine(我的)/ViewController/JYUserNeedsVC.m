@@ -12,6 +12,8 @@
 #import "JYNormalModel.h"
 #import "JYNeedsCell.h"
 
+static const CGFloat DELETE_VIEW_H = 50;
+
 @interface JYUserNeedsVC ()<UITableViewDelegate,UITableViewDataSource>
 
 /** TableView */
@@ -42,11 +44,11 @@
     
     if (_tableView.editing) {
         [UIView animateWithDuration:0.3 animations:^{
-            self.deleteView.frame = CGRectMake(0, kWindowH - 64 - 40, kWindowW, 30);
+            self.deleteView.frame = CGRectMake(0, kWindowH - 64 - DELETE_VIEW_H, kWindowW, DELETE_VIEW_H-10);
         }];
     }else{
         [UIView animateWithDuration:0.3 animations:^{
-            self.deleteView.frame = CGRectMake(0, kWindowH, kWindowW, 30);
+            self.deleteView.frame = CGRectMake(0, kWindowH, kWindowW, DELETE_VIEW_H-10);
         }];
     }
 }
@@ -133,6 +135,8 @@
     return UITableViewAutomaticDimension;
 }
 
+#pragma mark *** <UITableViewDelegate> ***
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     tableView.editing?nil:[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -198,12 +202,12 @@
 
 - (UIView *)deleteView {
 	if(_deleteView == nil) {
-		_deleteView = [[UIView alloc] initWithFrame:CGRectMake(0, kWindowH, kWindowW, 40)];
+		_deleteView = [[UIView alloc] initWithFrame:CGRectMake(0, kWindowH, kWindowW, DELETE_VIEW_H)];
         UIButton *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [deleteBtn setTitle:@"删除所选需求" forState:UIControlStateNormal];
         [deleteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [deleteBtn setBackgroundColor:JYGlobalBg];
-        deleteBtn.frame = CGRectMake(5, 5, kWindowW-10, 30);
+        deleteBtn.frame = CGRectMake(5, 5, kWindowW-10, DELETE_VIEW_H-10);
         [deleteBtn addTarget:self action:@selector(deleteSelectedNeeds:) forControlEvents:UIControlEventTouchUpInside];
         [_deleteView addSubview:deleteBtn];
         [self.view addSubview:_deleteView];

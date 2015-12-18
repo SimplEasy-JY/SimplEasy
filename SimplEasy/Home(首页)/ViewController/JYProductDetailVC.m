@@ -234,9 +234,9 @@ static CGFloat bottomBtnHeight = 50;
             if (cell == nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
             }
+            cell.textLabel.font = [UIFont systemFontOfSize:14];
             cell.textLabel.text = [self.pdVM descForProduct];
             cell.textLabel.numberOfLines = 0;
-            cell.font = [UIFont systemFontOfSize:12];
             return cell;
         }
         
@@ -421,6 +421,7 @@ static CGFloat bottomBtnHeight = 50;
         _tableView.delegate = self;
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.allowsSelection = NO;
+        _tableView.tableFooterView = [UIView new];
         [self.view addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, bottomBtnHeight, 0));

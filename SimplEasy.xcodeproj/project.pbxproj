@@ -14,7 +14,13 @@
 		8319BE3F1C1ACC0900F5DD5B /* JYNormalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8319BE3E1C1ACC0900F5DD5B /* JYNormalModel.m */; };
 		831A04C71BF5CAFC00F78986 /* JYMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = B02A70121BE860C600B8B05F /* JYMineController.m */; };
 		831A04CA1BF5CCCA00F78986 /* JYUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831A04C91BF5CCCA00F78986 /* JYUserInfoViewController.m */; };
-		831A04CD1BF5D08300F78986 /* JYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831A04CC1BF5D08300F78986 /* JYSettingViewController.m */; };
+		832858611C23B4B400C6E41D /* JYAboutJYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328585C1C23B4B400C6E41D /* JYAboutJYViewController.m */; };
+		832858621C23B4B400C6E41D /* JYOpinionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328585E1C23B4B400C6E41D /* JYOpinionVC.m */; };
+		832858631C23B4B400C6E41D /* JYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 832858601C23B4B400C6E41D /* JYSettingViewController.m */; };
+		8328586D1C23B58700C6E41D /* JYLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 832858661C23B58700C6E41D /* JYLoginViewController.m */; };
+		8328586E1C23B58700C6E41D /* JYPhoneNumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 832858681C23B58700C6E41D /* JYPhoneNumViewController.m */; };
+		8328586F1C23B58700C6E41D /* JYRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328586A1C23B58700C6E41D /* JYRegisterViewController.m */; };
+		832858701C23B58700C6E41D /* JYUserProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328586C1C23B58700C6E41D /* JYUserProtocolViewController.m */; };
 		8328A43C1BE8478B0021767D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A43B1BE8478B0021767D /* main.m */; };
 		8328A43F1BE8478B0021767D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328A43E1BE8478B0021767D /* AppDelegate.m */; };
 		8328A4451BE8478B0021767D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8328A4431BE8478B0021767D /* Main.storyboard */; };
@@ -39,9 +45,7 @@
 		83476B7B1BEB34830061F61E /* JYClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83476B7A1BEB34830061F61E /* JYClassifyViewController.m */; };
 		83534E831C1E6F4D00CAC273 /* JYUserPublishItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83534E821C1E6F4D00CAC273 /* JYUserPublishItemCell.m */; };
 		83534E861C1E9A6300CAC273 /* JYUserNeedsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83534E851C1E9A6300CAC273 /* JYUserNeedsVC.m */; };
-		83534E891C1EB6E400CAC273 /* JYOpinionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 83534E881C1EB6E400CAC273 /* JYOpinionVC.m */; };
 		83534E8C1C1EBBDB00CAC273 /* JYTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83534E8B1C1EBBDB00CAC273 /* JYTextView.m */; };
-		83534E8F1C1EC2C800CAC273 /* JYAboutJYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83534E8E1C1EC2C800CAC273 /* JYAboutJYViewController.m */; };
 		8370867E1C07EC5B0003F347 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 837086341C07EC5B0003F347 /* UMSocialLocalizable.strings */; };
 		8370867F1C07EC5B0003F347 /* libUMSocial_Sdk_4.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 837086421C07EC5B0003F347 /* libUMSocial_Sdk_4.3.a */; };
 		837086801C07EC5B0003F347 /* libUMSocial_Sdk_Comment_4.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 837086431C07EC5B0003F347 /* libUMSocial_Sdk_Comment_4.3.a */; };
@@ -209,9 +213,7 @@
 		B03859F31C0703410053D0B0 /* IMMyselfInfoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03859F21C0703410053D0B0 /* IMMyselfInfoEditViewController.m */; };
 		B03889E51C15AA560031DDC8 /* JYLoginRegisterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B03889E41C15AA560031DDC8 /* JYLoginRegisterModel.m */; };
 		B03FD5641C0553400031A18C /* JYSDKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B03FD5631C0553400031A18C /* JYSDKManager.m */; };
-		B03FD5701C0553BC0031A18C /* JYLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03FD56E1C0553BC0031A18C /* JYLoginViewController.m */; };
 		B03FD5731C0553CD0031A18C /* JYRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03FD5721C0553CD0031A18C /* JYRootViewController.m */; };
-		B03FD5761C0568F60031A18C /* JYRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03FD5751C0568F60031A18C /* JYRegisterViewController.m */; };
 		B03FD57D1C05910F0031A18C /* SMS_SDKLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B03FD5781C05910F0031A18C /* SMS_SDKLocalizable.strings */; };
 		B03FD57E1C05910F0031A18C /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03FD57A1C05910F0031A18C /* MOBFoundation.framework */; };
 		B03FD57F1C05910F0031A18C /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03FD57B1C05910F0031A18C /* SMS_SDK.framework */; };
@@ -220,7 +222,6 @@
 		B03FD5851C0591630031A18C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03FD5841C0591630031A18C /* MessageUI.framework */; };
 		B03FD5871C05916E0031A18C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B03FD5861C05916E0031A18C /* libz.tbd */; };
 		B03FD5891C0591810031A18C /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B03FD5881C0591810031A18C /* libicucore.tbd */; };
-		B03FD58C1C05BA2F0031A18C /* JYUserProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B03FD58B1C05BA2F0031A18C /* JYUserProtocolViewController.m */; };
 		B04758D61BEB92D100C645EE /* JYWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B04758D51BEB92D100C645EE /* JYWebViewController.m */; };
 		B048007E1BF489DD007D39F4 /* JYGoodsNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B048007D1BF489DD007D39F4 /* JYGoodsNetManager.m */; };
 		B04800811BF48A65007D39F4 /* JYGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B04800801BF48A65007D39F4 /* JYGoodsModel.m */; };
@@ -402,7 +403,6 @@
 		B06FDE021C0885270076E4DC /* IM_press_audio@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B06FDD631C0885270076E4DC /* IM_press_audio@2x.png */; };
 		B06FDE031C0885270076E4DC /* libIMSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B06FDD671C0885270076E4DC /* libIMSDK.a */; };
 		B06FDE061C08855D0076E4DC /* IMSDKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B06FDE051C08855D0076E4DC /* IMSDKManager.m */; };
-		B0800A2C1C05DFE70096F90B /* JYPhoneNumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0800A2B1C05DFE70096F90B /* JYPhoneNumViewController.m */; };
 		B089AA981BE9D09400E5D2CC /* JYLoopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AA971BE9D09400E5D2CC /* JYLoopModel.m */; };
 		B089AA9E1BE9D50700E5D2CC /* JYLoopViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AA9D1BE9D50700E5D2CC /* JYLoopViewModel.m */; };
 		B089AAA11BE9D70800E5D2CC /* JYLoopNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B089AAA01BE9D70800E5D2CC /* JYLoopNetManager.m */; };
@@ -463,8 +463,20 @@
 		8319BE3E1C1ACC0900F5DD5B /* JYNormalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYNormalModel.m; sourceTree = "<group>"; };
 		831A04C81BF5CCCA00F78986 /* JYUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYUserInfoViewController.h; sourceTree = "<group>"; };
 		831A04C91BF5CCCA00F78986 /* JYUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYUserInfoViewController.m; sourceTree = "<group>"; };
-		831A04CB1BF5D08300F78986 /* JYSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYSettingViewController.h; sourceTree = "<group>"; };
-		831A04CC1BF5D08300F78986 /* JYSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYSettingViewController.m; sourceTree = "<group>"; };
+		8328585B1C23B4B400C6E41D /* JYAboutJYViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYAboutJYViewController.h; sourceTree = "<group>"; };
+		8328585C1C23B4B400C6E41D /* JYAboutJYViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYAboutJYViewController.m; sourceTree = "<group>"; };
+		8328585D1C23B4B400C6E41D /* JYOpinionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYOpinionVC.h; sourceTree = "<group>"; };
+		8328585E1C23B4B400C6E41D /* JYOpinionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYOpinionVC.m; sourceTree = "<group>"; };
+		8328585F1C23B4B400C6E41D /* JYSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYSettingViewController.h; sourceTree = "<group>"; };
+		832858601C23B4B400C6E41D /* JYSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYSettingViewController.m; sourceTree = "<group>"; };
+		832858651C23B58700C6E41D /* JYLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLoginViewController.h; sourceTree = "<group>"; };
+		832858661C23B58700C6E41D /* JYLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLoginViewController.m; sourceTree = "<group>"; };
+		832858671C23B58700C6E41D /* JYPhoneNumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYPhoneNumViewController.h; sourceTree = "<group>"; };
+		832858681C23B58700C6E41D /* JYPhoneNumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYPhoneNumViewController.m; sourceTree = "<group>"; };
+		832858691C23B58700C6E41D /* JYRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYRegisterViewController.h; sourceTree = "<group>"; };
+		8328586A1C23B58700C6E41D /* JYRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYRegisterViewController.m; sourceTree = "<group>"; };
+		8328586B1C23B58700C6E41D /* JYUserProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYUserProtocolViewController.h; sourceTree = "<group>"; };
+		8328586C1C23B58700C6E41D /* JYUserProtocolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYUserProtocolViewController.m; sourceTree = "<group>"; };
 		8328A4371BE8478B0021767D /* SimplEasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimplEasy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8328A43B1BE8478B0021767D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8328A43D1BE8478B0021767D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -518,12 +530,8 @@
 		83534E821C1E6F4D00CAC273 /* JYUserPublishItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYUserPublishItemCell.m; sourceTree = "<group>"; };
 		83534E841C1E9A6300CAC273 /* JYUserNeedsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYUserNeedsVC.h; sourceTree = "<group>"; };
 		83534E851C1E9A6300CAC273 /* JYUserNeedsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYUserNeedsVC.m; sourceTree = "<group>"; };
-		83534E871C1EB6E400CAC273 /* JYOpinionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYOpinionVC.h; sourceTree = "<group>"; };
-		83534E881C1EB6E400CAC273 /* JYOpinionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYOpinionVC.m; sourceTree = "<group>"; };
 		83534E8A1C1EBBDB00CAC273 /* JYTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYTextView.h; sourceTree = "<group>"; };
 		83534E8B1C1EBBDB00CAC273 /* JYTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYTextView.m; sourceTree = "<group>"; };
-		83534E8D1C1EC2C800CAC273 /* JYAboutJYViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYAboutJYViewController.h; sourceTree = "<group>"; };
-		83534E8E1C1EC2C800CAC273 /* JYAboutJYViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYAboutJYViewController.m; sourceTree = "<group>"; };
 		837086351C07EC5B0003F347 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		837086371C07EC5B0003F347 /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
 		837086381C07EC5B0003F347 /* UMSocialAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialAccountManager.h; sourceTree = "<group>"; };
@@ -754,12 +762,8 @@
 		B03889E41C15AA560031DDC8 /* JYLoginRegisterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLoginRegisterModel.m; sourceTree = "<group>"; };
 		B03FD5621C0553400031A18C /* JYSDKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYSDKManager.h; sourceTree = "<group>"; };
 		B03FD5631C0553400031A18C /* JYSDKManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYSDKManager.m; sourceTree = "<group>"; };
-		B03FD56D1C0553BC0031A18C /* JYLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLoginViewController.h; sourceTree = "<group>"; };
-		B03FD56E1C0553BC0031A18C /* JYLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLoginViewController.m; sourceTree = "<group>"; };
 		B03FD5711C0553CD0031A18C /* JYRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYRootViewController.h; sourceTree = "<group>"; };
 		B03FD5721C0553CD0031A18C /* JYRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYRootViewController.m; sourceTree = "<group>"; };
-		B03FD5741C0568F60031A18C /* JYRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYRegisterViewController.h; sourceTree = "<group>"; };
-		B03FD5751C0568F60031A18C /* JYRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYRegisterViewController.m; sourceTree = "<group>"; };
 		B03FD5791C05910F0031A18C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SMS_SDKLocalizable.strings; sourceTree = "<group>"; };
 		B03FD57A1C05910F0031A18C /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		B03FD57B1C05910F0031A18C /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
@@ -769,8 +773,6 @@
 		B03FD5841C0591630031A18C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		B03FD5861C05916E0031A18C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		B03FD5881C0591810031A18C /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
-		B03FD58A1C05BA2F0031A18C /* JYUserProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYUserProtocolViewController.h; sourceTree = "<group>"; };
-		B03FD58B1C05BA2F0031A18C /* JYUserProtocolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYUserProtocolViewController.m; sourceTree = "<group>"; };
 		B04758D41BEB92D100C645EE /* JYWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYWebViewController.h; sourceTree = "<group>"; };
 		B04758D51BEB92D100C645EE /* JYWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYWebViewController.m; sourceTree = "<group>"; };
 		B048007C1BF489DD007D39F4 /* JYGoodsNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYGoodsNetManager.h; sourceTree = "<group>"; };
@@ -1020,8 +1022,6 @@
 		B06FDD671C0885270076E4DC /* libIMSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libIMSDK.a; sourceTree = "<group>"; };
 		B06FDE041C08855D0076E4DC /* IMSDKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMSDKManager.h; sourceTree = "<group>"; };
 		B06FDE051C08855D0076E4DC /* IMSDKManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMSDKManager.m; sourceTree = "<group>"; };
-		B0800A2A1C05DFE70096F90B /* JYPhoneNumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYPhoneNumViewController.h; sourceTree = "<group>"; };
-		B0800A2B1C05DFE70096F90B /* JYPhoneNumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYPhoneNumViewController.m; sourceTree = "<group>"; };
 		B089AA961BE9D09400E5D2CC /* JYLoopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLoopModel.h; sourceTree = "<group>"; };
 		B089AA971BE9D09400E5D2CC /* JYLoopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLoopModel.m; sourceTree = "<group>"; };
 		B089AA9C1BE9D50700E5D2CC /* JYLoopViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLoopViewModel.h; sourceTree = "<group>"; };
@@ -1145,6 +1145,34 @@
 				8396B81A1C12CBAC007E09C5 /* JYPublishCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		8328585A1C23B4B400C6E41D /* SettingVCs */ = {
+			isa = PBXGroup;
+			children = (
+				8328585B1C23B4B400C6E41D /* JYAboutJYViewController.h */,
+				8328585C1C23B4B400C6E41D /* JYAboutJYViewController.m */,
+				8328585D1C23B4B400C6E41D /* JYOpinionVC.h */,
+				8328585E1C23B4B400C6E41D /* JYOpinionVC.m */,
+				8328585F1C23B4B400C6E41D /* JYSettingViewController.h */,
+				832858601C23B4B400C6E41D /* JYSettingViewController.m */,
+			);
+			path = SettingVCs;
+			sourceTree = "<group>";
+		};
+		832858641C23B58700C6E41D /* RegistAndLogin */ = {
+			isa = PBXGroup;
+			children = (
+				832858651C23B58700C6E41D /* JYLoginViewController.h */,
+				832858661C23B58700C6E41D /* JYLoginViewController.m */,
+				832858671C23B58700C6E41D /* JYPhoneNumViewController.h */,
+				832858681C23B58700C6E41D /* JYPhoneNumViewController.m */,
+				832858691C23B58700C6E41D /* JYRegisterViewController.h */,
+				8328586A1C23B58700C6E41D /* JYRegisterViewController.m */,
+				8328586B1C23B58700C6E41D /* JYUserProtocolViewController.h */,
+				8328586C1C23B58700C6E41D /* JYUserProtocolViewController.m */,
+			);
+			path = RegistAndLogin;
 			sourceTree = "<group>";
 		};
 		8328A42E1BE8478B0021767D = {
@@ -1387,28 +1415,16 @@
 		8328A4901BE849800021767D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				B03FD56D1C0553BC0031A18C /* JYLoginViewController.h */,
-				B03FD56E1C0553BC0031A18C /* JYLoginViewController.m */,
-				B03FD5741C0568F60031A18C /* JYRegisterViewController.h */,
-				B03FD5751C0568F60031A18C /* JYRegisterViewController.m */,
-				B03FD58A1C05BA2F0031A18C /* JYUserProtocolViewController.h */,
-				B03FD58B1C05BA2F0031A18C /* JYUserProtocolViewController.m */,
-				B0800A2A1C05DFE70096F90B /* JYPhoneNumViewController.h */,
-				B0800A2B1C05DFE70096F90B /* JYPhoneNumViewController.m */,
 				B02A70111BE860C600B8B05F /* JYMineController.h */,
 				B02A70121BE860C600B8B05F /* JYMineController.m */,
 				831A04C81BF5CCCA00F78986 /* JYUserInfoViewController.h */,
 				831A04C91BF5CCCA00F78986 /* JYUserInfoViewController.m */,
-				831A04CB1BF5D08300F78986 /* JYSettingViewController.h */,
-				831A04CC1BF5D08300F78986 /* JYSettingViewController.m */,
-				B03859F11C0703410053D0B0 /* IMMyselfInfoEditViewController.h */,
-				B03859F21C0703410053D0B0 /* IMMyselfInfoEditViewController.m */,
 				83534E841C1E9A6300CAC273 /* JYUserNeedsVC.h */,
 				83534E851C1E9A6300CAC273 /* JYUserNeedsVC.m */,
-				83534E871C1EB6E400CAC273 /* JYOpinionVC.h */,
-				83534E881C1EB6E400CAC273 /* JYOpinionVC.m */,
-				83534E8D1C1EC2C800CAC273 /* JYAboutJYViewController.h */,
-				83534E8E1C1EC2C800CAC273 /* JYAboutJYViewController.m */,
+				B03859F11C0703410053D0B0 /* IMMyselfInfoEditViewController.h */,
+				B03859F21C0703410053D0B0 /* IMMyselfInfoEditViewController.m */,
+				832858641C23B58700C6E41D /* RegistAndLogin */,
+				8328585A1C23B4B400C6E41D /* SettingVCs */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -3055,7 +3071,6 @@
 				8328A4AA1BE849800021767D /* UIView+Extension.m in Sources */,
 				B06FDC7A1C08847C0076E4DC /* IMGroupInfoViewController.m in Sources */,
 				8328A4A31BE849800021767D /* JYHomeController.m in Sources */,
-				831A04CD1BF5D08300F78986 /* JYSettingViewController.m in Sources */,
 				B04758D61BEB92D100C645EE /* JYWebViewController.m in Sources */,
 				B03859F31C0703410053D0B0 /* IMMyselfInfoEditViewController.m in Sources */,
 				83F9D8161C0C6F0C002687F7 /* JYFileManager.m in Sources */,
@@ -3067,8 +3082,6 @@
 				8328A4AF1BE84E050021767D /* JYBaseModel.m in Sources */,
 				83476B751BEB1C6C0061F61E /* iCarousel.m in Sources */,
 				83534E8C1C1EBBDB00CAC273 /* JYTextView.m in Sources */,
-				B03FD5761C0568F60031A18C /* JYRegisterViewController.m in Sources */,
-				B0800A2C1C05DFE70096F90B /* JYPhoneNumViewController.m in Sources */,
 				B048007E1BF489DD007D39F4 /* JYGoodsNetManager.m in Sources */,
 				B06FDC831C0884C10076E4DC /* pinyin.c in Sources */,
 				8319BE351C1A736300F5DD5B /* JYNormalCell.m in Sources */,
@@ -3087,10 +3100,12 @@
 				B06FDC7C1C08847C0076E4DC /* IMGroupMemberHeadersView.m in Sources */,
 				83DECFB71BF1C28900A1FE7C /* JYClassifyModel.m in Sources */,
 				8394B2621BEDB18700D3F66F /* JYNewFeatureViewController.m in Sources */,
+				832858631C23B4B400C6E41D /* JYSettingViewController.m in Sources */,
 				B06FDC811C08847C0076E4DC /* IMUserInformationViewController.m in Sources */,
 				8328A43F1BE8478B0021767D /* AppDelegate.m in Sources */,
 				83EEDF441C000C9300016E02 /* JYClassifyCell.m in Sources */,
 				B0AFA3A41BFB213E00F795F9 /* POAPinyin.m in Sources */,
+				8328586F1C23B58700C6E41D /* JYRegisterViewController.m in Sources */,
 				8396B8181C12C466007E09C5 /* JYClassSelectCell.m in Sources */,
 				B06FDC721C08847C0076E4DC /* IMContactViewController.m in Sources */,
 				8396B8151C12C209007E09C5 /* JYPriceCell.m in Sources */,
@@ -3100,14 +3115,15 @@
 				B0AFA3B11BFB226E00F795F9 /* UIImage+IM.m in Sources */,
 				8328A4A41BE849800021767D /* AppDelegate+Category.m in Sources */,
 				8396B8121C12BEC9007E09C5 /* JYProductDescCell.m in Sources */,
+				8328586D1C23B58700C6E41D /* JYLoginViewController.m in Sources */,
 				B089AA981BE9D09400E5D2CC /* JYLoopModel.m in Sources */,
+				832858611C23B4B400C6E41D /* JYAboutJYViewController.m in Sources */,
 				837096A21C214017001931E6 /* JYAroundViewCell.m in Sources */,
 				B0AFA3A51BFB213E00F795F9 /* SFCountdownView.m in Sources */,
 				83CED5B71C15769F006C9869 /* JYPublishNeedsVC.m in Sources */,
-				83534E8F1C1EC2C800CAC273 /* JYAboutJYViewController.m in Sources */,
 				B0AEC8911BEC86540045F08F /* JYHomeProductCell.m in Sources */,
-				83534E891C1EB6E400CAC273 /* JYOpinionVC.m in Sources */,
 				838D14AC1BFA00C6003C4F87 /* UIButton+VerticalBtn.m in Sources */,
+				832858701C23B58700C6E41D /* JYUserProtocolViewController.m in Sources */,
 				83EEDF471C0015C400016E02 /* JYClassifyContentVC.m in Sources */,
 				83E75EC61BEA45C70020D54D /* JYSellerCell.m in Sources */,
 				83987DF11BFEF71E007C9CE4 /* JYUserInfoModel.m in Sources */,
@@ -3129,17 +3145,18 @@
 				8328A4B21BE84E1F0021767D /* JYBaseNetManager.m in Sources */,
 				B089AAA11BE9D70800E5D2CC /* JYLoopNetManager.m in Sources */,
 				B06FDC801C08847C0076E4DC /* IMFriendRequestViewController.m in Sources */,
-				B03FD58C1C05BA2F0031A18C /* JYUserProtocolViewController.m in Sources */,
 				831A04CA1BF5CCCA00F78986 /* JYUserInfoViewController.m in Sources */,
 				B02A701A1BE863AE00B8B05F /* JYTabBar.m in Sources */,
 				8319BE381C1AA24F00F5DD5B /* JYFactory.m in Sources */,
 				B06FDC771C08847C0076E4DC /* IMAddGroupMemberViewController.m in Sources */,
 				B0AFA3A01BFB213E00F795F9 /* BDKNotifyHUD.m in Sources */,
 				8328A4A71BE849800021767D /* NSString+PJR.m in Sources */,
+				832858621C23B4B400C6E41D /* JYOpinionVC.m in Sources */,
 				B04800841BF48DF0007D39F4 /* JYGoodsViewModel.m in Sources */,
 				8345CDB61BFB4156002A5910 /* JYProductDetailNetManager.m in Sources */,
 				83987DF51BFEFADF007C9CE4 /* JYUserInfoNetManager.m in Sources */,
 				8319BE3F1C1ACC0900F5DD5B /* JYNormalModel.m in Sources */,
+				8328586E1C23B58700C6E41D /* JYPhoneNumViewController.m in Sources */,
 				8328A43C1BE8478B0021767D /* main.m in Sources */,
 				B0AFA3A11BFB213E00F795F9 /* JSONKit.m in Sources */,
 				B089AA9E1BE9D50700E5D2CC /* JYLoopViewModel.m in Sources */,
@@ -3148,7 +3165,6 @@
 				B03FD5641C0553400031A18C /* JYSDKManager.m in Sources */,
 				837096A31C214017001931E6 /* JYAroundViewController.m in Sources */,
 				B06FDC781C08847C0076E4DC /* IMCreateGroupViewController.m in Sources */,
-				B03FD5701C0553BC0031A18C /* JYLoginViewController.m in Sources */,
 				8328A4B51BE84E6E0021767D /* JYBaseViewModel.m in Sources */,
 				B02A70131BE860C600B8B05F /* JYMineController.m in Sources */,
 			);

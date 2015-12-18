@@ -63,9 +63,10 @@
 - (void)prepareForReuse{
     [self.popView setNeedsDisplay];
 }
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-
+    self.backgroundColor = kRGBColor(236, 236, 236);//圈圈的背景依据这个设置
     self.contentView.backgroundColor = kRGBColor(236, 236, 236);
     return self;
 }

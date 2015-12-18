@@ -26,6 +26,11 @@ static const CGFloat BADGE_HW = 12;
     }];
 }
 
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    return self;
+}
+
 - (void)removeBadge{
     self.accessoryView = nil;
 }

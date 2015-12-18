@@ -187,6 +187,9 @@
         }
     }else{
         JYNormalCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MineCell"];
+        if (cell == nil) {
+            cell = [[JYNormalCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"MineCell"];
+        }
         cell.textLabel.font = [UIFont systemFontOfSize:16];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
         if (indexPath.section == 1) {
@@ -263,7 +266,7 @@ kRemoveCellSeparator
             make.edges.mas_equalTo(0);
         }];
         [_tableView registerClass:[JYSellerCell class] forCellReuseIdentifier:@"JYSellerCell"];
-        [_tableView registerClass:[JYNormalCell class] forCellReuseIdentifier:@"MineCell"];
+//        [_tableView registerClass:[JYNormalCell class] forCellReuseIdentifier:@"MineCell"];
         [_tableView registerClass:[JYUserPublishItemCell class] forCellReuseIdentifier:@"JYUserPublishItemCell"];
     }
     return _tableView;
