@@ -90,12 +90,19 @@
     NSString *path = @"http://www.i-jianyi.com/port/resource/imgUpload";
 
     [[JYUserInfoNetManager sharedAFManager] POST:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        NSString *file = [[NSBundle mainBundle] pathForResource:@"LOGO.png" ofType:nil];
-        NSData *data = [NSData dataWithContentsOfFile:file];
+         NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"LOGO.png" withExtension:nil];
+//        NSString *file = [[NSBundle mainBundle] pathForResource:@"LOGO.png" ofType:nil];
+//        NSData *data = [NSData dataWithContentsOfFile:file];
 //        NSInputStream *stream = [NSInputStream inputStreamWithData:data];
 //        [formData appendPartWithInputStream:stream name:@"file" fileName:@"LOGO.png" length:nil mimeType:@"image/png"];
         
-        [formData appendPartWithFileData:data name:@"file" fileName:@"LOGO.png" mimeType:@"image/png"];
+//        [formData appendPartWithFileData:data name:@"file" fileName:@"LOGO.png" mimeType:@"image/png"];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+
+        NSString *fileName = [formatter stringFromDate:[NSDate date]];
+        
+        [formData appendPartWithFileURL:fileURL name:@"uploadFile" fileName:fileName mimeType:@"test" error:NULL];
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         JYLog(@"%@",responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
