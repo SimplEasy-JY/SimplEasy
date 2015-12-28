@@ -472,9 +472,9 @@ static JYRootViewController *rootViewC = nil;// 定义全局静态变量
 
 /** 设置VC */
 - (void)setupViewControllers {
-
+    JYHomeController *homeVC = [[JYHomeController alloc]init];
     UINavigationController *homeNavc = [[UINavigationController alloc]
-                                        initWithRootViewController:kVCFromSb(@"JYHomeController", @"Main")];
+                                        initWithRootViewController:homeVC];
     
     JYCircleViewController *needsVC = [[JYCircleViewController alloc] init];
     UINavigationController *needsNavc = [[UINavigationController alloc]

@@ -21,7 +21,9 @@
 #import "JYRecommendCell.h"
 #import "JYFreeChargeCell.h"
 
+//category
 #import "UIImage+Circle.h"
+#import "UIButton+VerticalBtn.h"
 
 #import "JYLoginViewController.h"
 /**  cell id */
@@ -49,10 +51,9 @@ static NSString *JYChargeCellIndentifier = @"freeChargeCell";
     NSInteger _currentCount;
     
 }
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-- (IBAction)categoryButton:(id)sender;
-- (IBAction)positionButton:(id)sender;
 
+/**  tableview */
+@property(strong,nonatomic)UITableView *tableView;
 /**  vm */
 @property(strong,nonatomic)JYLoopViewModel *loopVM;
 @property(strong,nonatomic)JYGoodsViewModel *goodsVM;
@@ -85,6 +86,19 @@ typedef NS_ENUM(NSInteger, cellType) {
     freeCharge = 2,
 };
 #pragma mark -懒加载
+/**  tablView */
+-(UITableView *)tableView{
+    if (!_tableView) {
+        _tableView = [[UITableView  alloc]init];
+        _tableView.dataSource = self;
+        _tableView.delegate = self;
+        [self.view addSubview:_tableView];
+        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(0);
+        }];
+    }
+    return _tableView;
+}
 -(NSMutableArray *)reloadArray{
     if (!_reloadArray) {
         self.reloadArray = [[NSMutableArray  alloc]init];
@@ -189,24 +203,6 @@ typedef NS_ENUM(NSInteger, cellType) {
     return _goodsVM;
     
 }
-#pragma mark - 响应方法
-/**  分类按钮 */
-- (IBAction)categoryButton:(id)sender {
-    JYClassifyViewController *classifyVC = (JYClassifyViewController *)self.sideMenuViewController.leftMenuViewController;
-    
-    [classifyVC didSelectTypeWithBlock:^(JYClassifyContentVC *viewController, JYClassifyModel *model) {
-        viewController.title = model.name;
-        viewController.model = model;
-        viewController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:viewController animated:YES];
-    }];
-    
-    [self.sideMenuViewController presentLeftMenuViewController];
-}
-/**  定位按钮 */
-- (IBAction)positionButton:(id)sender {
-    
-}
 
 //通知方法
 -(void)login{
@@ -245,6 +241,7 @@ typedef NS_ENUM(NSInteger, cellType) {
 
 
 -(void)setNav{
+    
     //中间的搜索条
     CGRect frame = CGRectMake(0, 0, kWindowW-130, 28);
     /**  加中间层，防止切换闪 */
@@ -265,13 +262,50 @@ typedef NS_ENUM(NSInteger, cellType) {
     searchTextField = [[[searchBar.subviews firstObject] subviews] lastObject];
     searchTextField.backgroundColor = kRGBColor(240, 240, 240);
 
-    
-    
 #warning 后台数据替换
     searchBar.placeholder = @"简易破蛋日大酬宾~";
     searchBar.delegate = self;
     [titleView addSubview:searchBar];
     self.navigationItem.titleView = titleView;
+    //分类按钮
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftButton.frame = CGRectMake(0, 0, 40,40);
+    [leftButton setTitle:@"分类" forState:UIControlStateNormal];
+    [leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [leftButton setTitleEdgeInsets:UIEdgeInsetsMake(28, -46, 0, 0)];
+    leftButton.titleLabel.font = [UIFont systemFontOfSize:10];
+    [leftButton setImage:[UIImage imageNamed:@"topicon_1"] forState:UIControlStateNormal];
+    [leftButton setImageEdgeInsets:UIEdgeInsetsMake(-8, -8, 0, 0)];
+    /**  分类按钮响应方法 */
+    [leftButton bk_addEventHandler:^(id sender) {
+        JYClassifyViewController *classifyVC = (JYClassifyViewController *)self.sideMenuViewController.leftMenuViewController;
+        
+        [classifyVC didSelectTypeWithBlock:^(JYClassifyContentVC *viewController, JYClassifyModel *model) {
+            viewController.title = model.name;
+            viewController.model = model;
+            viewController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:viewController animated:YES];
+        }];
+        
+        [self.sideMenuViewController presentLeftMenuViewController];
+    } forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    
+    //定位按钮
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightButton.frame = CGRectMake(0, 0, 40,40);
+    [rightButton setTitle:@"定位" forState:UIControlStateNormal];
+    [rightButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [rightButton setTitleEdgeInsets:UIEdgeInsetsMake(28, -15, 0, 0)];
+    rightButton.titleLabel.font = [UIFont systemFontOfSize:10];
+    [rightButton setImage:[UIImage imageNamed:@"topicon_2"] forState:UIControlStateNormal];
+    [rightButton setImageEdgeInsets:UIEdgeInsetsMake(-8, 15, 0, 0)];
+    [rightButton bk_addEventHandler:^(id sender) {
+        JYLog(@"按了定位按钮");
+    } forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightItem;
 
 }
 
