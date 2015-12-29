@@ -20,6 +20,7 @@
 #import "JYHomeProductCell.h"
 #import "JYRecommendCell.h"
 #import "JYFreeChargeCell.h"
+#import "JYClassifyCell.h"
 
 //category
 #import "UIImage+Circle.h"
@@ -34,7 +35,7 @@ static NSString *JYHomeProductCellIndentifier = @"JYHomeProductCell";
 static NSString *JYRecommendCellIndentifier = @"JYRecommendCell";
 static NSString *JYChargeCellIndentifier = @"freeChargeCell";
 
-@interface JYHomeController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,iCarouselDelegate,iCarouselDataSource>{
+@interface JYHomeController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UISearchResultsUpdating,iCarouselDelegate,iCarouselDataSource>{
     /**  page */
     int _page;
     /**  type */
@@ -54,6 +55,8 @@ static NSString *JYChargeCellIndentifier = @"freeChargeCell";
 
 /**  tableview */
 @property(strong,nonatomic)UITableView *tableView;
+/**  searchDisPlay */
+@property(strong,nonatomic)UISearchController *searchController;
 /**  vm */
 @property(strong,nonatomic)JYLoopViewModel *loopVM;
 @property(strong,nonatomic)JYGoodsViewModel *goodsVM;
@@ -86,6 +89,17 @@ typedef NS_ENUM(NSInteger, cellType) {
     freeCharge = 2,
 };
 #pragma mark -懒加载
+/**  searchController */
+-(UISearchController *)searchController{
+    if (!_searchController) {
+        _searchController = [[UISearchController  alloc]initWithSearchResultsController:nil];
+        _searchController.searchResultsUpdater = self;
+        _searchController.dimsBackgroundDuringPresentation = NO;
+        _searchController.hidesNavigationBarDuringPresentation = NO;
+        _searchController.searchBar.frame = CGRectMake(0, 0, kWindowW-130, 28);
+    }
+    return _searchController;
+}
 /**  tablView */
 -(UITableView *)tableView{
     if (!_tableView) {
@@ -233,9 +247,6 @@ typedef NS_ENUM(NSInteger, cellType) {
     
     //监听登录通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(login) name:IMLoginNotification object:nil];
-    
-    
-   
 }
 
 
@@ -246,27 +257,29 @@ typedef NS_ENUM(NSInteger, cellType) {
     CGRect frame = CGRectMake(0, 0, kWindowW-130, 28);
     /**  加中间层，防止切换闪 */
     UIView *titleView = [[UIView alloc] initWithFrame:frame];
-   
+
     //设置边框宽度和颜色   取消黑线
     [titleView.layer setBorderWidth:1];
     [titleView.layer setBorderColor:[UIColor whiteColor].CGColor];
     titleView.layer.masksToBounds = YES;
-    UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:frame];
+//    UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:frame];
 
     /**  设置自定义搜索图片 */
     
-    [searchBar setImage:[UIImage imageNamed:@"topicon_3"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+    [self.searchController.searchBar setImage:[UIImage imageNamed:@"topicon_3"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
     //设置背景颜色
     UIView *searchTextField = nil;
-    searchBar.barTintColor = [UIColor whiteColor];
-    searchTextField = [[[searchBar.subviews firstObject] subviews] lastObject];
+    self.searchController.searchBar.barTintColor = [UIColor whiteColor];
+    searchTextField = [[[self.searchController.searchBar.subviews firstObject] subviews] lastObject];
     searchTextField.backgroundColor = kRGBColor(240, 240, 240);
 
 #warning 后台数据替换
-    searchBar.placeholder = @"简易破蛋日大酬宾~";
-    searchBar.delegate = self;
-    [titleView addSubview:searchBar];
+    self.searchController.searchBar.placeholder = @"简易破蛋日大酬宾~";
+    [titleView addSubview:self.searchController.searchBar];
     self.navigationItem.titleView = titleView;
+
+    
+    
     //分类按钮
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     leftButton.frame = CGRectMake(0, 0, 40,40);
@@ -277,9 +290,8 @@ typedef NS_ENUM(NSInteger, cellType) {
     [leftButton setImage:[UIImage imageNamed:@"topicon_1"] forState:UIControlStateNormal];
     [leftButton setImageEdgeInsets:UIEdgeInsetsMake(-8, -8, 0, 0)];
     /**  分类按钮响应方法 */
-    [leftButton bk_addEventHandler:^(id sender) {
+    [leftButton bk_addEventHandler:^(UIButton *sender) {
         JYClassifyViewController *classifyVC = (JYClassifyViewController *)self.sideMenuViewController.leftMenuViewController;
-        
         [classifyVC didSelectTypeWithBlock:^(JYClassifyContentVC *viewController, JYClassifyModel *model) {
             viewController.title = model.name;
             viewController.model = model;
@@ -349,9 +361,6 @@ typedef NS_ENUM(NSInteger, cellType) {
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kWindowW, firstLVH)];
             imageView.tag = 100;
             [view addSubview: imageView];
-//            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//                make.edges.mas_equalTo(view);
-//            }];
         }
         UIImageView *imageView = (UIImageView *)[view viewWithTag:100];
         [imageView sd_setImageWithURL:[NSURL URLWithString:self.loopVM.loopImageUrlArray[index]] placeholderImage:nil];
@@ -426,6 +435,16 @@ typedef NS_ENUM(NSInteger, cellType) {
 
 }
 
+#pragma mark - searchBar delegate
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    JYLog(@"点击了搜索");
+
+}
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    JYLog(@"搜索");
+    return YES;
+}
 kRemoveCellSeparator
 
 #pragma mark - UITableViewDataSource
@@ -437,18 +456,30 @@ kRemoveCellSeparator
 
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if (section == 2) {
-        return 0;
+    if (tableView == self.tableView) {
+        if (section == 2) {
+            return 0;
+        }
+        return 10;
     }
-    return 10;
+    return 0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    if (self.searchController.active) {
+        return 1;
+    }
+    else {
+        return 3;
+    }
 }
 
 /**  cell个数*/
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+#warning test
+    if (self.searchController.active) {
+        return 10;
+    }
     if (section == 0) {
         return 2;
     }
@@ -462,15 +493,13 @@ kRemoveCellSeparator
         }
         return self.goodsVM.dataArr.count;
     }
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         return (indexPath.row == 0 ? 116:30);
     }
-//    if (indexPath.section == 2 && _cellType == homeProduct) {
-//        return 330;
-//    }
     return UITableViewAutomaticDimension;
 
 }
@@ -480,176 +509,190 @@ kRemoveCellSeparator
 }
 /**  header */
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (section == 2) {
-        UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kWindowW, 30)];
-        /**  设置边框宽度和颜色 */
-        [[bgView layer]setBorderWidth:0.5];
-        [[bgView layer]setBorderColor:kRGBColor(217, 217, 217).CGColor];
-        for (int i=0; i<self.segmentItemsArray.count; i++) {
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            /**  设置button的参数 */
-            [button setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor] cornerRadius:0] forState:UIControlStateNormal];
-            [button setBackgroundImage:[UIImage imageWithColor:JYHexColor(0x272C35) cornerRadius:0] forState:UIControlStateSelected];
-            button.tag = i;
-            button.titleLabel.font = [UIFont systemFontOfSize:13];
-            [button setTitle:self.segmentItemsArray[i] forState:UIControlStateNormal];
-            [button setTitleColor:kRGBColor(54, 54, 54) forState:UIControlStateNormal];
-            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-            button.frame = CGRectMake(0+kWindowW/self.segmentItemsArray.count*i, 0, kWindowW/self.segmentItemsArray.count, 30);
-            if (i == 1) {
-                //                [[button layer]setBorderWidth:1];
-                //                [[button layer]setBorderColor:kRGBColor(217, 217, 217).CGColor];
-                float height = button.frame.size.height;
-                float width = button.frame.size.width-0.5;
-                CALayer *leftBorder = [CALayer layer];
-                CALayer *rightBorder = [CALayer layer];
-                leftBorder.frame = CGRectMake(0, 0, 0.5,height );
-                leftBorder.backgroundColor = kRGBColor(217, 217, 217).CGColor;
-                [button.layer addSublayer:leftBorder];
-                rightBorder.frame = CGRectMake(width, 0, 0.5, height);
-                rightBorder.backgroundColor = kRGBColor(217, 217, 217).CGColor;
-                [button.layer addSublayer:rightBorder];
-            }
-            if (i == _cellType) {
-                _currentButton = button;
-                button.selected = YES;
-            }
-            [button bk_addEventHandler:^(UIButton *sender) {
-                if (sender != _currentButton) {
-                    _currentButton.selected = NO;
-                    sender.selected = YES;
-                    _currentButton = sender;
-                    _cellType = (int)sender.tag;
-                    [self isRefresh:YES];
-                    YSHLog(@"sender:%d",(int)sender.tag);
+    if (tableView == self.tableView) {
+        if (section == 2) {
+            UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kWindowW, 30)];
+            /**  设置边框宽度和颜色 */
+            [[bgView layer]setBorderWidth:0.5];
+            [[bgView layer]setBorderColor:kRGBColor(217, 217, 217).CGColor];
+            for (int i=0; i<self.segmentItemsArray.count; i++) {
+                UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+                /**  设置button的参数 */
+                [button setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor] cornerRadius:0] forState:UIControlStateNormal];
+                [button setBackgroundImage:[UIImage imageWithColor:JYHexColor(0x272C35) cornerRadius:0] forState:UIControlStateSelected];
+                button.tag = i;
+                button.titleLabel.font = [UIFont systemFontOfSize:13];
+                [button setTitle:self.segmentItemsArray[i] forState:UIControlStateNormal];
+                [button setTitleColor:kRGBColor(54, 54, 54) forState:UIControlStateNormal];
+                [button setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+                button.frame = CGRectMake(0+kWindowW/self.segmentItemsArray.count*i, 0, kWindowW/self.segmentItemsArray.count, 30);
+                if (i == 1) {
+                    //                [[button layer]setBorderWidth:1];
+                    //                [[button layer]setBorderColor:kRGBColor(217, 217, 217).CGColor];
+                    float height = button.frame.size.height;
+                    float width = button.frame.size.width-0.5;
+                    CALayer *leftBorder = [CALayer layer];
+                    CALayer *rightBorder = [CALayer layer];
+                    leftBorder.frame = CGRectMake(0, 0, 0.5,height );
+                    leftBorder.backgroundColor = kRGBColor(217, 217, 217).CGColor;
+                    [button.layer addSublayer:leftBorder];
+                    rightBorder.frame = CGRectMake(width, 0, 0.5, height);
+                    rightBorder.backgroundColor = kRGBColor(217, 217, 217).CGColor;
+                    [button.layer addSublayer:rightBorder];
                 }
-            } forControlEvents:UIControlEventTouchUpInside];
-            [bgView addSubview:button];
+                if (i == _cellType) {
+                    _currentButton = button;
+                    button.selected = YES;
+                }
+                [button bk_addEventHandler:^(UIButton *sender) {
+                    if (sender != _currentButton) {
+                        _currentButton.selected = NO;
+                        sender.selected = YES;
+                        _currentButton = sender;
+                        _cellType = (int)sender.tag;
+                        [self isRefresh:YES];
+                        YSHLog(@"sender:%d",(int)sender.tag);
+                    }
+                } forControlEvents:UIControlEventTouchUpInside];
+                [bgView addSubview:button];
+            }
+            return bgView;
         }
-        return bgView;
+
     }
     return nil;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:JYLoopCellIndentifier];
-            if (cell == nil ) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JYLoopCellIndentifier];
-                /**  加入滚动视图 */
-//                self.firstLoopView.frame = CGRectMake(0, 0, kWindowW, firstLVH);
-                [cell addSubview:self.firstLoopView];
-                [self.firstLoopView mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.edges.mas_equalTo(cell).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+    if (tableView == self.tableView) {
+        if (indexPath.section == 0) {
+            if (indexPath.row == 0) {
+                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:JYLoopCellIndentifier];
+                if (cell == nil ) {
+                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JYLoopCellIndentifier];
+                    /**  加入滚动视图 */
+                    //                self.firstLoopView.frame = CGRectMake(0, 0, kWindowW, firstLVH);
+                    [cell addSubview:self.firstLoopView];
+                    [self.firstLoopView mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.edges.mas_equalTo(cell).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+                    }];
+                    /**  加入pageview */
+                    self.firstLoopPage.numberOfPages = self.firstLoopView.numberOfItems;
+                    [cell addSubview:self.firstLoopPage];
+                    [self.firstLoopPage mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.centerX.mas_equalTo(0);
+                        make.bottom.mas_equalTo(10);
+                    }];
+                }
+                return cell;
+            }
+            if (indexPath.row == 1) {
+                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:JYLoopCellSecondIndentifier];
+                if  (cell == nil ) {
+                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JYLoopCellSecondIndentifier];
+                    /**  加入滚动视图 */
+                    [cell addSubview:self.secondLoopView];
+                    [self.secondLoopView mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.edges.mas_equalTo(0);
+                    }];
+                }
+                return cell;
+            }
+        }
+        else if (indexPath.section ==1){
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:JYLoopCellThirdIndentifier];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JYLoopCellThirdIndentifier];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                NSLog(@"%@",NSStringFromCGRect(cell.frame));
+                //添加最新活动label
+                UILabel *label = [UILabel new];
+                label.text = @"最新活动";
+                label.font = [UIFont systemFontOfSize:14];
+                [cell addSubview:label];
+                [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.edges.mas_equalTo(cell).with.insets(UIEdgeInsetsMake(7.5, 10, 117.5, 250));
                 }];
-                /**  加入pageview */
-            self.firstLoopPage.numberOfPages = self.firstLoopView.numberOfItems;
-                [cell addSubview:self.firstLoopPage];
-                [self.firstLoopPage mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.centerX.mas_equalTo(0);
-                    make.bottom.mas_equalTo(10);
+                //添加更多button
+                UIButton *button = [UIButton new];
+                [button setTitle:@"更多" forState:UIControlStateNormal];
+                [button setTitleColor:kRGBColor(182, 182, 182) forState:UIControlStateNormal];
+                
+                
+                button.titleLabel.font = [UIFont systemFontOfSize:12];
+                UIImage *imageArrow = [UIImage imageNamed:@"message_10"];
+                [button setImage:imageArrow forState:UIControlStateNormal];
+                //            button.backgroundColor = [UIColor redColor];
+                [button setTitleEdgeInsets:UIEdgeInsetsMake(0, -imageArrow.size.width-15, 0, imageArrow.size.width+15)];
+                [button setImageEdgeInsets:UIEdgeInsetsMake(0, button.titleLabel.bounds.size.width+15, 0, -button.titleLabel.bounds.size.width-15)];
+                //button方法
+                [button bk_addEventHandler:^(id sender) {
+                    NSLog(@"更多");
+                } forControlEvents:UIControlEventTouchUpInside];
+                [cell addSubview:button];
+                [button mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.edges.mas_equalTo(cell).with.insets(UIEdgeInsetsMake(0, 265, 110, 0));
+                }];
+                
+                /**  加入滚动视图 */
+                [cell addSubview:self.thirdLoopView];
+                [self.thirdLoopView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.edges.mas_equalTo(cell).with.insets(UIEdgeInsetsMake(30, 0, 10, 0));
                 }];
             }
             return cell;
         }
-        if (indexPath.row == 1) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:JYLoopCellSecondIndentifier];
-            if  (cell == nil ) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JYLoopCellSecondIndentifier];
-                /**  加入滚动视图 */
-                [cell addSubview:self.secondLoopView];
-                [self.secondLoopView mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.edges.mas_equalTo(0);
-                }];
-            }
-            return cell;
-        }
-    }
-    else if (indexPath.section ==1){
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:JYLoopCellThirdIndentifier];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JYLoopCellThirdIndentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            NSLog(@"%@",NSStringFromCGRect(cell.frame));
-            //添加最新活动label
-            UILabel *label = [UILabel new];
-            label.text = @"最新活动";
-            label.font = [UIFont systemFontOfSize:14];
-            [cell addSubview:label];
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.mas_equalTo(cell).with.insets(UIEdgeInsetsMake(7.5, 10, 117.5, 250));
-            }];
-            //添加更多button
-            UIButton *button = [UIButton new];
-            [button setTitle:@"更多" forState:UIControlStateNormal];
-            [button setTitleColor:kRGBColor(182, 182, 182) forState:UIControlStateNormal];
-        
-
-            button.titleLabel.font = [UIFont systemFontOfSize:12];
-            UIImage *imageArrow = [UIImage imageNamed:@"message_10"];
-            [button setImage:imageArrow forState:UIControlStateNormal];
-//            button.backgroundColor = [UIColor redColor];
-            [button setTitleEdgeInsets:UIEdgeInsetsMake(0, -imageArrow.size.width-15, 0, imageArrow.size.width+15)];
-            [button setImageEdgeInsets:UIEdgeInsetsMake(0, button.titleLabel.bounds.size.width+15, 0, -button.titleLabel.bounds.size.width-15)];
-            //button方法
-            [button bk_addEventHandler:^(id sender) {
-                NSLog(@"更多");
-            } forControlEvents:UIControlEventTouchUpInside];
-            [cell addSubview:button];
-            [button mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.mas_equalTo(cell).with.insets(UIEdgeInsetsMake(0, 265, 110, 0));
-            }];
-        
-            /**  加入滚动视图 */
-            [cell addSubview:self.thirdLoopView];
-            [self.thirdLoopView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.mas_equalTo(cell).with.insets(UIEdgeInsetsMake(30, 0, 10, 0));
-            }];
-        }
-            return cell;
-    }
-    else if (indexPath.section == 2){
-        switch (_cellType) {
-            case homeProduct: {
-                JYHomeProductCell *cell = [tableView dequeueReusableCellWithIdentifier:JYHomeProductCellIndentifier];
-//                if (self.goodsVM.dataArr.count != 0) {
+        else if (indexPath.section == 2){
+            switch (_cellType) {
+                case homeProduct: {
+                    JYHomeProductCell *cell = [tableView dequeueReusableCellWithIdentifier:JYHomeProductCellIndentifier];
+                    //                if (self.goodsVM.dataArr.count != 0) {
                     if (!_firstGoodsArray) {
                         _firstGoodsArray = self.goodsVM.dataArr;
                     }
 #warning 可能会崩溃在下一行
-                    cell.goodsItems = _firstGoodsArray[indexPath.row];
-                    [cell setAttribute];
-//                }
-                return cell;
-            }
-                break;
-            case recommend:{
-                JYRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:JYRecommendCellIndentifier];
-                if (self.goodsVM.dataArr.count != 0) {
-                    if (_secondGoodsArray == nil) {
-                        _secondGoodsArray = self.goodsVM.dataArr;
+                    if (_firstGoodsArray.count > 0) {
+                        cell.goodsItems = _firstGoodsArray[indexPath.row];
+                        [cell setAttribute];
                     }
-                    cell.goodsItems = _secondGoodsArray[indexPath.row];
-                    [cell setAttribute];
+                   
+                    //                }
+                    return cell;
                 }
-
-                return cell;
-            }
-                break;
-            case freeCharge: {
-                JYFreeChargeCell *cell = [tableView dequeueReusableCellWithIdentifier:JYChargeCellIndentifier];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                if (self.goodsVM.dataArr.count != 0) {
-                    cell.rootController = self.navigationController;
-                    cell.firstGoodsItem = self.goodsVM.dataArr[2*indexPath.row];
-                    cell.secondGoodsItem = self.goodsVM.dataArr[2*indexPath.row  + 1];
-                    [cell setAttribute];
+                    break;
+                case recommend:{
+                    JYRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:JYRecommendCellIndentifier];
+                    if (self.goodsVM.dataArr.count != 0) {
+                        if (_secondGoodsArray == nil) {
+                            _secondGoodsArray = self.goodsVM.dataArr;
+                        }
+                        cell.goodsItems = _secondGoodsArray[indexPath.row];
+                        [cell setAttribute];
+                    }
+                    
+                    return cell;
                 }
-                return  cell;
-                
+                    break;
+                case freeCharge: {
+                    JYFreeChargeCell *cell = [tableView dequeueReusableCellWithIdentifier:JYChargeCellIndentifier];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    if (self.goodsVM.dataArr.count != 0) {
+                        cell.rootController = self.navigationController;
+                        cell.firstGoodsItem = self.goodsVM.dataArr[2*indexPath.row];
+                        cell.secondGoodsItem = self.goodsVM.dataArr[2*indexPath.row  + 1];
+                        [cell setAttribute];
+                    }
+                    return  cell;
+                    
+                }
             }
         }
     }
+    else {
+        JYClassifyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellID"];
+        cell.currentPrice.text = @"100";
+        return cell;
+    }
+ 
     return nil;
 
 }

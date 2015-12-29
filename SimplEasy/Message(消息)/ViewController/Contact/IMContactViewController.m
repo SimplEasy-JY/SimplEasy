@@ -85,7 +85,7 @@
     
     CGRect rect = [[self view] bounds];
     
-    rect.size.height -= 114;
+    rect.size.height -= 44;
     
     _tableView = [[UITableView alloc] initWithFrame:rect style:UITableViewStylePlain];
     
@@ -96,23 +96,23 @@
     [_tableView setSectionIndexColor:RGB(6, 191, 4)];
     [[self view] addSubview:_tableView];
     
-    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, kWindowW, 44)];
     
     [_searchBar setDelegate:self];
     [_searchBar setBackgroundColor:[UIColor whiteColor]];
     [_searchBar setPlaceholder:@"搜索好友"];
     
-    UIView *customTableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 44.0)];
+    UIView *customTableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0,kWindowW, 44.0)];
     
     [customTableHeaderView addSubview:_searchBar];
     [_tableView setTableHeaderView:customTableHeaderView];
     
-    UIView *customTableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 44.0)];
+    UIView *customTableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, kWindowW, 44.0)];
     
     [customTableFooterView setBackgroundColor:[UIColor clearColor]];
     [_tableView setTableFooterView:customTableFooterView];
     
-    _totalNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 300, 44)];
+    _totalNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, kWindowW-20, 44)];
     
     [_totalNumLabel setBackgroundColor:[UIColor clearColor]];
     [_totalNumLabel setTextAlignment:NSTextAlignmentCenter];
@@ -132,7 +132,7 @@
         }
         
         [_totalNumLabel setText:[NSString stringWithFormat:@"%lu位联系人",(unsigned long)count]];
-        [_totalNumLabel setFrame:CGRectMake(10, 0, 300, 44)];
+        [_totalNumLabel setFrame:CGRectMake(10, 0, kWindowW-20, 44)];
 
     } else {
         [_totalNumLabel setText:@"您当前还没有好友，快去添加好友吧"];
