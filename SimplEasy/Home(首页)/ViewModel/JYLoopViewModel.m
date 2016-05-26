@@ -32,7 +32,7 @@
             [self.dataArr addObjectsFromArray:model.data];
             for (int i=0; i<self.dataArr.count; i++) {
                 JYLoopImage *loopImage = [JYLoopImage objectWithKeyValues:self.dataArr[i]];
-                NSString *imageURL = [NSString stringWithFormat:@"http://www.i-jianyi.com%@",loopImage.src];
+                NSString *imageURL = [NSString stringWithFormat:@"http://wx.i-jianyi.com%@",loopImage.src];
                 [self.loopImageUrlArray addObject:imageURL];
                 [self.loopWebUrlArray addObject:loopImage.link];
             }

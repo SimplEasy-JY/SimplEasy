@@ -16,7 +16,7 @@ static AFHTTPSessionManager *manager = nil;
     dispatch_once(&onceToken, ^{
         manager = [AFHTTPSessionManager manager];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", @"text/json", @"text/javascript", nil];
-        [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:@"15757161281" password:@"aaa"];
+        [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:@"1202072324" password:@"1202072322"];
     });
     return manager;
 }

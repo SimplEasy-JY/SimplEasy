@@ -87,7 +87,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
 //
 //    * 图片上传测试 
-    NSString *path = @"http://www.i-jianyi.com/port/resource/imgUpload";
+    NSString *path = @"http://wx.i-jianyi.com/port/resource/imgUpload";
 
     [[JYUserInfoNetManager sharedAFManager] POST:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
          NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"LOGO.png" withExtension:nil];

@@ -43,8 +43,8 @@
 
 -(void)setAttribute{
     //图片
-    NSString *fImageURL = [NSString stringWithFormat:@"http://www.i-jianyi.com%@",self.firstGoodsItem.pic];
-    NSString *sImageURL = [NSString stringWithFormat:@"http://www.i-jianyi.com%@",self.secondGoodsItem.pic];
+    NSString *fImageURL = [NSString stringWithFormat:@"http://wx.i-jianyi.com%@",self.firstGoodsItem.pic];
+    NSString *sImageURL = [NSString stringWithFormat:@"http://wx.i-jianyi.com%@",self.secondGoodsItem.pic];
     //地址
     NSArray *fStrSchool = [self.firstGoodsItem.schoolname componentsSeparatedByString:@"-"];
     NSArray *sStrSchool = [self.secondGoodsItem.schoolname componentsSeparatedByString:@"-"];

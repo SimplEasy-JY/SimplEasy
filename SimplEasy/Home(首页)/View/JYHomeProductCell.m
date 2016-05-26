@@ -59,7 +59,7 @@
     //先隐藏图片，防止加载成圆形前出现方形图
     self.userImageView.hidden = YES;
     //图片
-    NSString *imageURL = [NSString stringWithFormat:@"http://www.i-jianyi.com%@",self.goodsItems.pic];
+    NSString *imageURL = [NSString stringWithFormat:@"http://wx.i-jianyi.com%@",self.goodsItems.pic];
 
     //时间
     NSArray *strTime = [self.goodsItems.time componentsSeparatedByString:@" "];

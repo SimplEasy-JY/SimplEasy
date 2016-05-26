@@ -12,7 +12,7 @@
 #import "JYNeedsModel.h"
 
 //路径设置
-#define JYUserPort @"http://www.i-jianyi.com/port/user"
+#define JYUserPort @"http://wx.i-jianyi.com/port/user"
 #define JYSetUserPort(string)       [JYUserPort stringByAppendingPathComponent:string]
 #define JYSetID(string,ID)          [string stringByAppendingPathComponent:ID]
 //参数设置
@@ -108,7 +108,7 @@
     //没有包括必须发布的信息则程序崩溃
     NSAssert([params.allKeys containsObject:@"tel"]&&[params.allKeys containsObject:@"username"]&&[params.allKeys containsObject:@"password"]&&[params.allKeys containsObject:@"title"]&&[params.allKeys containsObject:@"sort"]&&[params.allKeys containsObject:@"name"]&&[params.allKeys containsObject:@"detail"]&&[params.allKeys containsObject:@"price"]&&[params.allKeys containsObject:@"pic"], @"发布的信息必须包括tel/password/title/sort/name/detail/price/图片数组pic");
     
-    NSString *path = @"http://www.i-jianyi.com/port/goods/create";
+    NSString *path = @"http://wx.i-jianyi.com/port/goods/create";
     
     return [self POST:path parameters:params completionHandle:^(id responseObj, NSError *error) {
         completionHandle([JYNormalModel mj_objectWithKeyValues:responseObj],error);
@@ -116,7 +116,7 @@
 }
 
 + (id)deleteIdleWithIdleID:(NSInteger)idleID completionHandle:(void (^)(id, NSError *))completionHandle{
-    NSString *path = @"http://www.i-jianyi.com/port/Goods/delete";
+    NSString *path = @"http://wx.i-jianyi.com/port/Goods/delete";
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:[NSString stringWithFormat:@"%lu",idleID] forKey:@"id"];
     return [self POST:path parameters:params completionHandle:^(id responseObj, NSError *error) {
@@ -126,7 +126,7 @@
 
 + (id)getNeedsWithPage:(NSInteger)page userID:(NSInteger)userID completionHandle:(void (^)(id, NSError *))completionHandle {
 
-    NSString *path = @"http://www.i-jianyi.com/port/needs/index";
+    NSString *path = @"http://wx.i-jianyi.com/port/needs/index";
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:[NSString stringWithFormat:@"%lu",page] forKey:@"page"];
@@ -142,7 +142,7 @@
    
     NSAssert([params.allKeys containsObject:@"tel"]&&[params.allKeys containsObject:@"username"]&&[params.allKeys containsObject:@"password"]&&[params.allKeys containsObject:@"detail"]&&[params.allKeys containsObject:@"price"], @"发布需求的信息必须包括tel／password／detail／price!!!");
     
-    NSString *path = @"http://www.i-jianyi.com/port/needs/create";
+    NSString *path = @"http://wx.i-jianyi.com/port/needs/create";
     
     return [self POST:path parameters:params completionHandle:^(id responseObj, NSError *error) {
         completionHandle([JYNormalModel mj_objectWithKeyValues:responseObj],error);
@@ -150,7 +150,7 @@
 }
 
 + (id)deleteNeedsWithNeedsID: (NSInteger)needsID completionHandle:(void (^)(id, NSError *))completionHandle{
-    NSString *path = @"http://www.i-jianyi.com/port/Needs/delete";
+    NSString *path = @"http://wx.i-jianyi.com/port/Needs/delete";
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:[NSString stringWithFormat:@"%lu",needsID] forKey:@"id"];
     return [self POST:path parameters:params completionHandle:^(id responseObj, NSError *error) {
@@ -159,7 +159,7 @@
 }
 
 + (id)sendOpinionWithUserID:(NSInteger)userID opinionContent:(NSString *)opinion completionHandle:(void (^)(id, NSError *))completionHandle{
-    NSString *path = @"http://www.i-jianyi.com/port/user/opinion";
+    NSString *path = @"http://wx.i-jianyi.com/port/user/opinion";
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:[NSString stringWithFormat:@"%lu",userID] forKey:@"uid"];
     [params setObject:opinion forKey:@"content"];

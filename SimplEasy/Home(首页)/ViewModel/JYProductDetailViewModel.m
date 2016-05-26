@@ -10,7 +10,7 @@
 #import "JYProductDetailNetManager.h"
 #import "JYUserInfoNetManager.h"
 #import "JYUserInfoModel.h"
-#define PRODUCT_DETAIL @"http://www.i-jianyi.com/frontend/goods/detail/"//后面接上商品id
+#define PRODUCT_DETAIL @"http://wx.i-jianyi.com/frontend/goods/detail/"//后面接上商品id
 
 @interface JYProductDetailViewModel ()
 

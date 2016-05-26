@@ -10,7 +10,7 @@
 #import "JYLoopModel.h"
 @implementation JYLoopNetManager
 +(id)getLoopImageWithType:(NSInteger)type completionHandle:(void (^)(id, NSError *))completionHandle{
-    NSString *path=[NSString stringWithFormat:@"http://www.i-jianyi.com/port/img?type=%ld",type];
+    NSString *path=[NSString stringWithFormat:@"http://wx.i-jianyi.com/port/img?type=%ld",type];
    
    return [self GET:path parameters:nil completionHandle:^(id responseObj, NSError *error) {
         completionHandle([JYLoopModel objectWithKeyValues:responseObj], error);

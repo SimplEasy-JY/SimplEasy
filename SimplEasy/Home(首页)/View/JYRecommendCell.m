@@ -35,7 +35,7 @@
 }
 -(void)setAttribute{
     //图片
-    NSString *imageURL = [NSString stringWithFormat:@"http://www.i-jianyi.com%@",self.goodsItems.pic];
+    NSString *imageURL = [NSString stringWithFormat:@"http://wx.i-jianyi.com%@",self.goodsItems.pic];
     //地址
     NSArray *strSchool = [self.goodsItems.schoolname componentsSeparatedByString:@"-"];
     //时间

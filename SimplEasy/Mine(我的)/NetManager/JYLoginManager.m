@@ -13,9 +13,9 @@
 +(id)loginOrRegisterWith:(NSDictionary *)params Login:(BOOL)isLogin completionHandle:(void (^)(id, NSError *))completionHandle{
     NSString *path = nil;
     if (isLogin) {
-        path = @"http://www.i-jianyi.com/port/sign/index";
+        path = @"http://wx.i-jianyi.com/port/sign/index";
     }else {
-        path = @"http://www.i-jianyi.com/port/sign/register";
+        path = @"http://wx.i-jianyi.com/port/sign/register";
     }
     return [self POST:path parameters:params completionHandle:^(id responseObj, NSError *error) {
         completionHandle([JYLoginRegisterModel objectWithKeyValues:responseObj], error);

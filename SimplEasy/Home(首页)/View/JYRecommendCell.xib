@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -17,7 +16,6 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="【付专柜小票】洗脸仪洗脸仪洗脸仪洗脸仪洗脸仪洗脸仪洗脸仪洗脸仪洗脸仪" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGd-bn-qON">
                         <rect key="frame" x="130" y="23" width="172" height="35"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="172" id="oPP-IN-Z6F"/>
                             <constraint firstAttribute="height" constant="35" id="t7B-Hl-gFd"/>
@@ -28,7 +26,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="￥35" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EI-b0-zZ1">
                         <rect key="frame" x="131" y="60" width="37.5" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="37.5" id="EAf-Ak-SwX"/>
                             <constraint firstAttribute="height" constant="20.5" id="dSm-7F-zjI"/>
@@ -44,7 +41,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIh-3b-xwO">
                         <rect key="frame" x="171.5" y="62" width="30" height="16"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="3e4-Ch-NHd"/>
                             <constraint firstAttribute="width" constant="30" id="Jo4-P7-TFY"/>
@@ -63,7 +59,6 @@
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="middleicon_32" translatesAutoresizingMaskIntoConstraints="NO" id="wxh-y4-XeV">
                         <rect key="frame" x="130" y="83" width="10" height="14"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="oWn-Ez-tSj"/>
                             <constraint firstAttribute="width" constant="10" id="zhA-tP-T8N"/>
@@ -71,7 +66,6 @@
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="杭州电子科技大学" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vi-gD-xR0">
                         <rect key="frame" x="145" y="82" width="96" height="15"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="OkY-5P-oeS"/>
                         </constraints>
@@ -81,7 +75,6 @@
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_15" translatesAutoresizingMaskIntoConstraints="NO" id="u3b-sC-ZPQ">
                         <rect key="frame" x="10" y="15" width="110" height="82"/>
-                        <animations/>
                         <color key="backgroundColor" red="0.06118072225" green="1" blue="0.48388760739999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="110" id="hfE-sA-S2d"/>
@@ -96,7 +89,6 @@
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="马上抢" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1J-0v-u9p">
                         <rect key="frame" x="260" y="76" width="52" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="cA8-a2-n6S"/>
                             <constraint firstAttribute="width" constant="52" id="vWh-bf-VXo"/>
@@ -106,7 +98,6 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <animations/>
                 <constraints>
                     <constraint firstItem="0EI-b0-zZ1" firstAttribute="top" secondItem="eGd-bn-qON" secondAttribute="bottom" id="0gl-n1-LsF"/>
                     <constraint firstItem="wxh-y4-XeV" firstAttribute="top" secondItem="0EI-b0-zZ1" secondAttribute="bottom" constant="2.5" id="1Vz-bP-sfm"/>
@@ -176,7 +167,6 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
-            <animations/>
             <connections>
                 <outlet property="currentPrice" destination="0EI-b0-zZ1" id="FfG-OF-Ppv"/>
                 <outlet property="describeLabel" destination="eGd-bn-qON" id="Nji-la-qWf"/>
